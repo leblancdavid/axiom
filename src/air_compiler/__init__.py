@@ -1,1 +1,1 @@
-"""AIR v0.1 compiler. Application behavior belongs in AIR, not generated files."""
+"""Axiom compiler. Application behavior belongs in the semantic model."""

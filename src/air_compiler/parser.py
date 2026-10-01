@@ -23,10 +23,14 @@ def parse(text: str) -> Program:
     except json.JSONDecodeError as exc:
         raise AirError(f"invalid JSON: {exc}") from exc
     if not isinstance(document, dict):
-        raise AirError("AIR root must be an object")
-    for key in ("air_version", "application", "types", "capabilities", "state", "invariants", "behaviors", "commands"):
+        raise AirError("Axiom root must be an object")
+    if "axiom_version" not in document and "air_version" not in document:
+        raise AirError("missing required Axiom version")
+    if "axiom_version" in document and "errors" not in document:
+        raise AirError("missing required Axiom field: errors")
+    for key in ("application", "types", "capabilities", "state", "invariants", "behaviors", "commands"):
         if key not in document:
-            raise AirError(f"missing required AIR field: {key}")
+            raise AirError(f"missing required Axiom field: {key}")
     return Program(document)
 
 

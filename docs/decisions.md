@@ -11,9 +11,16 @@
   benefit when humans are not expected to author the representation manually.
 - A generated Python file embeds validated AIR and a fixed backend runtime.
   It is an artifact; changing its behavior requires changing AIR or the compiler.
-- v0.1 does not model concurrency, transactions across multiple states, arbitrary
-  computation, semantic diffs, or multiple backends. JSON replace is atomic for
+- v0.2 adds a semantic index and structural diff; it does not model concurrency,
+  transactions across multiple states, arbitrary computation or multiple backends. JSON replace is atomic for
   one file, not a concurrent multi-process transaction.
+- Phase 1's AIR document and import paths remain available as historical and
+  compatibility interfaces. New documentation and generated headers say Axiom.
+- The priority experiment required two general semantic extensions: an optional
+  typed input with default and a typed field-equality selection of a collection.
+  Neither extension accepts Python snippets.
+- An explicit additive migration avoids reinterpreting legacy persisted state;
+  its narrow vocabulary cannot express every future data migration.
 
 Modification experiments should record changed AIR IDs, validation diagnostics,
 generator output hash and application test results for each request.

@@ -1,39 +1,36 @@
-# Axiom: AI Intermediate Representation (AIR)
+# Axiom
 
-AIR, not Python, is the task manager's source of truth. See
-[`air/task_manager.json`](air/task_manager.json) for the complete application,
-[`docs/air-v0.1.md`](docs/air-v0.1.md) for its semantics, and
-[`docs/decisions.md`](docs/decisions.md) for research tradeoffs.
+Axiom experiments with **AI-native software development**: an AI maintains a
+semantic model of a software system, validates its relationships and contracts,
+and generates disposable implementation artifacts. The model, not Python, is
+the source of truth. Python is the first backend, not the definition of Axiom.
 
-Requires Python 3.10+; no third-party dependencies. From the repository root:
+The task application lives in [`air/task_manager.json`](air/task_manager.json)
+(the `air/` path and `air_compiler` import path are retained for compatibility).
+The v0.2 model is documented in [`docs/axiom-v0.2.md`](docs/axiom-v0.2.md),
+its JSON envelope in [`schema/axiom-v0.2.schema.json`](schema/axiom-v0.2.schema.json),
+and the experiment in [`docs/research-log.md`](docs/research-log.md).
+The historical v0.1 semantics are preserved in [`docs/air-v0.1.md`](docs/air-v0.1.md).
 
-```sh
-PYTHONPATH=src python -m air_compiler.cli validate air/task_manager.json
-PYTHONPATH=src python -m air_compiler.cli generate air/task_manager.json generated/task_manager.py
+Python 3.10+; no third-party dependencies. In PowerShell from the repository root:
+
+```powershell
+$env:PYTHONPATH='src'
+python -m air_compiler.cli validate air/task_manager.json
+python -m air_compiler.cli generate air/task_manager.json generated/task_manager.py
+python -m air_compiler.cli inspect air/task_manager.json field_priority
+python -m air_compiler.cli diff experiments/task_manager-v0.2-before-priority.json air/task_manager.json
 python -m unittest discover -s tests -v
-python generated/task_manager.py create --title 'Example' --description 'Try AIR'
-python generated/task_manager.py list
-python generated/task_manager.py complete --id <id-from-create>
-python generated/task_manager.py delete --id <id-from-create>
 ```
 
-In PowerShell, replace `PYTHONPATH=src` with `$env:PYTHONPATH='src';`.
-The CLI stores `tasks.json` in its current working directory; run it from an
-isolated directory to keep demonstration data out of the repository.
-Successful commands print JSON. Declared failures print `{"error":"code"}`
-on stderr and exit 1.
+Run the application from a separate working directory: it stores `tasks.json`
+in that directory. The generated artifact offers `create --title T --description
+D [--priority LOW|NORMAL|HIGH]`, `list`, `list-high`, `complete --id ID`,
+`delete --id ID`, and `migrate`. Omitted priority defaults to `NORMAL`. An old
+task file must be upgraded with `migrate` before other commands will read it;
+this is an explicit, atomic schema migration.
 
-## Repository rule
-
-**Never edit `generated/` application files directly.** Their prominent header
-identifies them as generated artifacts. Change AIR, validate, regenerate, then
-run the tests. Changes to the representation's semantics belong in the compiler
-and require corresponding validation and test updates.
-
-## Modification experiment protocol
-
-For each request, record the changed AIR entity IDs, validate, regenerate,
-run both test categories, and report results. Extensions such as priority,
-optional due dates, editing rules, and overdue filters are deliberately deferred
-until this vertical slice works; they will test where the semantic model needs
-an explicit, versioned extension.
+**Never edit files under `generated/` directly.** Change the Axiom model,
+validate, regenerate, and verify the behavior. `generated/task_manager.manifest.json`
+records provenance and the artifact hash. Changing Axiom's semantic vocabulary
+requires a compiler/backend change, a documented capability gap, and tests.

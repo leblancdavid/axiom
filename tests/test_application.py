@@ -29,6 +29,7 @@ class ApplicationTests(unittest.TestCase):
         self.assertEqual(self.run_app("list"), [])
         task = self.run_app("create", "--title", "First", "--description", "Details")
         self.assertEqual(task["status"], "pending")
+        self.assertEqual(task["priority"], "NORMAL")
         self.assertEqual(task["description"], "Details")
         self.assertTrue(task["created_at"].endswith("Z"))
         self.assertEqual(self.run_app("list"), [task])
@@ -52,11 +53,30 @@ class ApplicationTests(unittest.TestCase):
 
     def test_invariants_on_load(self):
         task = self.run_app("create", "--title", "Valid", "--description", "x")
-        (self.cwd / "tasks.json").write_text(json.dumps([task, task]), encoding="utf-8")
+        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 2, "records": [task, task]}), encoding="utf-8")
         self.run_app("list", error="invalid_state")
         task["id"] = ""
-        (self.cwd / "tasks.json").write_text(json.dumps([task]), encoding="utf-8")
+        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 2, "records": [task]}), encoding="utf-8")
         self.run_app("list", error="invalid_state")
+
+    def test_high_priority_filter_and_default(self):
+        normal = self.run_app("create", "--title", "ordinary", "--description", "x")
+        high = self.run_app("create", "--title", "urgent", "--description", "x", "--priority", "HIGH")
+        low = self.run_app("create", "--title", "later", "--description", "x", "--priority", "LOW")
+        self.assertEqual([normal["priority"], high["priority"], low["priority"]], ["NORMAL", "HIGH", "LOW"])
+        self.assertEqual(self.run_app("list-high"), [high])
+        self.assertEqual({r["id"] for r in self.run_app("list")}, {normal["id"], high["id"], low["id"]})
+
+    def test_explicit_legacy_migration(self):
+        old = {"id": "old", "title": "Previous", "description": "x", "status": "pending", "created_at": "2026-01-01T00:00:00Z"}
+        path = self.cwd / "tasks.json"
+        path.write_text(json.dumps([old]), encoding="utf-8")
+        previous = path.read_bytes()
+        self.run_app("list", error="migration_required")
+        self.assertEqual(path.read_bytes(), previous)
+        self.assertEqual(self.run_app("migrate"), {"migrated": 1})
+        self.assertEqual(self.run_app("list"), [{**old, "priority": "NORMAL"}])
+        self.assertEqual(self.run_app("migrate"), {"migrated": 0})
 
 
 if __name__ == "__main__":
