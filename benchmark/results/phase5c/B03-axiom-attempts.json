@@ -1,0 +1,5 @@
+[
+  {"request": "B01", "outcome": "SUCCESS"},
+  {"request": "B02", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5b/validation.json"},
+  {"request": "B03", "outcome": "BLOCKED_BY_GAP", "depends_on": ["B02"]}
+]

@@ -1,0 +1,59 @@
+{
+  "achieved": [
+    "B01",
+    "B02",
+    "B03"
+  ],
+  "attempted": [
+    {
+      "outcome": "SUCCESS",
+      "request": "B01"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B02"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B03"
+    }
+  ],
+  "baseline_manifest_sha256": "0c4488cf3bdff9dbe6e62baa1124f91222bedc1e94f96121a18d83f9abd1feca",
+  "case_hashes": {
+    "B03": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df"
+  },
+  "files": {
+    "benchmark/conventional/__pycache__/task_manager.cpython-314.pyc": "ccadb3fb796bc1515c1dd4f68af456032a1bf358f4cf19ef3523e71ee0f82d14",
+    "benchmark/conventional/__pycache__/test_task_manager.cpython-314.pyc": "26ca5bdc54415b998cdfde894d11dab729003c1506a37a8483afa85271e3058b",
+    "benchmark/conventional/task_manager.py": "0b48d912c28ef141cc9503af52383cc2303e50eaacf0704f87bc841c51ff191b",
+    "benchmark/conventional/test_task_manager.py": "93fd353b4493e9a8d0228f11466a2c089be8594a116ec7a16534a54d8c72b77f"
+  },
+  "format": 1,
+  "harness_sha256": "f4ec699692b7b51fe98518856281d53d626b337028aab98b3235374f0749160b",
+  "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+  "profile": "B03",
+  "profile_sha256": "46ff02e3ff6ea48a7990c2f522fb9fa7bbefcab3c88550be007e0c2c1b75972f",
+  "requirement_hashes": {
+    "B01": "b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d",
+    "B02": "8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b",
+    "B03": "56c6ac4c187962c71d5866b27f9568c8b6de055a0bab074896ef41b61a554630",
+    "B04": "2c2e9e3787d53eb45df7b4b48362db2217e62c165dedda38222f5561cd859221",
+    "B05": "fc06265789c2781c913e14dfc22a8c37a0ed627b1e1839d43ebaec31373372ff",
+    "B06": "b2be288e4e5a58ac348169860f3e4123b1560c9a9d787787005ff94b46c04b61",
+    "B07": "588e21f734cf75003dfd96a414a4f7352aded8c4146daab5e1e2b4f74164f1f8",
+    "B08": "dbe9d062092c4fc00c2d32210b8e493dbe0f05d0f2ee2e462c44588988335109",
+    "B09": "dd44a353c5d26c099e7cee3fc7e0d3fe6361f70b139a11e85b61473631b3c121",
+    "B10": "3bf536185111466f225ccc8a1fc8ae10a99cfa6da8e85d3a04fca533306febe5",
+    "B11": "7ab1ea7ac3cf963993a30135ae9cf4f3de1a05b64ab294bc86940bc5ecf66c92",
+    "B12": "d60ee7901f4735fb9903cc24e5abb61a6483b9a884970f029be3ddd7567ab942",
+    "B13": "6a93ed0a15f3869fb6e35f6ddfa34f200a0e1620d1b3e0dc2505711d450e00f5",
+    "B14": "c267a859afff26708f17feea0c88bd77ec53f5768a0087dd8345ada3fd3bd31c",
+    "B15": "fe38279c15d7ed6b3282390539f0bd8a8e2e8e6026e3dface0e1774a2c0ae9ff",
+    "B16": "cf9ede733a5b305677dc954a50a9146d9766a7943e0a2f70099b9db4c4fdc1be",
+    "B17": "2a4cf402ded60283086ff321e614b0fac542410fd9c6ce6b4a89af696b090fe0",
+    "B18": "dc0394bdbfbb0460298a86f9be25c2d6dfcf3340b83b4a423d106907d02e57ae",
+    "B19": "854b9441eb2637dc025fc4e050d7e6bd892b6c27e347d0132c59ca851866abcd",
+    "B20": "94a030660b74bafd44513204e3d3e36c5cca16f24f0fd39101b67eea8d4eaefb"
+  },
+  "track": "conventional"
+}
