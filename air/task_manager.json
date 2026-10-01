@@ -1,0 +1,108 @@
+{
+  "air_version": "0.1",
+  "application": {"id": "app_tasks", "name": "task_manager"},
+  "types": [
+    {"id": "type_status", "name": "TaskStatus", "kind": "enum", "values": ["pending", "completed"]},
+    {"id": "type_task", "name": "Task", "kind": "record", "fields": [
+      {"id": "field_id", "name": "id", "type": "prim:string"},
+      {"id": "field_title", "name": "title", "type": "prim:string"},
+      {"id": "field_description", "name": "description", "type": "prim:string"},
+      {"id": "field_status", "name": "status", "type": "type_status"},
+      {"id": "field_created_at", "name": "created_at", "type": "prim:timestamp"}
+    ]},
+    {"id": "type_task_list", "name": "TaskList", "kind": "list", "item_type": "type_task"}
+  ],
+  "capabilities": [
+    {"id": "cap_store", "kind": "json_file", "path": "tasks.json", "missing_file": "empty_collection"},
+    {"id": "cap_clock", "kind": "utc_clock"},
+    {"id": "cap_ids", "kind": "uuid_v4"}
+  ],
+  "state": [
+    {"id": "state_tasks", "name": "tasks", "type": "type_task_list", "storage": "cap_store", "key_field": "field_id", "invariants": ["inv_unique_ids", "inv_valid_tasks"]}
+  ],
+  "invariants": [
+    {"id": "inv_unique_ids", "kind": "unique_field", "state": "state_tasks", "field": "field_id"},
+    {"id": "inv_valid_tasks", "kind": "all_records_valid", "state": "state_tasks", "field_rules": [
+      {"kind": "nonblank", "field": "field_id"},
+      {"kind": "nonblank", "field": "field_title"},
+      {"kind": "timestamp_utc", "field": "field_created_at"}
+    ]}
+  ],
+  "behaviors": [
+    {
+      "id": "fn_create", "name": "create_task", "kind": "create", "state": "state_tasks",
+      "inputs": [
+        {"id": "arg_title", "name": "title", "type": "prim:string"},
+        {"id": "arg_description", "name": "description", "type": "prim:string"}
+      ],
+      "output": "type_task",
+      "dependencies": ["state_tasks", "cap_store", "cap_clock", "cap_ids"],
+      "reads": ["state_tasks"], "writes": ["state_tasks"],
+      "effects": ["file_read", "file_write", "clock_read", "random_id"],
+      "conditions": [{"kind": "nonblank_input", "input": "arg_title", "failure": "invalid_title"}],
+      "assignments": [
+        {"field": "field_id", "source": "capability", "id": "cap_ids"},
+        {"field": "field_title", "source": "input", "id": "arg_title"},
+        {"field": "field_description", "source": "input", "id": "arg_description"},
+        {"field": "field_status", "source": "literal", "value": "pending"},
+        {"field": "field_created_at", "source": "capability", "id": "cap_clock"}
+      ],
+      "guarantees": [
+        {"kind": "result_field_equals", "field": "field_status", "value": "pending"},
+        {"kind": "result_in_state", "state": "state_tasks"}
+      ],
+      "failures": ["invalid_title", "id_collision", "invalid_state", "persistence_failure"]
+    },
+    {
+      "id": "fn_list", "name": "list_tasks", "kind": "list", "state": "state_tasks",
+      "inputs": [], "output": "type_task_list", "dependencies": ["state_tasks", "cap_store"],
+      "reads": ["state_tasks"], "writes": [], "effects": ["file_read"],
+      "conditions": [], "assignments": [], "order_by": ["field_created_at", "field_id"],
+      "guarantees": [{"kind": "result_equals_state_sorted", "state": "state_tasks"}],
+      "failures": ["invalid_state", "persistence_failure"]
+    },
+    {
+      "id": "fn_complete", "name": "complete_task", "kind": "update", "state": "state_tasks",
+      "inputs": [{"id": "arg_complete_id", "name": "id", "type": "prim:string"}],
+      "output": "type_task", "dependencies": ["state_tasks", "cap_store"],
+      "reads": ["state_tasks"], "writes": ["state_tasks"],
+      "effects": ["file_read", "file_write"],
+      "lookup": {"field": "field_id", "input": "arg_complete_id"},
+      "conditions": [
+        {"kind": "record_exists", "failure": "task_not_found"},
+        {"kind": "record_field_equals", "field": "field_status", "value": "pending", "failure": "invalid_transition"}
+      ],
+      "assignments": [{"field": "field_status", "source": "literal", "value": "completed"}],
+      "guarantees": [
+        {"kind": "result_field_equals", "field": "field_status", "value": "completed"},
+        {"kind": "result_in_state", "state": "state_tasks"}
+      ],
+      "failures": ["task_not_found", "invalid_transition", "invalid_state", "persistence_failure"]
+    },
+    {
+      "id": "fn_delete", "name": "delete_task", "kind": "delete", "state": "state_tasks",
+      "inputs": [{"id": "arg_delete_id", "name": "id", "type": "prim:string"}],
+      "output": "type_task", "dependencies": ["state_tasks", "cap_store"],
+      "reads": ["state_tasks"], "writes": ["state_tasks"],
+      "effects": ["file_read", "file_write"],
+      "lookup": {"field": "field_id", "input": "arg_delete_id"},
+      "conditions": [{"kind": "record_exists", "failure": "task_not_found"}],
+      "assignments": [],
+      "guarantees": [{"kind": "result_id_absent_from_state", "state": "state_tasks"}],
+      "failures": ["task_not_found", "invalid_state", "persistence_failure"]
+    }
+  ],
+  "commands": [
+    {"id": "cmd_create", "token": "create", "behavior": "fn_create", "arguments": [
+      {"flag": "--title", "input": "arg_title", "required": true},
+      {"flag": "--description", "input": "arg_description", "required": true}
+    ]},
+    {"id": "cmd_list", "token": "list", "behavior": "fn_list", "arguments": []},
+    {"id": "cmd_complete", "token": "complete", "behavior": "fn_complete", "arguments": [
+      {"flag": "--id", "input": "arg_complete_id", "required": true}
+    ]},
+    {"id": "cmd_delete", "token": "delete", "behavior": "fn_delete", "arguments": [
+      {"flag": "--id", "input": "arg_delete_id", "required": true}
+    ]}
+  ]
+}
