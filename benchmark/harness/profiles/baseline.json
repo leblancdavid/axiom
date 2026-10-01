@@ -1,0 +1,1 @@
+{"schema_version": 3, "fields": ["id", "title", "description", "status", "priority", "created_at", "due_date"], "migration_defaults": {"priority": "NORMAL", "due_date": null}}

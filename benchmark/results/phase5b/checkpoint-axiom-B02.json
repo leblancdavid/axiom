@@ -1,0 +1,75 @@
+{
+  "achieved": [
+    "B01"
+  ],
+  "attempted": [
+    {
+      "outcome": "SUCCESS",
+      "request": "B01"
+    },
+    {
+      "evidence": "benchmark/results/pilot/REPORT.md#four-primary-runs; phase5b/validation.json:axiom-B02.unmet_B02_probe",
+      "outcome": "AXIOM_CAPABILITY_GAP",
+      "request": "B02"
+    }
+  ],
+  "baseline_manifest_sha256": "0c4488cf3bdff9dbe6e62baa1124f91222bedc1e94f96121a18d83f9abd1feca",
+  "case_hashes": {},
+  "files": {
+    "air/task_manager.json": "b2a937bb752053f26a53826112defe28e3f0edada27914bb6821cd7a55ddc4cb",
+    "docs/air-v0.1.md": "ccc9ea865f4a24238f1b9d5f3aaf5c12e0cfc5580987a9baecb3383cc27120f7",
+    "docs/axiom-v0.2.md": "8d7ea6b087d30c37f71647c549ef62c416a03f7c46d3e833c578a24d781ddaf0",
+    "docs/axiom-v0.3.md": "35db63d24cc26cfa59ad63339c0a91d3bc6ff8b983e8fec3044ba8b00f36a2b7",
+    "docs/decisions.md": "b292b58afe176675eb50686540af6006479bb3a1ca1cc810c64bc83d5c76944f",
+    "docs/research-log.md": "7c5f35734f64750eefd0726ea7363f4cab0ae7d2c7d8a5fc56635941d85e149b",
+    "experiments/phase3-actual-diff.json": "5206282db4b87281b98ac9b626a81f31ab78d32c2181c0f47750c36ce489618f",
+    "experiments/phase3-due-dates.plan.json": "2aec716c25e4859e3c24324a515008485a08d3bc6fd462f42aef4d36305cc60b",
+    "experiments/phase3-impact-comparison.json": "747d17065dbe02bbf70b37718e6303278931490dfd8ea9a02c49e59b632a880c",
+    "experiments/phase3-prechange-impact.json": "cc8f29bd9a407858834df434e1673105e879cc44060c8a359ae6862904d0e353",
+    "experiments/task_manager-v0.1.json": "520abc424bb65e9c33da27c9fa95c5d854f84fa4710e27dadd3586e3d73218f9",
+    "experiments/task_manager-v0.2-before-priority.json": "4c5af89a589c1f67640e46f6a7f2bd19b8fc90f77c8d7174544d3fd709954bf3",
+    "generated/task_manager.manifest.json": "89b2e3276d6769aa56393e6b50373f12270e27aa27493016bec79970c73e6e8d",
+    "generated/task_manager.py": "07ae9da906cd40b4aca8e23046eb389a303e070409fae498cd470e3d1828031f",
+    "schema/axiom-v0.2.schema.json": "0fa8481f98062cda4f1a27c2bc0c56d60d57b846e010e9bfb3d0900410909865",
+    "schema/axiom-v0.3.schema.json": "5a3eb571669dcd5d84e41878664dda3e90cb57117e6f6018cd73a09a7afd0849",
+    "src/air_compiler/__init__.py": "6d373050c159a79c2d7ab5ed66720fb914a547018738f6cb126a4fa2fd8bf0f7",
+    "src/air_compiler/cli.py": "b2814c10ca7aa6d34e939dbf9c4c81e9f92bcdac5cd0cd8d5e543cd6d9db7ff4",
+    "src/air_compiler/generator.py": "20ca127d8c8eaba1578c470eb091cb662151f17fb224e519815775908a93a27f",
+    "src/air_compiler/model.py": "da9d347937fbd2a2a5e17924d4f2ac6afbae4dd35c946136f99cf5844f12ca8c",
+    "src/air_compiler/parser.py": "ba9cb694147e87d7cfdbb088d7cc5a29e1ccd18af26bba5a17a6b2e8ac4b5436",
+    "src/air_compiler/planning.py": "585011c382f305aa10311b2e897db3e7bf8cba033b903ab4632f37f13d67e4bd",
+    "src/air_compiler/runtime_template.py": "123377385c864a0e3e7913686315e69b706b6cfa919994d911f2f910352ae4b9",
+    "src/air_compiler/semantics.py": "ecd8f0f5b1718f267fe065aec6800646aa10351f7e280790f1034e2fb43d5df5",
+    "src/air_compiler/validator.py": "b9943552b286ee9692871742ef2ee1426d6a607d141e39e26debb5e965be2cd0",
+    "tests/test_application.py": "f4e79fd43f4dcd0d8063decac43d3dfa20bc1caf4b24d4e952c7281ca8e5c979",
+    "tests/test_compiler.py": "5403b8e8e7d0c4c7bc5c7e962ab3f6a314072abf772e8ca302af94ee0d448bd2"
+  },
+  "format": 1,
+  "harness_sha256": "f4ec699692b7b51fe98518856281d53d626b337028aab98b3235374f0749160b",
+  "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+  "profile": "B01",
+  "profile_sha256": "56890855fc2161c06693657e11534349c4ebfef71316e866ebcd3f1cbc6dd808",
+  "requirement_hashes": {
+    "B01": "b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d",
+    "B02": "8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b",
+    "B03": "56c6ac4c187962c71d5866b27f9568c8b6de055a0bab074896ef41b61a554630",
+    "B04": "2c2e9e3787d53eb45df7b4b48362db2217e62c165dedda38222f5561cd859221",
+    "B05": "fc06265789c2781c913e14dfc22a8c37a0ed627b1e1839d43ebaec31373372ff",
+    "B06": "b2be288e4e5a58ac348169860f3e4123b1560c9a9d787787005ff94b46c04b61",
+    "B07": "588e21f734cf75003dfd96a414a4f7352aded8c4146daab5e1e2b4f74164f1f8",
+    "B08": "dbe9d062092c4fc00c2d32210b8e493dbe0f05d0f2ee2e462c44588988335109",
+    "B09": "dd44a353c5d26c099e7cee3fc7e0d3fe6361f70b139a11e85b61473631b3c121",
+    "B10": "3bf536185111466f225ccc8a1fc8ae10a99cfa6da8e85d3a04fca533306febe5",
+    "B11": "7ab1ea7ac3cf963993a30135ae9cf4f3de1a05b64ab294bc86940bc5ecf66c92",
+    "B12": "d60ee7901f4735fb9903cc24e5abb61a6483b9a884970f029be3ddd7567ab942",
+    "B13": "6a93ed0a15f3869fb6e35f6ddfa34f200a0e1620d1b3e0dc2505711d450e00f5",
+    "B14": "c267a859afff26708f17feea0c88bd77ec53f5768a0087dd8345ada3fd3bd31c",
+    "B15": "fe38279c15d7ed6b3282390539f0bd8a8e2e8e6026e3dface0e1774a2c0ae9ff",
+    "B16": "cf9ede733a5b305677dc954a50a9146d9766a7943e0a2f70099b9db4c4fdc1be",
+    "B17": "2a4cf402ded60283086ff321e614b0fac542410fd9c6ce6b4a89af696b090fe0",
+    "B18": "dc0394bdbfbb0460298a86f9be25c2d6dfcf3340b83b4a423d106907d02e57ae",
+    "B19": "854b9441eb2637dc025fc4e050d7e6bd892b6c27e347d0132c59ca851866abcd",
+    "B20": "94a030660b74bafd44513204e3d3e36c5cca16f24f0fd39101b67eea8d4eaefb"
+  },
+  "track": "axiom"
+}

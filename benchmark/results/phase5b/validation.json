@@ -1,0 +1,843 @@
+{
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-conventional-0",
+        "--track",
+        "conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-baseline.json",
+        "--expected-hash",
+        "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-conventional-baseline.tar",
+        "--snapshot-hash",
+        "5404af03ba0d680db772c4bb2dada81c00cb53e86f7badf9efd4c7419a45daf7"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 1}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional",
+        "--track",
+        "conventional",
+        "--request",
+        "B01",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-baseline.json",
+        "--expected-hash",
+        "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"checkpoint_sha256\": \"df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09\", \"files\": 1, \"oracle_sha256\": \"16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596\", \"request\": \"B01\", \"requirement_sha256\": \"b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d\", \"result\": \"PASS\", \"track\": \"conventional\"}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional\\benchmark\\conventional\\task_manager.py"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... skipped 'B01 not achieved'\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... skipped 'B01 not achieved'\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 2.130s\n\nOK (skipped=4)\n",
+      "stdout": "{\"achieved\": [], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 3, \"skipped\": 4}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-baseline.json",
+        "--track",
+        "axiom",
+        "--request",
+        "B01",
+        "--expected-hash",
+        "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"track/checkpoint mismatch\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-baseline.json",
+        "--track",
+        "conventional",
+        "--request",
+        "B02",
+        "--expected-hash",
+        "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"incorrect next request\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-baseline.json",
+        "--track",
+        "conventional",
+        "--request",
+        "B01",
+        "--expected-hash",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"pinned checkpoint hash mismatch\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-conventional-1",
+        "--track",
+        "conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-B01.json",
+        "--expected-hash",
+        "8e60de8af96ba1f4d0f06b7d986be53693ce8a94dca00f3b738ebd47d0c41887",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-conventional-B01.tar",
+        "--snapshot-hash",
+        "a8f1ad637bfee7996044f97da052816ed586a14caa6a79a6771425ed8815c705"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 2}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional",
+        "--track",
+        "conventional",
+        "--request",
+        "B02",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-B01.json",
+        "--expected-hash",
+        "8e60de8af96ba1f4d0f06b7d986be53693ce8a94dca00f3b738ebd47d0c41887"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"checkpoint_sha256\": \"8e60de8af96ba1f4d0f06b7d986be53693ce8a94dca00f3b738ebd47d0c41887\", \"files\": 2, \"oracle_sha256\": \"16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596\", \"request\": \"B02\", \"requirement_sha256\": \"8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b\", \"result\": \"PASS\", \"track\": \"conventional\"}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional\\benchmark\\conventional\\task_manager.py",
+        "--achieved",
+        "B01"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... ok\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... ok\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 3.134s\n\nOK (skipped=2)\n",
+      "stdout": "{\"achieved\": [\"B01\"], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 5, \"skipped\": 2}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "benchmark/conventional",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stderr": "test_critical_round_trip_and_high_filter (test_task_manager.PriorityTests.test_critical_round_trip_and_high_filter) ... ok\ntest_legacy_migration_defaults_to_normal (test_task_manager.PriorityTests.test_legacy_migration_defaults_to_normal) ... ok\ntest_migration_preserves_existing_priorities (test_task_manager.PriorityTests.test_migration_preserves_existing_priorities) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.512s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-conventional-2",
+        "--track",
+        "conventional",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-conventional-B02.json",
+        "--expected-hash",
+        "a57c38e0681a0fce5e43b09cdf32ea3a348217b6f5ab6ae03e918b3482fc5e7a",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-conventional-B02.tar",
+        "--snapshot-hash",
+        "0a125c94bcc364f50040c3299ebba254a2f68c9c465e04de0168749fec542bad"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 2}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\conventional\\benchmark\\conventional\\task_manager.py",
+        "--achieved",
+        "B01,B02"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... ok\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... ok\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... ok\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... ok\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 4.291s\n\nOK\n",
+      "stdout": "{\"achieved\": [\"B01\", \"B02\"], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 7, \"skipped\": 0}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "benchmark/conventional",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stderr": "test_blank_tag_rejects_create_without_writing (test_task_manager.PriorityTests.test_blank_tag_rejects_create_without_writing) ... ok\ntest_critical_round_trip_and_high_filter (test_task_manager.PriorityTests.test_critical_round_trip_and_high_filter) ... ok\ntest_legacy_migration_defaults_to_normal (test_task_manager.PriorityTests.test_legacy_migration_defaults_to_normal) ... ok\ntest_migration_preserves_existing_priorities (test_task_manager.PriorityTests.test_migration_preserves_existing_priorities) ... ok\ntest_tags_are_trimmed_ordered_and_case_sensitive (test_task_manager.PriorityTests.test_tags_are_trimmed_ordered_and_case_sensitive) ... ok\ntest_version_three_migration_adds_tags_without_changing_fields (test_task_manager.PriorityTests.test_version_three_migration_adds_tags_without_changing_fields) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.222s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\phase5b-regression-yfdnk83_\\candidate\\benchmark\\conventional\\task_manager.py",
+        "--achieved",
+        "B01,B02"
+      ],
+      "exit_code": 1,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... ok\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... FAIL\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... ok\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... FAIL\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... FAIL\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n======================================================================\nFAIL: test_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 171, in test_b01_priority_and_regression\n    self.assertEqual(call(cwd, \"list-high\"), [high])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [{'cr[27 chars]7:37.257392Z', 'description': 'x', 'due_date':[126 chars]al'}] != [{'cr[27 chars]7:37.177340Z', 'description': 'x', 'due_date':[118 chars]gh'}]\n\nFirst differing element 0:\n{'cre[26 chars]7:37.257392Z', 'description': 'x', 'due_date':[125 chars]cal'}\n{'cre[26 chars]7:37.177340Z', 'description': 'x', 'due_date':[117 chars]igh'}\n\n- [{'created_at': '2026-10-01T20:07:37.257392Z',\n?                                      ^^  ^^\n\n+ [{'created_at': '2026-10-01T20:07:37.177340Z',\n?                                      ^^  ^^\n\n    'description': 'x',\n    'due_date': None,\n-   'id': '2aae67fd-16d5-47f9-a473-f73d597cdd85',\n+   'id': '29fa69e0-5199-4b7a-90e2-04be4f1d8ed2',\n-   'priority': 'CRITICAL',\n?                ^^ ^^^^^\n\n+   'priority': 'HIGH',\n?                ^ ^^\n\n    'status': 'pending',\n    'tags': [],\n-   'title': 'Critical'}]\n?             ^^ ^^^^^\n\n+   'title': 'High'}]\n?             ^ ^^\n\n\n======================================================================\nFAIL: test_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 206, in test_b02_tags_and_failure\n    self.assertEqual(call(cwd, \"list-high\"), [])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [{'created_at': '2026-10-01T20:07:38.02757[182 chars]ed'}] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n{'created_at': '2026-10-01T20:07:38.027572Z', 'description': 'x', 'due_date': None, 'id': 'b5dbd1d6-4d3e-45e3-841d-e6185273750a', 'priority': 'CRITICAL', 'status': 'pending', 'tags': ['work', 'Work', 'home'], 'title': 'Tagged'}\n\n+ []\n- [{'created_at': '2026-10-01T20:07:38.027572Z',\n-   'description': 'x',\n-   'due_date': None,\n-   'id': 'b5dbd1d6-4d3e-45e3-841d-e6185273750a',\n-   'priority': 'CRITICAL',\n-   'status': 'pending',\n-   'tags': ['work', 'Work', 'home'],\n-   'title': 'Tagged'}]\n\n======================================================================\nFAIL: test_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 104, in test_baseline_lifecycle_filters_failures\n    self.assertEqual(call(cwd, \"list-high\"), [high])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != [{'created_at': '2026-10-01T20:07:38.38832[172 chars]gh'}]\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n{'created_at': '2026-10-01T20:07:38.388320Z', 'description': 'x', 'due_date': '2020-01-01T00:00:00Z', 'id': 'af320623-ff60-4b63-a208-690c3d1061cf', 'priority': 'HIGH', 'status': 'pending', 'tags': [], 'title': 'high'}\n\n- []\n+ [{'created_at': '2026-10-01T20:07:38.388320Z',\n+   'description': 'x',\n+   'due_date': '2020-01-01T00:00:00Z',\n+   'id': 'af320623-ff60-4b63-a208-690c3d1061cf',\n+   'priority': 'HIGH',\n+   'status': 'pending',\n+   'tags': [],\n+   'title': 'high'}]\n\n----------------------------------------------------------------------\nRan 7 tests in 3.114s\n\nFAILED (failures=3)\n",
+      "stdout": "{\"achieved\": [\"B01\", \"B02\"], \"case_methods\": 7, \"failure_events\": 3, \"passed\": 4, \"skipped\": 0}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-axiom-0",
+        "--track",
+        "axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-baseline.json",
+        "--expected-hash",
+        "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-axiom-baseline.tar",
+        "--snapshot-hash",
+        "7163eb9320f043e48137c10c2216e50cc3c78d498210114fe27ae20e32170357"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 27}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom",
+        "--track",
+        "axiom",
+        "--request",
+        "B01",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-baseline.json",
+        "--expected-hash",
+        "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"checkpoint_sha256\": \"355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de\", \"files\": 27, \"oracle_sha256\": \"16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596\", \"request\": \"B01\", \"requirement_sha256\": \"b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d\", \"result\": \"PASS\", \"track\": \"axiom\"}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom\\generated\\task_manager.py"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... skipped 'B01 not achieved'\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... skipped 'B01 not achieved'\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 2.155s\n\nOK (skipped=4)\n",
+      "stdout": "{\"achieved\": [], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 3, \"skipped\": 4}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.712s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-baseline.json",
+        "--track",
+        "conventional",
+        "--request",
+        "B01",
+        "--expected-hash",
+        "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"track/checkpoint mismatch\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-baseline.json",
+        "--track",
+        "axiom",
+        "--request",
+        "B02",
+        "--expected-hash",
+        "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"incorrect next request\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-baseline.json",
+        "--track",
+        "axiom",
+        "--request",
+        "B01",
+        "--expected-hash",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "exit_code": 2,
+      "stderr": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"pinned checkpoint hash mismatch\"}\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "air_compiler.cli",
+        "validate",
+        "air/task_manager.json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "Axiom validate: ok\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "air_compiler.cli",
+        "generate",
+        "air/task_manager.json",
+        "generated/task_manager.py"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "Axiom generate: ok\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-axiom-1",
+        "--track",
+        "axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-B01.json",
+        "--expected-hash",
+        "e4a62afa2b49ce5d28c6b8e3e317d4adce253f5b157baa0701dd107114cf909f",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-axiom-B01.tar",
+        "--snapshot-hash",
+        "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 27}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "preflight",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom",
+        "--track",
+        "axiom",
+        "--request",
+        "B02",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-B01.json",
+        "--expected-hash",
+        "e4a62afa2b49ce5d28c6b8e3e317d4adce253f5b157baa0701dd107114cf909f"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"checkpoint_sha256\": \"e4a62afa2b49ce5d28c6b8e3e317d4adce253f5b157baa0701dd107114cf909f\", \"files\": 27, \"oracle_sha256\": \"16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596\", \"request\": \"B02\", \"requirement_sha256\": \"8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b\", \"result\": \"PASS\", \"track\": \"axiom\"}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom\\generated\\task_manager.py",
+        "--achieved",
+        "B01"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... ok\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... ok\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 3.155s\n\nOK (skipped=2)\n",
+      "stdout": "{\"achieved\": [\"B01\"], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 5, \"skipped\": 2}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.998s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\workspace.py",
+        "restore",
+        "--workspace",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\restored-axiom-2",
+        "--track",
+        "axiom",
+        "--checkpoint",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\checkpoint-axiom-B02.json",
+        "--expected-hash",
+        "31dd8302529cdfabd0609ca7b3dddd64ca48764f1ae0255dfcb79d91a400ba90",
+        "--snapshot",
+        "D:\\Dev\\axiom\\benchmark\\results\\phase5b\\snapshot-axiom-B02.tar",
+        "--snapshot-hash",
+        "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"result\": \"PASS\", \"files\": 27}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom\\generated\\task_manager.py",
+        "--achieved",
+        "B01"
+      ],
+      "exit_code": 0,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... ok\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... ok\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... ok\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... ok\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 3.151s\n\nOK (skipped=2)\n",
+      "stdout": "{\"achieved\": [\"B01\"], \"case_methods\": 7, \"failure_events\": 0, \"passed\": 5, \"skipped\": 2}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.963s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "D:\\Dev\\axiom\\benchmark\\harness\\regression.py",
+        "--app",
+        "C:\\Users\\lblan\\AppData\\Local\\Temp\\axiom-phase5b-ksvgyabl\\axiom\\generated\\task_manager.py",
+        "--achieved",
+        "B01,B02"
+      ],
+      "exit_code": 1,
+      "stderr": "test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities) ... FAIL\ntest_b01_priority_and_regression (__main__.Regression.test_b01_priority_and_regression) ... ok\ntest_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) ... \n  test_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) (payload='dict') ... FAIL\n  test_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) (payload='list') ... FAIL\ntest_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure) ... ERROR\ntest_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures) ... FAIL\ntest_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) ... \n  test_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) (version=1) ... FAIL\n  test_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) (version=2) ... FAIL\ntest_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture) ... FAIL\n\n======================================================================\nERROR: test_b02_tags_and_failure (__main__.Regression.test_b02_tags_and_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 202, in test_b02_tags_and_failure\n    self.assertEqual(plain[\"tags\"], [])\n                     ~~~~~^^^^^^^^\nKeyError: 'tags'\n\n======================================================================\nFAIL: test_b01_historical_priorities (__main__.Regression.test_b01_historical_priorities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 185, in test_b01_historical_priorities\n    upgraded(self, cwd, {\"schema_version\": 3, \"records\": rows},\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n             [with_defaults(r) for r in rows], count=3)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 73, in upgraded\n    test.assertIsNone(call(cwd, \"list\", error=\"migration_required\"))\n                      ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 37, in call\n    assert result.returncode == 1 and not result.stdout, (args, result)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (('list',), CompletedProcess(args=['C:\\\\Users\\\\lblan\\\\AppData\\\\Local\\\\Python\\\\pythoncore-3.14-64\\\\python.exe', 'C:\\\\Users\\\\lblan\\\\AppData\\\\Local\\\\Temp\\\\axiom-phase5b-ksvgyabl\\\\axiom\\\\generated\\\\task_manager.py', 'list'], returncode=0, stdout='[{\"created_at\": \"2026-01-01T00:00:00Z\", \"description\": \"x\", \"due_date\": null, \"id\": \"high\", \"priority\": \"HIGH\", \"status\": \"pending\", \"title\": \"high\"}, {\"created_at\": \"2026-01-01T00:00:00Z\", \"description\": \"x\", \"due_date\": null, \"id\": \"low\", \"priority\": \"LOW\", \"status\": \"pending\", \"title\": \"low\"}, {\"created_at\": \"2026-01-01T00:00:00Z\", \"description\": \"x\", \"due_date\": null, \"id\": \"normal\", \"priority\": \"NORMAL\", \"status\": \"pending\", \"title\": \"normal\"}]\\n', stderr=''))\n\n======================================================================\nFAIL: test_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) (payload='dict')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 221, in test_b02_explicit_migration\n    upgraded(self, Path(folder), payload, [with_defaults(expected)])\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 73, in upgraded\n    test.assertIsNone(call(cwd, \"list\", error=\"migration_required\"))\n                      ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 37, in call\n    assert result.returncode == 1 and not result.stdout, (args, result)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (('list',), CompletedProcess(args=['C:\\\\Users\\\\lblan\\\\AppData\\\\Local\\\\Python\\\\pythoncore-3.14-64\\\\python.exe', 'C:\\\\Users\\\\lblan\\\\AppData\\\\Local\\\\Temp\\\\axiom-phase5b-ksvgyabl\\\\axiom\\\\generated\\\\task_manager.py', 'list'], returncode=0, stdout='[{\"created_at\": \"2026-01-01T00:00:00Z\", \"description\": \"x\", \"due_date\": null, \"id\": \"critical\", \"priority\": \"CRITICAL\", \"status\": \"pending\", \"title\": \"critical\"}]\\n', stderr=''))\n\n======================================================================\nFAIL: test_b02_explicit_migration (__main__.Regression.test_b02_explicit_migration) (payload='list')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 221, in test_b02_explicit_migration\n    upgraded(self, Path(folder), payload, [with_defaults(expected)])\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 77, in upgraded\n    test.assertEqual(rows, sorted(expected, key=lambda item: (item[\"created_at\"], item[\"id\"])))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [{'created_at': '2026-01-01T00:00:00Z', 'des[101 chars]ld'}] != [{'id': 'old', 'title': 'old', 'description'[113 chars] []}]\n\nFirst differing element 0:\n{'created_at': '2026-01-01T00:00:00Z', 'des[100 chars]old'}\n{'id': 'old', 'title': 'old', 'description'[112 chars]: []}\n\n  [{'created_at': '2026-01-01T00:00:00Z',\n    'description': 'x',\n    'due_date': None,\n    'id': 'old',\n    'priority': 'NORMAL',\n    'status': 'pending',\n+   'tags': [],\n    'title': 'old'}]\n\n======================================================================\nFAIL: test_baseline_lifecycle_filters_failures (__main__.Regression.test_baseline_lifecycle_filters_failures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 99, in test_baseline_lifecycle_filters_failures\n    check_task(self, task)\n    ~~~~~~~~~~^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 59, in check_task\n    test.assertEqual(set(task), fields())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n'tags'\n\n======================================================================\nFAIL: test_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) (version=1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 133, in test_baseline_migration_corruption\n    upgraded(self, cwd, payload, [with_defaults(expected)])\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 77, in upgraded\n    test.assertEqual(rows, sorted(expected, key=lambda item: (item[\"created_at\"], item[\"id\"])))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [{'created_at': '2026-01-01T00:00:00Z', 'des[107 chars]cy'}] != [{'id': 'legacy', 'title': 'legacy', 'descri[119 chars] []}]\n\nFirst differing element 0:\n{'created_at': '2026-01-01T00:00:00Z', 'des[106 chars]acy'}\n{'id': 'legacy', 'title': 'legacy', 'descri[118 chars]: []}\n\n  [{'created_at': '2026-01-01T00:00:00Z',\n    'description': 'x',\n    'due_date': None,\n    'id': 'legacy',\n    'priority': 'NORMAL',\n    'status': 'pending',\n+   'tags': [],\n    'title': 'legacy'}]\n\n======================================================================\nFAIL: test_baseline_migration_corruption (__main__.Regression.test_baseline_migration_corruption) (version=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 133, in test_baseline_migration_corruption\n    upgraded(self, cwd, payload, [with_defaults(expected)])\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 77, in upgraded\n    test.assertEqual(rows, sorted(expected, key=lambda item: (item[\"created_at\"], item[\"id\"])))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [{'created_at': '2026-01-01T00:00:00Z', 'des[105 chars]cy'}] != [{'id': 'legacy', 'title': 'legacy', 'descri[117 chars] []}]\n\nFirst differing element 0:\n{'created_at': '2026-01-01T00:00:00Z', 'des[104 chars]acy'}\n{'id': 'legacy', 'title': 'legacy', 'descri[116 chars]: []}\n\n  [{'created_at': '2026-01-01T00:00:00Z',\n    'description': 'x',\n    'due_date': None,\n    'id': 'legacy',\n    'priority': 'HIGH',\n    'status': 'pending',\n+   'tags': [],\n    'title': 'legacy'}]\n\n======================================================================\nFAIL: test_baseline_overdue_fixture (__main__.Regression.test_baseline_overdue_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\Dev\\axiom\\benchmark\\harness\\regression.py\", line 155, in test_baseline_overdue_fixture\n    self.assertEqual(set(probe), fields())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n'tags'\n\n----------------------------------------------------------------------\nRan 7 tests in 2.218s\n\nFAILED (failures=7, errors=1)\n",
+      "stdout": "{\"achieved\": [\"B01\", \"B02\"], \"case_methods\": 7, \"failure_events\": 8, \"passed\": 1, \"skipped\": 0}\n"
+    }
+  ],
+  "format": 1,
+  "method": "replay of recorded Phase 5A artifacts, not independent agent attempts",
+  "stages": {
+    "axiom-B01": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-axiom-B01.json",
+        "sha256": "e4a62afa2b49ce5d28c6b8e3e317d4adce253f5b157baa0701dd107114cf909f",
+        "snapshot": "benchmark/results/phase5b/snapshot-axiom-B01.tar",
+        "snapshot_sha256": "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7"
+      },
+      "internal": {
+        "command": [
+          "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.998s\n\nOK\n",
+        "stdout": ""
+      },
+      "oracle": {
+        "achieved": [
+          "B01"
+        ],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 5,
+        "skipped": 2
+      },
+      "preflight_B02": {
+        "checkpoint_sha256": "e4a62afa2b49ce5d28c6b8e3e317d4adce253f5b157baa0701dd107114cf909f",
+        "files": 27,
+        "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+        "request": "B02",
+        "requirement_sha256": "8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b",
+        "result": "PASS",
+        "track": "axiom"
+      },
+      "restore": {
+        "files": 27,
+        "result": "PASS"
+      }
+    },
+    "axiom-B02": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-axiom-B02.json",
+        "sha256": "31dd8302529cdfabd0609ca7b3dddd64ca48764f1ae0255dfcb79d91a400ba90",
+        "snapshot": "benchmark/results/phase5b/snapshot-axiom-B02.tar",
+        "snapshot_sha256": "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7"
+      },
+      "internal": {
+        "command": [
+          "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.963s\n\nOK\n",
+        "stdout": ""
+      },
+      "oracle": {
+        "achieved": [
+          "B01"
+        ],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 5,
+        "skipped": 2
+      },
+      "outcome": "AXIOM_CAPABILITY_GAP",
+      "restore": {
+        "files": 27,
+        "result": "PASS"
+      },
+      "unmet_B02_probe": {
+        "achieved": [
+          "B01",
+          "B02"
+        ],
+        "case_methods": 7,
+        "failure_events": 8,
+        "passed": 1,
+        "skipped": 0
+      }
+    },
+    "axiom-baseline": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-axiom-baseline.json",
+        "sha256": "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de",
+        "snapshot": "benchmark/results/phase5b/snapshot-axiom-baseline.tar",
+        "snapshot_sha256": "7163eb9320f043e48137c10c2216e50cc3c78d498210114fe27ae20e32170357"
+      },
+      "internal": {
+        "command": [
+          "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stderr": "test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok\ntest_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok\ntest_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok\ntest_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok\ntest_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok\ntest_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok\ntest_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok\ntest_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok\ntest_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok\ntest_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok\ntest_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok\ntest_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok\ntest_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok\ntest_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok\ntest_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok\ntest_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok\ntest_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok\ntest_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok\ntest_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok\ntest_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok\ntest_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok\ntest_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok\ntest_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok\ntest_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok\ntest_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok\ntest_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok\ntest_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok\ntest_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok\ntest_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok\ntest_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok\ntest_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 2.712s\n\nOK\n",
+        "stdout": ""
+      },
+      "negative_preflight": {
+        "missing_fixture": "workspace missing, modified or has unexpected files",
+        "modified_fixture": "workspace missing, modified or has unexpected files",
+        "stale_generated": "workspace missing, modified or has unexpected files",
+        "unexpected_file": "workspace missing, modified or has unexpected files",
+        "wrong_checkpoint_hash": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"pinned checkpoint hash mismatch\"}",
+        "wrong_requirement": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"incorrect next request\"}",
+        "wrong_track": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"track/checkpoint mismatch\"}"
+      },
+      "oracle": {
+        "achieved": [],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 3,
+        "skipped": 4
+      },
+      "preflight": {
+        "checkpoint_sha256": "355bb52af56837641695fff062a8c383a8feb85f9b63b88e4465f1aedb6032de",
+        "files": 27,
+        "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+        "request": "B01",
+        "requirement_sha256": "b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d",
+        "result": "PASS",
+        "track": "axiom"
+      },
+      "restore": {
+        "files": 27,
+        "result": "PASS"
+      }
+    },
+    "conventional-B01": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-conventional-B01.json",
+        "sha256": "8e60de8af96ba1f4d0f06b7d986be53693ce8a94dca00f3b738ebd47d0c41887",
+        "snapshot": "benchmark/results/phase5b/snapshot-conventional-B01.tar",
+        "snapshot_sha256": "a8f1ad637bfee7996044f97da052816ed586a14caa6a79a6771425ed8815c705"
+      },
+      "internal": {
+        "command": [
+          "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "benchmark/conventional",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stderr": "test_critical_round_trip_and_high_filter (test_task_manager.PriorityTests.test_critical_round_trip_and_high_filter) ... ok\ntest_legacy_migration_defaults_to_normal (test_task_manager.PriorityTests.test_legacy_migration_defaults_to_normal) ... ok\ntest_migration_preserves_existing_priorities (test_task_manager.PriorityTests.test_migration_preserves_existing_priorities) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.512s\n\nOK\n",
+        "stdout": ""
+      },
+      "oracle": {
+        "achieved": [
+          "B01"
+        ],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 5,
+        "skipped": 2
+      },
+      "preflight_B02": {
+        "checkpoint_sha256": "8e60de8af96ba1f4d0f06b7d986be53693ce8a94dca00f3b738ebd47d0c41887",
+        "files": 2,
+        "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+        "request": "B02",
+        "requirement_sha256": "8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b",
+        "result": "PASS",
+        "track": "conventional"
+      },
+      "restore": {
+        "files": 2,
+        "result": "PASS"
+      }
+    },
+    "conventional-B02": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-conventional-B02.json",
+        "sha256": "a57c38e0681a0fce5e43b09cdf32ea3a348217b6f5ab6ae03e918b3482fc5e7a",
+        "snapshot": "benchmark/results/phase5b/snapshot-conventional-B02.tar",
+        "snapshot_sha256": "0a125c94bcc364f50040c3299ebba254a2f68c9c465e04de0168749fec542bad"
+      },
+      "internal": {
+        "command": [
+          "C:\\Users\\lblan\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "benchmark/conventional",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stderr": "test_blank_tag_rejects_create_without_writing (test_task_manager.PriorityTests.test_blank_tag_rejects_create_without_writing) ... ok\ntest_critical_round_trip_and_high_filter (test_task_manager.PriorityTests.test_critical_round_trip_and_high_filter) ... ok\ntest_legacy_migration_defaults_to_normal (test_task_manager.PriorityTests.test_legacy_migration_defaults_to_normal) ... ok\ntest_migration_preserves_existing_priorities (test_task_manager.PriorityTests.test_migration_preserves_existing_priorities) ... ok\ntest_tags_are_trimmed_ordered_and_case_sensitive (test_task_manager.PriorityTests.test_tags_are_trimmed_ordered_and_case_sensitive) ... ok\ntest_version_three_migration_adds_tags_without_changing_fields (test_task_manager.PriorityTests.test_version_three_migration_adds_tags_without_changing_fields) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.222s\n\nOK\n",
+        "stdout": ""
+      },
+      "oracle": {
+        "achieved": [
+          "B01",
+          "B02"
+        ],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 7,
+        "skipped": 0
+      },
+      "outcome": "SUCCESS",
+      "regression_detection_probe": {
+        "achieved": [
+          "B01",
+          "B02"
+        ],
+        "case_methods": 7,
+        "failure_events": 3,
+        "passed": 4,
+        "skipped": 0
+      },
+      "restore": {
+        "files": 2,
+        "result": "PASS"
+      }
+    },
+    "conventional-baseline": {
+      "checkpoint": {
+        "file": "benchmark/results/phase5b/checkpoint-conventional-baseline.json",
+        "sha256": "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09",
+        "snapshot": "benchmark/results/phase5b/snapshot-conventional-baseline.tar",
+        "snapshot_sha256": "5404af03ba0d680db772c4bb2dada81c00cb53e86f7badf9efd4c7419a45daf7"
+      },
+      "internal": {
+        "note": "No conventional baseline internal suite; external baseline suite is mandatory."
+      },
+      "negative_preflight": {
+        "missing_fixture": "workspace missing, modified or has unexpected files",
+        "modified_application": "workspace missing, modified or has unexpected files",
+        "modified_fixture": "workspace missing, modified or has unexpected files",
+        "unexpected_file": "workspace missing, modified or has unexpected files",
+        "wrong_checkpoint_hash": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"pinned checkpoint hash mismatch\"}",
+        "wrong_requirement": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"incorrect next request\"}",
+        "wrong_track": "{\"result\": \"ABORT\", \"classification\": \"INFRASTRUCTURE_PROTOCOL_FAILURE\", \"reason\": \"track/checkpoint mismatch\"}"
+      },
+      "oracle": {
+        "achieved": [],
+        "case_methods": 7,
+        "failure_events": 0,
+        "passed": 3,
+        "skipped": 4
+      },
+      "preflight": {
+        "checkpoint_sha256": "df2be38baf07358bb4c8aa67f9c6f908cd33878eb26da80bd08f3fbd3863dc09",
+        "files": 1,
+        "oracle_sha256": "16d55bac4dc1efa3debc6764ddde9dc27c16b7538de476a0fae9cf7db7519596",
+        "request": "B01",
+        "requirement_sha256": "b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d",
+        "result": "PASS",
+        "track": "conventional"
+      },
+      "restore": {
+        "files": 1,
+        "result": "PASS"
+      }
+    }
+  }
+}
