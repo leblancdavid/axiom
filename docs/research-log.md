@@ -1,4 +1,4 @@
-# Axiom research log
+# Lykoi research log
 
 ## Phase 2 baseline and priority experiment (2026-10-01)
 
@@ -13,7 +13,7 @@ Both baseline and final models validate. The final model is
 **Conventional Approach:** Search for task constructors, readers, persistence,
 interfaces and tests, then inspect likely matches.
 
-**Axiom Approach:** `inspect field_priority` finds its type, the creating
+**Lykoi Approach:** `inspect field_priority` finds its type, the creating
 behavior, filtered reader, migration and owner by semantic IDs. Diffing the
 v0.2 baseline against the final model identifies the new `type_priority`,
 `field_priority`, `arg_priority`, `fn_list_high`, `cmd_list_high`, `cmd_migrate`, contracts and
@@ -40,7 +40,7 @@ behavior in research comparisons.
 **Conventional Approach:** Add a field to a Python record, a default in the
 constructor, a new CLI flag and a filtered-list code path.
 
-**Axiom Approach:** A typed enum, `input_default` assignment and
+**Lykoi Approach:** A typed enum, `input_default` assignment and
 `field_equals` collection predicate represent the requested semantics in the
 model. Validation checks enum literals, typed assignments, command bindings,
 predicate field references and inferred effect footprints. The generated
@@ -64,7 +64,7 @@ tasks, but this first experiment does not demonstrate a net speed advantage.
 **Conventional Approach:** Write a migration script or opportunistically
 default missing fields during reads; review failures manually.
 
-**Axiom Approach:** `migration_task_priority` declares a schema transition,
+**Lykoi Approach:** `migration_task_priority` declares a schema transition,
 constant field addition and read/write effects. An old file makes ordinary
 commands report `migration_required`. `migrate` checks the resulting record
 shape and invariants before atomic replacement; repeated invocation is a
@@ -86,7 +86,7 @@ representation and runtime complexity.
 
 **Conventional Approach:** Associate a commit and build output by filename.
 
-**Axiom Approach:** The generated header directs edits back to Axiom. The
+**Lykoi Approach:** The generated header directs edits back to Lykoi. The
 manifest records model/compiler versions, the artifact hash and semantic
 entity IDs. Inspection/diff uses the model rather than the generated source.
 
@@ -165,7 +165,7 @@ original human intent was inferred correctly.
    scenario checks past/future/equal/undated/completed records without
    depending on wall-clock timing, and asserts one clock sample per query.
    The public CLI still reads the real system clock through that capability.
-6. **Where is Axiom still structural conventional code?** The backend is a
+6. **Where is Lykoi still structural conventional code?** The backend is a
    Python interpreter for narrowly structured CRUD and filter instructions;
    the plan's append/set operations manipulate JSON arrays and fields. The
    scenario test imports the generated module, and artifact-level provenance

@@ -4,7 +4,7 @@ from typing import Any
 
 @dataclass(frozen=True)
 class Program:
-    """Parsed Axiom document; validation precedes semantic indexing or generation."""
+    """Parsed Lykoi document; validation precedes semantic indexing or generation."""
 
     document: dict[str, Any]
 

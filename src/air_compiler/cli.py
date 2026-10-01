@@ -11,7 +11,7 @@ from .validator import validate
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(prog="axiom")
+    parser = argparse.ArgumentParser(prog="lykoi")
     parser.add_argument("operation", choices=("validate", "generate", "inspect", "diff", "impact", "safety", "plan", "apply"))
     parser.add_argument("air_file")
     parser.add_argument("output", nargs="?")
@@ -53,9 +53,9 @@ def main(argv=None):
             print(json.dumps(safety(program), indent=2, sort_keys=True))
             return 0
     except (AirError, OSError) as exc:
-        print(f"Axiom error: {exc}", file=sys.stderr)
+        print(f"Lykoi error: {exc}", file=sys.stderr)
         return 1
-    print(f"Axiom {args.operation}: ok")
+    print(f"Lykoi {args.operation}: ok")
     return 0
 
 

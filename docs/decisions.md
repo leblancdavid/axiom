@@ -15,7 +15,7 @@
   transactions across multiple states, arbitrary computation or multiple backends. JSON replace is atomic for
   one file, not a concurrent multi-process transaction.
 - Phase 1's AIR document and import paths remain available as historical and
-  compatibility interfaces. New documentation and generated headers say Axiom.
+  compatibility interfaces. New documentation and generated headers say Lykoi.
 - The priority experiment required two general semantic extensions: an optional
   typed input with default and a typed field-equality selection of a collection.
   Neither extension accepts Python snippets.

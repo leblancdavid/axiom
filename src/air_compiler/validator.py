@@ -1,4 +1,4 @@
-"""Closed-world semantic checks for the intentionally small Axiom algebra."""
+"""Closed-world semantic checks for the intentionally small Lykoi algebra."""
 
 from datetime import datetime
 
@@ -35,7 +35,7 @@ def validate(program: Program) -> Program:
     d = program.document
     only(d, ("air_version", "axiom_version", "application", "types", "capabilities", "state", "state_machines", "transitions", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios"), "root")
     if program.version not in ("0.1", "0.2", "0.3") or ("air_version" in d and "axiom_version" in d):
-        raise AirError("unsupported or ambiguous Axiom version")
+        raise AirError("unsupported or ambiguous Lykoi version")
     modern = program.version != "0.1"
     safety = program.version == "0.3"
     if safety and ("state_machines" not in d or "transitions" not in d):

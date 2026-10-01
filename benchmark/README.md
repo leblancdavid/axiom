@@ -21,9 +21,12 @@ their internal modules or uses their internal test suites as the shared oracle.
 
 ## Execution protocol
 
+The frozen Track B instruction and its `AXIOM_CAPABILITY_GAP` outcome label
+retain their original wording for comparability with recorded benchmark runs.
+
 Use the same AI model/configuration, requirement text, tool limits and time
 budget for both tracks. Give Track A only its conventional working tree and
-Track B only its model, compiler, generated output, and normal Axiom tools;
+Track B only its model, compiler, generated output, and normal Lykoi tools;
 keep each track's experiment branch/working copy isolated. Do not reveal the
 other track's solution to an agent. Preserve prompts, model/version, transcripts,
 tool calls, elapsed wall time, token usage when available, git diff, test results,

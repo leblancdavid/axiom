@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://axiom.local/schema/axiom-v0.2.schema.json",
-  "title": "Axiom v0.2 serialization envelope",
+  "title": "Lykoi v0.2 serialization envelope",
   "type": "object",
   "additionalProperties": false,
   "required": ["axiom_version", "application", "types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors"],

@@ -23,18 +23,18 @@ def parse(text: str) -> Program:
     except json.JSONDecodeError as exc:
         raise AirError(f"invalid JSON: {exc}") from exc
     if not isinstance(document, dict):
-        raise AirError("Axiom root must be an object")
+        raise AirError("Lykoi root must be an object")
     if "axiom_version" not in document and "air_version" not in document:
-        raise AirError("missing required Axiom version")
+        raise AirError("missing required Lykoi version")
     if "axiom_version" in document and "errors" not in document:
-        raise AirError("missing required Axiom field: errors")
+        raise AirError("missing required Lykoi field: errors")
     for key in ("application", "types", "capabilities", "state", "invariants", "behaviors", "commands"):
         if key not in document:
-            raise AirError(f"missing required Axiom field: {key}")
+            raise AirError(f"missing required Lykoi field: {key}")
     if document.get("axiom_version") == "0.3":
         for key in ("state_machines", "transitions"):
             if key not in document:
-                raise AirError(f"missing required Axiom field: {key}")
+                raise AirError(f"missing required Lykoi field: {key}")
     return Program(document)
 
 

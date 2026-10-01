@@ -77,7 +77,7 @@
         "type_task_list"
       ],
       "path": "task_manager.py",
-      "sha256": "8ca83a7a0a11b91aff864bdefd6a861a4dc09e2003c5bbed1988e1ca626df6c6"
+      "sha256": "41dee0658ad3b83d8d4cc53fb10a0dc44da8bf894d3fcdf8227c4f08605242cb"
     }
   ],
   "compiler_version": "0.3.0",

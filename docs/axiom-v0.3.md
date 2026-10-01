@@ -1,4 +1,4 @@
-# Axiom v0.3: lifecycle and semantic safety
+# Lykoi v0.3: lifecycle and semantic safety
 
 The v0.2 model and validator remain available for historical documents. The
 v0.3 serialization adds `state_machines`, `transitions`, explicit `requires`
@@ -12,7 +12,7 @@ constraints. The closed-world validator is normative beyond JSON Schema.
 Creation must initialize it to `pending`. `ax:transition:task_complete` names
 the sole allowed `pending → completed` transition, its `fn_complete` trigger,
 source-state guard and state-write effect. An update assigning a lifecycle
-field without a matching `performs` reference is invalid Axiom. Changing the
+field without a matching `performs` reference is invalid Lykoi. Changing the
 assignment, guard, target, or trigger inconsistently is rejected before code
 generation. The runtime checks the source again before applying a transition.
 An ID-bearing transition scenario supplies a valid source record and lookup;
@@ -42,10 +42,11 @@ record-validation invariants still apply. A `query_exclusion` invariant
 declares that `list_overdue_tasks` cannot return completed tasks: the
 validator checks its field-equality filter excludes `completed`. Completed
 records may still have historical past due dates. Unknown predicate forms
-are rejected; no Python expression is canonical Axiom.
+are rejected; no Python expression is canonical Lykoi.
 
-`axiom safety MODEL` reports validated model counts, each invariant's evidence
-and the invariants relevant to each mutating behavior. `STRUCTURALLY_GUARANTEED`
+`python -m air_compiler.cli safety MODEL` reports validated model counts, each
+invariant's evidence and the invariants relevant to each mutating behavior.
+`STRUCTURALLY_GUARANTEED`
 currently applies to closed-world query exclusion; stored-state constraints
 are `RUNTIME_ENFORCED` by load and pre-write checks. `SCENARIO_VERIFIED` is
 reserved for a runner that supplies execution evidence, and `UNVERIFIED` for

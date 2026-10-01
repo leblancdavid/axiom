@@ -1,14 +1,14 @@
-# Axiom v0.2 semantic model
+# Lykoi v0.2 semantic model
 
 ## Authority and boundary
 
-The Axiom document is canonical; JSON is a serialization, and the Python
+The Lykoi document is canonical; JSON is a serialization, and the Python
 backend is an implementation artifact. `schema/axiom-v0.2.schema.json`
 specifies the serialized shapes. `validator.validate` provides the normative
 cross-entity, type, operation, effect and contract checks which JSON Schema
 cannot express. Unknown semantic kinds/fields are rejected. Older v0.1
 documents remain valid input for inspection/diff, but generation of v0.2
-applications uses `axiom_version: "0.2"`.
+applications uses `axiom_version: "0.2"` for compatibility.
 
 An entity ID is a stable, globally unique string, independent of its display
 name. Existing Phase 1 IDs are retained. New IDs may use `ax:<kind>:<opaque>`;
@@ -86,23 +86,24 @@ constant fields; more complex migration is a language capability gap.
 
 ## Tools and provenance
 
-`axiom inspect MODEL ENTITY_ID` (currently invoked through
-`python -m air_compiler.cli`) reports entity structure, references,
-dependencies and effects. `axiom diff BEFORE AFTER` compares validated
+The Lykoi CLI, invoked as `python -m air_compiler.cli inspect MODEL ENTITY_ID`,
+reports entity structure, references, dependencies and effects.
+`python -m air_compiler.cli diff BEFORE AFTER` compares validated
 entities by ID, attributes and relationship edges; affected entities include
 direct changes and immediate dependents, with explicit causes. It does not
 prove behavioral equivalence or compute a transitive execution trace.
 
 Generation is deterministic for the same model, compiler version and backend
-configuration. The generated header identifies Axiom as its producer. The
+configuration. The generated header identifies Lykoi as its producer. The
 adjacent manifest records compiler version, model version, artifact name,
 SHA-256 and associated semantic entity IDs. Names of generated artifacts
 are implementation configuration, not semantic identities.
 
-`axiom plan PLAN` validates an ID-addressed, Git-blob-hash-pinned JSON change
-plan, derives pre-change impact paths and previews the validated semantic
-delta without writing the model. `axiom apply PLAN` rechecks the baseline,
-stages replacements, runs the test suite and restores originals on failure.
+`python -m air_compiler.cli plan PLAN` validates an ID-addressed,
+Git-blob-hash-pinned JSON change plan, derives pre-change impact paths and
+previews the validated semantic delta without writing the model.
+`python -m air_compiler.cli apply PLAN` rechecks the baseline, stages
+replacements, runs the test suite and restores originals on failure.
 The plan is an experiment artifact, not executable application logic. The
 current transaction is best effort across three files; OS-level atomicity
 does not extend across the full publication set or externally mutated files.

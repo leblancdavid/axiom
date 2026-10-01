@@ -10,7 +10,7 @@ import tempfile
 from uuid import uuid4
 
 
-SPEC = {}  # AXIOM_SPEC_INSERTION_POINT
+SPEC = {}  # LYKOI_SPEC_INSERTION_POINT
 
 
 class Failure(Exception):
@@ -122,7 +122,7 @@ def write_state(records, state, record_type, path):
         raise Failure("invalid_state")
     temp_path = None
     try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, prefix=".axiom-", suffix=".tmp", delete=False) as dest:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, prefix=".lykoi-", suffix=".tmp", delete=False) as dest:
             temp_path = Path(dest.name)
             payload = {"schema_version": state["schema_version"], "records": records} if "schema_version" in state and state["schema_version"] > 1 else records
             json.dump(payload, dest, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
@@ -198,7 +198,7 @@ def check_guarantees(behavior, result, records, state, record_type, inputs, now=
         else:
             raise AssertionError("unvalidated guarantee")
         if not ok:
-            raise AssertionError(f"Axiom guarantee violated: {behavior['id']} {kind}")
+            raise AssertionError(f"Lykoi guarantee violated: {behavior['id']} {kind}")
 
 
 def execute(behavior, inputs, clock=None):
