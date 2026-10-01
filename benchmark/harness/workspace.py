@@ -1,4 +1,4 @@
-"""Phase 5B workspace builder and fail-closed preflight. No application imports."""
+"""Lykoi benchmark workspace builder and fail-closed preflight. No application imports."""
 
 import argparse
 import hashlib
@@ -107,8 +107,16 @@ def workspace_files(workspace):
     for path in workspace.rglob("*"):
         if path.is_symlink():
             raise ProtocolError(f"workspace symlink: {path}")
+        rel = path.relative_to(workspace).as_posix()
+        # Reject, rather than silently omit, observer-created Python caches. A
+        # deliberately produced implementation artifact needs explicit review.
+        if ("__pycache__" in path.relative_to(workspace).parts or
+                path.suffix in (".pyc", ".pyo") or
+                any(part in (".pytest_cache", ".mypy_cache", ".ruff_cache", ".hypothesis")
+                    for part in path.relative_to(workspace).parts) or
+                path.name == ".coverage" or path.name.startswith(".coverage.")):
+            raise ProtocolError(f"unclassified runtime cache in workspace: {rel}")
         if path.is_file():
-            rel = path.relative_to(workspace).as_posix()
             result[rel] = file_hash(path)
     return result
 
@@ -189,15 +197,16 @@ def check_generated(workspace, track):
             f"generated artifact does not match model/compiler: {result.stderr.decode(errors='replace')}")
 
 
-def checkpoint(workspace, track, attempted):
-    manifest = load_manifest()
-    require(track in manifest["tracks"], "unknown track")
+def validate_attempts(track, attempted):
+    require(isinstance(attempted, list), "attempt history must be a list")
+    require(all(isinstance(item, dict) and isinstance(item.get("request"), str)
+                for item in attempted), "invalid attempt entry")
     ids = [item["request"] for item in attempted]
     require(ids == [f"B{i:02}" for i in range(1, len(ids) + 1)], "nonsequential attempts")
-    require(all(item["outcome"] in ("SUCCESS", "AXIOM_CAPABILITY_GAP", "IMPLEMENTATION_FAILURE",
-                                     "REGRESSION", "BLOCKED_BY_GAP") for item in attempted), "invalid outcome")
+    require(all(item.get("outcome") in ("SUCCESS", "AXIOM_CAPABILITY_GAP", "IMPLEMENTATION_FAILURE",
+                                         "REGRESSION", "BLOCKED_BY_GAP") for item in attempted), "invalid outcome")
     require(not any(item["outcome"] == "AXIOM_CAPABILITY_GAP" for item in attempted)
-            or track == "axiom", "gap on non-Axiom track")
+            or track == "axiom", "gap on non-Lykoi track")
     gaps = set()
     for item in attempted:
         if item["outcome"] == "BLOCKED_BY_GAP":
@@ -208,22 +217,40 @@ def checkpoint(workspace, track, attempted):
             require(isinstance(item.get("evidence"), str) and item["evidence"].strip(),
                     "capability gap requires evidence reference")
             gaps.add(item["request"])
+
+
+def checkpoint(workspace, track, attempted, previous=None, previous_hash=None):
+    manifest = load_manifest()
+    require(track in manifest["tracks"], "unknown track")
+    validate_attempts(track, attempted)
+    require((not attempted and previous is None) or (attempted and previous is not None),
+            "step checkpoint requires its previous checkpoint")
+    if previous is not None:
+        require(isinstance(previous_hash, str) and len(previous_hash) == 64 and
+                previous_hash == digest(encoded(previous)), "previous checkpoint hash mismatch")
+        require(previous["track"] == track and previous["attempted"] == attempted[:-1],
+                "previous checkpoint/attempt history mismatch")
+        if attempted[-1]["outcome"] in ("AXIOM_CAPABILITY_GAP", "BLOCKED_BY_GAP"):
+            require(workspace_files(workspace) == previous["files"],
+                    "gap or dependency block changed implementation state")
     achieved = [item["request"] for item in attempted if item["outcome"] == "SUCCESS"]
     profile = achieved[-1] if achieved else "baseline"
-    return {"format": 1, "track": track, "attempted": attempted,
-            "achieved": achieved, "profile": profile,
+    check_generated(workspace, track)
+    return {"format": 2, "track": track, "attempted": attempted,
+             "achieved": achieved, "profile": profile,
             "profile_sha256": file_hash(PROFILES / f"{profile}.json"),
             "case_hashes": {name: file_hash(CASES / f"{name}.py") for name in achieved if int(name[1:]) > 2},
             "baseline_manifest_sha256": file_hash(MANIFEST),
             "harness_sha256": file_hash(Path(__file__)),
             "oracle_sha256": file_hash(ORACLE),
-            "requirement_hashes": manifest["requirements"],
-            "files": workspace_files(workspace)}
+             "requirement_hashes": manifest["requirements"],
+             "previous_checkpoint_sha256": previous_hash,
+             "files": workspace_files(workspace)}
 
 
 def preflight(workspace, track, request, record, case_hash=None, profile_hash=None):
     manifest = load_manifest()
-    require(record["format"] == 1 and record["track"] == track, "track/checkpoint mismatch")
+    require(record["format"] == 2 and record["track"] == track, "track/checkpoint mismatch")
     require(record["baseline_manifest_sha256"] == file_hash(MANIFEST), "starting baseline identifier mismatch")
     require(record["harness_sha256"] == file_hash(Path(__file__)), "workspace harness version mismatch")
     require(record["oracle_sha256"] == file_hash(ORACLE), "regression oracle version mismatch")
@@ -248,8 +275,9 @@ def preflight(workspace, track, request, record, case_hash=None, profile_hash=No
                 "new request schema profile missing or unfrozen")
     require(all(a["request"] == f"B{i:02}" for i, a in enumerate(record["attempted"], 1)),
             "attempt history inconsistent")
-    require(checkpoint(workspace, track, record["attempted"])["attempted"] == record["attempted"],
-            "attempt status/dependency semantics invalid")
+    validate_attempts(track, record["attempted"])
+    require(isinstance(record.get("previous_checkpoint_sha256"), str) and
+            len(record["previous_checkpoint_sha256"]) == 64, "missing previous checkpoint provenance")
     require(workspace.is_dir() and workspace_files(workspace) == record["files"],
             "workspace missing, modified or has unexpected files")
     require("experiments/task_manager-v0.2-before-priority.json" in record["files"] if track == "axiom"
@@ -279,6 +307,8 @@ def main():
             cmd.add_argument("--attempted", default="", help="comma-separated B01:SUCCESS,B02:AXIOM_CAPABILITY_GAP")
             cmd.add_argument("--attempts-file", type=Path, help="JSON list for gaps (evidence) and blocked dependencies")
             cmd.add_argument("--output", type=Path, required=True)
+            cmd.add_argument("--previous", type=Path, help="pinned prior checkpoint (required after baseline)")
+            cmd.add_argument("--previous-hash", help="SHA-256 of pinned prior checkpoint")
         if action == "preflight":
             cmd.add_argument("--request", required=True)
             cmd.add_argument("--checkpoint", type=Path, required=True)
@@ -308,7 +338,11 @@ def main():
             attempts = (json.loads(args.attempts_file.read_text(encoding="utf-8")) if args.attempts_file
                         else [dict(zip(("request", "outcome"), item.split(":")))
                               for item in args.attempted.split(",") if item])
-            data = checkpoint(args.workspace, args.track, attempts)
+            require(bool(args.previous) == bool(args.previous_hash), "previous checkpoint and hash must be paired")
+            if args.previous:
+                require(file_hash(args.previous) == args.previous_hash, "pinned previous checkpoint hash mismatch")
+            prior = json.loads(args.previous.read_text(encoding="utf-8")) if args.previous else None
+            data = checkpoint(args.workspace, args.track, attempts, prior, args.previous_hash)
             require(args.output.parent.is_dir() and not args.output.exists(), "checkpoint destination invalid")
             args.output.write_bytes(encoded(data))
             print(file_hash(args.output))

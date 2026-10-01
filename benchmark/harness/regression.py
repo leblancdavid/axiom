@@ -8,6 +8,7 @@ import argparse
 from datetime import datetime
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -32,7 +33,8 @@ class CountedResult(unittest.TextTestResult):
 
 
 def call(cwd, *args, error=None):
-    result = subprocess.run([sys.executable, str(APP), *args], cwd=cwd, capture_output=True, text=True)
+    result = subprocess.run([sys.executable, str(APP), *args], cwd=cwd, capture_output=True, text=True,
+                            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
     if error is not None:
         assert result.returncode == 1 and not result.stdout, (args, result)
         assert json.loads(result.stderr) == {"error": error}, (args, result)
@@ -223,6 +225,9 @@ class Regression(unittest.TestCase):
 
 def main():
     global APP, ACHIEVED, PROFILE
+    # Frozen case modules also spawn the application directly. Propagate the
+    # observer-safe setting without changing any frozen case or its assertions.
+    os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
     parser = argparse.ArgumentParser()
     parser.add_argument("--app", type=Path, required=True)
     parser.add_argument("--achieved", default="", help="comma-separated successfully achieved request IDs")

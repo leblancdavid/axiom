@@ -1,0 +1,23 @@
+{
+  "protocol_amendment": "PROTOCOL_AMENDMENT_001",
+  "source_checkpoint_sha256": "31dd8302529cdfabd0609ca7b3dddd64ca48764f1ae0255dfcb79d91a400ba90",
+  "source_snapshot_sha256": "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7",
+  "restoration": "PASS; 27 files; disposable workspace outside repository",
+  "original_command": "PYTHONPATH=src python -m air_compiler.cli validate air/task_manager.json",
+  "bytecode_suppression": "unset for original-command reproduction",
+  "command_exit_code": 0,
+  "original_implementation_files_modified": [],
+  "original_implementation_files": 27,
+  "observed_files": 35,
+  "new_bytecode_files": {
+    "src/air_compiler/__pycache__/__init__.cpython-314.pyc": "dbb6a1793e0e50e984893023d6fff1c81fb533065e2f8f6ab307c261f3c548a5",
+    "src/air_compiler/__pycache__/cli.cpython-314.pyc": "83a11c9e6808ae2b202d7c827e3a96e3f41514548b097f99430dc45ea03eb2",
+    "src/air_compiler/__pycache__/generator.cpython-314.pyc": "509418e9803955a63050c0c7c81491c1496b31ff1c0c65f09fe643f4667d6037",
+    "src/air_compiler/__pycache__/model.cpython-314.pyc": "fd4531242304b4483e82caecc8f20dacf02eaaf501ce210b0b4d1507632e7005",
+    "src/air_compiler/__pycache__/parser.cpython-314.pyc": "8846247d9e741dc29742a705ee677e253ea2904a56fd8f4f33a0c002e19dc22e",
+    "src/air_compiler/__pycache__/planning.cpython-314.pyc": "41937416df3016927a735f45c44c621414fcb6b431293e9750c052b05ff490ac",
+    "src/air_compiler/__pycache__/semantics.cpython-314.pyc": "ec17a36aaed62b9e92171f1fa3c463609e8e0d1b9403df1d22c49589ebcabf03",
+    "src/air_compiler/__pycache__/validator.cpython-314.pyc": "000893d66f1585f1e1f63df6f6c09357200444e1fad0560481e682a486bae8c7"
+  },
+  "note": "The paths and Python cache class match the quarantined B03 evidence. Different bytecode hashes are expected after restoration at a different absolute path. The original disposable reproduction workspace was retained outside the repository."
+}
