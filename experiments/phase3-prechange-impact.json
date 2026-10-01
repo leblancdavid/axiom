@@ -1,0 +1,30 @@
+{
+  "plan_id": "change_task_due_dates",
+  "baseline": "f57f6b8661db24fad4de119875454638008f6a24",
+  "model": "air/task_manager.json",
+  "validation": "passed_with_warnings",
+  "roots": ["type_task", "state_tasks", "inv_valid_tasks", "fn_create", "cmd_create", "cmd_migrate"],
+  "paths": {
+    "type_task_list": ["type_task_list:item_type:type_task"],
+    "state_tasks": ["state_tasks:type:type_task_list", "type_task_list:item_type:type_task"],
+    "fn_create": ["fn_create:creates:type_task"],
+    "fn_complete": ["fn_complete:output:type_task"],
+    "fn_delete": ["fn_delete:output:type_task"],
+    "fn_list": ["fn_list:output:type_task_list", "type_task_list:item_type:type_task"],
+    "fn_list_high": ["fn_list_high:output:type_task_list", "type_task_list:item_type:type_task"],
+    "migration_task_priority": ["migration_task_priority:migrates:state_tasks"],
+    "cmd_create": ["cmd_create:exposes:fn_create"],
+    "cmd_list": ["cmd_list:exposes:fn_list", "fn_list:output:type_task_list", "type_task_list:item_type:type_task"],
+    "cmd_list_high": ["cmd_list_high:exposes:fn_list_high", "fn_list_high:output:type_task_list", "type_task_list:item_type:type_task"],
+    "cmd_complete": ["cmd_complete:exposes:fn_complete", "fn_complete:output:type_task"],
+    "cmd_delete": ["cmd_delete:exposes:fn_delete", "fn_delete:output:type_task"],
+    "cmd_migrate": ["cmd_migrate:exposes:migration_task_priority", "migration_task_priority:migrates:state_tasks"],
+    "inv_unique_ids": ["inv_unique_ids:state:state_tasks"]
+  },
+  "proposed_dependency_paths": {
+    "cap_clock": ["fn_list_overdue:depends_on:cap_clock"],
+    "cap_store": ["fn_list_overdue:depends_on:cap_store", "state_tasks:storage:cap_store"]
+  },
+  "warnings": ["contract_complete_persisted", "contract_create_persisted", "contract_delete_absent", "contract_high_sorted", "contract_list_sorted", "inv_unique_ids"],
+  "notes": "Path entries are source:relationship:target. The proposed_dependency_paths point from planned behavior to existing capabilities, and are not pre-change reverse-impact paths. Newly proposed entities have no pre-change path; they are named in the plan's explicit operations. The graph CLI supplies complete paths for all reachable existing entities. Generated artifact association is manifest-wide rather than line-specific. Tests are not model entities before this plan."
+}

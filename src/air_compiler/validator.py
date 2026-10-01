@@ -1,5 +1,7 @@
 """Closed-world semantic checks for the intentionally small Axiom algebra."""
 
+from datetime import datetime
+
 from .model import Program
 from .parser import AirError
 
@@ -31,7 +33,7 @@ def same(actual, expected, place):
 
 def validate(program: Program) -> Program:
     d = program.document
-    only(d, ("air_version", "axiom_version", "application", "types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors"), "root")
+    only(d, ("air_version", "axiom_version", "application", "types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios"), "root")
     if program.version not in ("0.1", "0.2") or ("air_version" in d and "axiom_version" in d):
         raise AirError("unsupported or ambiguous Axiom version")
     modern = program.version == "0.2"
@@ -41,7 +43,7 @@ def validate(program: Program) -> Program:
         raise AirError("v0.1 does not support migrations or errors")
     check(d["application"], ("id", "name"), "application")
     only(d["application"], ("id", "name"), "application")
-    groups = ("types", "capabilities", "state", "invariants", "behaviors", "commands") + (("migrations", "errors") if modern else ())
+    groups = ("types", "capabilities", "state", "invariants", "behaviors", "commands") + (("migrations", "errors", "scenarios") if modern and "scenarios" in d else ("migrations", "errors") if modern else ())
     entities = {}
     for group in groups:
         for index, entity in enumerate(sequence(d[group], group)):
@@ -99,7 +101,9 @@ def validate(program: Program) -> Program:
             names = set()
             for field in t["fields"]:
                 check(field, ("id", "name", "type"), p)
-                only(field, ("id", "name", "type"), p)
+                only(field, ("id", "name", "type", "nullable"), p)
+                if "nullable" in field and (not modern or field["type"] != "prim:timestamp" or field["nullable"] is not True):
+                    raise AirError(f"{p}: only timestamp fields can be nullable")
                 unique_nested(field, p)
                 if field["name"] in names:
                     raise AirError(f"{p}: duplicate field name {field['name']}")
@@ -178,12 +182,24 @@ def validate(program: Program) -> Program:
         record = types[types[state["type"]]["item_type"]]
         return ref(eid, {f["id"]: f for f in record["fields"]}, place)
 
-    def literal(value, typ, place):
+    def literal(value, typ, place, nullable=False):
+        if value is None and nullable:
+            return
         if typ in ("prim:string", "prim:timestamp"):
             if not isinstance(value, str):
                 raise AirError(f"{place}: expected string literal")
+            if typ == "prim:timestamp" and not timestamp(value):
+                raise AirError(f"{place}: invalid UTC timestamp literal")
         elif value not in types[typ]["values"]:
             raise AirError(f"{place}: invalid enum literal {value!r}")
+
+    def timestamp(value):
+        if not isinstance(value, str) or not value.endswith("Z"):
+            return False
+        try:
+            return datetime.fromisoformat(value.replace("Z", "+00:00")).utcoffset().total_seconds() == 0
+        except ValueError:
+            return False
 
     for migration in sequence(d.get("migrations", []), "migrations"):
         p = migration["id"]
@@ -206,7 +222,7 @@ def validate(program: Program) -> Program:
             if field["id"] in seen or field["id"] == state["key_field"]:
                 raise AirError(f"{p}: duplicate or key migration field")
             seen.add(field["id"])
-            literal(addition["value"], field["type"], p)
+            literal(addition["value"], field["type"], p, field.get("nullable", False))
     for state in d["state"]:
         migrations = [m for m in d.get("migrations", []) if m["state"] == state["id"]]
         if modern and sorted(m["to_version"] for m in migrations) != list(range(2, state["schema_version"] + 1)):
@@ -226,10 +242,12 @@ def validate(program: Program) -> Program:
         inputs = {}
         for inp in sequence(b["inputs"], p):
             check(inp, ("id", "name", "type"), p)
-            only(inp, ("id", "name", "type"), p)
+            only(inp, ("id", "name", "type", "nullable"), p)
+            if "nullable" in inp and (not modern or inp["type"] != "prim:timestamp" or inp["nullable"] is not True):
+                raise AirError(f"{p}: invalid nullable input")
             unique_nested(inp, p)
             type_ref(inp["type"], inp["id"])
-            if (not modern and inp["type"] != "prim:string") or (modern and inp["type"] != "prim:string" and (inp["type"] not in types or types[inp["type"]]["kind"] != "enum")) or inp["id"] in inputs:
+            if (not modern and inp["type"] != "prim:string") or (modern and inp["type"] not in ("prim:string", "prim:timestamp") and (inp["type"] not in types or types[inp["type"]]["kind"] != "enum")) or inp["id"] in inputs:
                 raise AirError(f"{p}: inputs must be strings or v0.2 enums")
             inputs[inp["id"]] = inp
         if kind in ("update", "delete"):
@@ -245,12 +263,29 @@ def validate(program: Program) -> Program:
             if inputs or ("filter" in b and not modern):
                 raise AirError(f"{p}: unsupported list inputs or filter")
             if "filter" in b:
-                predicate = b["filter"]
-                check(predicate, ("kind", "field", "value"), p)
-                only(predicate, ("kind", "field", "value"), p)
-                if predicate["kind"] != "field_equals":
-                    raise AirError(f"{p}: unsupported filter")
-                literal(predicate["value"], field_for(state, predicate["field"], p)["type"], p)
+                spec = b["filter"]
+                if spec.get("kind") == "all":
+                    check(spec, ("predicates",), p)
+                    only(spec, ("kind", "predicates"), p)
+                    predicates = sequence(spec["predicates"], p)
+                    if len(predicates) < 2:
+                        raise AirError(f"{p}: all requires two or more predicates")
+                else:
+                    predicates = [spec]
+                for predicate in predicates:
+                    check(predicate, ("kind", "field"), p)
+                    field = field_for(state, predicate["field"], p)
+                    if predicate["kind"] == "field_equals":
+                        check(predicate, ("value",), p)
+                        only(predicate, ("kind", "field", "value"), p)
+                        literal(predicate["value"], field["type"], p, field.get("nullable", False))
+                    elif predicate["kind"] == "field_before_clock" and modern:
+                        check(predicate, ("clock",), p)
+                        only(predicate, ("kind", "field", "clock"), p)
+                        if field["type"] != "prim:timestamp" or caps[ref(predicate["clock"], caps, p)["id"]]["kind"] != "utc_clock":
+                            raise AirError(f"{p}: before_clock requires timestamp and utc_clock")
+                    else:
+                        raise AirError(f"{p}: unsupported filter")
             order = sequence(b.get("order_by"), p)
             if not order or len(set(order)) != len(order):
                 raise AirError(f"{p}: invalid ordering")
@@ -277,15 +312,15 @@ def validate(program: Program) -> Program:
                 check(a, ("id",), p)
                 only(a, ("field", "source", "id"), p)
                 inp = ref(a["id"], inputs, p)
-                if inp["type"] != field["type"]:
+                if inp["type"] != field["type"] or inp.get("nullable", False) != field.get("nullable", False):
                     raise AirError(f"{p}: assignment type mismatch")
             elif source == "input_default" and modern and kind == "create":
                 check(a, ("id", "value"), p)
                 only(a, ("field", "source", "id", "value"), p)
                 inp = ref(a["id"], inputs, p)
-                if inp["type"] != field["type"]:
+                if inp["type"] != field["type"] or inp.get("nullable", False) != field.get("nullable", False):
                     raise AirError(f"{p}: assignment type mismatch")
-                literal(a["value"], field["type"], p)
+                literal(a["value"], field["type"], p, field.get("nullable", False))
             elif source == "capability":
                 check(a, ("id",), p)
                 only(a, ("field", "source", "id"), p)
@@ -325,6 +360,11 @@ def validate(program: Program) -> Program:
                 check(c, ("field", "value"), p)
                 only(c, ("id", "kind", "failure", "field", "value"), p)
                 literal(c["value"], field_for(state, c["field"], p)["type"], p)
+            elif c["kind"] == "timestamp_input" and modern:
+                check(c, ("input",), p)
+                only(c, ("id", "kind", "failure", "input"), p)
+                if ref(c["input"], inputs, p)["type"] != "prim:timestamp":
+                    raise AirError(f"{p}: timestamp_input requires timestamp")
             else:
                 raise AirError(f"{p}: unsupported condition")
         if kind in ("update", "delete") and (not conditions or conditions[0]["kind"] != "record_exists"):
@@ -339,6 +379,12 @@ def validate(program: Program) -> Program:
         for a in assignments.values():
             if a["source"] == "capability":
                 inferred_effects.add({"uuid_v4": "random_id", "utc_clock": "clock_read"}[caps[a["id"]]["kind"]])
+        if "filter" in b:
+            predicates = b["filter"].get("predicates", [b["filter"]])
+            for predicate in predicates:
+                if predicate["kind"] == "field_before_clock":
+                    expected_deps.add(predicate["clock"])
+                    inferred_effects.add("clock_read")
         same(b["dependencies"], expected_deps, f"{p}.dependencies")
         same(b["reads"], {state["id"]}, f"{p}.reads")
         same(b["writes"], set() if kind == "list" else {state["id"]}, f"{p}.writes")
@@ -353,7 +399,7 @@ def validate(program: Program) -> Program:
         guarantees = sequence(b["guarantees"], p)
         guarantee_kinds = [g.get("kind") for g in guarantees if isinstance(g, dict)]
         same([k for k in guarantee_kinds if k != "result_field_equals_assignment" or not modern], expected_guarantees, f"{p}.guarantees")
-        if modern and guarantee_kinds.count("result_field_equals_assignment") > 1:
+        if modern and len({g["field"] for g in guarantees if g["kind"] == "result_field_equals_assignment"}) != guarantee_kinds.count("result_field_equals_assignment"):
             raise AirError(f"{p}: duplicate assignment guarantee")
         for g in guarantees:
             q = g["kind"]
@@ -408,5 +454,27 @@ def validate(program: Program) -> Program:
             raise AirError(f"{p}: duplicate flag")
     same([c["behavior"] for c in d["commands"] if "behavior" in c], set(behaviors), "commands.behaviors")
     if modern:
-        same(migration_commands, {m["id"] for m in d["migrations"]}, "commands.migrations")
+        same(migration_commands, {max((m for m in d["migrations"] if m["state"] == state["id"]), key=lambda m: m["to_version"])["id"] for state in d["state"] if any(m["state"] == state["id"] for m in d["migrations"])}, "commands.migrations")
+    for scenario in d.get("scenarios", []):
+        p = scenario["id"]
+        check(scenario, ("behavior", "clock", "records", "expected_ids"), p)
+        only(scenario, ("id", "behavior", "clock", "records", "expected_ids"), p)
+        behavior = ref(scenario["behavior"], behaviors, p)
+        if behavior["kind"] != "list" or "clock_read" not in behavior["effects"]:
+            raise AirError(f"{p}: scenario requires clock-aware list behavior")
+        if not timestamp(scenario["clock"]):
+            raise AirError(f"{p}: invalid clock instant")
+        state = states[behavior["state"]]
+        record = types[types[state["type"]]["item_type"]]
+        fields_by_id = {f["id"]: f for f in record["fields"]}
+        ids = []
+        for row in sequence(scenario["records"], p):
+            if not isinstance(row, dict) or set(row) != set(fields_by_id):
+                raise AirError(f"{p}: incomplete scenario record")
+            for eid, value in row.items():
+                literal(value, fields_by_id[eid]["type"], p, fields_by_id[eid].get("nullable", False))
+                if eid == state["key_field"]:
+                    ids.append(value)
+        if len(ids) != len(set(ids)) or any(eid not in ids for eid in sequence(scenario["expected_ids"], p)) or len(scenario["expected_ids"]) != len(set(scenario["expected_ids"])):
+            raise AirError(f"{p}: invalid expected IDs")
     return program

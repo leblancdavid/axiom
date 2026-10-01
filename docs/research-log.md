@@ -106,3 +106,75 @@ requires a more granular lowering pipeline, not a claim of behavioral proof.
 | Optional priority input | Only required CLI inputs and unconditional assignments existed. | Typed `input_default` binding; omission selects a literal default. | Yes; CLI flags are only one boundary binding. | Input type matches field, default belongs to enum, optional argument has a default. |
 | HIGH-only list | `list` could only return the entire collection. | Typed collection selection with `field_equals` before sorting. | Yes. | Predicate field exists and its literal matches the field type. |
 | Existing persisted tasks | Phase 1 had no schema version or migration operation. | Identified additive state migration with declared read/write effects and an explicit command. | Semantic transition yes; the JSON envelope and atomic replacement are backend details. | Version chain, target field and default type, complete effect declaration, final-state invariants. |
+
+## Phase 3: plan-first due-date experiment (2026-10-01)
+
+The original model hash is `f57f6b8661db24fad4de119875454638008f6a24`
+(Git blob SHA-1). Before changing `air/task_manager.json`, I wrote
+`experiments/phase3-due-dates.plan.json`, validated its typed operations and
+saved explained paths in `experiments/phase3-prechange-impact.json`. `plan`
+reported direct-dependent omissions for five unchanged postconditions and
+`inv_unique_ids`; these were kept as warnings instead of being silently
+folded into an edit list. The first `apply` generated and verified a staged
+change, but one negative plan-validator test failed: after rejecting removal
+of the state, the reporter still tried to index the invalid candidate. Apply
+restored the original model and artifacts; fixing the reporter made the
+second apply pass all 22 tests; the final suite, including a later stale-plan
+regression and provenance check, passes all 24 tests. No generated Python was
+read to plan impact.
+
+Actual semantic operations are recorded in `experiments/phase3-actual-diff.json`;
+the ID comparison is in `experiments/phase3-impact-comparison.json`:
+16 expected-and-changed, 12 expected-but-unchanged, zero unexpectedly
+changed. The unchanged IDs include all old list/update/delete behaviors,
+their commands, the old migration, the storage and clock capabilities and
+the task list type. They are affected *conceptually* via the new record
+shape/state version but require no semantic edit. This is evidence of
+conservative reachability, not a precision score. It is partly tautological:
+the plan specifies concrete transformations, so comparing its predicted
+change IDs to its own resulting structural diff cannot establish that the
+original human intent was inferred correctly.
+
+1. **Could affected entities be found from relationships alone?** Yes for
+   the record, constructors, readers, persisted state, commands, constraints,
+   migration, and declared capabilities. `type_task → type_task_list →
+   state_tasks → fn_list → cmd_list` is an inspectable pre-change path. The
+   manifest points to a single artifact containing all entities and cannot
+   locate an affected generated region. Pre-existing Python tests have no
+   model relationship; the new fixed-clock scenario is model-owned.
+2. **Missing dependencies?** Nullable field shape, composed predicates,
+   clock-dependent selection, and executable example expectations were
+   missing concepts, not missing edges. A new `field_before_clock` predicate
+   adds an explicit dependency on `cap_clock`; its `clock_read` effect is
+   inferred and checked. The pre-existing migration command referenced one
+   migration, so supporting a second version required treating that binding
+   as the latest migration in a chain.
+3. **Excess irrelevant results?** Yes. Type/state reachability includes
+   commands and postconditions that did not change. Paths are useful for
+   inspection, but the current direct/indirect labels describe graph distance,
+   not likelihood of needing modification. Missing direct dependents were
+   warnings rather than proof of plan incompleteness.
+4. **Did planning catch mistakes?** It identified omitted direct dependents
+   before application and rejected invalid plans in tests (dangling state
+   removal and empty behavioral verification). It did not predict the
+   reporter bug: that surfaced during apply verification. Verification strings
+   are declared evidence goals, not formally linked to test IDs or proven to
+   have been covered by the runner.
+5. **Did clock access help?** Yes. The overdue behavior declares `cap_clock`
+   and `clock_read`. Removing the effect fails validation. A fixed-clock
+   scenario checks past/future/equal/undated/completed records without
+   depending on wall-clock timing, and asserts one clock sample per query.
+   The public CLI still reads the real system clock through that capability.
+6. **Where is Axiom still structural conventional code?** The backend is a
+   Python interpreter for narrowly structured CRUD and filter instructions;
+   the plan's append/set operations manipulate JSON arrays and fields. The
+   scenario test imports the generated module, and artifact-level provenance
+   remains broad. The bounded semantics give deterministic validation, but
+   neither the plan nor its contracts express arbitrary temporal logic or
+   guarantee that a verification sentence corresponds to an executed test.
+
+The migration from state version 2 to 3 adds `due_date: null` to old records;
+version 1 migration chains through the earlier priority migration. Normal
+reads reject unmigrated state. Strictly earlier UTC instants qualify as
+overdue, and complete or undated tasks do not. These observations were made
+from the model and tests, with compiler template work following the plan.

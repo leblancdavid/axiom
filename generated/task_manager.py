@@ -13,7 +13,7 @@ import tempfile
 from uuid import uuid4
 
 
-SPEC = json.loads('{"application":{"id":"app_tasks","name":"task_manager"},"axiom_version":"0.2","behaviors":[{"assignments":[{"field":"field_id","id":"cap_ids","source":"capability"},{"field":"field_title","id":"arg_title","source":"input"},{"field":"field_description","id":"arg_description","source":"input"},{"field":"field_status","source":"literal","value":"pending"},{"field":"field_priority","id":"arg_priority","source":"input_default","value":"NORMAL"},{"field":"field_created_at","id":"cap_clock","source":"capability"}],"conditions":[{"failure":"err_invalid_title","id":"pre_create_title","input":"arg_title","kind":"nonblank_input"}],"dependencies":["state_tasks","cap_store","cap_clock","cap_ids"],"effects":["state_read","state_write","file_read","file_write","clock_read","random_id"],"failures":["err_invalid_title","err_id_collision","err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"field":"field_status","id":"contract_create_status","kind":"result_field_equals","value":"pending"},{"id":"contract_create_persisted","kind":"result_in_state","state":"state_tasks"},{"field":"field_priority","id":"contract_create_priority","kind":"result_field_equals_assignment"}],"id":"fn_create","inputs":[{"id":"arg_title","name":"title","type":"prim:string"},{"id":"arg_description","name":"description","type":"prim:string"},{"id":"arg_priority","name":"priority","type":"type_priority"}],"kind":"create","name":"create_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]},{"assignments":[],"conditions":[],"dependencies":["state_tasks","cap_store"],"effects":["state_read","file_read"],"failures":["err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"id":"contract_list_sorted","kind":"result_equals_state_sorted","state":"state_tasks"}],"id":"fn_list","inputs":[],"kind":"list","name":"list_tasks","order_by":["field_created_at","field_id"],"output":"type_task_list","reads":["state_tasks"],"state":"state_tasks","writes":[]},{"assignments":[],"conditions":[],"dependencies":["state_tasks","cap_store"],"effects":["state_read","file_read"],"failures":["err_invalid_state","err_persistence_failure","err_migration_required"],"filter":{"field":"field_priority","kind":"field_equals","value":"HIGH"},"guarantees":[{"id":"contract_high_sorted","kind":"result_equals_state_sorted","state":"state_tasks"}],"id":"fn_list_high","inputs":[],"kind":"list","name":"list_high_priority_tasks","order_by":["field_created_at","field_id"],"output":"type_task_list","reads":["state_tasks"],"state":"state_tasks","writes":[]},{"assignments":[{"field":"field_status","source":"literal","value":"completed"}],"conditions":[{"failure":"err_task_not_found","id":"pre_complete_exists","kind":"record_exists"},{"failure":"err_invalid_transition","field":"field_status","id":"pre_complete_pending","kind":"record_field_equals","value":"pending"}],"dependencies":["state_tasks","cap_store"],"effects":["state_read","state_write","file_read","file_write"],"failures":["err_task_not_found","err_invalid_transition","err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"field":"field_status","id":"contract_complete_status","kind":"result_field_equals","value":"completed"},{"id":"contract_complete_persisted","kind":"result_in_state","state":"state_tasks"}],"id":"fn_complete","inputs":[{"id":"arg_complete_id","name":"id","type":"prim:string"}],"kind":"update","lookup":{"field":"field_id","input":"arg_complete_id"},"name":"complete_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]},{"assignments":[],"conditions":[{"failure":"err_task_not_found","id":"pre_delete_exists","kind":"record_exists"}],"dependencies":["state_tasks","cap_store"],"effects":["state_read","state_write","file_read","file_write"],"failures":["err_task_not_found","err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"id":"contract_delete_absent","kind":"result_id_absent_from_state","state":"state_tasks"}],"id":"fn_delete","inputs":[{"id":"arg_delete_id","name":"id","type":"prim:string"}],"kind":"delete","lookup":{"field":"field_id","input":"arg_delete_id"},"name":"delete_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]}],"capabilities":[{"id":"cap_store","kind":"json_file","missing_file":"empty_collection","path":"tasks.json"},{"id":"cap_clock","kind":"utc_clock"},{"id":"cap_ids","kind":"uuid_v4"}],"commands":[{"arguments":[{"flag":"--title","input":"arg_title","required":true},{"flag":"--description","input":"arg_description","required":true},{"flag":"--priority","input":"arg_priority","required":false}],"behavior":"fn_create","id":"cmd_create","token":"create"},{"arguments":[],"behavior":"fn_list","id":"cmd_list","token":"list"},{"arguments":[],"behavior":"fn_list_high","id":"cmd_list_high","token":"list-high"},{"arguments":[],"id":"cmd_migrate","migration":"migration_task_priority","token":"migrate"},{"arguments":[{"flag":"--id","input":"arg_complete_id","required":true}],"behavior":"fn_complete","id":"cmd_complete","token":"complete"},{"arguments":[{"flag":"--id","input":"arg_delete_id","required":true}],"behavior":"fn_delete","id":"cmd_delete","token":"delete"}],"errors":[{"code":"invalid_title","id":"err_invalid_title"},{"code":"id_collision","id":"err_id_collision"},{"code":"invalid_state","id":"err_invalid_state"},{"code":"persistence_failure","id":"err_persistence_failure"},{"code":"migration_required","id":"err_migration_required"},{"code":"task_not_found","id":"err_task_not_found"},{"code":"invalid_transition","id":"err_invalid_transition"}],"invariants":[{"field":"field_id","id":"inv_unique_ids","kind":"unique_field","state":"state_tasks"},{"field_rules":[{"field":"field_id","kind":"nonblank"},{"field":"field_title","kind":"nonblank"},{"field":"field_created_at","kind":"timestamp_utc"}],"id":"inv_valid_tasks","kind":"all_records_valid","state":"state_tasks"}],"migrations":[{"add_fields":[{"field":"field_priority","value":"NORMAL"}],"effects":["state_read","state_write","file_read","file_write"],"from_version":1,"id":"migration_task_priority","state":"state_tasks","to_version":2}],"state":[{"id":"state_tasks","invariants":["inv_unique_ids","inv_valid_tasks"],"key_field":"field_id","name":"tasks","schema_version":2,"storage":"cap_store","type":"type_task_list"}],"types":[{"id":"type_status","kind":"enum","name":"TaskStatus","values":["pending","completed"]},{"id":"type_priority","kind":"enum","name":"Priority","values":["LOW","NORMAL","HIGH"]},{"fields":[{"id":"field_id","name":"id","type":"prim:string"},{"id":"field_title","name":"title","type":"prim:string"},{"id":"field_description","name":"description","type":"prim:string"},{"id":"field_status","name":"status","type":"type_status"},{"id":"field_priority","name":"priority","type":"type_priority"},{"id":"field_created_at","name":"created_at","type":"prim:timestamp"}],"id":"type_task","kind":"record","name":"Task"},{"id":"type_task_list","item_type":"type_task","kind":"list","name":"TaskList"}]}')
+SPEC = json.loads('{"application":{"id":"app_tasks","name":"task_manager"},"axiom_version":"0.2","behaviors":[{"assignments":[{"field":"field_id","id":"cap_ids","source":"capability"},{"field":"field_title","id":"arg_title","source":"input"},{"field":"field_description","id":"arg_description","source":"input"},{"field":"field_status","source":"literal","value":"pending"},{"field":"field_priority","id":"arg_priority","source":"input_default","value":"NORMAL"},{"field":"field_created_at","id":"cap_clock","source":"capability"},{"field":"field_due_date","id":"arg_due_date","source":"input_default","value":null}],"conditions":[{"failure":"err_invalid_title","id":"pre_create_title","input":"arg_title","kind":"nonblank_input"},{"failure":"err_invalid_due_date","id":"pre_due_date_valid","input":"arg_due_date","kind":"timestamp_input"}],"dependencies":["state_tasks","cap_store","cap_clock","cap_ids"],"effects":["state_read","state_write","file_read","file_write","clock_read","random_id"],"failures":["err_invalid_title","err_id_collision","err_invalid_state","err_persistence_failure","err_migration_required","err_invalid_due_date"],"guarantees":[{"field":"field_status","id":"contract_create_status","kind":"result_field_equals","value":"pending"},{"id":"contract_create_persisted","kind":"result_in_state","state":"state_tasks"},{"field":"field_priority","id":"contract_create_priority","kind":"result_field_equals_assignment"},{"field":"field_due_date","id":"contract_create_due_date","kind":"result_field_equals_assignment"}],"id":"fn_create","inputs":[{"id":"arg_title","name":"title","type":"prim:string"},{"id":"arg_description","name":"description","type":"prim:string"},{"id":"arg_priority","name":"priority","type":"type_priority"},{"id":"arg_due_date","name":"due_date","nullable":true,"type":"prim:timestamp"}],"kind":"create","name":"create_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]},{"assignments":[],"conditions":[],"dependencies":["state_tasks","cap_store"],"effects":["state_read","file_read"],"failures":["err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"id":"contract_list_sorted","kind":"result_equals_state_sorted","state":"state_tasks"}],"id":"fn_list","inputs":[],"kind":"list","name":"list_tasks","order_by":["field_created_at","field_id"],"output":"type_task_list","reads":["state_tasks"],"state":"state_tasks","writes":[]},{"assignments":[],"conditions":[],"dependencies":["state_tasks","cap_store"],"effects":["state_read","file_read"],"failures":["err_invalid_state","err_persistence_failure","err_migration_required"],"filter":{"field":"field_priority","kind":"field_equals","value":"HIGH"},"guarantees":[{"id":"contract_high_sorted","kind":"result_equals_state_sorted","state":"state_tasks"}],"id":"fn_list_high","inputs":[],"kind":"list","name":"list_high_priority_tasks","order_by":["field_created_at","field_id"],"output":"type_task_list","reads":["state_tasks"],"state":"state_tasks","writes":[]},{"assignments":[{"field":"field_status","source":"literal","value":"completed"}],"conditions":[{"failure":"err_task_not_found","id":"pre_complete_exists","kind":"record_exists"},{"failure":"err_invalid_transition","field":"field_status","id":"pre_complete_pending","kind":"record_field_equals","value":"pending"}],"dependencies":["state_tasks","cap_store"],"effects":["state_read","state_write","file_read","file_write"],"failures":["err_task_not_found","err_invalid_transition","err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"field":"field_status","id":"contract_complete_status","kind":"result_field_equals","value":"completed"},{"id":"contract_complete_persisted","kind":"result_in_state","state":"state_tasks"}],"id":"fn_complete","inputs":[{"id":"arg_complete_id","name":"id","type":"prim:string"}],"kind":"update","lookup":{"field":"field_id","input":"arg_complete_id"},"name":"complete_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]},{"assignments":[],"conditions":[{"failure":"err_task_not_found","id":"pre_delete_exists","kind":"record_exists"}],"dependencies":["state_tasks","cap_store"],"effects":["state_read","state_write","file_read","file_write"],"failures":["err_task_not_found","err_invalid_state","err_persistence_failure","err_migration_required"],"guarantees":[{"id":"contract_delete_absent","kind":"result_id_absent_from_state","state":"state_tasks"}],"id":"fn_delete","inputs":[{"id":"arg_delete_id","name":"id","type":"prim:string"}],"kind":"delete","lookup":{"field":"field_id","input":"arg_delete_id"},"name":"delete_task","output":"type_task","reads":["state_tasks"],"state":"state_tasks","writes":["state_tasks"]},{"assignments":[],"conditions":[],"dependencies":["state_tasks","cap_store","cap_clock"],"effects":["state_read","file_read","clock_read"],"failures":["err_invalid_state","err_persistence_failure","err_migration_required"],"filter":{"kind":"all","predicates":[{"field":"field_status","kind":"field_equals","value":"pending"},{"clock":"cap_clock","field":"field_due_date","kind":"field_before_clock"}]},"guarantees":[{"id":"contract_overdue_sorted","kind":"result_equals_state_sorted","state":"state_tasks"}],"id":"fn_list_overdue","inputs":[],"kind":"list","name":"list_overdue_tasks","order_by":["field_created_at","field_id"],"output":"type_task_list","reads":["state_tasks"],"state":"state_tasks","writes":[]}],"capabilities":[{"id":"cap_store","kind":"json_file","missing_file":"empty_collection","path":"tasks.json"},{"id":"cap_clock","kind":"utc_clock"},{"id":"cap_ids","kind":"uuid_v4"}],"commands":[{"arguments":[{"flag":"--title","input":"arg_title","required":true},{"flag":"--description","input":"arg_description","required":true},{"flag":"--priority","input":"arg_priority","required":false},{"flag":"--due-date","input":"arg_due_date","required":false}],"behavior":"fn_create","id":"cmd_create","token":"create"},{"arguments":[],"behavior":"fn_list","id":"cmd_list","token":"list"},{"arguments":[],"behavior":"fn_list_high","id":"cmd_list_high","token":"list-high"},{"arguments":[],"id":"cmd_migrate","migration":"migration_task_due_date","token":"migrate"},{"arguments":[{"flag":"--id","input":"arg_complete_id","required":true}],"behavior":"fn_complete","id":"cmd_complete","token":"complete"},{"arguments":[{"flag":"--id","input":"arg_delete_id","required":true}],"behavior":"fn_delete","id":"cmd_delete","token":"delete"},{"arguments":[],"behavior":"fn_list_overdue","id":"cmd_list_overdue","token":"list-overdue"}],"errors":[{"code":"invalid_title","id":"err_invalid_title"},{"code":"id_collision","id":"err_id_collision"},{"code":"invalid_state","id":"err_invalid_state"},{"code":"persistence_failure","id":"err_persistence_failure"},{"code":"migration_required","id":"err_migration_required"},{"code":"task_not_found","id":"err_task_not_found"},{"code":"invalid_transition","id":"err_invalid_transition"},{"code":"invalid_due_date","id":"err_invalid_due_date"}],"invariants":[{"field":"field_id","id":"inv_unique_ids","kind":"unique_field","state":"state_tasks"},{"field_rules":[{"field":"field_id","kind":"nonblank"},{"field":"field_title","kind":"nonblank"},{"field":"field_created_at","kind":"timestamp_utc"},{"field":"field_due_date","kind":"timestamp_utc"}],"id":"inv_valid_tasks","kind":"all_records_valid","state":"state_tasks"}],"migrations":[{"add_fields":[{"field":"field_priority","value":"NORMAL"}],"effects":["state_read","state_write","file_read","file_write"],"from_version":1,"id":"migration_task_priority","state":"state_tasks","to_version":2},{"add_fields":[{"field":"field_due_date","value":null}],"effects":["state_read","state_write","file_read","file_write"],"from_version":2,"id":"migration_task_due_date","state":"state_tasks","to_version":3}],"scenarios":[{"behavior":"fn_list_overdue","clock":"2026-10-01T12:00:00Z","expected_ids":["past"],"id":"scenario_overdue_mixed","records":[{"field_created_at":"2026-09-01T00:00:00Z","field_description":"x","field_due_date":"2026-10-01T11:59:59Z","field_id":"past","field_priority":"NORMAL","field_status":"pending","field_title":"Past"},{"field_created_at":"2026-09-01T00:00:00Z","field_description":"x","field_due_date":"2026-10-01T12:00:01Z","field_id":"future","field_priority":"NORMAL","field_status":"pending","field_title":"Future"},{"field_created_at":"2026-09-01T00:00:00Z","field_description":"x","field_due_date":"2026-10-01T12:00:00Z","field_id":"equal","field_priority":"NORMAL","field_status":"pending","field_title":"Equal"},{"field_created_at":"2026-09-01T00:00:00Z","field_description":"x","field_due_date":null,"field_id":"none","field_priority":"NORMAL","field_status":"pending","field_title":"None"},{"field_created_at":"2026-09-01T00:00:00Z","field_description":"x","field_due_date":"2026-10-01T11:59:59Z","field_id":"done","field_priority":"NORMAL","field_status":"completed","field_title":"Done"}]}],"state":[{"id":"state_tasks","invariants":["inv_unique_ids","inv_valid_tasks"],"key_field":"field_id","name":"tasks","schema_version":3,"storage":"cap_store","type":"type_task_list"}],"types":[{"id":"type_status","kind":"enum","name":"TaskStatus","values":["pending","completed"]},{"id":"type_priority","kind":"enum","name":"Priority","values":["LOW","NORMAL","HIGH"]},{"fields":[{"id":"field_id","name":"id","type":"prim:string"},{"id":"field_title","name":"title","type":"prim:string"},{"id":"field_description","name":"description","type":"prim:string"},{"id":"field_status","name":"status","type":"type_status"},{"id":"field_priority","name":"priority","type":"type_priority"},{"id":"field_created_at","name":"created_at","type":"prim:timestamp"},{"id":"field_due_date","name":"due_date","nullable":true,"type":"prim:timestamp"}],"id":"type_task","kind":"record","name":"Task"},{"id":"type_task_list","item_type":"type_task","kind":"list","name":"TaskList"}]}')
 
 
 class Failure(Exception):
@@ -56,6 +56,8 @@ def valid_state(records, state, record_type):
         for f in fields:
             value = record[f["name"]]
             typ = f["type"]
+            if value is None and f.get("nullable", False):
+                continue
             if typ in ("prim:string", "prim:timestamp"):
                 if not isinstance(value, str) or (typ == "prim:timestamp" and not utc_timestamp(value)):
                     return False
@@ -72,7 +74,7 @@ def valid_state(records, state, record_type):
                 name = field_name(record_type, rule["field"])
                 if rule["kind"] == "nonblank" and any(not r[name].strip() for r in records):
                     return False
-                if rule["kind"] == "timestamp_utc" and any(not utc_timestamp(r[name]) for r in records):
+                if rule["kind"] == "timestamp_utc" and any(r[name] is not None and not utc_timestamp(r[name]) for r in records):
                     return False
     return True
 
@@ -144,7 +146,31 @@ def sorted_records(records, behavior, record_type):
     return sorted(records, key=lambda record: tuple(record[k] for k in keys))
 
 
-def check_guarantees(behavior, result, records, state, record_type, inputs):
+def clock_value():
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def select_records(records, behavior, record_type, now):
+    if "filter" not in behavior:
+        return records
+    spec = behavior["filter"]
+    predicates = spec["predicates"] if spec["kind"] == "all" else [spec]
+    def matches(record):
+        for predicate in predicates:
+            value = record[field_name(record_type, predicate["field"])]
+            if predicate["kind"] == "field_equals":
+                ok = value == predicate["value"]
+            elif predicate["kind"] == "field_before_clock":
+                ok = value is not None and datetime.fromisoformat(value.replace("Z", "+00:00")) < datetime.fromisoformat(now.replace("Z", "+00:00"))
+            else:
+                raise AssertionError("unvalidated predicate")
+            if not ok:
+                return False
+        return True
+    return [record for record in records if matches(record)]
+
+
+def check_guarantees(behavior, result, records, state, record_type, inputs, now=None):
     key = field_name(record_type, state["key_field"])
     for guarantee in behavior["guarantees"]:
         kind = guarantee["kind"]
@@ -158,11 +184,7 @@ def check_guarantees(behavior, result, records, state, record_type, inputs):
         elif kind == "result_id_absent_from_state":
             ok = all(r[key] != result[key] for r in records)
         elif kind == "result_equals_state_sorted":
-            selection = records
-            if "filter" in behavior:
-                predicate = behavior["filter"]
-                name = field_name(record_type, predicate["field"])
-                selection = [r for r in records if r[name] == predicate["value"]]
+            selection = select_records(records, behavior, record_type, now)
             ok = result == sorted_records(selection, behavior, record_type)
         else:
             raise AssertionError("unvalidated guarantee")
@@ -170,7 +192,7 @@ def check_guarantees(behavior, result, records, state, record_type, inputs):
             raise AssertionError(f"Axiom guarantee violated: {behavior['id']} {kind}")
 
 
-def execute(behavior, inputs):
+def execute(behavior, inputs, clock=None):
     state = by_id("state", behavior["state"])
     record_type, path = state_layout(state)
     records = read_state(state, record_type, path)
@@ -187,17 +209,17 @@ def execute(behavior, inputs):
             ok = target is not None
         elif kind == "record_field_equals":
             ok = target[field_name(record_type, condition["field"])] == condition["value"]
+        elif kind == "timestamp_input":
+            value = inputs.get(condition["input"])
+            ok = value is None or utc_timestamp(value)
         else:
             raise AssertionError("unvalidated condition")
         if not ok:
             raise Failure(condition["failure"])
     kind = behavior["kind"]
+    now = (clock or clock_value)() if "clock_read" in behavior["effects"] and kind == "list" else None
     if kind == "list":
-        selection = records
-        if "filter" in behavior:
-            predicate = behavior["filter"]
-            name = field_name(record_type, predicate["field"])
-            selection = [r for r in records if r[name] == predicate["value"]]
+        selection = select_records(records, behavior, record_type, now)
         result = sorted_records(selection, behavior, record_type)
     elif kind == "create":
         result = {field_name(record_type, a["field"]): value_of(a, inputs) for a in behavior["assignments"]}
@@ -215,7 +237,7 @@ def execute(behavior, inputs):
         raise AssertionError("unvalidated behavior")
     if not valid_state(records, state, record_type):
         raise Failure("invalid_state")
-    check_guarantees(behavior, result, records, state, record_type, inputs)
+    check_guarantees(behavior, result, records, state, record_type, inputs, now)
     if kind != "list":
         write_state(records, state, record_type, path)
     return result
@@ -248,7 +270,8 @@ def migrate():
         if migration["from_version"] != version:
             continue
         added = {field_name(record_type, a["field"]): a["value"] for a in migration["add_fields"]}
-        old_fields = {f["name"] for f in record_type["fields"]} - set(added)
+        remaining = {field_name(record_type, a["field"]) for step in migrations if step["from_version"] >= version for a in step["add_fields"]}
+        old_fields = {f["name"] for f in record_type["fields"]} - remaining
         if any(not isinstance(r, dict) or set(r) != old_fields for r in records):
             raise Failure("invalid_state")
         records = [{**r, **added} for r in records]

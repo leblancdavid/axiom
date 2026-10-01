@@ -1,0 +1,10 @@
+{
+  "plan_id": "change_task_due_dates",
+  "baseline": "f57f6b8661db24fad4de119875454638008f6a24",
+  "comparison_basis": "Predicted plan roots plus anticipated_impacts versus IDs in validated before/after semantic diff, including edge-only changes",
+  "EXPECTED_AND_CHANGED": ["arg_due_date", "cmd_create", "cmd_list_overdue", "cmd_migrate", "contract_create_due_date", "contract_overdue_sorted", "err_invalid_due_date", "field_due_date", "fn_create", "fn_list_overdue", "inv_valid_tasks", "migration_task_due_date", "pre_due_date_valid", "scenario_overdue_mixed", "state_tasks", "type_task"],
+  "EXPECTED_BUT_UNCHANGED": ["cap_clock", "cap_store", "cmd_complete", "cmd_delete", "cmd_list", "cmd_list_high", "fn_complete", "fn_delete", "fn_list", "fn_list_high", "migration_task_priority", "type_task_list"],
+  "UNEXPECTEDLY_CHANGED": [],
+  "verification": {"command": "python -m unittest discover -s tests -v", "result": "24 tests passed in final suite; 22 passed during transactional retry; first attempt rolled back following a plan-validator test failure"},
+  "limits": "The plan enumerates concrete operations. This comparison tests predicted dependency reach versus structural change, not whether an AI correctly inferred human intent or whether unchanged dependents are behaviorally safe. The manifest associates every entity with one generated artifact."
+}

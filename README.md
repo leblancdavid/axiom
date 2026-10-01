@@ -20,17 +20,30 @@ python -m air_compiler.cli validate air/task_manager.json
 python -m air_compiler.cli generate air/task_manager.json generated/task_manager.py
 python -m air_compiler.cli inspect air/task_manager.json field_priority
 python -m air_compiler.cli diff experiments/task_manager-v0.2-before-priority.json air/task_manager.json
+python -m air_compiler.cli impact air/task_manager.json field_due_date --manifest generated/task_manager.manifest.json
+python -m air_compiler.cli plan experiments/phase3-due-dates.plan.json
 python -m unittest discover -s tests -v
 ```
 
+The Phase 3 experiment plan is pinned to the **pre-change** model. After it has
+been applied, its baseline hash deliberately prevents reapplication; consult
+`experiments/phase3-prechange-impact.json` and
+`experiments/phase3-impact-comparison.json` for the saved predictions and
+outcome. On a matching baseline, `python -m air_compiler.cli apply PLAN` stages
+the model and generated artifact, verifies them and rolls back on failure.
+
 Run the application from a separate working directory: it stores `tasks.json`
 in that directory. The generated artifact offers `create --title T --description
-D [--priority LOW|NORMAL|HIGH]`, `list`, `list-high`, `complete --id ID`,
+D [--priority LOW|NORMAL|HIGH] [--due-date UTC_TIMESTAMP]`, `list`, `list-high`,
+`list-overdue`, `complete --id ID`,
 `delete --id ID`, and `migrate`. Omitted priority defaults to `NORMAL`. An old
 task file must be upgraded with `migrate` before other commands will read it;
-this is an explicit, atomic schema migration.
+this is an explicit, atomic schema migration. Overdue means pending with a
+non-null due date strictly before the current UTC time.
 
 **Never edit files under `generated/` directly.** Change the Axiom model,
 validate, regenerate, and verify the behavior. `generated/task_manager.manifest.json`
 records provenance and the artifact hash. Changing Axiom's semantic vocabulary
 requires a compiler/backend change, a documented capability gap, and tests.
+
+**Intent may be probabilistic. Program semantics should not be.**

@@ -21,6 +21,12 @@
   Neither extension accepts Python snippets.
 - An explicit additive migration avoids reinterpreting legacy persisted state;
   its narrow vocabulary cannot express every future data migration.
+- Intent may be probabilistic. Program semantics should not be. Plans use
+  explicit ID-addressed operations, a source-model fingerprint and deterministic
+  validation; semantic relationships are derived from the canonical model.
+- A nullable timestamp is distinct from an absent record field. A clock-based
+  predicate names its capability and incurs a checked `clock_read` effect;
+  scenario fixtures hold a fixed clock instant for repeatable verification.
 
 Modification experiments should record changed AIR IDs, validation diagnostics,
 generator output hash and application test results for each request.

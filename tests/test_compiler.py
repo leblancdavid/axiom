@@ -1,9 +1,12 @@
 import copy
+from contextlib import redirect_stdout
 import hashlib
+from io import StringIO
 import json
 from pathlib import Path
 import sys
 import unittest
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,7 +15,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from air_compiler.generator import HEADER, VERSION, generate
 from air_compiler.model import Program
 from air_compiler.parser import AirError, load, parse
-from air_compiler.semantics import diff, inspect
+from air_compiler.semantics import diff, inspect, impact
+from air_compiler.planning import evaluate, blob_hash
+from air_compiler.cli import main
 from air_compiler.validator import validate
 
 
@@ -104,6 +109,54 @@ class CompilerTests(unittest.TestCase):
     def test_parser_rejects_duplicate_keys(self):
         with self.assertRaisesRegex(AirError, "duplicate JSON key"):
             parse('{"air_version": "0.1", "air_version": "0.2"}')
+
+    def test_impact_paths_and_clock_validation(self):
+        graph = impact(Program(self.doc), "type_task")
+        paths = {item["id"]: item["path"] for item in graph["impacts"]}
+        self.assertEqual(paths["cmd_list"][0]["relation"], "exposes")
+        self.assertEqual(paths["state_tasks"][-1]["to"], "type_task")
+        self.assertNotIn("field_title", paths)
+        overdue = next(b for b in self.doc["behaviors"] if b["id"] == "fn_list_overdue")
+        overdue["effects"].remove("clock_read")
+        self.invalid("fn_list_overdue.effects")
+
+    def test_manifest_provenance_is_artifact_wide(self):
+        output = StringIO()
+        with redirect_stdout(output):
+            result = main(["impact", str(ROOT / "air" / "task_manager.json"), "field_due_date",
+                           "--manifest", str(ROOT / "generated" / "task_manager.manifest.json")])
+        self.assertEqual(result, 0)
+        provenance = json.loads(output.getvalue())["artifact_provenance"]
+        self.assertEqual(provenance[0]["scope"], "artifact-wide")
+        self.assertEqual(provenance[0]["via_entity_id"], "field_due_date")
+
+    def test_plan_fails_without_mutating_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "model.json"
+            data = json.dumps(self.doc).encode()
+            path.write_bytes(data)
+            plan = {"id": "bad", "intent": "remove state", "model": str(path), "baseline": blob_hash(data),
+                    "operations": [{"op": "remove", "id": "state_tasks"}], "anticipated_impacts": [],
+                    "verification": {"preserve": [], "add": []}}
+            report, candidate = evaluate(plan)
+            self.assertIsNone(candidate)
+            self.assertTrue(any(d["severity"] == "ERROR" for d in report["diagnostics"]))
+            self.assertEqual(path.read_bytes(), data)
+
+    def test_plan_rejects_duplicate_and_stale_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "model.json"
+            data = json.dumps(self.doc).encode()
+            path.write_bytes(data)
+            plan = {"id": "bad", "intent": "add duplicate command", "model": str(path), "baseline": blob_hash(data),
+                    "operations": [{"op": "add", "group": "commands", "value": {"id": "cmd_create"}}],
+                    "anticipated_impacts": [], "verification": {"preserve": ["existing tests"], "add": []}}
+            report, candidate = evaluate(plan)
+            self.assertIsNone(candidate)
+            self.assertTrue(any("duplicate ID" in d["message"] for d in report["diagnostics"]))
+            plan["baseline"] = "wrong"
+            report, _ = evaluate(plan)
+            self.assertTrue(any("baseline" in d["message"] for d in report["diagnostics"]))
 
 
 if __name__ == "__main__":

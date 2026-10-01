@@ -1,6 +1,6 @@
 """Backend-independent entity index, relationships and structural changesets."""
 
-from collections import defaultdict
+from collections import defaultdict, deque
 
 from .parser import AirError
 from .validator import validate
@@ -11,9 +11,9 @@ def index(program):
     d = program.document
     entities = {d["application"]["id"]: ("application", d["application"])}
     owners = {}
-    for group in ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors"):
+    for group in ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios"):
         for entity in d.get(group, []):
-            entities[entity["id"]] = ({"types": "type", "capabilities": "capability", "state": "state", "invariants": "invariant", "behaviors": "behavior", "commands": "command", "migrations": "migration", "errors": "error"}[group], entity)
+            entities[entity["id"]] = ({"types": "type", "capabilities": "capability", "state": "state", "invariants": "invariant", "behaviors": "behavior", "commands": "command", "migrations": "migration", "errors": "error", "scenarios": "scenario"}[group], entity)
             if group == "types":
                 for field in entity.get("fields", []):
                     entities[field["id"]] = ("field", field)
@@ -55,6 +55,8 @@ def index(program):
         if kind == "behavior":
             link(eid, "state", entity["state"])
             link(eid, "output", entity["output"])
+            if entity["kind"] == "create":
+                link(eid, "creates", entity["output"])
             for target in entity["dependencies"]:
                 link(eid, "depends_on", target)
             for relation in ("reads", "writes"):
@@ -66,7 +68,14 @@ def index(program):
             for target in entity.get("order_by", []):
                 link(eid, "orders_by", target)
             if "filter" in entity:
-                link(eid, "filters_by", entity["filter"]["field"])
+                predicates = entity["filter"].get("predicates", [entity["filter"]])
+                for predicate in predicates:
+                    link(eid, "filters_by", predicate["field"])
+                    if predicate["kind"] == "field_before_clock":
+                        link(eid, "depends_on", predicate["clock"])
+            if "lookup" in entity:
+                link(eid, "looks_up", entity["lookup"]["field"])
+                link(eid, "uses", entity["lookup"]["input"])
             for condition in entity["conditions"]:
                 link(eid, "precondition_field", condition.get("field"))
                 link(eid, "precondition_input", condition.get("input"))
@@ -90,7 +99,40 @@ def index(program):
             link(eid, "depends_on", state["storage"])
             for addition in entity["add_fields"]:
                 link(eid, "adds_field", addition["field"])
+        if kind == "scenario":
+            link(eid, "tests", entity["behavior"])
+            for field in entity["records"][0] if entity["records"] else ():
+                link(eid, "fixtures_field", field)
     return entities, edges
+
+
+def impact(program, eid):
+    """Breadth-first reverse dependency traversal with one shortest path per entity.
+
+    Ownership is traversed from child to parent: a field affects its record,
+    never every sibling merely because the record owns them. Other edges are
+    followed from target to source. Paths always point back to the root.
+    """
+    entities, edges = index(program)
+    if eid not in entities:
+        raise AirError(f"unknown entity ID: {eid}")
+    reverse = defaultdict(list)
+    for source, links in edges.items():
+        for relation, target in links:
+            reverse[target].append((source, relation))
+    paths = {eid: []}
+    queue = deque([eid])
+    while queue:
+        target = queue.popleft()
+        for source, relation in sorted(reverse[target]):
+            if source not in paths:
+                paths[source] = [{"from": source, "relation": relation, "to": target}] + paths[target]
+                queue.append(source)
+    return {"root": eid, "impacts": [
+        {"id": node, "kind": entities[node][0], "depth": len(path), "path": path,
+         "classification": "direct" if len(path) == 1 else "indirect"}
+        for node, path in sorted(paths.items(), key=lambda pair: (len(pair[1]), pair[0])) if node != eid
+    ]}
 
 
 def inspect(program, eid):

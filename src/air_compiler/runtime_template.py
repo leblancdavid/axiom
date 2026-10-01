@@ -53,6 +53,8 @@ def valid_state(records, state, record_type):
         for f in fields:
             value = record[f["name"]]
             typ = f["type"]
+            if value is None and f.get("nullable", False):
+                continue
             if typ in ("prim:string", "prim:timestamp"):
                 if not isinstance(value, str) or (typ == "prim:timestamp" and not utc_timestamp(value)):
                     return False
@@ -69,7 +71,7 @@ def valid_state(records, state, record_type):
                 name = field_name(record_type, rule["field"])
                 if rule["kind"] == "nonblank" and any(not r[name].strip() for r in records):
                     return False
-                if rule["kind"] == "timestamp_utc" and any(not utc_timestamp(r[name]) for r in records):
+                if rule["kind"] == "timestamp_utc" and any(r[name] is not None and not utc_timestamp(r[name]) for r in records):
                     return False
     return True
 
@@ -141,7 +143,31 @@ def sorted_records(records, behavior, record_type):
     return sorted(records, key=lambda record: tuple(record[k] for k in keys))
 
 
-def check_guarantees(behavior, result, records, state, record_type, inputs):
+def clock_value():
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def select_records(records, behavior, record_type, now):
+    if "filter" not in behavior:
+        return records
+    spec = behavior["filter"]
+    predicates = spec["predicates"] if spec["kind"] == "all" else [spec]
+    def matches(record):
+        for predicate in predicates:
+            value = record[field_name(record_type, predicate["field"])]
+            if predicate["kind"] == "field_equals":
+                ok = value == predicate["value"]
+            elif predicate["kind"] == "field_before_clock":
+                ok = value is not None and datetime.fromisoformat(value.replace("Z", "+00:00")) < datetime.fromisoformat(now.replace("Z", "+00:00"))
+            else:
+                raise AssertionError("unvalidated predicate")
+            if not ok:
+                return False
+        return True
+    return [record for record in records if matches(record)]
+
+
+def check_guarantees(behavior, result, records, state, record_type, inputs, now=None):
     key = field_name(record_type, state["key_field"])
     for guarantee in behavior["guarantees"]:
         kind = guarantee["kind"]
@@ -155,11 +181,7 @@ def check_guarantees(behavior, result, records, state, record_type, inputs):
         elif kind == "result_id_absent_from_state":
             ok = all(r[key] != result[key] for r in records)
         elif kind == "result_equals_state_sorted":
-            selection = records
-            if "filter" in behavior:
-                predicate = behavior["filter"]
-                name = field_name(record_type, predicate["field"])
-                selection = [r for r in records if r[name] == predicate["value"]]
+            selection = select_records(records, behavior, record_type, now)
             ok = result == sorted_records(selection, behavior, record_type)
         else:
             raise AssertionError("unvalidated guarantee")
@@ -167,7 +189,7 @@ def check_guarantees(behavior, result, records, state, record_type, inputs):
             raise AssertionError(f"Axiom guarantee violated: {behavior['id']} {kind}")
 
 
-def execute(behavior, inputs):
+def execute(behavior, inputs, clock=None):
     state = by_id("state", behavior["state"])
     record_type, path = state_layout(state)
     records = read_state(state, record_type, path)
@@ -184,17 +206,17 @@ def execute(behavior, inputs):
             ok = target is not None
         elif kind == "record_field_equals":
             ok = target[field_name(record_type, condition["field"])] == condition["value"]
+        elif kind == "timestamp_input":
+            value = inputs.get(condition["input"])
+            ok = value is None or utc_timestamp(value)
         else:
             raise AssertionError("unvalidated condition")
         if not ok:
             raise Failure(condition["failure"])
     kind = behavior["kind"]
+    now = (clock or clock_value)() if "clock_read" in behavior["effects"] and kind == "list" else None
     if kind == "list":
-        selection = records
-        if "filter" in behavior:
-            predicate = behavior["filter"]
-            name = field_name(record_type, predicate["field"])
-            selection = [r for r in records if r[name] == predicate["value"]]
+        selection = select_records(records, behavior, record_type, now)
         result = sorted_records(selection, behavior, record_type)
     elif kind == "create":
         result = {field_name(record_type, a["field"]): value_of(a, inputs) for a in behavior["assignments"]}
@@ -212,7 +234,7 @@ def execute(behavior, inputs):
         raise AssertionError("unvalidated behavior")
     if not valid_state(records, state, record_type):
         raise Failure("invalid_state")
-    check_guarantees(behavior, result, records, state, record_type, inputs)
+    check_guarantees(behavior, result, records, state, record_type, inputs, now)
     if kind != "list":
         write_state(records, state, record_type, path)
     return result
@@ -245,7 +267,8 @@ def migrate():
         if migration["from_version"] != version:
             continue
         added = {field_name(record_type, a["field"]): a["value"] for a in migration["add_fields"]}
-        old_fields = {f["name"] for f in record_type["fields"]} - set(added)
+        remaining = {field_name(record_type, a["field"]) for step in migrations if step["from_version"] >= version for a in step["add_fields"]}
+        old_fields = {f["name"] for f in record_type["fields"]} - remaining
         if any(not isinstance(r, dict) or set(r) != old_fields for r in records):
             raise Failure("invalid_state")
         records = [{**r, **added} for r in records]

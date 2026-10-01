@@ -1,4 +1,5 @@
 import json
+import importlib.util
 from pathlib import Path
 import subprocess
 import sys
@@ -53,10 +54,10 @@ class ApplicationTests(unittest.TestCase):
 
     def test_invariants_on_load(self):
         task = self.run_app("create", "--title", "Valid", "--description", "x")
-        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 2, "records": [task, task]}), encoding="utf-8")
+        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 3, "records": [task, task]}), encoding="utf-8")
         self.run_app("list", error="invalid_state")
         task["id"] = ""
-        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 2, "records": [task]}), encoding="utf-8")
+        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 3, "records": [task]}), encoding="utf-8")
         self.run_app("list", error="invalid_state")
 
     def test_high_priority_filter_and_default(self):
@@ -75,8 +76,51 @@ class ApplicationTests(unittest.TestCase):
         self.run_app("list", error="migration_required")
         self.assertEqual(path.read_bytes(), previous)
         self.assertEqual(self.run_app("migrate"), {"migrated": 1})
-        self.assertEqual(self.run_app("list"), [{**old, "priority": "NORMAL"}])
+        self.assertEqual(self.run_app("list"), [{**old, "priority": "NORMAL", "due_date": None}])
         self.assertEqual(self.run_app("migrate"), {"migrated": 0})
+
+    def test_overdue_and_optional_due_date(self):
+        past = self.run_app("create", "--title", "past", "--description", "x", "--due-date", "2020-01-01T00:00:00Z")
+        future = self.run_app("create", "--title", "future", "--description", "x", "--due-date", "2999-01-01T00:00:00Z")
+        undated = self.run_app("create", "--title", "undated", "--description", "x")
+        completed = self.run_app("create", "--title", "completed", "--description", "x", "--due-date", "2020-01-01T00:00:00Z")
+        self.run_app("complete", "--id", completed["id"])
+        self.assertIsNone(undated["due_date"])
+        self.assertEqual([r["id"] for r in self.run_app("list-overdue")], [past["id"]])
+        self.assertEqual(future["due_date"], "2999-01-01T00:00:00Z")
+        self.run_app("create", "--title", "bad", "--description", "x", "--due-date", "yesterday", error="invalid_due_date")
+
+    def test_semantic_scenario_with_fixed_clock(self):
+        spec = importlib.util.spec_from_file_location("generated_tasks", APP)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for scenario in module.SPEC.get("scenarios", []):
+            with self.subTest(scenario=scenario["id"]):
+                state = module.by_id("state", module.by_id("behaviors", scenario["behavior"])["state"])
+                record_type, _ = module.state_layout(state)
+                records = [{module.field_name(record_type, fid): value for fid, value in row.items()} for row in scenario["records"]]
+                (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": state["schema_version"], "records": records}), encoding="utf-8")
+                storage = module.by_id("capabilities", state["storage"])
+                original = storage["path"]
+                storage["path"] = str(self.cwd / "tasks.json")
+                calls = []
+                def clock():
+                    calls.append(1)
+                    return scenario["clock"]
+                try:
+                    result = module.execute(module.by_id("behaviors", scenario["behavior"]), {}, clock=clock)
+                finally:
+                    storage["path"] = original
+                self.assertEqual([row["id"] for row in result], scenario["expected_ids"])
+                self.assertEqual(len(calls), 1)
+
+    def test_version_two_migration(self):
+        task = self.run_app("create", "--title", "old", "--description", "x")
+        task.pop("due_date")
+        (self.cwd / "tasks.json").write_text(json.dumps({"schema_version": 2, "records": [task]}), encoding="utf-8")
+        self.run_app("list", error="migration_required")
+        self.assertEqual(self.run_app("migrate"), {"migrated": 1})
+        self.assertEqual(self.run_app("list")[0]["due_date"], None)
 
 
 if __name__ == "__main__":

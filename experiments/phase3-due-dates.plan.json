@@ -1,0 +1,42 @@
+{
+  "id": "change_task_due_dates",
+  "intent": "Tasks optionally have due dates; list incomplete tasks whose due date precedes the current UTC time.",
+  "model": "air/task_manager.json",
+  "baseline": "f57f6b8661db24fad4de119875454638008f6a24",
+  "operations": [
+    {"op": "append", "id": "type_task", "path": ["fields"], "value": {"id": "field_due_date", "name": "due_date", "type": "prim:timestamp", "nullable": true}},
+    {"op": "set", "id": "state_tasks", "path": ["schema_version"], "value": 3},
+    {"op": "append", "id": "inv_valid_tasks", "path": ["field_rules"], "value": {"kind": "timestamp_utc", "field": "field_due_date"}},
+    {"op": "append", "id": "fn_create", "path": ["inputs"], "value": {"id": "arg_due_date", "name": "due_date", "type": "prim:timestamp", "nullable": true}},
+    {"op": "append", "id": "fn_create", "path": ["assignments"], "value": {"field": "field_due_date", "source": "input_default", "id": "arg_due_date", "value": null}},
+    {"op": "append", "id": "fn_create", "path": ["guarantees"], "value": {"id": "contract_create_due_date", "kind": "result_field_equals_assignment", "field": "field_due_date"}},
+    {"op": "append", "id": "fn_create", "path": ["failures"], "value": "err_invalid_due_date"},
+    {"op": "append", "id": "fn_create", "path": ["conditions"], "value": {"id": "pre_due_date_valid", "kind": "timestamp_input", "input": "arg_due_date", "failure": "err_invalid_due_date"}},
+    {"op": "append", "id": "cmd_create", "path": ["arguments"], "value": {"flag": "--due-date", "input": "arg_due_date", "required": false}},
+    {"op": "add", "group": "errors", "value": {"id": "err_invalid_due_date", "code": "invalid_due_date"}},
+    {"op": "add", "group": "migrations", "value": {"id": "migration_task_due_date", "state": "state_tasks", "from_version": 2, "to_version": 3, "add_fields": [{"field": "field_due_date", "value": null}], "effects": ["state_read", "state_write", "file_read", "file_write"]}},
+    {"op": "set", "id": "cmd_migrate", "path": ["migration"], "value": "migration_task_due_date"},
+    {"op": "add", "group": "behaviors", "value": {
+      "id": "fn_list_overdue", "name": "list_overdue_tasks", "kind": "list", "state": "state_tasks",
+      "inputs": [], "output": "type_task_list", "dependencies": ["state_tasks", "cap_store", "cap_clock"],
+      "reads": ["state_tasks"], "writes": [], "effects": ["state_read", "file_read", "clock_read"],
+      "conditions": [], "assignments": [], "order_by": ["field_created_at", "field_id"],
+      "filter": {"kind": "all", "predicates": [
+        {"kind": "field_equals", "field": "field_status", "value": "pending"},
+        {"kind": "field_before_clock", "field": "field_due_date", "clock": "cap_clock"}
+      ]},
+      "guarantees": [{"id": "contract_overdue_sorted", "kind": "result_equals_state_sorted", "state": "state_tasks"}],
+      "failures": ["err_invalid_state", "err_persistence_failure", "err_migration_required"]
+    }},
+    {"op": "add", "group": "commands", "value": {"id": "cmd_list_overdue", "token": "list-overdue", "behavior": "fn_list_overdue", "arguments": []}},
+    {"op": "add", "group": "scenarios", "value": {"id": "scenario_overdue_mixed", "behavior": "fn_list_overdue", "clock": "2026-10-01T12:00:00Z", "records": [
+      {"field_id": "past", "field_title": "Past", "field_description": "x", "field_status": "pending", "field_priority": "NORMAL", "field_created_at": "2026-09-01T00:00:00Z", "field_due_date": "2026-10-01T11:59:59Z"},
+      {"field_id": "future", "field_title": "Future", "field_description": "x", "field_status": "pending", "field_priority": "NORMAL", "field_created_at": "2026-09-01T00:00:00Z", "field_due_date": "2026-10-01T12:00:01Z"},
+      {"field_id": "equal", "field_title": "Equal", "field_description": "x", "field_status": "pending", "field_priority": "NORMAL", "field_created_at": "2026-09-01T00:00:00Z", "field_due_date": "2026-10-01T12:00:00Z"},
+      {"field_id": "none", "field_title": "None", "field_description": "x", "field_status": "pending", "field_priority": "NORMAL", "field_created_at": "2026-09-01T00:00:00Z", "field_due_date": null},
+      {"field_id": "done", "field_title": "Done", "field_description": "x", "field_status": "completed", "field_priority": "NORMAL", "field_created_at": "2026-09-01T00:00:00Z", "field_due_date": "2026-10-01T11:59:59Z"}
+    ], "expected_ids": ["past"]}}
+  ],
+  "anticipated_impacts": ["type_task", "field_due_date", "type_task_list", "state_tasks", "inv_valid_tasks", "fn_create", "fn_list", "fn_list_high", "fn_complete", "fn_delete", "fn_list_overdue", "cmd_create", "cmd_list", "cmd_list_high", "cmd_complete", "cmd_delete", "cmd_list_overdue", "cmd_migrate", "migration_task_priority", "migration_task_due_date", "cap_clock", "cap_store", "arg_due_date", "pre_due_date_valid", "contract_create_due_date", "contract_overdue_sorted", "err_invalid_due_date", "scenario_overdue_mixed"],
+  "verification": {"preserve": ["existing task lifecycle, filtering and migration tests"], "add": ["past incomplete dated task is overdue", "future, equal, completed and undated tasks are not overdue", "invalid due date is rejected", "version 2 state migrates to nullable due dates", "undeclared clock read is rejected"]}
+}

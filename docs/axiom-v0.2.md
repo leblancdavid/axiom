@@ -35,6 +35,13 @@ Relationships are indexed in `semantics.index`, including `owns`, `type`,
 `depends_on`, `reads`, `writes`, `assigns`, `filters_by`, `constrained_by`,
 `exposes`, `may_fail_with`, and `migrates`. `inspect` returns both incoming and
 outgoing edges. A dependency is not inferred by searching generated Python.
+`impact` traverses reversed references and returns a shortest labeled path to
+each reachable dependent. Reachability is conservative: a dependent may be
+affected without requiring a structural edit. Tests outside `scenarios` have
+no identity in the current model; the single generated artifact's manifest
+associates it with all semantic IDs rather than individual code regions.
+Pass `--manifest generated/task_manager.manifest.json` to `impact` to report
+that artifact-wide provenance separately from semantic graph entities.
 
 ## Effects, contracts and operation algebra
 
@@ -58,6 +65,17 @@ input/default assignment. The validator rejects known contradictions but does
 not prove arbitrary properties. State invariants run before returning a
 result or persisting a mutation.
 
+Phase 3's bounded extension permits `nullable: true` on timestamp fields and
+inputs. An optional timestamp input may default to `null`; a
+`timestamp_input` precondition checks supplied UTC syntax. A list `filter`
+may be `all` of typed `field_equals` and `field_before_clock` predicates.
+The latter references a `utc_clock` capability and the validator requires
+both its dependency ID and a `clock_read` effect. The backend samples the
+clock once per list execution, reusing the sample to check its guarantee.
+`scenarios` are ID-bearing fixed-clock list examples with complete records
+keyed by field ID and expected result record IDs; the integration suite runs
+them against generated behavior.
+
 State schema version 1 uses the historical JSON list. Version 2 uses an
 envelope `{ "schema_version": 2, "records": [...] }`. A legacy list is never
 silently rewritten during normal behavior: normal commands return
@@ -80,3 +98,11 @@ configuration. The generated header identifies Axiom as its producer. The
 adjacent manifest records compiler version, model version, artifact name,
 SHA-256 and associated semantic entity IDs. Names of generated artifacts
 are implementation configuration, not semantic identities.
+
+`axiom plan PLAN` validates an ID-addressed, Git-blob-hash-pinned JSON change
+plan, derives pre-change impact paths and previews the validated semantic
+delta without writing the model. `axiom apply PLAN` rechecks the baseline,
+stages replacements, runs the test suite and restores originals on failure.
+The plan is an experiment artifact, not executable application logic. The
+current transaction is best effort across three files; OS-level atomicity
+does not extend across the full publication set or externally mutated files.
