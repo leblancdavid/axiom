@@ -16,7 +16,7 @@ from .semantics import diff, impact, index
 from .validator import validate
 
 
-GROUPS = ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios")
+GROUPS = ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios", "state_machines", "transitions")
 
 
 def blob_hash(data):
@@ -139,9 +139,9 @@ def evaluate(plan, model_path=None):
         for change in changes["changes"]:
             eid = change["entity_id"]
             kind = new_entities.get(eid, old_entities.get(eid))[0]
-            if kind in ("precondition", "postcondition", "invariant", "scenario"):
+            if kind in ("precondition", "postcondition", "invariant", "scenario", "transition", "state_machine"):
                 categories["contracts"].append(change)
-            if kind == "behavior" and (change["change"] in ("added", "removed") or "effects" in change.get("attributes", [])):
+            if kind in ("capability", "transition") or kind == "behavior" and (change["change"] in ("added", "removed") or set(change.get("attributes", [])) & {"effects", "requires", "performs"}):
                 categories["effects"].append(change)
             if kind in ("command", "input"):
                 categories["interfaces"].append(change)

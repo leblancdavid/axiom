@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from air_compiler.generator import HEADER, VERSION, generate
 from air_compiler.model import Program
 from air_compiler.parser import AirError, load, parse
-from air_compiler.semantics import diff, inspect, impact
+from air_compiler.semantics import diff, inspect, impact, safety
 from air_compiler.planning import evaluate, blob_hash
 from air_compiler.cli import main
 from air_compiler.validator import validate
@@ -93,9 +93,12 @@ class CompilerTests(unittest.TestCase):
 
     def test_manifest_and_schema(self):
         json.loads((ROOT / "schema" / "axiom-v0.2.schema.json").read_text(encoding="utf-8"))
+        schema = json.loads((ROOT / "schema" / "axiom-v0.3.schema.json").read_text(encoding="utf-8"))
+        self.assertIn("state_machines", schema["required"])
         manifest = json.loads((ROOT / "generated" / "task_manager.manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["compiler_version"], VERSION)
-        self.assertEqual(manifest["model_version"], "0.2")
+        self.assertEqual(manifest["model_version"], "0.3")
+        self.assertIn("ax:transition:task_complete", manifest["artifacts"][0]["entity_ids"])
         self.assertEqual(manifest["artifacts"][0]["sha256"], hashlib.sha256(generate(Program(self.doc)).encode()).hexdigest())
         self.assertIn("field_priority", manifest["artifacts"][0]["entity_ids"])
 
@@ -157,6 +160,72 @@ class CompilerTests(unittest.TestCase):
             plan["baseline"] = "wrong"
             report, _ = evaluate(plan)
             self.assertTrue(any("baseline" in d["message"] for d in report["diagnostics"]))
+
+    def test_lifecycle_rejects_unmodeled_and_inconsistent_changes(self):
+        complete = next(b for b in self.doc["behaviors"] if b["id"] == "fn_complete")
+        del complete["performs"]
+        self.invalid("does not perform transition")
+        complete["performs"] = "ax:transition:task_complete"
+        complete["assignments"][0]["value"] = "pending"
+        self.invalid("mismatched transition")
+        complete["assignments"][0]["value"] = "completed"
+        self.doc["transitions"][0]["source"] = "completed"
+        self.invalid("unreachable lifecycle states")
+
+    def test_transition_references_and_guard(self):
+        self.doc["transitions"][0]["target"] = "MISSING"
+        self.invalid("unknown lifecycle state")
+        self.doc["transitions"][0]["target"] = "completed"
+        self.doc["transitions"][0]["guard"] = "unknown"
+        self.invalid("source guard missing")
+        self.doc["transitions"][0]["guard"] = "pre_complete_pending"
+        self.doc["transitions"][0]["trigger"] = "missing_behavior"
+        self.invalid("nonexistent reference")
+
+    def test_least_authority_for_behaviors_and_migrations(self):
+        overdue = next(b for b in self.doc["behaviors"] if b["id"] == "fn_list_overdue")
+        overdue["requires"].append("cap_task_write")
+        self.invalid("capability violation")
+        overdue["requires"].remove("cap_task_write")
+        overdue["requires"].remove("cap_clock")
+        self.invalid("capability violation")
+        overdue["requires"].append("cap_clock")
+        self.doc["migrations"][0]["requires"].remove("cap_task_write")
+        self.invalid("migration_task_priority.requires")
+
+    def test_predicates_safety_and_impact(self):
+        report = safety(Program(self.doc))
+        self.assertEqual(report["declared_transitions"], 1)
+        self.assertEqual(report["capability_violations"], 0)
+        self.assertEqual(report["evidence_counts"]["UNVERIFIED"], 0)
+        self.assertIn("inv_status", next(m for m in report["mutations"] if m["behavior"] == "fn_complete")["relevant_invariants"])
+        self.assertEqual(next(f for f in report["findings"] if f["id"] == "inv_overdue_excludes_completed")["evidence"], "STRUCTURALLY_GUARANTEED")
+        graph = impact(Program(self.doc), "ax:transition:task_complete")
+        self.assertEqual(next(i for i in graph["impacts"] if i["id"] == "fn_complete")["semantic_classification"], "TRANSITION_IMPACT")
+        self.doc["invariants"][-2]["predicate"]["values"] = ["LOW"]
+        self.invalid("IN must enumerate")
+
+    def test_safety_cli(self):
+        output = StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(main(["safety", str(ROOT / "air" / "task_manager.json")]), 0)
+        report = json.loads(output.getvalue())
+        self.assertEqual(report["state_machines"], 1)
+        self.assertEqual(report["protected_resources"], 1)
+        self.assertEqual(report["evidence_counts"]["SCENARIO_VERIFIED"], 0)
+
+    def test_plan_rejects_unauthorized_change_before_generation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "model.json"
+            data = json.dumps(self.doc).encode()
+            path.write_bytes(data)
+            plan = {"id": "unauthorized", "intent": "remove write authority", "model": str(path), "baseline": blob_hash(data),
+                    "operations": [{"op": "set", "id": "fn_complete", "path": ["requires"], "value": ["cap_task_read"]}],
+                    "anticipated_impacts": ["fn_complete"], "verification": {"preserve": ["lifecycle"], "add": []}}
+            report, candidate = evaluate(plan)
+            self.assertIsNone(candidate)
+            self.assertTrue(any("capability violation" in d["message"] for d in report["diagnostics"]))
+            self.assertEqual(path.read_bytes(), data)
 
 
 if __name__ == "__main__":

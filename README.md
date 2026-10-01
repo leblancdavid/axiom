@@ -7,8 +7,8 @@ the source of truth. Python is the first backend, not the definition of Axiom.
 
 The task application lives in [`air/task_manager.json`](air/task_manager.json)
 (the `air/` path and `air_compiler` import path are retained for compatibility).
-The v0.2 model is documented in [`docs/axiom-v0.2.md`](docs/axiom-v0.2.md),
-its JSON envelope in [`schema/axiom-v0.2.schema.json`](schema/axiom-v0.2.schema.json),
+The current v0.3 model is documented in [`docs/axiom-v0.3.md`](docs/axiom-v0.3.md),
+its JSON envelope in [`schema/axiom-v0.3.schema.json`](schema/axiom-v0.3.schema.json),
 and the experiment in [`docs/research-log.md`](docs/research-log.md).
 The historical v0.1 semantics are preserved in [`docs/air-v0.1.md`](docs/air-v0.1.md).
 
@@ -21,6 +21,7 @@ python -m air_compiler.cli generate air/task_manager.json generated/task_manager
 python -m air_compiler.cli inspect air/task_manager.json field_priority
 python -m air_compiler.cli diff experiments/task_manager-v0.2-before-priority.json air/task_manager.json
 python -m air_compiler.cli impact air/task_manager.json field_due_date --manifest generated/task_manager.manifest.json
+python -m air_compiler.cli safety air/task_manager.json
 python -m air_compiler.cli plan experiments/phase3-due-dates.plan.json
 python -m unittest discover -s tests -v
 ```
@@ -47,3 +48,5 @@ records provenance and the artifact hash. Changing Axiom's semantic vocabulary
 requires a compiler/backend change, a documented capability gap, and tests.
 
 **Intent may be probabilistic. Program semantics should not be.**
+
+**If the system knows an operation is invalid, it should be impossible for an AI-generated change to silently introduce it. Behaviors should possess the minimum authority necessary to perform their declared semantics.**

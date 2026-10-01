@@ -178,3 +178,25 @@ version 1 migration chains through the earlier priority migration. Normal
 reads reject unmigrated state. Strictly earlier UTC instants qualify as
 overdue, and complete or undated tasks do not. These observations were made
 from the model and tests, with compiler template work following the plan.
+
+## Phase 4: lifecycle, authority, semantic safety (2026-10-01)
+
+The v0.3 Task model gives its status lifecycle and `pending → completed`
+transition stable IDs. `fn_complete` must perform that transition and match
+its target and source guard. Mutating status without the transition, changing
+the target, and removing the source guard are rejected during validation,
+before generating Python. A generated-runtime scenario completes a pending
+record, then verifies that repeating the transition fails without altering
+the file.
+
+Storage read and write authority are separately identified and granted to
+each behavior/migration. Removing required write authority or adding write
+authority to the overdue reader fails validation; effects alone do not confer
+permission. This is model-level authority, not an OS-level sandbox.
+
+The safety report classifies the stored-record invariants as runtime enforced
+and the completed-record exclusion from the overdue query as structurally
+guaranteed by its validated equality filter. It does not count passing tests
+as formal proof. The model has six declared invariants and one transition;
+the verification suite now runs 31 tests. Phase 3's 16/12/0 comparison remains
+a conservative reachability observation, not an accuracy or safety score.

@@ -27,6 +27,12 @@
 - A nullable timestamp is distinct from an absent record field. A clock-based
   predicate names its capability and incurs a checked `clock_read` effect;
   scenario fixtures hold a fixed clock instant for repeatable verification.
+- If the system knows an operation is invalid, an AI-generated change must not
+  silently introduce it. Validate lifecycle mutations and scoped authority
+  before generation. Behaviors possess the minimum declared authority needed.
+- A completed task with an old due date is a valid persisted record; "not
+  overdue" is a derived-query guarantee. Evidence labels distinguish
+  structural constraints, runtime checks and actually executed scenarios.
 
 Modification experiments should record changed AIR IDs, validation diagnostics,
 generator output hash and application test results for each request.

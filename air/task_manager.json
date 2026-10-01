@@ -1,5 +1,5 @@
 {
-  "axiom_version": "0.2",
+  "axiom_version": "0.3",
   "application": {
     "id": "app_tasks",
     "name": "task_manager"
@@ -88,6 +88,38 @@
     {
       "id": "cap_ids",
       "kind": "uuid_v4"
+    },
+    {
+      "id": "cap_task_read",
+      "kind": "resource_access",
+      "resource": "cap_store",
+      "action": "read"
+    },
+    {
+      "id": "cap_task_write",
+      "kind": "resource_access",
+      "resource": "cap_store",
+      "action": "write"
+    }
+  ],
+  "state_machines": [
+    {
+      "id": "ax:machine:task_lifecycle",
+      "name": "TaskLifecycle",
+      "field": "field_status",
+      "initial": "pending",
+      "transitions": ["ax:transition:task_complete"]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "ax:transition:task_complete",
+      "machine": "ax:machine:task_lifecycle",
+      "source": "pending",
+      "target": "completed",
+      "trigger": "fn_complete",
+      "guard": "pre_complete_pending",
+      "effects": ["state_write"]
     }
   ],
   "errors": [
@@ -134,7 +166,11 @@
       "schema_version": 3,
       "invariants": [
         "inv_unique_ids",
-        "inv_valid_tasks"
+        "inv_valid_tasks",
+        "inv_title",
+        "inv_status",
+        "inv_priority",
+        "inv_overdue_excludes_completed"
       ]
     }
   ],
@@ -167,11 +203,38 @@
           "field": "field_due_date"
         }
       ]
+    },
+    {
+      "id": "inv_title",
+      "kind": "predicate",
+      "state": "state_tasks",
+      "predicate": {"operator": "NOT_EMPTY", "field": "field_title"}
+    },
+    {
+      "id": "inv_status",
+      "kind": "predicate",
+      "state": "state_tasks",
+      "predicate": {"operator": "LIFECYCLE_STATE", "field": "field_status", "machine": "ax:machine:task_lifecycle"}
+    },
+    {
+      "id": "inv_priority",
+      "kind": "predicate",
+      "state": "state_tasks",
+      "predicate": {"operator": "IN", "field": "field_priority", "values": ["LOW", "NORMAL", "HIGH"]}
+    },
+    {
+      "id": "inv_overdue_excludes_completed",
+      "kind": "query_exclusion",
+      "state": "state_tasks",
+      "behavior": "fn_list_overdue",
+      "field": "field_status",
+      "value": "completed"
     }
   ],
   "behaviors": [
     {
       "id": "fn_create",
+      "requires": ["cap_task_read", "cap_task_write", "cap_clock", "cap_ids"],
       "name": "create_task",
       "kind": "create",
       "state": "state_tasks",
@@ -306,6 +369,7 @@
     },
     {
       "id": "fn_list",
+      "requires": ["cap_task_read"],
       "name": "list_tasks",
       "kind": "list",
       "state": "state_tasks",
@@ -344,6 +408,7 @@
     },
     {
       "id": "fn_list_high",
+      "requires": ["cap_task_read"],
       "name": "list_high_priority_tasks",
       "kind": "list",
       "state": "state_tasks",
@@ -387,6 +452,8 @@
     },
     {
       "id": "fn_complete",
+      "requires": ["cap_task_read", "cap_task_write"],
+      "performs": "ax:transition:task_complete",
       "name": "complete_task",
       "kind": "update",
       "state": "state_tasks",
@@ -462,6 +529,7 @@
     },
     {
       "id": "fn_delete",
+      "requires": ["cap_task_read", "cap_task_write"],
       "name": "delete_task",
       "kind": "delete",
       "state": "state_tasks",
@@ -517,6 +585,7 @@
     },
     {
       "id": "fn_list_overdue",
+      "requires": ["cap_task_read", "cap_clock"],
       "name": "list_overdue_tasks",
       "kind": "list",
       "state": "state_tasks",
@@ -651,6 +720,7 @@
   "migrations": [
     {
       "id": "migration_task_priority",
+      "requires": ["cap_task_read", "cap_task_write"],
       "state": "state_tasks",
       "from_version": 1,
       "to_version": 2,
@@ -669,6 +739,7 @@
     },
     {
       "id": "migration_task_due_date",
+      "requires": ["cap_task_read", "cap_task_write"],
       "state": "state_tasks",
       "from_version": 2,
       "to_version": 3,
@@ -687,6 +758,20 @@
     }
   ],
   "scenarios": [
+    {
+      "id": "scenario_complete_transition",
+      "transition": "ax:transition:task_complete",
+      "lookup_value": "pending-task",
+      "record": {
+        "field_id": "pending-task",
+        "field_title": "Complete me",
+        "field_description": "x",
+        "field_status": "pending",
+        "field_priority": "NORMAL",
+        "field_created_at": "2026-09-01T00:00:00Z",
+        "field_due_date": null
+      }
+    },
     {
       "id": "scenario_overdue_mixed",
       "behavior": "fn_list_overdue",

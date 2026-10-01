@@ -73,6 +73,18 @@ def valid_state(records, state, record_type):
                     return False
                 if rule["kind"] == "timestamp_utc" and any(r[name] is not None and not utc_timestamp(r[name]) for r in records):
                     return False
+        elif inv["kind"] == "predicate":
+            pred = inv["predicate"]
+            name = field_name(record_type, pred["field"])
+            if pred["operator"] == "NOT_EMPTY" and any(not r[name].strip() for r in records):
+                return False
+            if pred["operator"] == "IN" and any(r[name] not in pred["values"] for r in records):
+                return False
+            if pred["operator"] == "LIFECYCLE_STATE":
+                machine = by_id("state_machines", pred["machine"])
+                values = by_id("types", next(f["type"] for f in record_type["fields"] if f["id"] == pred["field"]))["values"]
+                if any(r[name] not in values for r in records):
+                    return False
     return True
 
 
@@ -224,6 +236,12 @@ def execute(behavior, inputs, clock=None):
             raise Failure("id_collision")
         records.append(result)
     elif kind == "update":
+        if "performs" in behavior:
+            transition = by_id("transitions", behavior["performs"])
+            machine = by_id("state_machines", transition["machine"])
+            if target[field_name(record_type, machine["field"])] != transition["source"]:
+                guard = next(c for c in behavior["conditions"] if c["id"] == transition["guard"])
+                raise Failure(guard["failure"])
         for a in behavior["assignments"]:
             target[field_name(record_type, a["field"])] = value_of(a, inputs)
         result = target.copy()

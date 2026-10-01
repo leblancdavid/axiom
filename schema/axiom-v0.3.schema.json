@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/schema/axiom-v0.3.schema.json",
+  "title": "Axiom v0.3 serialization envelope (cross-reference validation is performed by Axiom)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["axiom_version", "application", "types", "capabilities", "state", "state_machines", "transitions", "invariants", "behaviors", "commands", "migrations", "errors"],
+  "properties": {
+    "axiom_version": {"const": "0.3"},
+    "application": {"$ref": "axiom-v0.2.schema.json#/$defs/named"},
+    "types": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/type"}},
+    "capabilities": {"type": "array", "items": {"oneOf": [
+      {"$ref": "axiom-v0.2.schema.json#/$defs/capability"},
+      {"type": "object", "additionalProperties": false, "required": ["id", "kind", "resource", "action"], "properties": {"id": {"$ref": "axiom-v0.2.schema.json#/$defs/id"}, "kind": {"const": "resource_access"}, "resource": {"$ref": "axiom-v0.2.schema.json#/$defs/id"}, "action": {"enum": ["read", "write"]}}}
+    ]}},
+    "state": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/state"}},
+    "state_machines": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "name", "field", "initial", "transitions"], "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "field": {"type": "string"}, "initial": {"type": "string"}, "transitions": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}}}},
+    "transitions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "machine", "source", "target", "trigger", "guard"], "properties": {"id": {"type": "string"}, "machine": {"type": "string"}, "source": {"type": "string"}, "target": {"type": "string"}, "trigger": {"type": "string"}, "guard": {"type": "string"}, "effects": {"type": "array", "items": {"const": "state_write"}, "uniqueItems": true}}}},
+    "invariants": {"type": "array", "items": {"oneOf": [
+      {"$ref": "axiom-v0.2.schema.json#/$defs/invariant"},
+      {"type": "object", "additionalProperties": false, "required": ["id", "kind", "state", "predicate"], "properties": {"id": {"type": "string"}, "kind": {"const": "predicate"}, "state": {"type": "string"}, "predicate": {"type": "object", "required": ["operator", "field"], "properties": {"operator": {"enum": ["NOT_EMPTY", "IN", "LIFECYCLE_STATE"]}, "field": {"type": "string"}, "machine": {"type": "string"}, "values": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}}},
+      {"type": "object", "additionalProperties": false, "required": ["id", "kind", "state", "behavior", "field", "value"], "properties": {"id": {"type": "string"}, "kind": {"const": "query_exclusion"}, "state": {"type": "string"}, "behavior": {"type": "string"}, "field": {"type": "string"}, "value": {"type": "string"}}}
+    ]}},
+    "behaviors": {"type": "array", "items": {"$ref": "#/$defs/behavior"}},
+    "commands": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/command"}},
+    "migrations": {"type": "array", "items": {"$ref": "#/$defs/migration"}},
+    "errors": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "code"], "properties": {"id": {"type": "string"}, "code": {"type": "string"}}}},
+    "scenarios": {"type": "array", "items": {"oneOf": [{"$ref": "axiom-v0.2.schema.json#/$defs/scenario"}, {"type": "object", "additionalProperties": false, "required": ["id", "transition", "record", "lookup_value"], "properties": {"id": {"type": "string"}, "transition": {"type": "string"}, "lookup_value": {"type": "string"}, "record": {"type": "object", "additionalProperties": {"type": ["string", "null"]}}}}]}}
+  },
+  "$defs": {
+    "behavior": {"type": "object", "required": ["id", "name", "kind", "state", "inputs", "output", "dependencies", "reads", "writes", "effects", "conditions", "assignments", "guarantees", "failures", "requires"], "properties": {
+      "id": {"type": "string"}, "name": {"type": "string"}, "kind": {"enum": ["create", "list", "update", "delete"]}, "state": {"type": "string"}, "inputs": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/typed"}}, "output": {"type": "string"}, "dependencies": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}, "reads": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}, "writes": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}, "requires": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}, "performs": {"type": "string"}, "effects": {"$ref": "axiom-v0.2.schema.json#/$defs/behavior/properties/effects"}, "conditions": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/contract"}}, "assignments": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/assignment"}}, "guarantees": {"type": "array", "items": {"$ref": "axiom-v0.2.schema.json#/$defs/contract"}}, "failures": {"$ref": "axiom-v0.2.schema.json#/$defs/behavior/properties/failures"}, "lookup": {"$ref": "axiom-v0.2.schema.json#/$defs/behavior/properties/lookup"}, "order_by": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}, "filter": {"$ref": "axiom-v0.2.schema.json#/$defs/filter"}
+    }, "additionalProperties": false},
+    "migration": {"type": "object", "required": ["id", "state", "from_version", "to_version", "add_fields", "effects", "requires"], "properties": {
+      "id": {"type": "string"}, "state": {"type": "string"}, "from_version": {"type": "integer", "minimum": 1}, "to_version": {"type": "integer", "minimum": 2}, "add_fields": {"$ref": "axiom-v0.2.schema.json#/$defs/migration/properties/add_fields"}, "effects": {"$ref": "axiom-v0.2.schema.json#/$defs/migration/properties/effects"}, "requires": {"$ref": "axiom-v0.2.schema.json#/$defs/ids"}
+    }, "additionalProperties": false}
+  }
+}

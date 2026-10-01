@@ -31,6 +31,10 @@ def parse(text: str) -> Program:
     for key in ("application", "types", "capabilities", "state", "invariants", "behaviors", "commands"):
         if key not in document:
             raise AirError(f"missing required Axiom field: {key}")
+    if document.get("axiom_version") == "0.3":
+        for key in ("state_machines", "transitions"):
+            if key not in document:
+                raise AirError(f"missing required Axiom field: {key}")
     return Program(document)
 
 

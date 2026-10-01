@@ -10,9 +10,13 @@
         "arg_due_date",
         "arg_priority",
         "arg_title",
+        "ax:machine:task_lifecycle",
+        "ax:transition:task_complete",
         "cap_clock",
         "cap_ids",
         "cap_store",
+        "cap_task_read",
+        "cap_task_write",
         "cmd_complete",
         "cmd_create",
         "cmd_delete",
@@ -51,6 +55,10 @@
         "fn_list",
         "fn_list_high",
         "fn_list_overdue",
+        "inv_overdue_excludes_completed",
+        "inv_priority",
+        "inv_status",
+        "inv_title",
         "inv_unique_ids",
         "inv_valid_tasks",
         "migration_task_due_date",
@@ -60,6 +68,7 @@
         "pre_create_title",
         "pre_delete_exists",
         "pre_due_date_valid",
+        "scenario_complete_transition",
         "scenario_overdue_mixed",
         "state_tasks",
         "type_priority",
@@ -68,9 +77,9 @@
         "type_task_list"
       ],
       "path": "task_manager.py",
-      "sha256": "84b0fdb163be0e845104383ff75e13e25f80a82292733ffade00a0fc29c93f72"
+      "sha256": "8ca83a7a0a11b91aff864bdefd6a861a4dc09e2003c5bbed1988e1ca626df6c6"
     }
   ],
-  "compiler_version": "0.2.0",
-  "model_version": "0.2"
+  "compiler_version": "0.3.0",
+  "model_version": "0.3"
 }

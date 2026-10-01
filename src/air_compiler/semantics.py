@@ -11,9 +11,9 @@ def index(program):
     d = program.document
     entities = {d["application"]["id"]: ("application", d["application"])}
     owners = {}
-    for group in ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios"):
+    for group in ("types", "capabilities", "state", "invariants", "behaviors", "commands", "migrations", "errors", "scenarios", "state_machines", "transitions"):
         for entity in d.get(group, []):
-            entities[entity["id"]] = ({"types": "type", "capabilities": "capability", "state": "state", "invariants": "invariant", "behaviors": "behavior", "commands": "command", "migrations": "migration", "errors": "error", "scenarios": "scenario"}[group], entity)
+            entities[entity["id"]] = ({"types": "type", "capabilities": "capability", "state": "state", "invariants": "invariant", "behaviors": "behavior", "commands": "command", "migrations": "migration", "errors": "error", "scenarios": "scenario", "state_machines": "state_machine", "transitions": "transition"}[group], entity)
             if group == "types":
                 for field in entity.get("fields", []):
                     entities[field["id"]] = ("field", field)
@@ -52,7 +52,21 @@ def index(program):
             link(eid, "state", entity["state"])
             for target in [entity.get("field")] + [r["field"] for r in entity.get("field_rules", [])]:
                 link(eid, "constrains_field", target)
+            link(eid, "constrains_field", entity.get("predicate", {}).get("field"))
+            link(eid, "constrains_query", entity.get("behavior"))
+            link(eid, "constrains_lifecycle", entity.get("predicate", {}).get("machine"))
+        if kind == "state_machine":
+            link(eid, "lifecycle_field", entity["field"])
+            for transition in entity["transitions"]:
+                link(eid, "declares_transition", transition)
+        if kind == "transition":
+            link(eid, "machine", entity["machine"])
+            link(eid, "guard", entity.get("guard"))
+            link(eid, "trigger", entity["trigger"])
         if kind == "behavior":
+            link(eid, "performs", entity.get("performs"))
+            for grant in entity.get("requires", []):
+                link(eid, "authorized_by", grant)
             link(eid, "state", entity["state"])
             link(eid, "output", entity["output"])
             if entity["kind"] == "create":
@@ -94,15 +108,19 @@ def index(program):
             for argument in entity["arguments"]:
                 link(eid, "binds", argument["input"])
         if kind == "migration":
+            for grant in entity.get("requires", []):
+                link(eid, "authorized_by", grant)
             link(eid, "migrates", entity["state"])
             state = next(s for s in d["state"] if s["id"] == entity["state"])
             link(eid, "depends_on", state["storage"])
             for addition in entity["add_fields"]:
                 link(eid, "adds_field", addition["field"])
         if kind == "scenario":
-            link(eid, "tests", entity["behavior"])
-            for field in entity["records"][0] if entity["records"] else ():
+            link(eid, "tests", entity.get("behavior", entity.get("transition")))
+            for field in (entity["record"] if "transition" in entity else entity["records"][0] if entity["records"] else ()):
                 link(eid, "fixtures_field", field)
+        if kind == "capability" and entity.get("kind") == "resource_access":
+            link(eid, "authorizes_resource", entity["resource"])
     return entities, edges
 
 
@@ -130,9 +148,47 @@ def impact(program, eid):
                 queue.append(source)
     return {"root": eid, "impacts": [
         {"id": node, "kind": entities[node][0], "depth": len(path), "path": path,
-         "classification": "direct" if len(path) == 1 else "indirect"}
+         "classification": "direct" if len(path) == 1 else "indirect",
+         "semantic_classification": classify(path)}
         for node, path in sorted(paths.items(), key=lambda pair: (len(pair[1]), pair[0])) if node != eid
     ]}
+
+
+def classify(path):
+    relations = {step["relation"] for step in path}
+    if relations & {"performs", "declares_transition", "lifecycle_field", "machine", "trigger", "guard"}:
+        return "TRANSITION_IMPACT"
+    if relations & {"constrained_by", "constrains_field", "constrains_lifecycle", "constrains_query", "precondition_field"}:
+        return "CONTRACT_IMPACT"
+    if relations & {"authorized_by", "authorizes_resource"}:
+        return "CAPABILITY_IMPACT"
+    return "DIRECT_SEMANTIC_IMPACT" if len(path) == 1 else "DEPENDENCY_IMPACT"
+
+
+def safety(program):
+    """Evidence labels describe what was checked, never a numeric safety score."""
+    validate(program)
+    d = program.document
+    findings = []
+    for inv in d["invariants"]:
+        kind = inv["kind"]
+        evidence = "RUNTIME_ENFORCED"
+        if kind == "query_exclusion":
+            evidence = "STRUCTURALLY_GUARANTEED"  # Validator checks the closed-world equality filter.
+        findings.append({"id": inv["id"], "evidence": evidence})
+    relevant = []
+    for behavior in d["behaviors"]:
+        if not behavior["writes"]:
+            continue
+        mutated = {a["field"] for a in behavior["assignments"]}
+        if behavior["kind"] in ("create", "delete"):
+            mutated = {f["id"] for t in d["types"] if t["kind"] == "record" and t["id"] == behavior["output"] for f in t["fields"]}
+        affected = [inv["id"] for inv in d["invariants"] if inv["state"] == behavior["state"] and (inv["kind"] in ("all_records_valid", "unique_field") and (inv.get("field") in mutated or any(r["field"] in mutated for r in inv.get("field_rules", []))) or inv["kind"] == "predicate" and inv["predicate"]["field"] in mutated or inv["kind"] == "query_exclusion" and inv["field"] in mutated)]
+        relevant.append({"behavior": behavior["id"], "mutates": sorted(mutated), "relevant_invariants": affected})
+    counts = {label: sum(f["evidence"] == label for f in findings) for label in ("STRUCTURALLY_GUARANTEED", "RUNTIME_ENFORCED", "SCENARIO_VERIFIED", "UNVERIFIED")}
+    return {"state_machines": len(d.get("state_machines", [])), "declared_transitions": len(d.get("transitions", [])), "invalid_transitions": 0,
+            "protected_resources": sum(c["kind"] == "json_file" for c in d["capabilities"]), "capability_violations": 0,
+            "invariants": len(findings), "evidence_counts": counts, "findings": findings, "mutations": relevant}
 
 
 def inspect(program, eid):

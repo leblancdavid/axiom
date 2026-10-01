@@ -5,14 +5,14 @@ from pathlib import Path
 
 from .generator import write
 from .parser import AirError, load
-from .semantics import inspect, diff, impact
+from .semantics import inspect, diff, impact, safety
 from .planning import load_plan, evaluate, apply
 from .validator import validate
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="axiom")
-    parser.add_argument("operation", choices=("validate", "generate", "inspect", "diff", "impact", "plan", "apply"))
+    parser.add_argument("operation", choices=("validate", "generate", "inspect", "diff", "impact", "safety", "plan", "apply"))
     parser.add_argument("air_file")
     parser.add_argument("output", nargs="?")
     parser.add_argument("--manifest", help="optional generated artifact manifest for impact provenance")
@@ -48,6 +48,9 @@ def main(argv=None):
                     for artifact in manifest["artifacts"] if args.output in artifact["entity_ids"]
                 ]
             print(json.dumps(report, indent=2, sort_keys=True))
+            return 0
+        elif args.operation == "safety":
+            print(json.dumps(safety(program), indent=2, sort_keys=True))
             return 0
     except (AirError, OSError) as exc:
         print(f"Axiom error: {exc}", file=sys.stderr)

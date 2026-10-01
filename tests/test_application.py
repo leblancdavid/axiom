@@ -95,6 +95,8 @@ class ApplicationTests(unittest.TestCase):
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         for scenario in module.SPEC.get("scenarios", []):
+            if "transition" in scenario:
+                continue
             with self.subTest(scenario=scenario["id"]):
                 state = module.by_id("state", module.by_id("behaviors", scenario["behavior"])["state"])
                 record_type, _ = module.state_layout(state)
@@ -113,6 +115,32 @@ class ApplicationTests(unittest.TestCase):
                     storage["path"] = original
                 self.assertEqual([row["id"] for row in result], scenario["expected_ids"])
                 self.assertEqual(len(calls), 1)
+
+    def test_semantic_transition_scenario(self):
+        spec = importlib.util.spec_from_file_location("generated_tasks_transition", APP)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for scenario in (s for s in module.SPEC["scenarios"] if "transition" in s):
+            with self.subTest(scenario=scenario["id"]):
+                transition = module.by_id("transitions", scenario["transition"])
+                behavior = module.by_id("behaviors", transition["trigger"])
+                state = module.by_id("state", behavior["state"])
+                record_type, _ = module.state_layout(state)
+                record = {module.field_name(record_type, fid): value for fid, value in scenario["record"].items()}
+                path = self.cwd / "tasks.json"
+                path.write_text(json.dumps({"schema_version": state["schema_version"], "records": [record]}), encoding="utf-8")
+                storage = module.by_id("capabilities", state["storage"])
+                previous = storage["path"]
+                storage["path"] = str(path)
+                try:
+                    result = module.execute(behavior, {behavior["lookup"]["input"]: scenario["lookup_value"]})
+                    self.assertEqual(result["status"], transition["target"])
+                    before = path.read_bytes()
+                    with self.assertRaises(module.Failure):
+                        module.execute(behavior, {behavior["lookup"]["input"]: scenario["lookup_value"]})
+                    self.assertEqual(path.read_bytes(), before)
+                finally:
+                    storage["path"] = previous
 
     def test_version_two_migration(self):
         task = self.run_app("create", "--title", "old", "--description", "x")
