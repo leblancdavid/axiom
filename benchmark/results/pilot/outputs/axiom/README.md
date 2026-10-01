@@ -39,7 +39,7 @@ the model and generated artifact, verifies them and rolls back on failure.
 
 Run the application from a separate working directory: it stores `tasks.json`
 in that directory. The generated artifact offers `create --title T --description
-D [--priority LOW|NORMAL|HIGH] [--due-date UTC_TIMESTAMP]`, `list`, `list-high`,
+D [--priority LOW|NORMAL|HIGH|CRITICAL] [--due-date UTC_TIMESTAMP]`, `list`, `list-high`,
 `list-overdue`, `complete --id ID`,
 `delete --id ID`, and `migrate`. Omitted priority defaults to `NORMAL`. An old
 task file must be upgraded with `migrate` before other commands will read it;
