@@ -1,0 +1,1 @@
+{"schema_increment": 1, "add_fields": {"tags": {"default": [], "type": "list"}}, "requires": []}
