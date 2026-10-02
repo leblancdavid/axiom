@@ -1,5 +1,17 @@
 # Experimental decisions
 
+## R5.11 separately generated B01 integration (prospective, 2026-10-02)
+
+Compose the 30 candidates for B01 insertion/completion framing, exact ordered
+selection, versioned defaults and cardinality before building; do not introduce
+#31 or an unsupported CRITICAL ordinal comparator. Generate a *new* B01-only
+artifact with operation-level digests and persistence/operation events, then
+challenge each event with independent CLI and file observations before case
+conformance. Keep the historical checkpoint untouched. A B01-specific typed
+adapter is appropriate as an integration experiment, but not a substitute for
+a checked general #45 compiler or a language freeze. See
+`benchmark/results/phase5c/R5_11-B01-INSTRUMENTED-INTEGRATION.md`.
+
 ## R5.10 cardinality relation (prospective, 2026-10-02)
 
 The frozen v2 B01 three-row migration reports 3 although all priorities are

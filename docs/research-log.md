@@ -1,5 +1,22 @@
 # Lykoi research log
 
+## R5.11 B01 instrumented integration (prospective, 2026-10-02)
+
+**Observation:** A separately generated B01-only CLI passes the unmodified
+frozen B01 profile (5 passes, 2 B02 skips). Generated internal events on real
+subprocess calls match independent public output and reopened persisted state;
+the observed create, normal list, exact-HIGH list, completion and migration
+cases are grounded and conformant. A three-record v2 migration preserves all
+three existing priorities and reports 3 via #30 cardinality. A disposable
+wrong-count variant is grounded/nonconformant, while a false post-state report
+fails grounding before conformance. See the [R5.11 record](../benchmark/results/phase5c/R5_11-B01-INSTRUMENTED-INTEGRATION.md).
+
+**Limit:** Abstract 30-candidate expressiveness and grounded finite cases do
+not prove universal implementation correctness or a generally checked typed
+#45 lowering. File endpoint checks do not expose every intermediate write.
+The historical executable is unchanged; R5.2.2 remains authoritative,
+Phase 5C paused, B17 unexposed and the semantic-first format unfrozen.
+
 ## R5.10 migration count expressiveness (prospective, 2026-10-02)
 
 **Observation:** Frozen v2 B01 migration counts all three converted records,

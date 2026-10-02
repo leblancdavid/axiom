@@ -202,6 +202,19 @@ Prospective accounting is 46 raw categorized constructs / 30 candidate core;
 the historical 45-entry inventory is retained. B01 remains inadequate and
 halted, its R5.7 grounding failed/unestablished, R5.2.2 authoritative, Phase
 5C paused, B17 unexposed/unclassified and the semantic-first format unfrozen.
+The [R5.11 B01 instrumented integration](../benchmark/results/phase5c/R5_11-B01-INSTRUMENTED-INTEGRATION.md)
+builds a distinct, prospectively generated B01 executable with per-operation
+provenance and runtime events. The new executable passes the original frozen
+B01 profile (5 passes, 2 B02 skips); actual create, list, list-high, complete
+and migration calls have independently challenged public and durable endpoints
+and case-scoped conformance. A faithfully reported wrong migration count fails
+semantics after grounding, while a false post-state report fails grounding
+before semantic evaluation. The 30-candidate abstract vocabulary is adequate
+for the observable B01 contract without a #31; the B01-specific checker is not
+a general typed #45 compiler, and universal implementation correctness remains
+unestablished. The historical executable is unchanged and its old acceptance
+is not retroactively grounded. R5.2.2 remains authoritative, Phase 5C paused,
+B17 unexposed/unclassified and the semantic-first format unfrozen.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
