@@ -146,3 +146,28 @@ traceability, without making unreadability a goal. Adopt distinct evidence
 levels; finite grounded cases are never universal proof. This is an architecture
 to prototype, not an implemented adapter or a benchmark gate advance. See
 `benchmark/results/phase5c/R5_6-GROUNDING-TRUST-MODEL.md`.
+
+## R5.7 implementation gate (prospective, 2026-10-02)
+
+Retain the R5.6 hybrid grounding direction for single-resource, isolated
+observed cases: deterministic generated boundaries and per-operation hashes are
+challenged against separately captured public calls and committed file bytes
+before using the R5.5 conformance evaluator. Incorrect behavior can be
+grounding-valid while false event reports and modified artifacts are rejected.
+The decision is **partial**, because the current abstract contract cannot type
+conditional error outcomes or their no-write obligations; the prototype's
+separate adapter policy is not a semantic substitute. Halt before core construct
+#30 and review that exact expressiveness gap. See
+`benchmark/results/phase5c/R5_7-GROUNDING-PROTOTYPE.md`.
+
+## R5.8 conditional outcomes (prospective, 2026-10-02)
+
+Choose **EXISTING_CONSTRUCT_GENERALIZATION** for #45: its typed operation
+relation now accepts an outcome record with a finite class domain and composed
+Boolean/state predicates. Implications assembled from `and`/`not` bind outcome
+and post-state conditions to one invocation. Do not add error-specific
+semantics or construct #30. Semantic equality of the declared state is the
+failure postcondition; attempted writes require separate effect/observation
+work if that stronger property is requested. This decision resolves the narrow
+R5.7 conditional classification gap without changing the benchmark boundary.
+See `benchmark/results/phase5c/R5_8-CONDITIONAL-OUTCOME-EXPRESSIVENESS.md`.

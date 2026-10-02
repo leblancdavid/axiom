@@ -8,6 +8,19 @@ historical combined synthetic fixture readable via explicit extraction; those
 cases are not captured application executions. The scenario probe remains a
 finite integration witness, not a universal contract verifier. B01 adequacy is
 halted and the semantic-first format remains unfrozen.
+The [R5.8 prospective contract semantics](../results/phase5c/R5_8-CONDITIONAL-OUTCOME-EXPRESSIVENESS.md)
+generalize #45's typed tuple relation for a finite tagged outcome record
+(`kind` in declared variants; `value` is a sequence of the declared record
+type) and closed Boolean predicates. For typed outcomes, `checks` are
+conjoined; each is `and` (at least two predicates), `not` (one predicate),
+`equals` (two same-typed terms) or `default_missing` (pre/post or pre/pre).
+Terms are typed slot `ref` (`input.rows`, `pre.records`, `post.records`,
+`result.kind`, `result.value`) or a string `literal`. The latter state relation
+compares the declared record/default view; on pre/pre it tests whether all
+optional fields are present. A conditional obligation `C => P` is encoded as
+`not(and(C,not(P)))`. There is no execution order in these predicates.
+Historical untagged, flat-check contracts remain accepted. This is an unfrozen
+synthetic contract prototype, not a change to the v0.3 model language.
 
 `prototype.json` contains **selected witnesses**, not a transcription of all
 B01–B16 clauses or the R5.2.2 oracle. `b17-draft.json` is a pre-exposure

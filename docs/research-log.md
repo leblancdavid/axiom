@@ -1,5 +1,39 @@
 # Lykoi research log
 
+## R5.8 conditional outcome expressiveness (prospective, 2026-10-02)
+
+**Implemented observation:** A generalized #45 abstract contract composes
+typed outcome tags, conjunction/complement and equality/state relations for
+the synthetic R5.7 operation. Grounded correct failure and success conform;
+an incorrect failure classification or changed durable state reaches semantic
+non-conformance without the earlier adapter policy. See the
+[R5.8 analysis](../benchmark/results/phase5c/R5_8-CONDITIONAL-OUTCOME-EXPRESSIVENESS.md).
+
+**Limit:** This is one common payload type and one observed state view; it does
+not prove variant-specific payload typing, no attempted write, byte-level
+equivalence for all stores, or general conformance. The 29 candidate core and
+45 historical raw counts do not change. B01 remains inadequate and halted;
+R5.2.2 authoritative, Phase 5C paused, B17 unexposed and unclassified,
+semantic-first format unfrozen.
+
+## R5.7 case-scoped grounding experiment (prospective, 2026-10-02)
+
+**Implemented observation:** A generated synthetic vial-sealing operation was
+called in isolated subprocesses; external argument/output capture and raw
+durable-file readback challenged internal invocation events and checked artifact
+provenance. Wrong result/state and error-path writes produced grounded
+non-conformance; fabricated input/post reports and stale artifacts were rejected
+before conformance. The [R5.7 record](../benchmark/results/phase5c/R5_7-GROUNDING-PROTOTYPE.md)
+contains the fault matrix, trust boundary, verification and construct ledger.
+
+**Limit:** R5.5 equality/default relations do not express conditional typed
+failure classification. An adapter policy handles the selected case without
+enlarging the 29 candidate core constructs; this makes the prototype partial,
+not a B01 adequacy finding. The 45 historical numbered entries remain unchanged;
+12 new non-semantic implementation responsibilities are inventoried separately.
+B01 remains inadequate and halted; R5.2.2 authoritative, Phase 5C paused,
+B17 unexposed and unclassified, semantic-first format unfrozen.
+
 ## R5.6 grounding and trust model (prospective, 2026-10-02)
 
 **Code observation:** The R5.5 record checks a self-reported `source` and an

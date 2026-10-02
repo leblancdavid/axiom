@@ -163,6 +163,25 @@ single-artifact manifest cannot attribute an operation. No new semantic
 construct or B01 capability was added (45 historical raw, 29 candidate core).
 B01 remains inadequate and halted; R5.2.2 authoritative, Phase 5C paused,
 B17 unexposed and unclassified, and the semantic-first format unfrozen.
+The [R5.7 synthetic grounding implementation](../benchmark/results/phase5c/R5_7-GROUNDING-PROTOTYPE.md)
+now generates an isolated operation and per-operation provenance, executes real
+subprocess calls, challenges internal records with independently captured public
+output and durable file readback, and only then invokes the R5.5 case verifier.
+Fault injection distinguishes wrong behavior from false reports and stale
+artifacts. It remains **partial**: the 29-candidate contract vocabulary cannot
+express conditional typed error classification/no-write obligations; an explicit
+adapter policy checks the selected failure case, not semantic conformance alone.
+No B01 repair, benchmark activation or format freeze follows. R5.2.2 remains
+authoritative, B01 halted/inadequate, Phase 5C paused and B17 unexposed and
+unclassified.
+The [R5.8 conditional-outcome review](../benchmark/results/phase5c/R5_8-CONDITIONAL-OUTCOME-EXPRESSIVENESS.md)
+generalizes the prospective #45 contract to compose typed outcome tags, Boolean
+predicates and before/after state relations. The synthetic R5.7 failure now
+passes or fails case-scoped semantic conformance after grounding, without the
+adapter failure policy. The candidate core count remains 29. This resolves
+that narrow semantic gap, not general variant-dependent payload typing or
+no-attempted-write proof; B01 remains inadequate and halted, Phase 5C paused,
+B17 unexposed and unclassified, R5.2.2 authoritative, format unfrozen.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
