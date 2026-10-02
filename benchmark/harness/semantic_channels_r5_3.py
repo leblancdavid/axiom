@@ -12,6 +12,7 @@ import textwrap
 import acceptance_inventory_r5_3 as prior
 import assertion_preservation_r5_2_2 as repair
 import capability_profile_r5_2 as profiles
+import helper_invocations_r5_3 as helper_invocations
 import parameterized_roots_r5_3 as parameterized
 import replacement_lineage_r5_3 as replacement_lineage
 import regression_phase5c_r5_1 as runner
@@ -238,12 +239,15 @@ def collect(achieved):
                 unresolved_loops[name] = expanded["unresolved"]
         expected = set(parent["parent_methods"]) | set(parent["repair_carrier_ids"])
         w.require(set(methods) == expected, "acceptance method coverage mismatch")
+        invocation_roots = helper_invocations.collect(methods, parameterized_roots,
+                                                      profile, achieved)
         # The CLI is reached through the runner-global call, the instance call
         # methods, and the R5 owner adapter. Capture those implementations too.
         return {"version": VERSION, "achieved": list(achieved),
                  "repair_inventory_sha256": parent["repair_inventory_sha256"],
                  "methods": dict(sorted(methods.items())), "helpers": dict(sorted(helpers.items())),
-                 "parameterized_roots": dict(sorted(parameterized_roots.items())),
+                  "parameterized_roots": dict(sorted(parameterized_roots.items())),
+                  "helper_invocation_roots": invocation_roots,
                  "unresolved_parameterized_loops": dict(sorted(unresolved_loops.items())),
                  "helper_parameterized_sites": {key: rows for key, helper in sorted(helper_functions.items())
                                                 if (rows := helper_loops(helper))},
