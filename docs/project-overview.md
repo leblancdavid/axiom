@@ -154,6 +154,15 @@ constructs with observation, verification, evidence and lineage accounted for
 separately. R5.5 is **partial**, not an adequacy restart: B01 stays halted and
 inadequate, R5.2.2 authoritative, format unfrozen, Phase 5C paused and B17
 unexposed and unclassified.
+The [R5.6 grounding and trust model](../benchmark/results/phase5c/R5_6-GROUNDING-TRUST-MODEL.md)
+recommends compiler-owned operation/persistence boundaries and specific
+provenance, challenged by independent public-call and durable-state observation.
+This is a ready-to-prototype architecture, **not** an implemented grounded
+contract verifier: current records can still self-assert their origin and the
+single-artifact manifest cannot attribute an operation. No new semantic
+construct or B01 capability was added (45 historical raw, 29 candidate core).
+B01 remains inadequate and halted; R5.2.2 authoritative, Phase 5C paused,
+B17 unexposed and unclassified, and the semantic-first format unfrozen.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional

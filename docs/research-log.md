@@ -1,5 +1,26 @@
 # Lykoi research log
 
+## R5.6 grounding and trust model (prospective, 2026-10-02)
+
+**Code observation:** The R5.5 record checks a self-reported `source` and an
+opaque boundary string, while the current generated manifest pins one artifact
+with all model IDs, not a public-entry-to-contract map. The independent scenario
+probe can read file bytes around selected subprocess calls but does not create
+generic same-invocation contract records. The runtime's one-file `os.replace`
+does not imply cross-resource atomicity or crash durability.
+
+**Assessment:** Compiler ownership can normalize operation and persistence
+boundaries, attach specific provenance and route declared effects, but compiler
+hooks alone risk circular trust. Independent argv/outcome capture and post-call
+durable readback can challenge reported facts on scoped cases. This is a
+ready-to-prototype recommendation with explicit unknown-effect/concurrency
+limits, not an implemented grounding path or universal claim. No prototype or
+new construct was needed for this architecture decision; counts remain 45 raw
+and 29 candidate core. The [R5.6 record](../benchmark/results/phase5c/R5_6-GROUNDING-TRUST-MODEL.md)
+contains the boundary and assurance analysis. B01 remains inadequate and
+halted, R5.2.2 authoritative, Phase 5C paused, B17 unexposed and unclassified,
+and the semantic-first format unfrozen.
+
 ## R5.5 semantic architecture separation (prospective, 2026-10-02)
 
 **Implemented observation:** The historical seven synthetic #45 tuple checks

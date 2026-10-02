@@ -129,3 +129,20 @@ than a claim of universal conformance or permission to restart B01. Generated
 target code remains an artifact; semantics and target-specific adapter details
 must not be conflated. See
 `benchmark/results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md`.
+
+## R5.6 grounding architecture (prospective, 2026-10-02)
+
+Recommend a scoped hybrid before returning to semantic adequacy: compiler-owned
+normalized public/persistence boundaries and versioned per-operation provenance,
+with independently captured public arguments/outcomes and committed durable
+state readback for selected calls. Binding metadata identifies a boundary; it
+cannot attest to execution. Generated instrumentation improves correlation and
+diagnosis but shares compiler defects with implementation, so an external
+observer must challenge it. A mismatch between deployed bytes and provenance
+invalidates provenance-based claims; undeclared writes and unsynchronized
+concurrent changes limit claims to explicitly observed resources and schedules.
+Machine-oriented generated structure is permitted where it improves coverage or
+traceability, without making unreadability a goal. Adopt distinct evidence
+levels; finite grounded cases are never universal proof. This is an architecture
+to prototype, not an implemented adapter or a benchmark gate advance. See
+`benchmark/results/phase5c/R5_6-GROUNDING-TRUST-MODEL.md`.
