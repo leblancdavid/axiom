@@ -36,3 +36,15 @@
 
 Modification experiments should record changed AIR IDs, validation diagnostics,
 generator output hash and application test results for each request.
+
+## Phase 5C semantic-first benchmark direction (prospective)
+
+Use a bounded bridge from the frozen B01–B16 requirements and corrected R5.2.2
+executable boundary instead of requiring exhaustive reconstruction of every
+Python-test path before B17. Preserve unfinished R5.3 evidence and its unknown
+global coverage. A small typed requirement format should name scenarios,
+preconditions, observations and supersession lineage; B17–B20 will be authored
+semantic-first and independently checked before exposure. See
+`benchmark/results/phase5c/R5_4-BOUNDED-BRIDGE-DECISION.md` for the exact
+authorization boundary and gates. This is a methodological decision, not a
+finding of equivalence or improved efficiency.

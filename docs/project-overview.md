@@ -78,19 +78,19 @@ ownership, actors, roles, history, recurrence, projects and permissions
 (B16–B20). This is a research framing for the frozen requests, not a new
 requirement, implementation claim or acceptance criterion.
 
-R5.2.2 is the frozen corrected acceptance boundary after B16. R5.3 is
-reconstructing assertion-level semantic roots and replacement lineage across
-the two achieved histories. Its inventories are still incomplete: active
-conditional, helper, CLI and persistence paths need exhaustive mapping and an
-independent semantic comparison. The [latest progress record](../benchmark/results/phase5c/R5_3-RETURNED-FIELD-RESTART-PROGRESS.md)
-reports unresolved coverage, so no zero-unexplained-difference certificate or
-R5.3 freeze has been established. B17 has not been exposed; B17–B20 are not
-completed. R5.3 reconstruction work is prospective, not part of the frozen
-boundary.
+R5.2.2 is the frozen corrected acceptance boundary after B16. Exhaustive R5.3
+Python-test reconstruction has stopped as a prerequisite for later requests;
+its [latest worksheet](../benchmark/results/phase5c/R5_3-BULK-RECONCILIATION-WORKSHEET-PROGRESS.md)
+and unresolved coverage remain preserved, not certified equivalent. The
+[bounded-bridge decision](../benchmark/results/phase5c/R5_4-BOUNDED-BRIDGE-DECISION.md)
+authorizes a prospective semantic-requirement prototype and targeted
+historical-carrier preservation against R5.2.2. It is not a new oracle freeze.
+B17 has not been exposed; B17–B20 are not completed.
 
-The immediate research task is to finish the R5.3 coverage and equivalence
-gate, revalidate both B16 checkpoints against the finished oracle, and only
-then freeze a prospective protocol for later requests. Longer term, complete
+The immediate research task is to prove the small requirement format on
+difficult B01/B11/B14/B16 scenarios, build the bounded historical bridge,
+then independently verify both B16 checkpoints and freeze B17's semantic-first
+acceptance before exposing it. Longer term, complete
 the ordered benchmark with honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
 equivalence against frozen requirements, not similarity to Conventional's
@@ -103,9 +103,9 @@ After a completed frozen suite, cluster gaps by underlying semantics, propose
 small abstractions that address multiple cases, freeze an evolved language
 version and compare it under a controlled rerun. Challenge any apparent
 generalization on *new, unseen domains*: indefinitely extending the one task
-manager cannot demonstrate it. Future benchmarks should explore first-class
-structured semantic requirements with acceptance derived from them, rather
-than having to infer semantics from Python tests. These are future plans, not
-completed benchmark or language capabilities. Passing validation or a safety
+manager cannot demonstrate it. The prospective B17–B20 protocol will explore
+first-class structured semantic requirements with acceptance derived from
+them, rather than inferring semantics from Python tests. This is a research
+direction, not an established benchmark or language capability. Passing validation or a safety
 report alone is never a behavioral proof. See the [agent workflow](agent-workflow.md)
 for the practical change and evidence rules.

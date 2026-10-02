@@ -2,6 +2,7 @@
 
 import unittest
 
+import capability_profile_r5_2 as profiles
 import parameterized_roots_r5_3 as roots
 import semantic_channels_r5_3 as channels
 import workspace as w
@@ -54,7 +55,45 @@ def comprehended_return_fixture(self, cwd):
     self.assertEqual([task["owner"] for task in (first, second)], ["Alex", "system"])
 
 
+def file_state_fixture(self, cwd):
+    self.assertFalse((cwd / "tasks.json").exists())
+    before = (cwd / "tasks.json").read_bytes()
+    self.call(cwd, "list", error="migration_required")
+    self.assertEqual((cwd / "tasks.json").read_bytes(), before)
+
+
 class ParameterizedRoots(unittest.TestCase):
+    def test_filesystem_checks_are_separate_persisted_state_roots(self):
+        result = roots.expand(file_state_fixture, "fixture", "fixture.py", "active")
+        absent, unchanged = result["direct_assertions"]
+        self.assertEqual((absent["operation"], absent["expected_result"], absent["phase"]),
+                         ("file-existence", False, "persisted_state"))
+        self.assertEqual((unchanged["operation"], unchanged["expected_result"]),
+                         ("file-bytes-equality", "$before (captured file bytes)"))
+        self.assertEqual(unchanged["snapshot"]["source"],
+                         f"fixture.py:{file_state_fixture.__code__.co_firstlineno + 2}")
+        self.assertEqual(unchanged["prior_steps"][-1]["expression"],
+                         "self.call(cwd, 'list', error='migration_required')")
+        self.assertNotEqual(absent["id"], unchanged["id"])
+
+    def test_real_file_state_carriers_have_distinct_roots(self):
+        inventory = channels.collect(["B01", "B04"])
+        regression = next(rows for name, rows in inventory["direct_assertion_roots"].items()
+                          if name.endswith("test_baseline_lifecycle_filters_failures"))
+        self.assertTrue(any(row["assertion"].endswith("regression.py:91") and
+                            row["expected_result"] is False for row in regression))
+        migration = next(rows for name, rows in inventory["direct_assertion_roots"].items()
+                         if name.endswith("SourceLabel.test_explicit_migration_of_prior_storage"))
+        self.assertTrue(any(row["assertion"].endswith("B04.py:59") and
+                            row["snapshot"]["source"].endswith("B04.py:57") for row in migration))
+        self.assertTrue(any(row["assertion"].endswith("B04.py:67") and
+                            row["snapshot"]["source"].endswith("B04.py:65") for row in migration))
+        self.assertTrue(any(row["assertion"].endswith("B04.py:63") and
+                            row["operation"] == "persisted-json-field-equality" and
+                            row["field"] == "schema_version" and
+                            row["expected_result"] == profiles.compose(["B01", "B04"])[
+                                "schema_version"] for row in migration))
+
     def test_comprehended_returned_fields_are_separate(self):
         expanded = roots.expand(comprehended_return_fixture, "fixture", "fixture.py", "active")
         self.assertEqual([(row["binding"], row["field"], row["expected_result"])

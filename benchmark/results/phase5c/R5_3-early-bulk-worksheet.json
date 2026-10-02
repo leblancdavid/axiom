@@ -1,0 +1,3316 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "assertion_level_semantic_diff": "BLOCKED",
+  "baseline_candidates": 28,
+  "candidate_counts": {
+    "CONTROL_FLOW": 0,
+    "DUPLICATE_OBSERVATION": 0,
+    "HARNESS_MECHANIC": 0,
+    "SEMANTIC_COMPONENT": 0,
+    "SEMANTIC_ROOT": 7,
+    "UNEXPLAINED": 21
+  },
+  "canonical_root_to_events": {
+    "2a0785952d8ab7af5a92e00f6b23e44dfb927a24f7100fa7dc8ef0ec0cdfbe62": [
+      508
+    ],
+    "55de27c4a21955dad4c1993cc4d24ea9429bfea332a9138ab5dd0611be094675": [
+      493
+    ],
+    "67b657e61cb6c2b15f2ff0aa0f79aa374a489a63d7c0d62ef5eaa8e0080d6070": [
+      335
+    ],
+    "6fc703976157cd67c2efb79b511f71d4d6939a9fe9fb3066459706bead5a83fb": [
+      218
+    ],
+    "765b67904a8c5ee20a5bb2c34ca5d0cc138e62ed43301b671fbc6f11b87104d5": [
+      211
+    ],
+    "a53e7dfd01e8ef5d90f5f787e28039551a0d3cb89b01dcafe8bd0c83b41b21cd": [
+      516
+    ],
+    "acae517eae2eaeca66cd719c3faf5f12d89933a3ad9240f7502f8be28b51de99": [
+      316
+    ]
+  },
+  "canonical_roots": {
+    "2a0785952d8ab7af5a92e00f6b23e44dfb927a24f7100fa7dc8ef0ec0cdfbe62": {
+      "assertion": "benchmark/harness/cases/B04.py:63",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], 4)",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {},
+      "expected_result": 4,
+      "field": "schema_version",
+      "id": "2a0785952d8ab7af5a92e00f6b23e44dfb927a24f7100fa7dc8ef0ec0cdfbe62",
+      "lineage": null,
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "operation": "persisted-json-field-equality",
+      "path_expression": "path",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "path.write_text(json.dumps(payload), encoding='utf-8')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:56"
+        },
+        {
+          "expression": "before = path.read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:57"
+        },
+        {
+          "expression": "self.call(cwd, 'list', error='migration_required')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:58"
+        },
+        {
+          "expression": "self.assertEqual(path.read_bytes(), before)",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:59"
+        },
+        {
+          "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 1})",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:60"
+        },
+        {
+          "expression": "self.assertEqual(self.call(cwd, 'list'), [expected])",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:62"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/cases/B04.py:63",
+        "carrier": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage"
+      },
+      "runtime_assertion_event": 508,
+      "runtime_operands": [
+        4,
+        4
+      ],
+      "state": "active"
+    },
+    "55de27c4a21955dad4c1993cc4d24ea9429bfea332a9138ab5dd0611be094675": {
+      "assertion": "benchmark/harness/cases/B04.py:59",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertEqual(path.read_bytes(), before)",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {},
+      "expected_result": "$before (captured file bytes)",
+      "id": "55de27c4a21955dad4c1993cc4d24ea9429bfea332a9138ab5dd0611be094675",
+      "lineage": null,
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "operation": "file-bytes-equality",
+      "path_expression": "path",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "path.write_text(json.dumps(payload), encoding='utf-8')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:56"
+        },
+        {
+          "expression": "before = path.read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:57"
+        },
+        {
+          "expression": "self.call(cwd, 'list', error='migration_required')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:58"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/cases/B04.py:59",
+        "carrier": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage"
+      },
+      "runtime_assertion_event": 493,
+      "runtime_operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 3
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 3
+          }
+        }
+      ],
+      "snapshot": {
+        "expression": "before = path.read_bytes()",
+        "loop": [],
+        "source": "benchmark/harness/cases/B04.py:57"
+      },
+      "state": "active"
+    },
+    "67b657e61cb6c2b15f2ff0aa0f79aa374a489a63d7c0d62ef5eaa8e0080d6070": {
+      "assertion": "benchmark/harness/regression.py:117",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {
+        "high": {
+          "binding": "high",
+          "category": "",
+          "due_date": "2020-01-01T00:00:00Z",
+          "id": "$high.id",
+          "owner": "",
+          "priority": "HIGH",
+          "status": "completed",
+          "title": "high"
+        },
+        "low": {
+          "binding": "low",
+          "category": "",
+          "due_date": "2999-01-01T00:00:00Z",
+          "id": "$low.id",
+          "owner": "",
+          "priority": "LOW",
+          "status": "pending",
+          "title": "low"
+        },
+        "normal": {
+          "binding": "normal",
+          "category": "",
+          "due_date": null,
+          "id": "$normal.id",
+          "owner": "",
+          "priority": "NORMAL",
+          "status": "pending",
+          "title": "normal"
+        }
+      },
+      "expected_result": "$before (captured file bytes)",
+      "id": "67b657e61cb6c2b15f2ff0aa0f79aa374a489a63d7c0d62ef5eaa8e0080d6070",
+      "lineage": null,
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "operation": "file-bytes-equality",
+      "path_expression": "cwd / 'tasks.json'",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), [])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:90"
+        },
+        {
+          "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:91"
+        },
+        {
+          "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:92"
+        },
+        {
+          "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:93"
+        },
+        {
+          "expression": "normal = call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:94"
+        },
+        {
+          "expression": "high = call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:95"
+        },
+        {
+          "expression": "low = call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:97"
+        },
+        {
+          "expression": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:99"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "normal",
+                  "category": "",
+                  "due_date": null,
+                  "id": "$normal.id",
+                  "owner": "",
+                  "priority": "NORMAL",
+                  "status": "pending",
+                  "title": "normal"
+                }
+              },
+              "index": 0,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "normal",
+                  "category": "",
+                  "due_date": null,
+                  "id": "$normal.id",
+                  "owner": "",
+                  "priority": "NORMAL",
+                  "status": "pending",
+                  "title": "normal"
+                }
+              },
+              "index": 0,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "high",
+                  "category": "",
+                  "due_date": "2020-01-01T00:00:00Z",
+                  "id": "$high.id",
+                  "owner": "",
+                  "priority": "HIGH",
+                  "status": "pending",
+                  "title": "high"
+                }
+              },
+              "index": 1,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "high",
+                  "category": "",
+                  "due_date": "2020-01-01T00:00:00Z",
+                  "id": "$high.id",
+                  "owner": "",
+                  "priority": "HIGH",
+                  "status": "pending",
+                  "title": "high"
+                }
+              },
+              "index": 1,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "low",
+                  "category": "",
+                  "due_date": "2999-01-01T00:00:00Z",
+                  "id": "$low.id",
+                  "owner": "",
+                  "priority": "LOW",
+                  "status": "pending",
+                  "title": "low"
+                }
+              },
+              "index": 2,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "low",
+                  "category": "",
+                  "due_date": "2999-01-01T00:00:00Z",
+                  "id": "$low.id",
+                  "owner": "",
+                  "priority": "LOW",
+                  "status": "pending",
+                  "title": "low"
+                }
+              },
+              "index": 2,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "self.assertEqual(['NORMAL', 'HIGH', 'LOW'], ['NORMAL', 'HIGH', 'LOW'])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:103"
+        },
+        {
+          "expression": "self.assertIsNone(None)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:104"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), sorted((normal, high, low), key=lambda r: (r['created_at'], r['id'])))",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:105"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:106"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list-overdue'), [high])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:107"
+        },
+        {
+          "expression": "before = (cwd / 'tasks.json').read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:108"
+        },
+        {
+          "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:109"
+        },
+        {
+          "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:110"
+        },
+        {
+          "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:111"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'complete', '--id', '$high.id'), done)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:113"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list-overdue'), [])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:114"
+        },
+        {
+          "expression": "before = (cwd / 'tasks.json').read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:115"
+        },
+        {
+          "expression": "call(cwd, 'complete', '--id', '$high.id', error='invalid_transition')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:116"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/regression.py:117",
+        "carrier": "regression.Regression.test_baseline_lifecycle_filters_failures"
+      },
+      "runtime_assertion_event": 335,
+      "runtime_operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "completed",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "completed",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "snapshot": {
+        "expression": "before = (cwd / 'tasks.json').read_bytes()",
+        "loop": [],
+        "source": "benchmark/harness/regression.py:115"
+      },
+      "state": "active"
+    },
+    "6fc703976157cd67c2efb79b511f71d4d6939a9fe9fb3066459706bead5a83fb": {
+      "assertion": "benchmark/harness/regression.py:93",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {},
+      "expected_result": false,
+      "id": "6fc703976157cd67c2efb79b511f71d4d6939a9fe9fb3066459706bead5a83fb",
+      "lineage": null,
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "operation": "file-existence",
+      "path_expression": "cwd / 'tasks.json'",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), [])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:90"
+        },
+        {
+          "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:91"
+        },
+        {
+          "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:92"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/regression.py:93",
+        "carrier": "regression.Regression.test_baseline_lifecycle_filters_failures"
+      },
+      "runtime_assertion_event": 218,
+      "runtime_operands": [
+        false
+      ],
+      "state": "active"
+    },
+    "765b67904a8c5ee20a5bb2c34ca5d0cc138e62ed43301b671fbc6f11b87104d5": {
+      "assertion": "benchmark/harness/regression.py:91",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {},
+      "expected_result": false,
+      "id": "765b67904a8c5ee20a5bb2c34ca5d0cc138e62ed43301b671fbc6f11b87104d5",
+      "lineage": null,
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "operation": "file-existence",
+      "path_expression": "cwd / 'tasks.json'",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), [])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:90"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/regression.py:91",
+        "carrier": "regression.Regression.test_baseline_lifecycle_filters_failures"
+      },
+      "runtime_assertion_event": 211,
+      "runtime_operands": [
+        false
+      ],
+      "state": "active"
+    },
+    "a53e7dfd01e8ef5d90f5f787e28039551a0d3cb89b01dcafe8bd0c83b41b21cd": {
+      "assertion": "benchmark/harness/cases/B04.py:67",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {},
+      "expected_result": "$unchanged (captured file bytes)",
+      "id": "a53e7dfd01e8ef5d90f5f787e28039551a0d3cb89b01dcafe8bd0c83b41b21cd",
+      "lineage": null,
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "operation": "file-bytes-equality",
+      "path_expression": "path",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "path.write_text(json.dumps(payload), encoding='utf-8')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:56"
+        },
+        {
+          "expression": "before = path.read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:57"
+        },
+        {
+          "expression": "self.call(cwd, 'list', error='migration_required')",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:58"
+        },
+        {
+          "expression": "self.assertEqual(path.read_bytes(), before)",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:59"
+        },
+        {
+          "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 1})",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:60"
+        },
+        {
+          "expression": "self.assertEqual(self.call(cwd, 'list'), [expected])",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:62"
+        },
+        {
+          "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], 4)",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:63"
+        },
+        {
+          "expression": "unchanged = path.read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:65"
+        },
+        {
+          "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 0})",
+          "loop": [],
+          "source": "benchmark/harness/cases/B04.py:66"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/cases/B04.py:67",
+        "carrier": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage"
+      },
+      "runtime_assertion_event": 516,
+      "runtime_operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "snapshot": {
+        "expression": "unchanged = path.read_bytes()",
+        "loop": [],
+        "source": "benchmark/harness/cases/B04.py:65"
+      },
+      "state": "active"
+    },
+    "acae517eae2eaeca66cd719c3faf5f12d89933a3ad9240f7502f8be28b51de99": {
+      "assertion": "benchmark/harness/regression.py:111",
+      "assertion_column": 8,
+      "assertion_expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "context": [
+        "tempfile.TemporaryDirectory()"
+      ],
+      "entities": {
+        "high": {
+          "binding": "high",
+          "category": "",
+          "due_date": "2020-01-01T00:00:00Z",
+          "id": "$high.id",
+          "owner": "",
+          "priority": "HIGH",
+          "status": "pending",
+          "title": "high"
+        },
+        "low": {
+          "binding": "low",
+          "category": "",
+          "due_date": "2999-01-01T00:00:00Z",
+          "id": "$low.id",
+          "owner": "",
+          "priority": "LOW",
+          "status": "pending",
+          "title": "low"
+        },
+        "normal": {
+          "binding": "normal",
+          "category": "",
+          "due_date": null,
+          "id": "$normal.id",
+          "owner": "",
+          "priority": "NORMAL",
+          "status": "pending",
+          "title": "normal"
+        }
+      },
+      "expected_result": "$before (captured file bytes)",
+      "id": "acae517eae2eaeca66cd719c3faf5f12d89933a3ad9240f7502f8be28b51de99",
+      "lineage": null,
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "operation": "file-bytes-equality",
+      "path_expression": "cwd / 'tasks.json'",
+      "phase": "persisted_state",
+      "prior_steps": [
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), [])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:90"
+        },
+        {
+          "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:91"
+        },
+        {
+          "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:92"
+        },
+        {
+          "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:93"
+        },
+        {
+          "expression": "normal = call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:94"
+        },
+        {
+          "expression": "high = call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:95"
+        },
+        {
+          "expression": "low = call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:97"
+        },
+        {
+          "expression": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:99"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "normal",
+                  "category": "",
+                  "due_date": null,
+                  "id": "$normal.id",
+                  "owner": "",
+                  "priority": "NORMAL",
+                  "status": "pending",
+                  "title": "normal"
+                }
+              },
+              "index": 0,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "normal",
+                  "category": "",
+                  "due_date": null,
+                  "id": "$normal.id",
+                  "owner": "",
+                  "priority": "NORMAL",
+                  "status": "pending",
+                  "title": "normal"
+                }
+              },
+              "index": 0,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "high",
+                  "category": "",
+                  "due_date": "2020-01-01T00:00:00Z",
+                  "id": "$high.id",
+                  "owner": "",
+                  "priority": "HIGH",
+                  "status": "pending",
+                  "title": "high"
+                }
+              },
+              "index": 1,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "high",
+                  "category": "",
+                  "due_date": "2020-01-01T00:00:00Z",
+                  "id": "$high.id",
+                  "owner": "",
+                  "priority": "HIGH",
+                  "status": "pending",
+                  "title": "high"
+                }
+              },
+              "index": 1,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "check_task(self, task)",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "low",
+                  "category": "",
+                  "due_date": "2999-01-01T00:00:00Z",
+                  "id": "$low.id",
+                  "owner": "",
+                  "priority": "LOW",
+                  "status": "pending",
+                  "title": "low"
+                }
+              },
+              "index": 2,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:101"
+        },
+        {
+          "expression": "self.assertEqual('pending', 'pending')",
+          "loop": [
+            {
+              "bindings": {
+                "task": {
+                  "binding": "low",
+                  "category": "",
+                  "due_date": "2999-01-01T00:00:00Z",
+                  "id": "$low.id",
+                  "owner": "",
+                  "priority": "LOW",
+                  "status": "pending",
+                  "title": "low"
+                }
+              },
+              "index": 2,
+              "source": "benchmark/harness/regression.py:100"
+            }
+          ],
+          "source": "benchmark/harness/regression.py:102"
+        },
+        {
+          "expression": "self.assertEqual(['NORMAL', 'HIGH', 'LOW'], ['NORMAL', 'HIGH', 'LOW'])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:103"
+        },
+        {
+          "expression": "self.assertIsNone(None)",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:104"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list'), sorted((normal, high, low), key=lambda r: (r['created_at'], r['id'])))",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:105"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:106"
+        },
+        {
+          "expression": "self.assertEqual(call(cwd, 'list-overdue'), [high])",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:107"
+        },
+        {
+          "expression": "before = (cwd / 'tasks.json').read_bytes()",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:108"
+        },
+        {
+          "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:109"
+        },
+        {
+          "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+          "loop": [],
+          "source": "benchmark/harness/regression.py:110"
+        }
+      ],
+      "provenance": {
+        "assertion": "benchmark/harness/regression.py:111",
+        "carrier": "regression.Regression.test_baseline_lifecycle_filters_failures"
+      },
+      "runtime_assertion_event": 316,
+      "runtime_operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "pending",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "pending",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "snapshot": {
+        "expression": "before = (cwd / 'tasks.json').read_bytes()",
+        "loop": [],
+        "source": "benchmark/harness/regression.py:108"
+      },
+      "state": "active"
+    }
+  },
+  "mapped_root_count": 7,
+  "provisional_runtime_witnesses": {
+    "002a4ad0e34a4ef903a807f5de5a53889b17d3cb9008d8e4f28052e7beb3da7f": {
+      "arguments": {
+        "app": "<restore>\\generated\\task_manager.py",
+        "args": [
+          "create",
+          "--title",
+          "empty",
+          "--description",
+          "x",
+          "--source",
+          ""
+        ],
+        "cwd": "<cwd:11>",
+        "error": null
+      },
+      "column": 16,
+      "command": [
+        "create",
+        "--title",
+        "empty",
+        "--description",
+        "x",
+        "--source",
+        ""
+      ],
+      "event": 529,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "002a4ad0e34a4ef903a807f5de5a53889b17d3cb9008d8e4f28052e7beb3da7f",
+      "kind": "CLI_outcome",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        518,
+        524
+      ],
+      "runtime_cli_event": 530,
+      "runtime_return_event": 534,
+      "source": "benchmark/harness/cases/B04.py:31"
+    },
+    "03edd20ade2cbef42f17b733dd5884c4570bc3c454350b8e61bd9b463fa375e0": {
+      "assertion": "assertEqual",
+      "column": 8,
+      "event": 493,
+      "expected_result": {
+        "storage_json": {
+          "records": [
+            {
+              "created_at": "2026-01-01T00:00:00Z",
+              "description": "x",
+              "due_date": null,
+              "id": "prior",
+              "priority": "NORMAL",
+              "status": "pending",
+              "title": "prior"
+            }
+          ],
+          "schema_version": 3
+        }
+      },
+      "expression": "self.assertEqual(path.read_bytes(), before)",
+      "family": "file_bytes",
+      "id": "03edd20ade2cbef42f17b733dd5884c4570bc3c454350b8e61bd9b463fa375e0",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "observation_phase": "filesystem",
+      "operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 3
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 3
+          }
+        }
+      ],
+      "prior_cli_event_ids": [
+        487
+      ],
+      "source": "benchmark/harness/cases/B04.py:59",
+      "source_operands": [
+        "path.read_bytes()",
+        "before"
+      ]
+    },
+    "062efdf188df3e8900e157b34794bc61c3530dccd36aea3f08c80d76e91cf32b": {
+      "arguments": {
+        "app": "<restore>\\generated\\task_manager.py",
+        "args": [
+          "complete",
+          "--id",
+          "<id:9>"
+        ],
+        "cwd": "<cwd:11>",
+        "error": null
+      },
+      "column": 20,
+      "command": [
+        "complete",
+        "--id",
+        "<id:9>"
+      ],
+      "event": 552,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "062efdf188df3e8900e157b34794bc61c3530dccd36aea3f08c80d76e91cf32b",
+      "kind": "CLI_outcome",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        518,
+        524,
+        530,
+        539,
+        546
+      ],
+      "runtime_cli_event": 553,
+      "runtime_return_event": 557,
+      "source": "benchmark/harness/cases/B04.py:39"
+    },
+    "0bb4a354751b15a0289f65c2b267d9e7449b488d0c947228393e3aec40192a1d": {
+      "assertion": "assertEqual",
+      "column": 12,
+      "event": 479,
+      "expected_result": 4,
+      "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
+      "family": "returned_or_derived_assertion",
+      "id": "0bb4a354751b15a0289f65c2b267d9e7449b488d0c947228393e3aec40192a1d",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "observation_phase": "assertion",
+      "operands": [
+        4,
+        4
+      ],
+      "prior_cli_event_ids": [
+        474
+      ],
+      "source": "benchmark/harness/regression.py:159",
+      "source_operands": [
+        "schema",
+        "PROFILE['schema_version']"
+      ]
+    },
+    "1d10716a2c8b997edc7e2d8ecda75190704d989948c5c85a81c4e9a032dbf0aa": {
+      "assertion": "assertEqual",
+      "column": 8,
+      "event": 508,
+      "expected_result": 4,
+      "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
+      "family": "persisted_field",
+      "id": "1d10716a2c8b997edc7e2d8ecda75190704d989948c5c85a81c4e9a032dbf0aa",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "observation_phase": "filesystem",
+      "operands": [
+        4,
+        4
+      ],
+      "prior_cli_event_ids": [
+        487,
+        495,
+        502
+      ],
+      "source": "benchmark/harness/cases/B04.py:63",
+      "source_operands": [
+        "json.loads(path.read_text(encoding='utf-8'))['schema_version']",
+        "profile['schema_version']"
+      ]
+    },
+    "2847223a0fd5bd0b93666e5ffa0697687cc09ce087f657fe8a677b4fc34eb757": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "normal",
+          "--description",
+          "details"
+        ],
+        "cwd": "<cwd:4>",
+        "error": null
+      },
+      "column": 17,
+      "command": [
+        "create",
+        "--title",
+        "normal",
+        "--description",
+        "details"
+      ],
+      "event": 219,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "2847223a0fd5bd0b93666e5ffa0697687cc09ce087f657fe8a677b4fc34eb757",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213
+      ],
+      "runtime_cli_event": 220,
+      "runtime_return_event": 223,
+      "source": "benchmark/harness/regression.py:94"
+    },
+    "302ddc539c1015139a8723c5b57696a42360b8a1542a4ecb210361047689e0f0": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "probe",
+          "--description",
+          "x"
+        ],
+        "cwd": "<cwd:8>",
+        "error": null
+      },
+      "column": 20,
+      "command": [
+        "create",
+        "--title",
+        "probe",
+        "--description",
+        "x"
+      ],
+      "event": 473,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "302ddc539c1015139a8723c5b57696a42360b8a1542a4ecb210361047689e0f0",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [],
+      "runtime_cli_event": 474,
+      "runtime_return_event": 477,
+      "source": "benchmark/harness/regression.py:156"
+    },
+    "30666e8d4201e1c00ef8ff44da3e10777e431c1820b0d5689d32e7e57196a53c": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "  ",
+          "--description",
+          "x"
+        ],
+        "cwd": "<cwd:4>",
+        "error": "invalid_title"
+      },
+      "column": 8,
+      "command": [
+        "create",
+        "--title",
+        "  ",
+        "--description",
+        "x"
+      ],
+      "event": 212,
+      "expected_error": "invalid_title",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "30666e8d4201e1c00ef8ff44da3e10777e431c1820b0d5689d32e7e57196a53c",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206
+      ],
+      "runtime_cli_event": 213,
+      "runtime_return_event": 217,
+      "source": "benchmark/harness/regression.py:92"
+    },
+    "3343fc19c1441fec906845ca49ae5cd6fdd643eb9f1af62537d923bc2fe33581": {
+      "arguments": {
+        "args": [
+          "delete",
+          "--id",
+          "<id:5>"
+        ],
+        "cwd": "<cwd:4>",
+        "error": "task_not_found"
+      },
+      "column": 8,
+      "command": [
+        "delete",
+        "--id",
+        "<id:5>"
+      ],
+      "event": 342,
+      "expected_error": "task_not_found",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "3343fc19c1441fec906845ca49ae5cd6fdd643eb9f1af62537d923bc2fe33581",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299,
+        305,
+        311,
+        318,
+        324,
+        330,
+        337
+      ],
+      "runtime_cli_event": 343,
+      "runtime_return_event": 347,
+      "source": "benchmark/harness/regression.py:119"
+    },
+    "4a2f4fbd077a8f14166843414738f5c81d11f6317c3ee053594458bf1993bebc": {
+      "arguments": {
+        "app": "<restore>\\generated\\task_manager.py",
+        "args": [
+          "create",
+          "--title",
+          "omitted",
+          "--description",
+          "x"
+        ],
+        "cwd": "<cwd:11>",
+        "error": null
+      },
+      "column": 18,
+      "command": [
+        "create",
+        "--title",
+        "omitted",
+        "--description",
+        "x"
+      ],
+      "event": 523,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "4a2f4fbd077a8f14166843414738f5c81d11f6317c3ee053594458bf1993bebc",
+      "kind": "CLI_outcome",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        518
+      ],
+      "runtime_cli_event": 524,
+      "runtime_return_event": 528,
+      "source": "benchmark/harness/cases/B04.py:30"
+    },
+    "4d99e2d10ee19595d97b7ee861cbda78590ab2f1dff1bdf8ba41b7c5805e4e51": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "high",
+          "--description",
+          "x",
+          "--priority",
+          "HIGH",
+          "--due-date",
+          "2020-01-01T00:00:00Z"
+        ],
+        "cwd": "<cwd:4>",
+        "error": null
+      },
+      "column": 15,
+      "command": [
+        "create",
+        "--title",
+        "high",
+        "--description",
+        "x",
+        "--priority",
+        "HIGH",
+        "--due-date",
+        "2020-01-01T00:00:00Z"
+      ],
+      "event": 224,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "4d99e2d10ee19595d97b7ee861cbda78590ab2f1dff1bdf8ba41b7c5805e4e51",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220
+      ],
+      "runtime_cli_event": 225,
+      "runtime_return_event": 228,
+      "source": "benchmark/harness/regression.py:95"
+    },
+    "5833ebc5903077300809303aefe486a7b549b99dc51c277fb26a41651961762d": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "Default",
+          "--description",
+          "x"
+        ],
+        "cwd": "<cwd:3>",
+        "error": null
+      },
+      "column": 18,
+      "command": [
+        "create",
+        "--title",
+        "Default",
+        "--description",
+        "x"
+      ],
+      "event": 151,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "5833ebc5903077300809303aefe486a7b549b99dc51c277fb26a41651961762d",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [],
+      "runtime_cli_event": 152,
+      "runtime_return_event": 155,
+      "source": "benchmark/harness/regression.py:168"
+    },
+    "59ba081f204081759160bcf73ee3fcd5f0799f8cba03a2ea4aea9611ab7309d5": {
+      "assertion": "assertFalse",
+      "column": 8,
+      "event": 218,
+      "expected_result": false,
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "family": "file_existence",
+      "id": "59ba081f204081759160bcf73ee3fcd5f0799f8cba03a2ea4aea9611ab7309d5",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "filesystem",
+      "operands": [
+        false
+      ],
+      "prior_cli_event_ids": [
+        206,
+        213
+      ],
+      "source": "benchmark/harness/regression.py:93",
+      "source_operands": [
+        "(cwd / 'tasks.json').exists()"
+      ]
+    },
+    "6c9ba254168c41bfc0c0a9fc4502c095730040c91b3f4acfad33007ecbbee4ba": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "bad",
+          "--description",
+          "x",
+          "--due-date",
+          "yesterday"
+        ],
+        "cwd": "<cwd:4>",
+        "error": "invalid_due_date"
+      },
+      "column": 8,
+      "command": [
+        "create",
+        "--title",
+        "bad",
+        "--description",
+        "x",
+        "--due-date",
+        "yesterday"
+      ],
+      "event": 304,
+      "expected_error": "invalid_due_date",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "6c9ba254168c41bfc0c0a9fc4502c095730040c91b3f4acfad33007ecbbee4ba",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299
+      ],
+      "runtime_cli_event": 305,
+      "runtime_return_event": 309,
+      "source": "benchmark/harness/regression.py:109"
+    },
+    "84f46519fbae6dda418d966213c87d34289d7f4f9b4596a9cb8e751700da57d5": {
+      "assertion": "assertEqual",
+      "column": 8,
+      "event": 516,
+      "expected_result": {
+        "storage_json": {
+          "records": [
+            {
+              "created_at": "2026-01-01T00:00:00Z",
+              "description": "x",
+              "due_date": null,
+              "id": "prior",
+              "priority": "NORMAL",
+              "source": "",
+              "status": "pending",
+              "title": "prior"
+            }
+          ],
+          "schema_version": 4
+        }
+      },
+      "expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "family": "file_bytes",
+      "id": "84f46519fbae6dda418d966213c87d34289d7f4f9b4596a9cb8e751700da57d5",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "observation_phase": "filesystem",
+      "operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "2026-01-01T00:00:00Z",
+                "description": "x",
+                "due_date": null,
+                "id": "prior",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "prior"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "prior_cli_event_ids": [
+        487,
+        495,
+        502,
+        510
+      ],
+      "source": "benchmark/harness/cases/B04.py:67",
+      "source_operands": [
+        "path.read_bytes()",
+        "unchanged"
+      ]
+    },
+    "953fda60edd77f593016e566d78815cb6b9e0fe02101d076212cffac62affd1a": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "Critical",
+          "--description",
+          "x",
+          "--priority",
+          "CRITICAL"
+        ],
+        "cwd": "<cwd:3>",
+        "error": null
+      },
+      "column": 19,
+      "command": [
+        "create",
+        "--title",
+        "Critical",
+        "--description",
+        "x",
+        "--priority",
+        "CRITICAL"
+      ],
+      "event": 161,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "953fda60edd77f593016e566d78815cb6b9e0fe02101d076212cffac62affd1a",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        152,
+        157
+      ],
+      "runtime_cli_event": 162,
+      "runtime_return_event": 165,
+      "source": "benchmark/harness/regression.py:170"
+    },
+    "9ab140a33a372a5d2677ad8430c3fa2370c25ee6cfb17347e3d5c5a59becee04": {
+      "arguments": {
+        "args": [
+          "complete",
+          "--id",
+          "<id:5>"
+        ],
+        "cwd": "<cwd:4>",
+        "error": "invalid_transition"
+      },
+      "column": 8,
+      "command": [
+        "complete",
+        "--id",
+        "<id:5>"
+      ],
+      "event": 329,
+      "expected_error": "invalid_transition",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "9ab140a33a372a5d2677ad8430c3fa2370c25ee6cfb17347e3d5c5a59becee04",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299,
+        305,
+        311,
+        318,
+        324
+      ],
+      "runtime_cli_event": 330,
+      "runtime_return_event": 334,
+      "source": "benchmark/harness/regression.py:116"
+    },
+    "9da17341e2ece803e1b406db50b37f0539ea48df0be7ec41069a925695b24c89": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "High",
+          "--description",
+          "x",
+          "--priority",
+          "HIGH"
+        ],
+        "cwd": "<cwd:3>",
+        "error": null
+      },
+      "column": 15,
+      "command": [
+        "create",
+        "--title",
+        "High",
+        "--description",
+        "x",
+        "--priority",
+        "HIGH"
+      ],
+      "event": 156,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "9da17341e2ece803e1b406db50b37f0539ea48df0be7ec41069a925695b24c89",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        152
+      ],
+      "runtime_cli_event": 157,
+      "runtime_return_event": 160,
+      "source": "benchmark/harness/regression.py:169"
+    },
+    "a6faf1926e63c6ab561ebed0d52d2c3f60e54463d1c2b455866293a7a6173d43": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "valid",
+          "--description",
+          "x"
+        ],
+        "cwd": "<cwd:7>",
+        "error": null
+      },
+      "column": 16,
+      "command": [
+        "create",
+        "--title",
+        "valid",
+        "--description",
+        "x"
+      ],
+      "event": 447,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "a6faf1926e63c6ab561ebed0d52d2c3f60e54463d1c2b455866293a7a6173d43",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        358,
+        366,
+        372,
+        394,
+        404,
+        412,
+        418,
+        440
+      ],
+      "runtime_cli_event": 448,
+      "runtime_return_event": 451,
+      "source": "benchmark/harness/regression.py:138"
+    },
+    "abb51f1e8d57d5033c11cbac749f737128d059fdd479306a054d1839638d5040": {
+      "assertion": "assertEqual",
+      "column": 12,
+      "event": 478,
+      "expected_result": [
+        "created_at",
+        "description",
+        "due_date",
+        "id",
+        "priority",
+        "source",
+        "status",
+        "title"
+      ],
+      "expression": "self.assertEqual(set(probe), fields())",
+      "family": "returned_or_derived_assertion",
+      "id": "abb51f1e8d57d5033c11cbac749f737128d059fdd479306a054d1839638d5040",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "observation_phase": "assertion",
+      "operands": [
+        [
+          "created_at",
+          "description",
+          "due_date",
+          "id",
+          "priority",
+          "source",
+          "status",
+          "title"
+        ],
+        [
+          "created_at",
+          "description",
+          "due_date",
+          "id",
+          "priority",
+          "source",
+          "status",
+          "title"
+        ]
+      ],
+      "prior_cli_event_ids": [
+        474
+      ],
+      "source": "benchmark/harness/regression.py:157",
+      "source_operands": [
+        "set(probe)",
+        "fields()"
+      ]
+    },
+    "c280044359f547dea1cef597e90fdcb4c6a2affb8c30c758c81649f9657ff308": {
+      "assertion": "assertEqual",
+      "column": 8,
+      "event": 335,
+      "expected_result": {
+        "storage_json": {
+          "records": [
+            {
+              "created_at": "<created_at:4>",
+              "description": "details",
+              "due_date": null,
+              "id": "<id:4>",
+              "priority": "NORMAL",
+              "source": "",
+              "status": "pending",
+              "title": "normal"
+            },
+            {
+              "created_at": "<created_at:5>",
+              "description": "x",
+              "due_date": "2020-01-01T00:00:00Z",
+              "id": "<id:5>",
+              "priority": "HIGH",
+              "source": "",
+              "status": "completed",
+              "title": "high"
+            },
+            {
+              "created_at": "<created_at:6>",
+              "description": "x",
+              "due_date": "2999-01-01T00:00:00Z",
+              "id": "<id:6>",
+              "priority": "LOW",
+              "source": "",
+              "status": "pending",
+              "title": "low"
+            }
+          ],
+          "schema_version": 4
+        }
+      },
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "family": "file_bytes",
+      "id": "c280044359f547dea1cef597e90fdcb4c6a2affb8c30c758c81649f9657ff308",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "filesystem",
+      "operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "completed",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "completed",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299,
+        305,
+        311,
+        318,
+        324,
+        330
+      ],
+      "source": "benchmark/harness/regression.py:117",
+      "source_operands": [
+        "(cwd / 'tasks.json').read_bytes()",
+        "before"
+      ]
+    },
+    "c906728174ff4e286a5ec4219b1e545a3004b7c31506b9b0417e176e37a0cc22": {
+      "arguments": {
+        "app": "<restore>\\generated\\task_manager.py",
+        "args": [
+          "list"
+        ],
+        "cwd": "<cwd:10>",
+        "error": "migration_required"
+      },
+      "column": 8,
+      "command": [
+        "list"
+      ],
+      "event": 486,
+      "expected_error": "migration_required",
+      "expected_exit": 1,
+      "expression": "self.call(cwd, 'list', error='migration_required')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "c906728174ff4e286a5ec4219b1e545a3004b7c31506b9b0417e176e37a0cc22",
+      "kind": "CLI_outcome",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [],
+      "runtime_cli_event": 487,
+      "runtime_return_event": 492,
+      "source": "benchmark/harness/cases/B04.py:58"
+    },
+    "c9eceebfac929ae0048a9193a4fca210ed3d3688b8d8def90f2a40d65c0eb50e": {
+      "assertion": "assertFalse",
+      "column": 8,
+      "event": 211,
+      "expected_result": false,
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "family": "file_existence",
+      "id": "c9eceebfac929ae0048a9193a4fca210ed3d3688b8d8def90f2a40d65c0eb50e",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "filesystem",
+      "operands": [
+        false
+      ],
+      "prior_cli_event_ids": [
+        206
+      ],
+      "source": "benchmark/harness/regression.py:91",
+      "source_operands": [
+        "(cwd / 'tasks.json').exists()"
+      ]
+    },
+    "e8e87231574bd575160e7b032dc39e2b16440e17808eba3aaaa63dc10c1c4d35": {
+      "arguments": {
+        "args": [
+          "list"
+        ],
+        "cwd": "<cwd:7>",
+        "error": "invalid_state"
+      },
+      "column": 8,
+      "command": [
+        "list"
+      ],
+      "event": 467,
+      "expected_error": "invalid_state",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "e8e87231574bd575160e7b032dc39e2b16440e17808eba3aaaa63dc10c1c4d35",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        358,
+        366,
+        372,
+        394,
+        404,
+        412,
+        418,
+        440,
+        448,
+        454,
+        461
+      ],
+      "runtime_cli_event": 468,
+      "runtime_return_event": 472,
+      "source": "benchmark/harness/regression.py:145"
+    },
+    "eef7b403d7d7ba1578549938bfc127abdc5f59a49bda06e90ab9dc87168dc687": {
+      "arguments": {
+        "args": [
+          "create",
+          "--title",
+          "low",
+          "--description",
+          "x",
+          "--priority",
+          "LOW",
+          "--due-date",
+          "2999-01-01T00:00:00Z"
+        ],
+        "cwd": "<cwd:4>",
+        "error": null
+      },
+      "column": 14,
+      "command": [
+        "create",
+        "--title",
+        "low",
+        "--description",
+        "x",
+        "--priority",
+        "LOW",
+        "--due-date",
+        "2999-01-01T00:00:00Z"
+      ],
+      "event": 229,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "eef7b403d7d7ba1578549938bfc127abdc5f59a49bda06e90ab9dc87168dc687",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225
+      ],
+      "runtime_cli_event": 230,
+      "runtime_return_event": 233,
+      "source": "benchmark/harness/regression.py:97"
+    },
+    "f45a083ba7d97f82e227a0dba6462ef93d37e2b2b2a6aa2dc17905f3d76ecd3d": {
+      "assertion": "assertEqual",
+      "column": 8,
+      "event": 316,
+      "expected_result": {
+        "storage_json": {
+          "records": [
+            {
+              "created_at": "<created_at:4>",
+              "description": "details",
+              "due_date": null,
+              "id": "<id:4>",
+              "priority": "NORMAL",
+              "source": "",
+              "status": "pending",
+              "title": "normal"
+            },
+            {
+              "created_at": "<created_at:5>",
+              "description": "x",
+              "due_date": "2020-01-01T00:00:00Z",
+              "id": "<id:5>",
+              "priority": "HIGH",
+              "source": "",
+              "status": "pending",
+              "title": "high"
+            },
+            {
+              "created_at": "<created_at:6>",
+              "description": "x",
+              "due_date": "2999-01-01T00:00:00Z",
+              "id": "<id:6>",
+              "priority": "LOW",
+              "source": "",
+              "status": "pending",
+              "title": "low"
+            }
+          ],
+          "schema_version": 4
+        }
+      },
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "family": "file_bytes",
+      "id": "f45a083ba7d97f82e227a0dba6462ef93d37e2b2b2a6aa2dc17905f3d76ecd3d",
+      "keywords": {},
+      "kind": "direct_assertion",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "filesystem",
+      "operands": [
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "pending",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        },
+        {
+          "storage_json": {
+            "records": [
+              {
+                "created_at": "<created_at:4>",
+                "description": "details",
+                "due_date": null,
+                "id": "<id:4>",
+                "priority": "NORMAL",
+                "source": "",
+                "status": "pending",
+                "title": "normal"
+              },
+              {
+                "created_at": "<created_at:5>",
+                "description": "x",
+                "due_date": "2020-01-01T00:00:00Z",
+                "id": "<id:5>",
+                "priority": "HIGH",
+                "source": "",
+                "status": "pending",
+                "title": "high"
+              },
+              {
+                "created_at": "<created_at:6>",
+                "description": "x",
+                "due_date": "2999-01-01T00:00:00Z",
+                "id": "<id:6>",
+                "priority": "LOW",
+                "source": "",
+                "status": "pending",
+                "title": "low"
+              }
+            ],
+            "schema_version": 4
+          }
+        }
+      ],
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299,
+        305,
+        311
+      ],
+      "source": "benchmark/harness/regression.py:111",
+      "source_operands": [
+        "(cwd / 'tasks.json').read_bytes()",
+        "before"
+      ]
+    },
+    "f7c53441066680ad430dc97b458b3c6fa6cfc00cd240e954d32ad568386e1522": {
+      "arguments": {
+        "args": [
+          "complete",
+          "--id",
+          "missing"
+        ],
+        "cwd": "<cwd:4>",
+        "error": "task_not_found"
+      },
+      "column": 8,
+      "command": [
+        "complete",
+        "--id",
+        "missing"
+      ],
+      "event": 310,
+      "expected_error": "task_not_found",
+      "expected_exit": 1,
+      "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+      "family": "CLI_rejection",
+      "helper": "call",
+      "id": "f7c53441066680ad430dc97b458b3c6fa6cfc00cd240e954d32ad568386e1522",
+      "kind": "CLI_outcome",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [
+        206,
+        213,
+        220,
+        225,
+        230,
+        287,
+        293,
+        299,
+        305
+      ],
+      "runtime_cli_event": 311,
+      "runtime_return_event": 315,
+      "source": "benchmark/harness/regression.py:110"
+    },
+    "f9022d1f122577084a31421376d8d6cb7728c63a85d5a5675274d1a3f34eee17": {
+      "arguments": {
+        "app": "<restore>\\generated\\task_manager.py",
+        "args": [
+          "create",
+          "--title",
+          "labelled",
+          "--description",
+          "x",
+          "--priority",
+          "HIGH",
+          "--source",
+          "  API\tfeed  "
+        ],
+        "cwd": "<cwd:11>",
+        "error": null
+      },
+      "column": 19,
+      "command": [
+        "create",
+        "--title",
+        "labelled",
+        "--description",
+        "x",
+        "--priority",
+        "HIGH",
+        "--source",
+        "  API\tfeed  "
+      ],
+      "event": 517,
+      "expected_error": null,
+      "expected_exit": 0,
+      "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
+      "family": "CLI_success",
+      "helper": "call",
+      "id": "f9022d1f122577084a31421376d8d6cb7728c63a85d5a5675274d1a3f34eee17",
+      "kind": "CLI_outcome",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "observation_phase": "CLI_outcome",
+      "prior_cli_event_ids": [],
+      "runtime_cli_event": 518,
+      "runtime_return_event": 522,
+      "source": "benchmark/harness/cases/B04.py:28"
+    }
+  },
+  "rejection_path_completeness": "NOT ESTABLISHED",
+  "runtime_event_to_roots": {
+    "211": [
+      "765b67904a8c5ee20a5bb2c34ca5d0cc138e62ed43301b671fbc6f11b87104d5"
+    ],
+    "218": [
+      "6fc703976157cd67c2efb79b511f71d4d6939a9fe9fb3066459706bead5a83fb"
+    ],
+    "316": [
+      "acae517eae2eaeca66cd719c3faf5f12d89933a3ad9240f7502f8be28b51de99"
+    ],
+    "335": [
+      "67b657e61cb6c2b15f2ff0aa0f79aa374a489a63d7c0d62ef5eaa8e0080d6070"
+    ],
+    "493": [
+      "55de27c4a21955dad4c1993cc4d24ea9429bfea332a9138ab5dd0611be094675"
+    ],
+    "508": [
+      "2a0785952d8ab7af5a92e00f6b23e44dfb927a24f7100fa7dc8ef0ec0cdfbe62"
+    ],
+    "516": [
+      "a53e7dfd01e8ef5d90f5f787e28039551a0d3cb89b01dcafe8bd0c83b41b21cd"
+    ]
+  },
+  "source_candidates": [
+    {
+      "branch": null,
+      "canonical_roots": [
+        "765b67904a8c5ee20a5bb2c34ca5d0cc138e62ed43301b671fbc6f11b87104d5"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "c9eceebfac929ae0048a9193a4fca210ed3d3688b8d8def90f2a40d65c0eb50e"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        211
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:91"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "6fc703976157cd67c2efb79b511f71d4d6939a9fe9fb3066459706bead5a83fb"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "59ba081f204081759160bcf73ee3fcd5f0799f8cba03a2ea4aea9611ab7309d5"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        218
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:93"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "acae517eae2eaeca66cd719c3faf5f12d89933a3ad9240f7502f8be28b51de99"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "f45a083ba7d97f82e227a0dba6462ef93d37e2b2b2a6aa2dc17905f3d76ecd3d"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        316
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:111"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "67b657e61cb6c2b15f2ff0aa0f79aa374a489a63d7c0d62ef5eaa8e0080d6070"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "c280044359f547dea1cef597e90fdcb4c6a2affb8c30c758c81649f9657ff308"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        335
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:117"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(set(probe), fields())",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "provisional_witness_ids": [
+        "abb51f1e8d57d5033c11cbac749f737128d059fdd479306a054d1839638d5040"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        478
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:157"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "provisional_witness_ids": [
+        "0bb4a354751b15a0289f65c2b267d9e7449b488d0c947228393e3aec40192a1d"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        479
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:159"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "55de27c4a21955dad4c1993cc4d24ea9429bfea332a9138ab5dd0611be094675"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertEqual(path.read_bytes(), before)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "provisional_witness_ids": [
+        "03edd20ade2cbef42f17b733dd5884c4570bc3c454350b8e61bd9b463fa375e0"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        493
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:59"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "2a0785952d8ab7af5a92e00f6b23e44dfb927a24f7100fa7dc8ef0ec0cdfbe62"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "provisional_witness_ids": [
+        "1d10716a2c8b997edc7e2d8ecda75190704d989948c5c85a81c4e9a032dbf0aa"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        508
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:63"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [
+        "a53e7dfd01e8ef5d90f5f787e28039551a0d3cb89b01dcafe8bd0c83b41b21cd"
+      ],
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "SEMANTIC_ROOT",
+      "expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "provisional_witness_ids": [
+        "84f46519fbae6dda418d966213c87d34289d7f4f9b4596a9cb8e751700da57d5"
+      ],
+      "reason": "Source-derived persisted-state root agrees with runtime assertion and snapshot",
+      "roots": [],
+      "runtime_event_indices": [
+        516
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:67"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "provisional_witness_ids": [
+        "5833ebc5903077300809303aefe486a7b549b99dc51c277fb26a41651961762d"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        151
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:168"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "provisional_witness_ids": [
+        "9da17341e2ece803e1b406db50b37f0539ea48df0be7ec41069a925695b24c89"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        156
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:169"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "provisional_witness_ids": [
+        "953fda60edd77f593016e566d78815cb6b9e0fe02101d076212cffac62affd1a"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        161
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:170"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "30666e8d4201e1c00ef8ff44da3e10777e431c1820b0d5689d32e7e57196a53c"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        212
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:92"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 17,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "2847223a0fd5bd0b93666e5ffa0697687cc09ce087f657fe8a677b4fc34eb757"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        219
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:94"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "4d99e2d10ee19595d97b7ee861cbda78590ab2f1dff1bdf8ba41b7c5805e4e51"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        224
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:95"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 14,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "eef7b403d7d7ba1578549938bfc127abdc5f59a49bda06e90ab9dc87168dc687"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        229
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:97"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "6c9ba254168c41bfc0c0a9fc4502c095730040c91b3f4acfad33007ecbbee4ba"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        304
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:109"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "f7c53441066680ad430dc97b458b3c6fa6cfc00cd240e954d32ad568386e1522"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        310
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:110"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "9ab140a33a372a5d2677ad8430c3fa2370c25ee6cfb17347e3d5c5a59becee04"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        329
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:116"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "provisional_witness_ids": [
+        "3343fc19c1441fec906845ca49ae5cd6fdd643eb9f1af62537d923bc2fe33581"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        342
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:119"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "provisional_witness_ids": [
+        "a6faf1926e63c6ab561ebed0d52d2c3f60e54463d1c2b455866293a7a6173d43"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        447
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:138"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "provisional_witness_ids": [
+        "e8e87231574bd575160e7b032dc39e2b16440e17808eba3aaaa63dc10c1c4d35"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        467
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:145"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "provisional_witness_ids": [
+        "302ddc539c1015139a8723c5b57696a42360b8a1542a4ecb210361047689e0f0"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        473
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:156"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'list', error='migration_required')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "provisional_witness_ids": [
+        "c906728174ff4e286a5ec4219b1e545a3004b7c31506b9b0417e176e37a0cc22"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        486
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:58"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "provisional_witness_ids": [
+        "f9022d1f122577084a31421376d8d6cb7728c63a85d5a5675274d1a3f34eee17"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        517
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:28"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "provisional_witness_ids": [
+        "4a2f4fbd077a8f14166843414738f5c81d11f6317c3ee053594458bf1993bebc"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        523
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:30"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "provisional_witness_ids": [
+        "002a4ad0e34a4ef903a807f5de5a53889b17d3cb9008d8e4f28052e7beb3da7f"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        529
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:31"
+    },
+    {
+      "branch": null,
+      "canonical_roots": [],
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "provisional_witness_ids": [
+        "062efdf188df3e8900e157b34794bc61c3530dccd36aea3f08c80d76e91cf32b"
+      ],
+      "reason": "Executed assertion/CLI outcome has a checked event correlation, but its complete source-derived preconditions, phase and lineage have not been verified against a canonical root",
+      "roots": [],
+      "runtime_event_indices": [
+        552
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:39"
+    }
+  ],
+  "trace_sha256": "1d177b10df8f150a8c0d91edc7c6cf8a5fef16a976bdc5651b904361d6943c7e",
+  "unmapped_root_count": 0,
+  "unmapped_semantic_runtime_events": [
+    4,
+    6,
+    7,
+    9,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    35,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    50,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    65,
+    70,
+    72,
+    74,
+    78,
+    80,
+    81,
+    83,
+    84,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    109,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    124,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    139,
+    144,
+    146,
+    148,
+    152,
+    154,
+    157,
+    159,
+    162,
+    164,
+    166,
+    168,
+    170,
+    172,
+    174,
+    176,
+    178,
+    180,
+    182,
+    184,
+    186,
+    188,
+    190,
+    192,
+    194,
+    196,
+    198,
+    200,
+    202,
+    206,
+    208,
+    210,
+    213,
+    215,
+    216,
+    220,
+    222,
+    225,
+    227,
+    230,
+    232,
+    234,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    247,
+    250,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    263,
+    266,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    279,
+    282,
+    284,
+    285,
+    287,
+    289,
+    291,
+    293,
+    295,
+    297,
+    299,
+    301,
+    303,
+    305,
+    307,
+    308,
+    311,
+    313,
+    314,
+    318,
+    320,
+    322,
+    324,
+    326,
+    328,
+    330,
+    332,
+    333,
+    337,
+    339,
+    341,
+    343,
+    345,
+    346,
+    349,
+    351,
+    353,
+    358,
+    360,
+    361,
+    363,
+    364,
+    366,
+    368,
+    370,
+    372,
+    374,
+    376,
+    380,
+    381,
+    382,
+    383,
+    384,
+    385,
+    389,
+    394,
+    396,
+    398,
+    404,
+    406,
+    407,
+    409,
+    410,
+    412,
+    414,
+    416,
+    418,
+    420,
+    422,
+    426,
+    427,
+    428,
+    429,
+    430,
+    431,
+    435,
+    440,
+    442,
+    444,
+    448,
+    450,
+    454,
+    456,
+    457,
+    461,
+    463,
+    464,
+    468,
+    470,
+    471,
+    474,
+    476,
+    478,
+    479,
+    481,
+    483,
+    485,
+    487,
+    489,
+    490,
+    491,
+    495,
+    497,
+    498,
+    500,
+    502,
+    504,
+    505,
+    507,
+    510,
+    512,
+    513,
+    515,
+    518,
+    520,
+    521,
+    524,
+    526,
+    527,
+    530,
+    532,
+    533,
+    535,
+    536,
+    537,
+    539,
+    541,
+    542,
+    544,
+    546,
+    548,
+    549,
+    551,
+    553,
+    555,
+    556,
+    558,
+    560,
+    562,
+    563,
+    565,
+    567,
+    569,
+    570,
+    572
+  ]
+}

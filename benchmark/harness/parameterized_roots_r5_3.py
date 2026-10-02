@@ -383,8 +383,63 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                                                           "entities": copy.deepcopy(entities),
                                                           "prior_steps": copy.deepcopy(history),
                                                           "lineage": copy.deepcopy(lineage),
-                                                          "provenance": {"carrier": method_id,
-                                                                         "assertion": location(assertion)}})
+                                                           "provenance": {"carrier": method_id,
+                                                                          "assertion": location(assertion)}})
+                        # A read-only rejection and a successful query may have
+                        # identical returned JSON but different persisted state.
+                        # Retain the filesystem assertion as its own phase.
+                        filesystem = None
+                        if (assertion.func.attr in ("assertFalse", "assertTrue") and
+                                len(assertion.args) == 1 and
+                                isinstance(assertion.args[0], ast.Call) and
+                                isinstance(assertion.args[0].func, ast.Attribute) and
+                                assertion.args[0].func.attr == "exists"):
+                            filesystem = {"operation": "file-existence",
+                                          "path_expression": ast.unparse(assertion.args[0].func.value),
+                                          "expected_result": assertion.func.attr == "assertTrue"}
+                        if (assertion.func.attr == "assertEqual" and len(assertion.args) == 2 and
+                                isinstance(assertion.args[0], ast.Call) and
+                                isinstance(assertion.args[0].func, ast.Attribute) and
+                                assertion.args[0].func.attr == "read_bytes" and
+                                isinstance(assertion.args[1], ast.Name)):
+                            snapshot = assertion.args[1].id
+                            captures = [step for step in history if
+                                        step["expression"].startswith(f"{snapshot} = ") and
+                                        "read_bytes()" in step["expression"]]
+                            if captures:
+                                filesystem = {"operation": "file-bytes-equality",
+                                              "path_expression": ast.unparse(assertion.args[0].func.value),
+                                              "expected_result": f"${snapshot} (captured file bytes)",
+                                              "snapshot": captures[-1]}
+                        if (assertion.func.attr == "assertEqual" and len(assertion.args) == 2 and
+                                isinstance(assertion.args[0], ast.Subscript) and
+                                isinstance(assertion.args[0].value, ast.Call) and
+                                isinstance(assertion.args[0].value.func, ast.Attribute) and
+                                assertion.args[0].value.func.attr == "loads" and
+                                len(assertion.args[0].value.args) == 1 and
+                                isinstance(assertion.args[0].value.args[0], ast.Call) and
+                                isinstance(assertion.args[0].value.args[0].func, ast.Attribute) and
+                                assertion.args[0].value.args[0].func.attr == "read_text"):
+                            try:
+                                field = literal(assertion.args[0].slice, bindings)
+                                expected_field = literal(assertion.args[1], bindings)
+                            except (ValueError, KeyError, TypeError, IndexError):
+                                pass
+                            else:
+                                filesystem = {"operation": "persisted-json-field-equality",
+                                              "path_expression": ast.unparse(
+                                                  assertion.args[0].value.args[0].func.value),
+                                              "field": field, "expected_result": expected_field}
+                        if filesystem is not None:
+                            identity = {"method": method_id, "assertion": location(assertion),
+                                        "assertion_column": assertion.col_offset, "context": list(context)}
+                            direct_assertions.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                      "state": state, **filesystem,
+                                                      "phase": "persisted_state",
+                                                      "assertion_expression": resolved(assertion, bindings),
+                                                      "entities": copy.deepcopy(entities),
+                                                      "prior_steps": copy.deepcopy(history),
+                                                      "lineage": applicable_lineage(lineage, entities)})
                         if (not nested and assertion.func.attr == "assertIsNone" and
                                 len(assertion.args) == 1 and
                                 isinstance(assertion.args[0], ast.Subscript) and

@@ -1,48 +1,48 @@
 # Agent guidance for Lykoi
 
-The project is **Lykoi**, not Axiom. Historical `axiom` and `air` paths and
-identifiers remain for compatibility and reproducible research records.
+The project is **Lykoi**, not Axiom. Keep historical `axiom`/`air` paths,
+serialized keys and pinned records for compatibility; use Lykoi in new prose.
+Check `git status` before editing. Read `docs/project-overview.md` for the
+current research boundary and `docs/agent-workflow.md` for scope-specific rules.
 
-## Start here
+## Model and verification
 
-Read `docs/project-overview.md` for the research question, long-term direction
-and current boundary, then `docs/agent-workflow.md` for the repository map,
-change procedures, verification and benchmark rules. Read the applicable
-versioned language spec or benchmark protocol *before* editing those areas.
-Check `git status` first: existing changes may be another person's work.
+- `air/task_manager.json` is canonical; `src/air_compiler/` validates and
+  generates the Python backend. Never hand-edit `generated/`. Current model
+  semantics: `docs/axiom-v0.3.md` and `schema/axiom-v0.3.schema.json`; the
+  validator also enforces rules beyond JSON Schema.
+- Python 3.10+, no third-party dependencies. From the repo root in PowerShell:
+  ```powershell
+  $env:PYTHONPATH='src'
+  python -m air_compiler.cli validate air/task_manager.json
+  python -m air_compiler.cli safety air/task_manager.json
+  python -m unittest discover -s tests -v
+  python -m unittest discover -s benchmark/harness -v
+  ```
+  Focus a test with `python -m unittest discover -s tests -p test_compiler.py -v`
+  (or `-s benchmark/harness -p test_baseline.py`). Regenerate intentional model
+  changes with `python -m air_compiler.cli generate air/task_manager.json generated/task_manager.py`;
+  compiler tests compare generated output and manifest against the model.
+- `inspect`, `diff`, `impact` in the CLI trace stable semantic IDs. Historical
+  `experiments/` plans are hash-pinned: do not reapply them to the current model.
 
-Lykoi seeks a small, general, composable semantic vocabulary for AI-authored
-software, not a task-manager DSL or an implementation tuned to benchmark tests.
-The model is canonical; generated Python is disposable. Do not edit
-`generated/` directly. The benchmark compares observable functional behavior,
-not source-code similarity. External acceptance tests verify requirements;
-they do not define new language semantics.
+## Research and benchmark boundaries
 
-For frozen benchmark work, preserve frozen language/compiler/runtime/schema,
-requirements, oracles, checkpoint evidence and historical classifications.
-Record genuine capability gaps instead of adding case-specific primitives;
-distinguish gaps from implementation failures and downstream dependency blocks.
-Use independently versioned prospective work for protocol or language proposals.
-The current R5.3 acceptance reconstruction is unfrozen; do not treat it as an
-authorization to expose B17 or change the authoritative R5.2.2 boundary.
-
-## Keep documentation current
-
-As you discover a new paradigm, concept, capability gap, design tradeoff or
-empirical learning while working on Lykoi, document it in the same change.
-Explain what was learned, the evidence or motivating example, the current
-boundary, and what it implies for future work. Distinguish implemented behavior
-from proposals and unverified hypotheses; do not claim proof from validation or
-passing tests alone.
-
-- Update `docs/project-overview.md` when the long-term direction, major
-  milestones or current research boundary changes.
-- Record experimental observations and limitations in `docs/research-log.md`,
-  design tradeoffs in `docs/decisions.md`, and language semantics in the
-  appropriate versioned document under `docs/`.
-- Record benchmark-specific findings and protocol changes alongside their
-  evidence under `benchmark/results/`. Preserve frozen requirements, oracle
-  inputs and historical records; use prospective records for corrections.
-- Update README links and status summaries when their descriptions become
-  outdated. Use **Lykoi** in new prose while retaining historical names in
-  citations, file paths and pinned identifiers.
+- Seek general, composable semantics, not primitives fitted to a task-manager
+  request or external acceptance test. A new semantic concept needs validator,
+  backend, versioned language documentation and relevant tests. Validation or
+  passing tests alone do not prove behavior or generality.
+- `benchmark/conventional/` is the independent Python track; `benchmark/harness/`
+  is an external subprocess oracle. Before benchmark work read `benchmark/README.md`,
+  the applicable frozen requirement, protocol and checkpoint in
+  `benchmark/results/`. Compare observable behavior, not source similarity.
+  Preserve frozen compiler/runtime/schema, requirements, oracles and historical
+  evidence. Record real capability gaps separately from implementation failures
+  and requests actually blocked by a gap; put corrections in independently
+  versioned prospective records.
+- R5.2.2 is the authoritative corrected post-B16 boundary. R5.3 acceptance
+  reconstruction is unfrozen and does not authorize B17 exposure or a new freeze.
+- Document new observations/limitations in `docs/research-log.md`, tradeoffs in
+  `docs/decisions.md`, semantics in the versioned spec, and benchmark findings
+  beside evidence in `benchmark/results/`. Update `docs/project-overview.md`
+  when direction or boundary changes; distinguish observations from proposals.
