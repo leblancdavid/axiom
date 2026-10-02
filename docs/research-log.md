@@ -1,5 +1,44 @@
 # Lykoi research log
 
+## R5.5 semantic architecture separation (prospective, 2026-10-02)
+
+**Implemented observation:** The historical seven synthetic #45 tuple checks
+now delegate to an extracted abstract contract evaluator. Separate validators
+reject implementation fields in contracts, behavioral checks in binding,
+and requirements or proof labels in concrete records. The case verifier
+reports `proof_status: not_established` even when the relation holds; trace
+continuity validates equal adjacent state on one declared boundary. Six new
+architecture tests exercise these responsibilities, not B01 behavior.
+
+**Limit:** The slot map and execution records are not yet a faithful adapter
+to actual public calls or durable state. The selected subprocess scenario
+probe is unchanged and not wired to the new verifier. This is an architectural
+partial result, not a semantic capability gain, acceptance freeze or proof.
+The [R5.5 result](../benchmark/results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
+contains the 45-entry responsibility accounting and AI-native review. B01
+remains inadequate and halted; R5.2.2, the Phase 5C pause and B17 boundary
+remain in force.
+
+## R5.4 semantic architecture checkpoint (prospective, 2026-10-02)
+
+**Observation:** The seven #45 synthetic tuples test a supplied relation,
+whereas the selected R5.4 CLI scenarios observe real executions; no checked
+mapping joins their input/pre/outcome/post slots across all public calls. The
+raw 45 prototype entries include ten observation/evidence and six benchmark
+administration constructs, leaving 29 provisional candidate core constructs
+when #45 is limited to its abstract operation relation. This does not establish
+minimality, integration or B01 adequacy.
+
+**Assessment:** The grounding gap mainly spans interface metadata, lowering,
+observation and verification; universal implementation correctness requires a
+separate proof argument. A typed operation relation is plausible semantic
+source, but conflating it with actual-execution binding requires architectural
+revision before B01 work continues. The
+[checkpoint](../benchmark/results/phase5c/R5_4-SEMANTIC-ARCHITECTURE-CHECKPOINT.md)
+records alternatives, finite-evidence limits and exposed-clause reuse. R5.2.2
+remains authoritative; B01 is halted and inadequate, the format unfrozen,
+Phase 5C paused, and B17 unexposed and unclassified.
+
 ## B01 operation-contract adequacy investigation (prospective, 2026-10-02)
 
 **Observation:** Existing relations constrain supplied collections but not

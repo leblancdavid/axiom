@@ -101,3 +101,31 @@ storage binding, and keyed insertion/update frames are still open. Treat
 priority domain order separately from normal list order; the frozen B01
 contract gives no observable comparator. Halt B01 adequacy and keep the
 format unfrozen. See `benchmark/results/phase5c/R5_4-B01-OPERATION-CONTRACT-ADEQUACY-HALT.md`.
+
+## R5.4 semantic architecture checkpoint (prospective, 2026-10-02)
+
+Recommend a hybrid for the *next prototype iteration*: semantic source states
+abstract typed operation contracts; compiler/interface metadata checks public
+entry points and durable state views; an independent runtime observer supplies
+actual same-invocation tuples; a verifier evaluates conformance for those
+tuples. Neither static binding nor finite traces establish universal correctness.
+The present #45 mixes contract and grounding, while the 45-entry inventory
+counts observation and benchmark-lineage machinery as vocabulary. Splitting
+these responsibilities and integrating types is required before another B01
+adequacy attempt; this recommendation does not implement or freeze that split.
+See `benchmark/results/phase5c/R5_4-SEMANTIC-ARCHITECTURE-CHECKPOINT.md`.
+
+## R5.5 responsibility split (prospective, 2026-10-02)
+
+Extract #45's typed relation as a provisional semantic contract and place
+implementation slot mapping, execution fact records and case-scoped comparison
+in distinct modules. Retain the seven R5.4 synthetic witnesses through an
+explicit compatibility extractor; do not relabel them execution traces. Keep
+binding metadata and benchmark lineage out of core vocabulary. The checked
+slot map does not validate a real entry point or durable state view, and a
+self-reported observation source does not prove capture fidelity. Consequently
+the gate is **R5_5_ARCHITECTURE_PARTIAL**, pending independent grounding, rather
+than a claim of universal conformance or permission to restart B01. Generated
+target code remains an artifact; semantics and target-specific adapter details
+must not be conflated. See
+`benchmark/results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md`.

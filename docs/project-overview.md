@@ -135,6 +135,25 @@ are not universally bound to public calls/storage; B01 remains inadequate,
 and priority “above HIGH” has no established observable rank comparison.
 The unfrozen ledger counts 45 provisional constructs. No later adequacy gate
 has advanced.
+The [architectural checkpoint](../benchmark/results/phase5c/R5_4-SEMANTIC-ARCHITECTURE-CHECKPOINT.md)
+pauses the B01 repair loop: abstract operation contracts appear reusable, but
+the proposed #45 binder conflates the contract with interface mapping, actual
+execution observation and conformance/proof. The 45-entry prototype inventory
+contains 29 candidate core semantic constructs after separating finite evidence
+and benchmark administration; this is not a language freeze or an adequacy
+result. A checked static interface/state binding plus independent observed
+traces is the next *design hypothesis*, not an implemented capability. B01
+remains inadequate and halted, R5.2.2 authoritative, the format unfrozen,
+Phase 5C paused, and B17 unexposed and unclassified.
+The [R5.5 architecture revision](../benchmark/results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
+now physically separates the provisional #45 abstract relation, checked slot
+metadata, execution-record shape and case-scoped verifier. Historical synthetic
+fixtures remain synthetic; no actual-call/storage binding or observer fidelity
+has been established. The inventory remains 45 raw and 29 candidate core
+constructs with observation, verification, evidence and lineage accounted for
+separately. R5.5 is **partial**, not an adequacy restart: B01 stays halted and
+inadequate, R5.2.2 authoritative, format unfrozen, Phase 5C paused and B17
+unexposed and unclassified.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional

@@ -1,5 +1,14 @@
 # Semantic requirement prototype — prospective, unfrozen
 
+The [R5.5 architecture result](../results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
+separates the #45 abstract relation (`contracts.py`), checked but ungrounded
+interface slot map (`binding.py`), concrete record shape (`observation.py`) and
+case-scoped verifier (`conformance.py`). `operation_contract.py` keeps the
+historical combined synthetic fixture readable via explicit extraction; those
+cases are not captured application executions. The scenario probe remains a
+finite integration witness, not a universal contract verifier. B01 adequacy is
+halted and the semantic-first format remains unfrozen.
+
 `prototype.json` contains **selected witnesses**, not a transcription of all
 B01–B16 clauses or the R5.2.2 oracle. `b17-draft.json` is a pre-exposure
 semantic-first **draft**, not a frozen B17 fragment, case or replacement map.

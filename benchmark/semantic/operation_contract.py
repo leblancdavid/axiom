@@ -1,10 +1,21 @@
-"""Unfrozen typed operation-tuple witnesses; no application adapter or proof."""
+"""R5.4 combined fixture compatibility; R5.5 keeps its cases as synthetic evidence."""
 
 from benchmark.semantic.format import require
-from benchmark.semantic import state_relations
+from benchmark.semantic import contracts
 
 
-SLOTS = {"input.rows", "pre.records", "result", "post.records"}
+SLOTS = contracts.SLOTS
+
+
+def abstract_contract(document):
+    """Explicit migration of the R5.4 mixed document; never reinterpret cases as traces."""
+    return {key: document[key] for key in ("operation", "schema", "checks")}
+
+
+def values(case):
+    return {"input.rows": case["input"]["rows"],
+            "pre.records": case["pre"]["records"],
+            "result": case["result"], "post.records": case["post"]["records"]}
 
 
 def validate(document):
@@ -13,23 +24,12 @@ def validate(document):
             document["status"] == "prototype" and
             isinstance(document["operation"], str) and
             document["operation"].isidentifier(), "invalid operation contract")
-    schema = document["schema"]
-    checks = document["checks"]
-    require(isinstance(checks, list) and checks, "missing checks")
-    for check in checks:
-        require(isinstance(check, dict) and set(check) == {"kind", "left", "right"} and
-                check["kind"] in ("equals", "default_missing") and
-                check["left"] in SLOTS and check["right"] in SLOTS,
-                "invalid typed binding")
-    # Reuse the existing relation's schema/default validation, including types.
-    default = [c for c in checks if c["kind"] == "default_missing"]
+    contract = abstract_contract(document)
+    contracts.validate(contract)
+    default = [c for c in contract["checks"] if c["kind"] == "default_missing"]
     require(len(default) == 1 and default[0]["left"] == "pre.records" and
-            default[0]["right"] == "post.records" and
-            isinstance(schema, dict) and set(schema) == {"record", "default"},
+            default[0]["right"] == "post.records",
             "invalid transition binding")
-    rule = {"schema": schema["record"], "relation": schema["default"],
-            "cases": [{"id": "type_probe", "before": [], "after": [], "holds": True}]}
-    state_relations.validate(rule)
     require(isinstance(document["cases"], list) and document["cases"], "missing witnesses")
     ids = set()
     for case in document["cases"]:
@@ -39,30 +39,15 @@ def validate(document):
                 type(case["holds"]) is bool and
                 isinstance(case["input"], dict) and set(case["input"]) == {"rows"} and
                 isinstance(case["pre"], dict) and set(case["pre"]) == {"records"} and
-                isinstance(case["post"], dict) and set(case["post"]) == {"records"} and
-                all(state_relations._sequence(rows, schema["record"], schema["default"])
-                    for rows in (case["input"]["rows"], case["pre"]["records"],
-                                 case["result"], case["post"]["records"])),
+                isinstance(case["post"], dict) and set(case["post"]) == {"records"},
                 "invalid operation witness")
+        contracts.validate_values(contract, values(case))
         ids.add(case["id"])
     return document
 
 
 def evaluate(document, case):
-    values = {"input.rows": case["input"]["rows"],
-              "pre.records": case["pre"]["records"],
-              "result": case["result"], "post.records": case["post"]["records"]}
-    for check in document["checks"]:
-        left, right = values[check["left"]], values[check["right"]]
-        if check["kind"] == "equals":
-            if left != right:
-                return False
-        elif not state_relations.evaluate(
-                {"schema": document["schema"]["record"],
-                 "relation": document["schema"]["default"]},
-                {"before": left, "after": right}):
-            return False
-    return True
+    return contracts.evaluate(abstract_contract(document), values(case))
 
 
 def run_witnesses(document):
