@@ -1,0 +1,125 @@
+{
+  "version": "LYKOI-BENCHMARK-SEMANTIC-PROTOTYPE/1",
+  "status": "prototype",
+  "scenarios": [
+    {
+      "id": "B17.user_roles",
+      "origin": {"requirement": "B17", "source": "benchmark/requirements/B17.md", "note": "All user results carry role; system is ADMIN, omitted role is USER, explicit ADMIN is accepted. Earlier B16 ID-only exact shape is replaced, while ID and order remain."},
+      "lineage": {"kind": "replaces", "prior": ["B16.system_user", "B16.case_sensitive_user_ids"]},
+      "variants": [{
+        "id": "b16_to_b17",
+        "when": {"requires": ["B16", "B17"], "forbids": []},
+        "steps": [
+          {"invoke": {"command": "list-users", "args": [], "bind": "initial"}},
+          {"observe": {"id": "B17.system_admin", "relation": "equals", "actual": {"ref": "initial"}, "expected": {"literal": [{"id": "system", "role": "ADMIN"}]}}},
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "Alex"}], "bind": "alex"}},
+          {"observe": {"id": "B17.default_user_role", "relation": "equals", "actual": {"ref": "alex"}, "expected": {"literal": {"id": "Alex", "role": "USER"}}}},
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "admin"}, {"literal": "--role"}, {"literal": "ADMIN"}], "bind": "admin"}},
+          {"observe": {"id": "B17.explicit_admin_role", "relation": "equals", "actual": {"ref": "admin"}, "expected": {"literal": {"id": "admin", "role": "ADMIN"}}}},
+          {"invoke": {"command": "list-users", "args": [], "bind": "users"}},
+          {"observe": {"id": "B17.role_list_order", "relation": "equals", "actual": {"ref": "users"}, "expected": {"list": [{"ref": "alex"}, {"ref": "admin"}, {"literal": {"id": "system", "role": "ADMIN"}}]}}}
+        ]
+      }]
+    },
+    {
+      "id": "B17.task_actor_and_permissions",
+      "origin": {"requirement": "B17", "source": "benchmark/requirements/B17.md", "note": "Missing, nonexistent or unauthorized actor must not mutate task state. Authorized actor retains task result shape and earlier validation errors."},
+      "lineage": {"kind": "adds", "prior": []},
+      "variants": [{
+        "id": "b16_to_b17",
+        "when": {"requires": ["B16", "B17"], "forbids": []},
+        "steps": [
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "Alex"}], "bind": "alex"}},
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "bob"}], "bind": "bob"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "owned"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "Alex"}, {"literal": "--actor"}, {"literal": "Alex"}], "bind": "owned"}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_rejections"}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "owned.id"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_missing"}},
+          {"observe": {"id": "B17.missing_actor_no_write", "relation": "equals", "actual": {"ref": "after_missing"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "owned.id"}, {"literal": "--actor"}, {"literal": "ghost"}], "error": "unknown_actor"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_unknown"}},
+          {"observe": {"id": "B17.unknown_actor_no_write", "relation": "equals", "actual": {"ref": "after_unknown"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "owned.id"}, {"literal": "--actor"}, {"literal": "bob"}], "error": "permission_denied"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_forbidden"}},
+          {"observe": {"id": "B17.forbidden_no_write", "relation": "equals", "actual": {"ref": "after_forbidden"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "bad owner"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "bob"}, {"literal": "--actor"}, {"literal": "Alex"}], "error": "permission_denied"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_forbidden_create"}},
+          {"observe": {"id": "B17.forbidden_create_no_write", "relation": "equals", "actual": {"ref": "after_forbidden_create"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "  "}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "Alex"}, {"literal": "--actor"}, {"literal": "system"}], "error": "invalid_title"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_prior_error"}},
+          {"observe": {"id": "B17.authorized_old_error_no_write", "relation": "equals", "actual": {"ref": "after_prior_error"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "owned.id"}, {"literal": "--actor"}, {"literal": "Alex"}], "bind": "completed"}},
+          {"observe": {"id": "B17.authorized_completion", "relation": "equals", "actual": {"ref": "completed.status"}, "expected": {"literal": "completed"}}},
+          {"invoke": {"command": "list", "args": [], "bind": "read_without_actor"}},
+          {"observe": {"id": "B17.read_only_no_actor", "relation": "equals", "actual": {"ref": "read_without_actor"}, "expected": {"list": [{"ref": "completed"}]}}}
+        ]
+      }]
+    },
+    {
+      "id": "B17.admin_cross_owner",
+      "origin": {"requirement": "B17", "source": "benchmark/requirements/B17.md", "note": "ADMIN may create for and mutate another user's task; task result shape remains unchanged."},
+      "lineage": {"kind": "adds", "prior": []},
+      "variants": [{
+        "id": "b16_to_b17",
+        "when": {"requires": ["B16", "B17"], "forbids": []},
+        "steps": [
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "bob"}], "bind": "bob"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "admin created"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "bob"}, {"literal": "--actor"}, {"literal": "system"}], "bind": "task"}},
+          {"observe": {"id": "B17.admin_created_for_bob", "relation": "equals", "actual": {"ref": "task.owner"}, "expected": {"literal": "bob"}}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "task.id"}, {"literal": "--actor"}, {"literal": "system"}], "bind": "completed"}},
+          {"observe": {"id": "B17.admin_completed_for_bob", "relation": "equals", "actual": {"ref": "completed.status"}, "expected": {"literal": "completed"}}}
+        ]
+      }]
+    },
+    {
+      "id": "B17.mutation_command_actor_matrix",
+      "origin": {"requirement": "B17", "source": "benchmark/requirements/B17.md", "note": "Each existing task mutation requires an actor, even where its other arguments are valid; no rejected call writes task state."},
+      "lineage": {"kind": "adds", "prior": []},
+      "variants": [{
+        "id": "b16_to_b17",
+        "when": {"requires": ["B16", "B17"], "forbids": []},
+        "steps": [
+          {"snapshot": {"path": "tasks.json", "bind": "empty"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "no actor"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_create_error"}},
+          {"observe": {"id": "B17.create_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_create_error"}, "expected": {"ref": "empty"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "first"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}, {"literal": "--actor"}, {"literal": "system"}], "bind": "first"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "second"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}, {"literal": "--actor"}, {"literal": "system"}], "bind": "second"}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_matrix"}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "first.id"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_complete"}},
+          {"observe": {"id": "B17.complete_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_complete"}, "expected": {"ref": "before_matrix"}}},
+          {"invoke": {"command": "archive", "args": [{"literal": "--id"}, {"ref": "first.id"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_archive"}},
+          {"observe": {"id": "B17.archive_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_archive"}, "expected": {"ref": "before_matrix"}}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "first.id"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_delete"}},
+          {"observe": {"id": "B17.delete_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_delete"}, "expected": {"ref": "before_matrix"}}},
+          {"invoke": {"command": "append-note", "args": [{"literal": "--id"}, {"ref": "first.id"}, {"literal": "--text"}, {"literal": "hello"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_note"}},
+          {"observe": {"id": "B17.append_note_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_note"}, "expected": {"ref": "before_matrix"}}},
+          {"invoke": {"command": "add-dependency", "args": [{"literal": "--id"}, {"ref": "first.id"}, {"literal": "--depends-on"}, {"ref": "second.id"}], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_dependency"}},
+          {"observe": {"id": "B17.add_dependency_actor_required_no_write", "relation": "equals", "actual": {"ref": "after_dependency"}, "expected": {"ref": "before_matrix"}}}
+        ]
+      }]
+    },
+    {
+      "id": "B17.migration_requires_actor",
+      "origin": {"requirement": "B17", "source": "benchmark/requirements/B17.md", "note": "migrate is a task mutation even when it would migrate zero tasks; read-only commands and create-user do not gain a task actor."},
+      "lineage": {"kind": "adds", "prior": []},
+      "variants": [{
+        "id": "b16_to_b17",
+        "when": {"requires": ["B16", "B17"], "forbids": []},
+        "steps": [
+          {"snapshot": {"path": "tasks.json", "bind": "before_missing"}},
+          {"invoke": {"command": "migrate", "args": [], "error": "actor_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_missing"}},
+          {"observe": {"id": "B17.migrate_missing_actor_no_write", "relation": "equals", "actual": {"ref": "after_missing"}, "expected": {"ref": "before_missing"}}},
+          {"invoke": {"command": "migrate", "args": [{"literal": "--actor"}, {"literal": "system"}], "bind": "zero_migration"}},
+          {"observe": {"id": "B17.zero_migration_with_actor", "relation": "equals", "actual": {"ref": "zero_migration"}, "expected": {"literal": {"migrated": 0}}}}
+        ]
+      }]
+    }
+  ]
+}

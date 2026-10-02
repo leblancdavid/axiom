@@ -40,8 +40,10 @@ current research boundary and `docs/agent-workflow.md` for scope-specific rules.
   evidence. Record real capability gaps separately from implementation failures
   and requests actually blocked by a gap; put corrections in independently
   versioned prospective records.
-- R5.2.2 is the authoritative corrected post-B16 boundary. R5.3 acceptance
-  reconstruction is unfrozen and does not authorize B17 exposure or a new freeze.
+- R5.2.2 is the authoritative corrected post-B16 boundary. Exhaustive R5.3
+  reconstruction has stopped as a B17 gate; preserve its unfinished evidence.
+  The prospective R5.4 semantic-requirement prototype does not authorize B17
+  exposure or a new freeze; see the bounded-bridge decision in `benchmark/results/phase5c/`.
 - Document new observations/limitations in `docs/research-log.md`, tradeoffs in
   `docs/decisions.md`, semantics in the versioned spec, and benchmark findings
   beside evidence in `benchmark/results/`. Update `docs/project-overview.md`

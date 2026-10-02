@@ -48,3 +48,15 @@ semantic-first and independently checked before exposure. See
 `benchmark/results/phase5c/R5_4-BOUNDED-BRIDGE-DECISION.md` for the exact
 authorization boundary and gates. This is a methodological decision, not a
 finding of equivalence or improved efficiency.
+
+## Phase 5C B17 partial-dependency measurement (prospective)
+
+Keep the existing request-level outcomes through B20 for comparability with
+B01–B16: B17 completion requires B16's persistent users/ownership, so a track
+missing B16 is request-level `BLOCKED_BY_GAP -> B16`. Preserve independently
+observable B17 clauses as separate diagnostic evidence, without partial
+achievement or semantic activation. Model exact clause prerequisites so the
+request-level dependency can be derived without flattening all B17 clauses to
+one opaque edge. Conventional continues with full B17 acceptance on its B16
+state. See `benchmark/results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION.md`;
+this is not a result from a B17 run or a rule for future benchmarks.

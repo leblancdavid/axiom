@@ -1,5 +1,73 @@
 # Lykoi research log
 
+## Phase 5C B17 partial-dependency adjudication (prospective, 2026-10-02)
+
+**Decision:** Phase 5C still measures complete requests. If the frozen track
+lacks B16, B17 as a whole is `BLOCKED_BY_GAP -> B16`; missing-actor rejection
+can be independently observed without becoming partial B17 achievement. Record
+such observations with separate diagnostic vocabulary and restored/disposable
+state; no B17 replacement or achieved history is activated. Conventional must
+meet the full B17 requirement on its B16 continuation. The
+[adjudication record](../benchmark/results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION.md)
+sets the rule, not a B17 outcome. Clause-ID inventory, clock adapter, bounded
+bridge and checkpoint revalidation remain open before B17 exposure.
+
+## Phase 5C typed-clock and B17 dependency review (prospective, 2026-10-02)
+
+**Prototype:** A named `utc_now` binding with typed UTC instants, offsets and
+strict-before comparison passes controlled-clock fixture checks for before,
+equal and after; checked semantic-root and dependency composition passes
+synthetic fail-closed fixtures. The subprocess probe correctly refuses to
+claim a clock-dependent application witness without an application clock
+adapter. Neither mechanism is a frozen clause-to-carrier bridge.
+
+**Frozen-text assessment (prior halt):** B17's missing-actor rejection and existing task
+read exemption can be observed without B16, while roles, existing actors and
+owner-based permissions require B16's persistent users/ownership. The
+request-level historical blocked-by-gap protocol did not explicitly settle
+how to observe independently testable dimensions of a partly dependent but
+blocked request. The analysis and original stop are in the
+[halt record](../benchmark/results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION-HALT.md);
+the separate adjudication above resolves that question without exposing B17.
+
+## Phase 5C bounded-bridge format gate (prospective, 2026-10-02)
+
+**Observation:** The Part 1 adequacy review stopped before schema freeze.
+The prototype's literal/reference expressions cannot specify a due timestamp
+relative to current UTC time, required by the frozen B12 clause and its active
+historical boundary carrier. Its unchecked lineage strings also do not express
+validated requirement-level dependencies or replacement targets; the B17
+draft's B16 guard leaves hypothetical early-history B17 without a scenario.
+Details and source locations are in
+[`R5_4-SEMANTIC-FORMAT-ADEQUACY-HALT.md`](../benchmark/results/phase5c/R5_4-SEMANTIC-FORMAT-ADEQUACY-HALT.md).
+These are format/composition gaps, not evidence of a language capability gap
+or of an incorrect R5.2.2 oracle. B17 remains unexposed and unfrozen.
+
+## Phase 5C semantic-requirement prototype (prospective, 2026-10-02)
+
+**Observation:** R5.3's saved 233/28 candidate sites are not a certified
+assertion-level semantic inventory; its latest worksheet still has 187/21
+unexplained candidates. The corrected B01 case shows why precondition fidelity
+matters: a HIGH-only witness misses the pending NORMAL task present when the
+original `list-high` assertion ran. The R5.2.2 corrected parent remains the
+authoritative historical acceptance boundary.
+
+**Prototype result:** A small JSON scenario vocabulary describes ordered
+commands, achieved-history guards, storage snapshots, data bindings and
+observations. Selected B01/B11/B14/B16 witnesses execute successfully on a
+pinned Conventional B16 snapshot (five scenarios); the early B01 variant
+executes on a pinned Lykoi {B01,B04} snapshot (one scenario). The prototype
+validator also rejects overlapping variants and unbound references. These are
+examples and diagnostic checks, not exhaustive requirement coverage, restored
+full-suite revalidation, or a new frozen oracle. B17 semantic records have
+been drafted but neither derived acceptance nor protocol freeze exists.
+
+**Research implication:** Semantic-first authoring may avoid reconstructing
+every Python helper path for new requests, provided targeted historical
+carrier retention is independently checked. Whether it actually reduces
+effort or errors compared with B11–B16 remains an untested hypothesis; collect
+comparable per-request effort and corrections at B17–B20.
+
 ## Phase 2 baseline and priority experiment (2026-10-01)
 
 Baseline: `experiments/task_manager-v0.1.json` is the original Phase 1 model.

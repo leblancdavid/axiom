@@ -100,14 +100,21 @@ Benchmark agents must follow the frozen track instructions and isolation
 rules; this repository-wide context is not permission to disclose the other
 track's solution or hidden acceptance details inside an isolated run.
 
-The authoritative corrected post-B16 acceptance boundary is R5.2.2. R5.3 is
-prospective assertion-level reconstruction, not a frozen equivalence proof;
-B17 remains unexposed. Follow the current boundary in
+The authoritative corrected post-B16 acceptance boundary is R5.2.2. Exhaustive
+R5.3 reconstruction has stopped as the gate for B17–B20; its unfinished evidence
+is preserved, not a frozen equivalence proof. The R5.4 bounded-bridge decision
+authorizes prototype work, not B17 exposure or an acceptance freeze. Follow
+the current boundary in
 `docs/project-overview.md` and the versioned records under
 `benchmark/results/phase5c/` before touching this area. Preserve frozen
 inputs and historical results. Record corrections as prospective, separately
 versioned evidence, with provenance and independent checks before any claimed
 freeze. Governance edits do not advance the benchmark.
+The prospective B17 dependency adjudication retains request-level
+classification through B20: when B16 is missing and B17 completion needs it,
+use `BLOCKED_BY_GAP -> B16`. Independently observed B17 clauses belong in
+separate disposable-state diagnostics, never in achieved history or acceptance
+composition; Conventional must satisfy the whole B17 request.
 
 ## After a benchmark and keeping this guide current
 
@@ -116,9 +123,9 @@ cause, propose the smallest abstractions that address multiple gaps, evolve a
 new version separately, rerun the original suite under a controlled protocol
 and evaluate on new unseen domains. B01–B20 can remain a stable diagnostic
 suite, but repeated success on the same task manager cannot establish
-generality. Structured semantic requirements from which executable acceptance
-can be derived are a *future proposal*, not today's oracle; avoid having to
-reverse-engineer requirements from Python test bodies again.
+generality. The prospective semantic-requirement prototype is not today's
+oracle; B17–B20 semantic-first records need independent verification and a
+separately authorized freeze before activation.
 
 Update `AGENTS.md` when entry-point rules change, this guide when work
 procedures change, and `docs/project-overview.md` when direction, milestones or

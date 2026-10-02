@@ -17,6 +17,12 @@ Read `baseline.md` for the external behavioral contract, `requirements/README.md
 for the ordered frozen requests, `harness/README.md` for the oracle protocol, and
 `results/BASELINE.md` for baseline provenance. For execution progress and the
 current acceptance boundary, see the [project overview](../docs/project-overview.md).
+The prospective [bounded-bridge decision](results/phase5c/R5_4-BOUNDED-BRIDGE-DECISION.md)
+stops exhaustive R5.3 reconstruction as the B17 prerequisite while preserving
+its evidence; R5.2.2 remains authoritative and B17 is unexposed.
+The [prospective B17 dependency adjudication](results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION.md)
+preserves request-level classification through B20 and keeps independent
+blocked-request clause observations separate from benchmark outcomes.
 The original execution protocol below is retained as historical context;
 later protocol amendments and checkpoints are documented under `results/`.
 

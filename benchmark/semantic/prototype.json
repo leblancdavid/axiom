@@ -1,0 +1,155 @@
+{
+  "version": "LYKOI-BENCHMARK-SEMANTIC-PROTOTYPE/2",
+  "status": "prototype",
+  "scenarios": [
+    {
+      "id": "B01.high_after_critical",
+      "origin": {"requirement": "B01", "source": "benchmark/requirements/B01.md", "note": "Original regression.py:168-176; B11 omission restored with exact NORMAL/HIGH/CRITICAL precondition in R5.2.2."},
+      "lineage": {"kind": "retains", "prior": ["B01.high_after_critical"]},
+      "variants": [
+        {
+          "id": "early_original",
+          "carrier": "regression.Regression.test_b01_priority_and_regression",
+          "when": {"requires": ["B01"], "forbids": ["B11"]},
+          "steps": [
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "Default"}, {"literal": "--description"}, {"literal": "x"}], "bind": "normal"}},
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "High"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--priority"}, {"literal": "HIGH"}], "bind": "high"}},
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "Critical"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--priority"}, {"literal": "CRITICAL"}], "bind": "critical"}},
+            {"observe": {"id": "B01.early_initial_normal", "relation": "equals", "actual": {"ref": "normal.priority"}, "expected": {"literal": "NORMAL"}}},
+            {"observe": {"id": "B01.early_initial_high", "relation": "equals", "actual": {"ref": "high.priority"}, "expected": {"literal": "HIGH"}}},
+            {"observe": {"id": "B01.early_initial_critical", "relation": "equals", "actual": {"ref": "critical.priority"}, "expected": {"literal": "CRITICAL"}}},
+            {"invoke": {"command": "list-high", "args": [], "bind": "initial_high"}},
+            {"observe": {"id": "B01.early_high_before", "relation": "equals", "actual": {"ref": "initial_high"}, "expected": {"list": [{"ref": "high"}]}}},
+            {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "critical.id"}], "bind": "completed"}},
+            {"observe": {"id": "B01.early_completed_status", "relation": "equals", "actual": {"ref": "completed.status"}, "expected": {"literal": "completed"}}},
+            {"invoke": {"command": "list", "args": [], "bind": "after_completion"}},
+            {"observe": {"id": "B01.early_three_tasks", "relation": "distinct", "values": [{"ref": "normal.id"}, {"ref": "high.id"}, {"ref": "critical.id"}]}},
+            {"observe": {"id": "B01.early_exact_intermediate_state", "relation": "equals", "actual": {"ref": "after_completion"}, "expected": {"sorted": {"items": {"list": [{"ref": "normal"}, {"ref": "high"}, {"ref": "completed"}]}, "by": ["created_at", "id"]}}}},
+            {"invoke": {"command": "list-high", "args": [], "bind": "remaining_high"}},
+            {"observe": {"id": "B01.early_high_after", "relation": "equals", "actual": {"ref": "remaining_high"}, "expected": {"list": [{"ref": "high"}]}}}
+          ]
+        },
+        {
+          "id": "full_corrected_carrier",
+          "carrier": "assertion_preservation_r5_2_2.cases.<locals>.Correction.test_b01_intermediate_high_exact_precondition",
+          "when": {"requires": ["B01", "B11", "B16"], "forbids": []},
+          "steps": [
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "Default"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "normal"}},
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "High"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--priority"}, {"literal": "HIGH"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "high"}},
+            {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "Critical"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--priority"}, {"literal": "CRITICAL"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "critical"}},
+            {"observe": {"id": "B01.full_initial_priorities", "relation": "equals", "actual": {"list": [{"ref": "normal.priority"}, {"ref": "high.priority"}, {"ref": "critical.priority"}]}, "expected": {"literal": ["NORMAL", "HIGH", "CRITICAL"]}}},
+            {"invoke": {"command": "list-high", "args": [], "bind": "initial_high"}},
+            {"observe": {"id": "B01.full_high_before", "relation": "equals", "actual": {"ref": "initial_high"}, "expected": {"list": [{"ref": "high"}]}}},
+            {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "critical.id"}], "bind": "completed"}},
+            {"observe": {"id": "B01.full_completed_status", "relation": "equals", "actual": {"ref": "completed.status"}, "expected": {"literal": "completed"}}},
+            {"invoke": {"command": "list", "args": [], "bind": "after_completion"}},
+            {"observe": {"id": "B01.full_exact_intermediate_state", "relation": "equals", "actual": {"ref": "after_completion"}, "expected": {"sorted": {"items": {"list": [{"ref": "normal"}, {"ref": "high"}, {"ref": "completed"}]}, "by": ["created_at", "id"]}}}},
+            {"invoke": {"command": "list-high", "args": [], "bind": "remaining_high"}},
+            {"observe": {"id": "B01.full_high_after", "relation": "equals", "actual": {"ref": "remaining_high"}, "expected": {"list": [{"ref": "high"}]}}}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B11.completed_deletion_rule",
+      "origin": {"requirement": "B11", "source": "benchmark/requirements/B11.md", "note": "B11.py:51-67; completed unarchived deletion is replaced, pending and archived deletion remain applicable."},
+      "lineage": {"kind": "replaces", "prior": ["baseline.completed_delete_success"]},
+      "variants": [{
+        "id": "full",
+        "carrier": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner",
+        "when": {"requires": ["B11", "B16"], "forbids": []},
+        "steps": [
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "done"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "task"}},
+          {"invoke": {"command": "complete", "args": [{"literal": "--id"}, {"ref": "task.id"}], "bind": "completed"}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_reject"}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "task.id"}], "error": "delete_requires_archive"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_reject"}},
+          {"observe": {"id": "B11.rejected_delete_no_write", "relation": "equals", "actual": {"ref": "after_reject"}, "expected": {"ref": "before_reject"}}},
+          {"invoke": {"command": "archive", "args": [{"literal": "--id"}, {"ref": "task.id"}], "bind": "archived"}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "task.id"}], "bind": "deleted"}},
+          {"observe": {"id": "B11.archived_delete_returns_task", "relation": "equals", "actual": {"ref": "deleted"}, "expected": {"ref": "archived"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "pending"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "pending"}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "pending.id"}], "bind": "pending_deleted"}},
+          {"observe": {"id": "B11.pending_delete_returns_task", "relation": "equals", "actual": {"ref": "pending_deleted"}, "expected": {"ref": "pending"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "pending archived"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "pending_to_archive"}},
+          {"invoke": {"command": "archive", "args": [{"literal": "--id"}, {"ref": "pending_to_archive.id"}], "bind": "archived_pending"}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "pending_to_archive.id"}], "bind": "archived_pending_deleted"}},
+          {"observe": {"id": "B11.archived_pending_delete_returns_task", "relation": "equals", "actual": {"ref": "archived_pending_deleted"}, "expected": {"ref": "archived_pending"}}}
+        ]
+      }]
+    },
+    {
+      "id": "B14.dependency_integrity",
+      "origin": {"requirement": "B14", "source": "benchmark/requirements/B14.md", "note": "B14.py:24-51; ordered edges, duplicate/cycle and referenced-delete rejection."},
+      "lineage": {"kind": "adds", "prior": []},
+      "variants": [{
+        "id": "full",
+        "carrier": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner",
+        "when": {"requires": ["B14", "B16"], "forbids": []},
+        "steps": [
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "a"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "a"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "b"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "b"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "c"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "system"}], "bind": "c"}},
+          {"invoke": {"command": "add-dependency", "args": [{"literal": "--id"}, {"ref": "a.id"}, {"literal": "--depends-on"}, {"ref": "b.id"}], "bind": "a_with_b"}},
+          {"invoke": {"command": "add-dependency", "args": [{"literal": "--id"}, {"ref": "a.id"}, {"literal": "--depends-on"}, {"ref": "c.id"}], "bind": "a_with_b_c"}},
+          {"observe": {"id": "B14.ordered_dependencies", "relation": "equals", "actual": {"ref": "a_with_b_c.dependencies"}, "expected": {"list": [{"ref": "b.id"}, {"ref": "c.id"}]}}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_rejections"}},
+          {"invoke": {"command": "add-dependency", "args": [{"literal": "--id"}, {"ref": "a.id"}, {"literal": "--depends-on"}, {"ref": "b.id"}], "error": "invalid_dependency"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_duplicate"}},
+          {"observe": {"id": "B14.duplicate_no_write", "relation": "equals", "actual": {"ref": "after_duplicate"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "add-dependency", "args": [{"literal": "--id"}, {"ref": "b.id"}, {"literal": "--depends-on"}, {"ref": "a.id"}], "error": "invalid_dependency"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_cycle"}},
+          {"observe": {"id": "B14.cycle_no_write", "relation": "equals", "actual": {"ref": "after_cycle"}, "expected": {"ref": "before_rejections"}}},
+          {"invoke": {"command": "delete", "args": [{"literal": "--id"}, {"ref": "b.id"}], "error": "dependency_in_use"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_rejections"}},
+          {"observe": {"id": "B14.failed_edges_no_write", "relation": "equals", "actual": {"ref": "after_rejections"}, "expected": {"ref": "before_rejections"}}}
+        ]
+      }]
+    },
+    {
+      "id": "B16.required_owner_and_users",
+      "origin": {"requirement": "B16", "source": "benchmark/requirements/B16.md", "note": "B16.py:24-55; user results, exact IDs, required owner and rejected creation."},
+      "lineage": {"kind": "replaces", "prior": ["B10.optional_owner_default"]},
+      "variants": [{
+        "id": "full",
+        "carrier": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter",
+        "when": {"requires": ["B16"], "forbids": ["B17"]},
+        "steps": [
+          {"invoke": {"command": "list-users", "args": [], "bind": "initial_users"}},
+          {"observe": {"id": "B16.system_user", "relation": "equals", "actual": {"ref": "initial_users"}, "expected": {"literal": [{"id": "system"}]}}},
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "Alex"}], "bind": "alex"}},
+          {"invoke": {"command": "create-user", "args": [{"literal": "--id"}, {"literal": "alex"}], "bind": "lower_alex"}},
+          {"observe": {"id": "B16.case_sensitive_user_ids", "relation": "equals", "actual": {"list": [{"ref": "alex"}, {"ref": "lower_alex"}]}, "expected": {"literal": [{"id": "Alex"}, {"id": "alex"}]}}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_invalid_owner"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "unowned"}, {"literal": "--description"}, {"literal": "x"}], "error": "invalid_owner"}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "unknown"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "other"}], "error": "invalid_owner"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_invalid_owner"}},
+          {"observe": {"id": "B16.invalid_owner_no_write", "relation": "equals", "actual": {"ref": "after_invalid_owner"}, "expected": {"ref": "before_invalid_owner"}}},
+          {"invoke": {"command": "create", "args": [{"literal": "--title"}, {"literal": "owned"}, {"literal": "--description"}, {"literal": "x"}, {"literal": "--owner"}, {"literal": "Alex"}], "bind": "owned"}},
+          {"observe": {"id": "B16.owned_task", "relation": "equals", "actual": {"ref": "owned.owner"}, "expected": {"literal": "Alex"}}}
+        ]
+      }]
+    },
+    {
+      "id": "B16.unowned_migration",
+      "origin": {"requirement": "B16", "source": "benchmark/requirements/B16.md", "note": "B16.py:58-74; explicit schema-3 migration assigns the built-in system user."},
+      "lineage": {"kind": "replaces", "prior": ["B10.unowned_migration_default"]},
+      "variants": [{
+        "id": "full",
+        "carrier": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system",
+        "when": {"requires": ["B16"], "forbids": ["B17"]},
+        "steps": [
+          {"seed": {"path": "tasks.json", "value": {"schema_version": 3, "records": [{"id": "old", "title": "old", "description": "x", "status": "pending", "priority": "NORMAL", "created_at": "2026-01-01T00:00:00Z", "due_date": null}]}}},
+          {"snapshot": {"path": "tasks.json", "bind": "before_migration"}},
+          {"invoke": {"command": "list", "args": [], "error": "migration_required"}},
+          {"snapshot": {"path": "tasks.json", "bind": "after_failed_read"}},
+          {"observe": {"id": "B16.read_requires_migration_no_write", "relation": "equals", "actual": {"ref": "after_failed_read"}, "expected": {"ref": "before_migration"}}},
+          {"invoke": {"command": "migrate", "args": [], "bind": "migration"}},
+          {"observe": {"id": "B16.migration_count", "relation": "equals", "actual": {"ref": "migration.migrated"}, "expected": {"literal": 1}}},
+          {"invoke": {"command": "list", "args": [], "bind": "migrated_tasks"}},
+          {"observe": {"id": "B16.migrated_owner", "relation": "equals", "actual": {"ref": "migrated_tasks.0.owner"}, "expected": {"literal": "system"}}}
+        ]
+      }]
+    }
+  ]
+}

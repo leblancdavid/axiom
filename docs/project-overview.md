@@ -87,11 +87,24 @@ authorizes a prospective semantic-requirement prototype and targeted
 historical-carrier preservation against R5.2.2. It is not a new oracle freeze.
 B17 has not been exposed; B17–B20 are not completed.
 
-The immediate research task is to prove the small requirement format on
-difficult B01/B11/B14/B16 scenarios, build the bounded historical bridge,
-then independently verify both B16 checkpoints and freeze B17's semantic-first
-acceptance before exposing it. Longer term, complete
-the ordered benchmark with honest accounting for capability gaps, dependency
+Selected B01/B11/B14/B16 scenarios now have
+[prototype witnesses](../benchmark/results/phase5c/R5_4-SEMANTIC-PROTOTYPE-PROGRESS.md)
+on pinned post-B16 snapshots; this does not cover all frozen clauses. The
+[format adequacy review](../benchmark/results/phase5c/R5_4-SEMANTIC-FORMAT-ADEQUACY-HALT.md)
+stopped before schema freeze. Experimental typed UTC-clock and checked
+requirement-relationship fixtures now address those vocabulary gaps, but the
+[B17 frozen-text dependency review](../benchmark/results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION-HALT.md)
+finds independently observable missing-actor behavior alongside B16-dependent
+role/owner authorization. The
+[prospective adjudication](../benchmark/results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION.md)
+keeps Phase 5C request-level: a track missing B16 is blocked on B17 as a whole,
+while independently observable clauses may have **separate diagnostic evidence**
+without partial achievement. Next: checked clause dependencies and separate
+diagnostics, controlled application-clock binding, B01–B16 format adequacy,
+the bounded bridge and independently verified B16 checkpoints before any
+B17-ready freeze or exposure.
+Longer term, complete the ordered benchmark with
+honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
 equivalence against frozen requirements, not similarity to Conventional's
 source. Its external acceptance tests independently verify behavior; they
@@ -106,6 +119,7 @@ generalization on *new, unseen domains*: indefinitely extending the one task
 manager cannot demonstrate it. The prospective B17–B20 protocol will explore
 first-class structured semantic requirements with acceptance derived from
 them, rather than inferring semantics from Python tests. This is a research
-direction, not an established benchmark or language capability. Passing validation or a safety
-report alone is never a behavioral proof. See the [agent workflow](agent-workflow.md)
+direction, not an established benchmark or language capability. Passing
+validation or a safety report alone is never a behavioral proof. See the
+[agent workflow](agent-workflow.md)
 for the practical change and evidence rules.
