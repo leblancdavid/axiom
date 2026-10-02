@@ -7,6 +7,7 @@ later method merely because their containing methods have related names.
 
 import ast
 import argparse
+from contextlib import contextmanager
 import hashlib
 import inspect
 import json
@@ -27,6 +28,23 @@ PINNED_INVENTORIES = {
     ("B01", "B04"):
         "07a5e464e994369fbc000b52bbe4cd037c292a4ff736b3b943db793e17472d0c",
 }
+BASE_CHECK_TASK = r5.original.check_task
+
+
+@contextmanager
+def isolated_construction():
+    """Give analysis builds the original helper, then restore the caller's state.
+
+    This is only for prospective inventory collection; frozen runners retain
+    their existing process-local suite construction and pinned bytes.
+    """
+    original = r5.original
+    previous = (original.APP, original.ACHIEVED, original.PROFILE, original.check_task)
+    original.check_task = BASE_CHECK_TASK
+    try:
+        yield
+    finally:
+        original.APP, original.ACHIEVED, original.PROFILE, original.check_task = previous
 
 
 def instances(suite):
@@ -106,18 +124,19 @@ def method_inventory(test, replacements):
 
 def collect(achieved):
     """Build the real runner suite without marking skips or invoking the app."""
-    replacements = r5.load_module("regression_B16_R5", r5.CASE)
-    profile = profiles.compose(achieved)
-    suite, active, dispositions = r5.build_suite(
-        w.ROOT / "benchmark/conventional/task_manager.py", profile, achieved,
-        replacements, mark_skips=False)
-    methods = {}
-    for test in instances(suite):
-        name = test.id()
-        w.require(name not in methods, f"duplicate method: {name}")
-        methods[name] = method_inventory(test, replacements)
-    w.require(set(methods) == set(dispositions), "loaded/disposition method mismatch")
-    return dict(sorted(methods.items())), active, dispositions
+    with isolated_construction():
+        replacements = r5.load_module("regression_B16_R5", r5.CASE)
+        profile = profiles.compose(achieved)
+        suite, active, dispositions = r5.build_suite(
+            w.ROOT / "benchmark/conventional/task_manager.py", profile, achieved,
+            replacements, mark_skips=False)
+        methods = {}
+        for test in instances(suite):
+            name = test.id()
+            w.require(name not in methods, f"duplicate method: {name}")
+            methods[name] = method_inventory(test, replacements)
+        w.require(set(methods) == set(dispositions), "loaded/disposition method mismatch")
+        return dict(sorted(methods.items())), active, dispositions
 
 
 def validate_sources(methods):

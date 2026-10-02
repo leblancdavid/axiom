@@ -155,20 +155,56 @@ class AcceptanceTransition(unittest.TestCase):
             inventory.reconstruct(altered, ["B01", "B04"])
 
     def test_helper_expansion_is_invocation_and_profile_dependent(self):
-        # The real runner installs a closure over the current profile, and
-        # repeated suite construction nests closures rather than replacing one.
-        baseline = original.check_task
-        try:
-            inventory.collect(["B01", "B04"])
-            first = original.check_task
-            self.assertIs(first.__closure__[0].cell_contents, baseline)
-            inventory.collect([f"B{i:02}" for i in range(1, 17)])
-            second = original.check_task
-            self.assertIs(second.__closure__[0].cell_contents, first)
-            self.assertEqual(len(schema.compose(["B01", "B04"])["field_types"]), 1)
-            self.assertEqual(len(schema.compose([f"B{i:02}" for i in range(1, 17)])["field_types"]), 7)
-        finally:
-            original.check_task = baseline
+        small = ["B01", "B04"]
+        large = [f"B{i:02}" for i in range(1, 17)]
+        baseline = inventory.BASE_CHECK_TASK
+        prior = (original.APP, original.ACHIEVED, original.PROFILE, original.check_task)
+        first = inventory.collect(small)
+        inventory.collect(large)
+        self.assertEqual(first, inventory.collect(small))
+        self.assertEqual(prior, (original.APP, original.ACHIEVED, original.PROFILE,
+                                 original.check_task))
+
+        class Probe(unittest.TestCase):
+            checks = 0
+
+            def assertIs(self, *args, **kwargs):
+                self.checks += 1
+                super().assertIs(*args, **kwargs)
+
+        for achieved in (small, large, small):
+            with self.subTest(achieved=achieved), inventory.isolated_construction():
+                profile = schema.compose(achieved)
+                replacements = r5.load_module("regression_B16_R5", r5.CASE)
+                r5.build_suite(w.ROOT / "benchmark/conventional/task_manager.py",
+                               profile, achieved, replacements, mark_skips=False)
+                helper = original.check_task
+                self.assertIsNot(helper, baseline)
+                self.assertIs(helper.__closure__[0].cell_contents, baseline)
+                self.assertEqual(inspect.getfile(helper.__closure__[0].cell_contents),
+                                 inspect.getfile(baseline))
+                self.assertEqual(helper.__code__.co_filename, inspect.getfile(r5.build_suite))
+                task = {field: ("x" if kind == "str" else [] if kind == "list" else False)
+                        for field, kind in profile["field_types"].items()}
+                task.update({"id": "id", "created_at": "2026-01-01T00:00:00Z"})
+                task = {field: task.get(field) for field in profile["fields"]}
+                probe = Probe()
+                helper(probe, task)
+                self.assertEqual(probe.checks, len(profile["field_types"]))
+        self.assertEqual(prior, (original.APP, original.ACHIEVED, original.PROFILE,
+                                 original.check_task))
+
+    def test_inventory_isolation_restores_globals_on_failure(self):
+        prior = (original.APP, original.ACHIEVED, original.PROFILE, original.check_task)
+        with self.assertRaisesRegex(RuntimeError, "probe"):
+            with inventory.isolated_construction():
+                original.APP = Path("temporary")
+                original.ACHIEVED = {"B01"}
+                original.PROFILE = {"temporary": True}
+                original.check_task = lambda test, task: None
+                raise RuntimeError("probe")
+        self.assertEqual(prior, (original.APP, original.ACHIEVED, original.PROFILE,
+                                 original.check_task))
 
     def test_b11_replacement_does_not_preserve_all_unrelated_baseline_assertions(self):
         def body(function):

@@ -1,0 +1,115 @@
+{
+  "achieved": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16"
+  ],
+  "checkpoint_sha256": "c2602584521bcacaaf68ac1394531f835fe9578765a1eb5b31aa943c5f728c8a",
+  "expectation_sha256": "272f3cbef481b47b6ac91d85b7dc708e64b8e5263a9bdcc63840687f825922c8",
+  "external": {
+    "case_methods": 63,
+    "failure_events": 0,
+    "passed": 35,
+    "skipped": 28
+  },
+  "external_failures": [],
+  "file_count": 2,
+  "internal_output": ".......................................\n----------------------------------------------------------------------\nRan 39 tests in 22.765s\n\nOK\n",
+  "internal_passed": true,
+  "parent_inventory_sha256": "6706171247d40a725142ded41cf357fd1d7e5bf30f34875153cc2746c661652a",
+  "repair_inventory_sha256": "64a522850a1c8a3c698aac1d7be53bb813144e1e3375daeddb5513ab3d12b2e8",
+  "restored": {
+    "B01.high_after_critical": {
+      "audit": "benchmark/results/phase5c/B11-R4-HISTORICAL-ASSERTION-PRESERVATION-AUDIT.md",
+      "chain": [
+        "regression.Regression.test_b01_priority_and_regression",
+        "B11:omitted",
+        "assertion_preservation_r5_2_1.test_b01_intermediate_high_restored"
+      ],
+      "field_types": null,
+      "lost_at": "B11 supersession",
+      "original_carrier": "regression.Regression.test_b01_priority_and_regression",
+      "original_source": "regression.py:168-176",
+      "requirement": "pending HIGH remains in list-high after CRITICAL completes",
+      "restored_at": "PHASE5C-R5.2.1-ASSERTION-PRESERVATION/1"
+    },
+    "baseline.check_task": {
+      "audit": "benchmark/results/phase5c/B11-R4-HISTORICAL-ASSERTION-PRESERVATION-AUDIT.md",
+      "chain": [
+        "regression.Regression.test_baseline_lifecycle_filters_failures",
+        "B11:omitted",
+        "assertion_preservation_r5_2_1.test_baseline_create_assertions_restored"
+      ],
+      "field_types": {
+        "archived": "bool",
+        "category": "str",
+        "dependencies": "list",
+        "notes": "list",
+        "owner": "str",
+        "source": "str",
+        "tags": "list"
+      },
+      "lost_at": "B11 supersession",
+      "original_carrier": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "original_source": "regression.py:100-101; regression.py:60-69",
+      "requirement": "each created task passes applicable check_task",
+      "restored_at": "PHASE5C-R5.2.1-ASSERTION-PRESERVATION/1"
+    },
+    "baseline.due_date": {
+      "audit": "benchmark/results/phase5c/B11-R4-HISTORICAL-ASSERTION-PRESERVATION-AUDIT.md",
+      "chain": [
+        "regression.Regression.test_baseline_lifecycle_filters_failures",
+        "B11:omitted",
+        "assertion_preservation_r5_2_1.test_baseline_create_assertions_restored"
+      ],
+      "field_types": null,
+      "lost_at": "B11 supersession",
+      "original_carrier": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "original_source": "regression.py:104",
+      "requirement": "normal create defaults due_date to null",
+      "restored_at": "PHASE5C-R5.2.1-ASSERTION-PRESERVATION/1"
+    },
+    "baseline.ids": {
+      "audit": "benchmark/results/phase5c/B11-R4-HISTORICAL-ASSERTION-PRESERVATION-AUDIT.md",
+      "chain": [
+        "regression.Regression.test_baseline_lifecycle_filters_failures",
+        "B11:omitted",
+        "assertion_preservation_r5_2_1.test_baseline_create_assertions_restored"
+      ],
+      "field_types": null,
+      "lost_at": "B11 supersession",
+      "original_carrier": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "original_source": "regression.py:99",
+      "requirement": "three-created-task IDs distinct",
+      "restored_at": "PHASE5C-R5.2.1-ASSERTION-PRESERVATION/1"
+    },
+    "baseline.pending": {
+      "audit": "benchmark/results/phase5c/B11-R4-HISTORICAL-ASSERTION-PRESERVATION-AUDIT.md",
+      "chain": [
+        "regression.Regression.test_baseline_lifecycle_filters_failures",
+        "B11:omitted",
+        "assertion_preservation_r5_2_1.test_baseline_create_assertions_restored"
+      ],
+      "field_types": null,
+      "lost_at": "B11 supersession",
+      "original_carrier": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "original_source": "regression.py:100-102",
+      "requirement": "each created task initially pending",
+      "restored_at": "PHASE5C-R5.2.1-ASSERTION-PRESERVATION/1"
+    }
+  },
+  "snapshot_sha256": "383f9fa7e6d2eb8cbd794370254f90993743c8b9e6a1bf2a863e1e3e3915da3e"
+}
