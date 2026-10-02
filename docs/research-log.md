@@ -1,5 +1,21 @@
 # Lykoi research log
 
+## R5.10 migration count expressiveness (prospective, 2026-10-02)
+
+**Observation:** Frozen v2 B01 migration counts all three converted records,
+not records lacking priority. The existing relations select and preserve an
+arbitrary legacy population but cannot equate its extent to the reported
+integer. A general typed cardinality relation (#30) plus exact selection and
+a synthetic transition accepts supplied populations of size 0, 1, 4, 17 and
+rejects wrong counts. A filtered three-row witness counts only its two
+candidates. See the [R5.10 record](../benchmark/results/phase5c/R5_10-MIGRATION-COUNT-EXPRESSIVENESS.md).
+
+**Limit:** These are synthetic semantic witnesses, not integrated versioned
+B01 contracts or execution. Prospective count is 46 raw / 30 candidate core;
+historical inventory stays at 45. The pinned B01 executable still lacks the
+R5.7 internal per-operation event. B01 inadequate and halted, Phase 5C paused,
+B17 unexposed/unclassified, R5.2.2 authoritative and format unfrozen.
+
 ## R5.9 B01 complete-contract restart (prospective, 2026-10-02)
 
 **Observation:** Frozen B01 plus inherited baseline require a numeric migration

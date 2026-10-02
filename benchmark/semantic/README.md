@@ -1,5 +1,18 @@
 # Semantic requirement prototype — prospective, unfrozen
 
+The [R5.10 migration-count review](../results/phase5c/R5_10-MIGRATION-COUNT-EXPRESSIVENESS.md)
+adds prospective core #30: `cardinality(C,n)` holds exactly when `C` is a
+well-typed finite sequence and `n` is its nonnegative mathematical size.
+`cardinality.py` checks a typed element domain (string, Boolean or record with
+optional fields), an outcome record's projected integer field and equality.
+Repeated elements count by occurrence. Boolean, floating and string counts
+are rejected; negative integers are typed but non-conformant. This supplies no
+arithmetic, ordering or aggregation. A separate R5.10 synthetic tuple composes
+this relation with exact selection and #44 priority defaulting. It is not an
+integrated #45 integer-outcome checker, versioned B01 lowering or B01 grounding.
+The historical 45-entry ledger remains historical; the prospective count is
+30 core (46 raw categorized entries), not a format freeze.
+
 The [R5.5 architecture result](../results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
 separates the #45 abstract relation (`contracts.py`), checked but ungrounded
 interface slot map (`binding.py`), concrete record shape (`observation.py`) and

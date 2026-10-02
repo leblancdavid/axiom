@@ -1,5 +1,16 @@
 # Experimental decisions
 
+## R5.10 cardinality relation (prospective, 2026-10-02)
+
+The frozen v2 B01 three-row migration reports 3 although all priorities are
+already present. Count legacy records converted by an explicit invocation,
+not missing fields. Exact selection and keyed preservation cannot connect a
+finite population to an integer field; add the general typed relation
+`cardinality(collection, integer)` as prospective core #30, rather than a
+migration-specific primitive, aggregate framework or derived index arithmetic.
+Keep integer outcome typing distinct from grounding and versioned lowering.
+See `benchmark/results/phase5c/R5_10-MIGRATION-COUNT-EXPRESSIVENESS.md`.
+
 ## R5.9 B01 complete-contract gate (prospective, 2026-10-02)
 
 Use the entire frozen B01 and inherited baseline, then attempt composed exact

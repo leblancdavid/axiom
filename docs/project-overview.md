@@ -193,6 +193,15 @@ conformance. This is a **multiple-gap halt** under the 29-candidate ceiling,
 not a new construct, universal adequacy or correctness finding. R5.2.2 stays
 authoritative, Phase 5C paused, B17 unexposed/unclassified and the format
 unfrozen.
+The [R5.10 focused migration-count review](../benchmark/results/phase5c/R5_10-MIGRATION-COUNT-EXPRESSIVENESS.md)
+adds one general prospective finite-collection cardinality relation (#30):
+exact legacy candidate selection can now relate its population to a typed
+numeric outcome for arbitrary supplied finite populations. The synthetic
+prototype does not integrate a B01 #45 checker or ground B01 execution.
+Prospective accounting is 46 raw categorized constructs / 30 candidate core;
+the historical 45-entry inventory is retained. B01 remains inadequate and
+halted, its R5.7 grounding failed/unestablished, R5.2.2 authoritative, Phase
+5C paused, B17 unexposed/unclassified and the semantic-first format unfrozen.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
