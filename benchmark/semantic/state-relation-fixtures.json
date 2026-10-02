@@ -1,0 +1,34 @@
+{
+  "status": "prototype",
+  "rules": [
+    {
+      "id": "B01.normal_order", "origin": "B01",
+      "scope": "all valid task collections; id is unique and created_at is a UTC instant",
+      "rule": {
+        "schema": {"id": "string", "created_at": "instant", "priority": "string"},
+        "relation": {"kind": "lexicographic_order", "keys": ["created_at", "id"]},
+        "cases": [
+          {"id": "ordered_tie_on_time", "before": [{"id": "b", "created_at": "2026-01-01T00:00:00Z", "priority": "HIGH"}, {"id": "c", "created_at": "2025-01-01T00:00:00Z", "priority": "LOW"}, {"id": "a", "created_at": "2026-01-01T00:00:00Z", "priority": "CRITICAL"}], "after": [{"id": "c", "created_at": "2025-01-01T00:00:00Z", "priority": "LOW"}, {"id": "a", "created_at": "2026-01-01T00:00:00Z", "priority": "CRITICAL"}, {"id": "b", "created_at": "2026-01-01T00:00:00Z", "priority": "HIGH"}], "holds": true},
+          {"id": "priority_sort_wrong", "before": [{"id": "a", "created_at": "2025-01-01T00:00:00Z", "priority": "CRITICAL"}, {"id": "b", "created_at": "2026-01-01T00:00:00Z", "priority": "LOW"}], "after": [{"id": "b", "created_at": "2026-01-01T00:00:00Z", "priority": "LOW"}, {"id": "a", "created_at": "2025-01-01T00:00:00Z", "priority": "CRITICAL"}], "holds": false},
+          {"id": "missing_row", "before": [{"id": "a", "created_at": "2025-01-01T00:00:00Z", "priority": "HIGH"}], "after": [], "holds": false}
+        ]
+      }
+    },
+    {
+      "id": "B01.priority_migration", "origin": "B01",
+      "scope": "each valid legacy record, matched by unique id across old and new collections",
+      "rule": {
+        "schema": {"id": "string", "priority": "string", "title": "string"},
+        "relation": {"kind": "default_missing", "identity": "id", "field": "priority", "value": "NORMAL"},
+        "cases": [
+          {"id": "preserved_and_defaulted", "before": [{"id": "alpha", "title": "one", "priority": "LOW"}, {"id": "beta", "title": "two"}, {"id": "gamma", "title": "three", "priority": "HIGH"}], "after": [{"id": "beta", "title": "two", "priority": "NORMAL"}, {"id": "gamma", "title": "three", "priority": "HIGH"}, {"id": "alpha", "title": "one", "priority": "LOW"}], "holds": true},
+          {"id": "changed_existing", "before": [{"id": "a", "title": "one", "priority": "HIGH"}, {"id": "b", "title": "two"}], "after": [{"id": "a", "title": "one", "priority": "NORMAL"}, {"id": "b", "title": "two", "priority": "NORMAL"}], "holds": false},
+          {"id": "wrong_default", "before": [{"id": "a", "title": "one"}], "after": [{"id": "a", "title": "one", "priority": "LOW"}], "holds": false},
+          {"id": "omitted_update", "before": [{"id": "a", "title": "one"}], "after": [{"id": "a", "title": "one"}], "holds": false},
+          {"id": "unintended_update", "before": [{"id": "a", "title": "one", "priority": "NORMAL"}], "after": [{"id": "a", "title": "different", "priority": "NORMAL"}], "holds": false},
+          {"id": "extra_record", "before": [{"id": "a", "title": "one"}], "after": [{"id": "a", "title": "one", "priority": "NORMAL"}, {"id": "b", "title": "two", "priority": "NORMAL"}], "holds": false}
+        ]
+      }
+    }
+  ]
+}

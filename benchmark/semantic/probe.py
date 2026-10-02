@@ -27,6 +27,7 @@ SNAPSHOTS = {
               "generated/task_manager.py", ["B01", "B04"]),
 }
 RESULTS = Path(__file__).resolve().parents[1] / "results" / "phase5c"
+CLOCK_ADAPTER = Path(__file__).with_name("clock_adapter.py")
 
 
 def resolve(value, bindings):
@@ -51,15 +52,22 @@ def resolve(value, bindings):
     return result
 
 
-def run_variant(app, scenario, clock=None):
-    # This disposable subprocess probe cannot override the application's clock.
-    # A semantic clock and a CLI query must never be mistaken for one clock.
-    semantic.require(not (any("clock" in step for step in scenario["steps"]) and
-                          any("invoke" in step for step in scenario["steps"])),
-                     "application clock adapter required for clock-dependent invocation")
+def run_variant(app, scenario, clock=None, application_clock=None):
+    """Bind one UTC instant to semantic evaluation and every subprocess call.
+
+    application_clock is an optional independently supplied adapter binding;
+    disagreement with the semantic binding is an error, never a second clock.
+    """
+    clock_steps = sum("clock" in step for step in scenario["steps"])
+    semantic.require(clock_steps <= 1, "multiple clock bindings in one scenario")
+    semantic.require(not clock_steps or clock is not None,
+                     "controlled clock required for clock-dependent scenario")
+    semantic.require(application_clock is None or clock_steps == 1,
+                     "application clock without semantic clock")
     with tempfile.TemporaryDirectory() as folder:
         cwd = Path(folder)
         bindings = {}
+        bound_instant = None
         for index, step in enumerate(scenario["steps"]):
             kind, body = next(iter(step.items()))
             context = f"{scenario['semantic_id']}/{scenario['variant']} step {index + 1}"
@@ -72,17 +80,31 @@ def run_variant(app, scenario, clock=None):
                                  instant.tzinfo is not None and
                                  instant.utcoffset() == timedelta(0),
                                  f"{context}: clock must return UTC instant")
-                bindings[body["bind"]] = instant.astimezone(timezone.utc)
+                bound_instant = instant.astimezone(timezone.utc)
+                if application_clock is not None:
+                    semantic.require(isinstance(application_clock, datetime) and
+                                     application_clock.tzinfo is not None and
+                                     application_clock.utcoffset() == timedelta(0) and
+                                     application_clock == bound_instant,
+                                     f"{context}: mismatched application clock binding")
+                bindings[body["bind"]] = bound_instant
             elif kind == "snapshot":
                 path = cwd / body["path"]
                 bindings[body["bind"]] = path.read_bytes() if path.exists() else None
             elif kind == "invoke":
+                semantic.require(not clock_steps or bound_instant is not None,
+                                 f"{context}: controlled clock must precede invocation")
                 args = [resolve(arg, bindings) for arg in body["args"]]
                 args = [arg.isoformat().replace("+00:00", "Z")
                         if isinstance(arg, datetime) else arg for arg in args]
                 semantic.require(all(isinstance(arg, str) for arg in args),
                                  f"{context}: non-string CLI argument")
-                result = subprocess.run([sys.executable, str(app), body["command"], *args],
+                command = [sys.executable]
+                if bound_instant is not None:
+                    command.extend((str(CLOCK_ADAPTER),
+                                    bound_instant.isoformat().replace("+00:00", "Z")))
+                command.extend((str(app), body["command"], *args))
+                result = subprocess.run(command,
                                         cwd=cwd, capture_output=True, text=True,
                                         env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
                 if "error" in body:

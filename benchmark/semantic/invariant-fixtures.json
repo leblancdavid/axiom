@@ -1,0 +1,86 @@
+{
+  "status": "prototype",
+  "invariants": [
+    {
+      "id": "B02.ordered_normalization",
+      "scope": {"kind": "transition", "domain": "finite_sequence"},
+      "bindings": {"input": "sequence[string]", "output": "sequence[string]"},
+      "precondition": {"for_each": {"sequence": {"var": "input"}, "bind": "element", "property": {"nonblank": {"trim": {"var": "element"}}}}},
+      "transition": {"before": "input", "after": "output"},
+      "property": {"equals": [
+        {"var": "output"},
+        {"stable_unique": {"sequence": {"map": {"sequence": {"var": "input"}, "transform": "trim"}}, "equality": "case_sensitive_string"}}
+      ]},
+      "origin": {"requirement": "B02", "source": "benchmark/requirements/B02.md", "note": "lines 3–6: valid arbitrary tag sequences"},
+      "when": {"requires": ["B02"], "forbids": []},
+      "depends_on": [], "replaces": [],
+      "witnesses": [
+        {"scenario": "B02.collection", "case": "B02.empty"},
+        {"scenario": "B02.collection", "case": "B02.single"},
+        {"scenario": "B02.collection", "case": "B02.unique"},
+        {"scenario": "B02.collection", "case": "B02.repeated"},
+        {"scenario": "B02.collection", "case": "B02.case_and_order"}
+      ]
+    },
+    {
+      "id": "B14.accepted_edge_acyclic",
+      "scope": {"kind": "transition", "domain": "finite_directed_graph"},
+      "bindings": {"before": "graph[string]", "after": "graph[string]", "source": "string", "target": "string", "accepted": "boolean"},
+      "precondition": {"and": [{"acyclic": {"var": "before"}}, {"var": "accepted"}]},
+      "transition": {"before": "before", "after": "after"},
+      "property": {"and": [
+        {"acyclic": {"var": "after"}},
+        {"equals": [{"var": "after"}, {"add_edge": {"graph": {"var": "before"}, "from": {"var": "source"}, "to": {"var": "target"}}}]}
+      ]},
+      "origin": {"requirement": "B14", "source": "benchmark/requirements/B14.md", "note": "lines 4–7: accepted edge additions preserve acyclicity"},
+      "when": {"requires": ["B14"], "forbids": []},
+      "depends_on": [], "replaces": [],
+      "witnesses": [
+        {"scenario": "B14.graph", "case": "B14.empty"},
+        {"scenario": "B14.graph", "case": "B14.simple"},
+        {"scenario": "B14.graph", "case": "B14.chain"},
+        {"scenario": "B14.graph", "case": "B14.branch"}
+      ]
+    },
+    {
+      "id": "B14.cycle_rejection",
+      "scope": {"kind": "transition", "domain": "finite_directed_graph"},
+      "bindings": {"before": "graph[string]", "after": "graph[string]", "source": "string", "target": "string", "accepted": "boolean"},
+      "precondition": {"and": [
+        {"acyclic": {"var": "before"}},
+        {"not": {"acyclic": {"add_edge": {"graph": {"var": "before"}, "from": {"var": "source"}, "to": {"var": "target"}}}}}
+      ]},
+      "transition": {"before": "before", "after": "after"},
+      "property": {"and": [
+        {"not": {"var": "accepted"}},
+        {"equals": [{"var": "after"}, {"var": "before"}]}
+      ]},
+      "origin": {"requirement": "B14", "source": "benchmark/requirements/B14.md", "note": "lines 5–7: rejecting cycles leaves graph unchanged; self error code has separate scenario meaning"},
+      "when": {"requires": ["B14"], "forbids": []},
+      "depends_on": [], "replaces": [],
+      "witnesses": [
+        {"scenario": "B14.graph", "case": "B14.self"},
+        {"scenario": "B14.graph", "case": "B14.indirect"},
+        {"scenario": "B14.graph", "case": "B14.long_cycle"}
+      ]
+    }
+  ],
+  "scenarios": [
+    {"id": "B02.collection", "cases": [
+      {"id": "B02.empty", "bindings": {"input": [], "output": []}},
+      {"id": "B02.single", "bindings": {"input": [" a "], "output": ["a"]}},
+      {"id": "B02.unique", "bindings": {"input": ["a", "b", "c"], "output": ["a", "b", "c"]}},
+      {"id": "B02.repeated", "bindings": {"input": [" b ", "a", "b", "a", " b "], "output": ["b", "a"]}},
+      {"id": "B02.case_and_order", "bindings": {"input": ["Work", "work", " Work ", "WORK", "work"], "output": ["Work", "work", "WORK"]}}
+    ]},
+    {"id": "B14.graph", "cases": [
+      {"id": "B14.empty", "bindings": {"before": {"nodes": ["a", "b"], "edges": []}, "after": {"nodes": ["a", "b"], "edges": [["a", "b"]]}, "source": "a", "target": "b", "accepted": true}},
+      {"id": "B14.simple", "bindings": {"before": {"nodes": ["a", "b", "c"], "edges": [["a", "b"]]}, "after": {"nodes": ["a", "b", "c"], "edges": [["a", "b"], ["b", "c"]]}, "source": "b", "target": "c", "accepted": true}},
+      {"id": "B14.chain", "bindings": {"before": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["b", "c"]]}, "after": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["b", "c"], ["c", "d"]]}, "source": "c", "target": "d", "accepted": true}},
+      {"id": "B14.branch", "bindings": {"before": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["a", "c"]]}, "after": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["a", "c"], ["c", "d"]]}, "source": "c", "target": "d", "accepted": true}},
+      {"id": "B14.self", "bindings": {"before": {"nodes": ["a"], "edges": []}, "after": {"nodes": ["a"], "edges": []}, "source": "a", "target": "a", "accepted": false}},
+      {"id": "B14.indirect", "bindings": {"before": {"nodes": ["a", "b"], "edges": [["a", "b"]]}, "after": {"nodes": ["a", "b"], "edges": [["a", "b"]]}, "source": "b", "target": "a", "accepted": false}},
+      {"id": "B14.long_cycle", "bindings": {"before": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["b", "c"], ["c", "d"]]}, "after": {"nodes": ["a", "b", "c", "d"], "edges": [["a", "b"], ["b", "c"], ["c", "d"]]}, "source": "d", "target": "a", "accepted": false}}
+    ]}
+  ]
+}

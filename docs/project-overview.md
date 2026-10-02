@@ -103,6 +103,38 @@ without partial achievement. Next: checked clause dependencies and separate
 diagnostics, controlled application-clock binding, B01–B16 format adequacy,
 the bounded bridge and independently verified B16 checkpoints before any
 B17-ready freeze or exposure.
+The [adequacy restart](../benchmark/results/phase5c/R5_4-SEMANTIC-ADEQUACY-RESTART-HALT.md)
+now exercises a controlled UTC subprocess clock on a disposable post-B16
+application but **halts at the format gate**: finite scenario observations do
+not express B02's general ordered deduplication of arbitrary repeated tags
+(nor B14's arbitrary dependency cycles). No semantic schema, clause bridge or
+B17-ready protocol has been frozen. The later gates remain pending.
+The [invariant prototype restart](../benchmark/results/phase5c/R5_4-INVARIANT-PROTOTYPE-ADEQUACY-RESTART-HALT.md)
+now expresses B02 ordered normalization and B14 cycle rules in a separate,
+unfrozen typed collection/graph vocabulary with linked finite semantic
+fixtures. A fresh B01–B16 frozen-text screen stops at B01: general exact-HIGH
+selection across arbitrary tasks is not yet expressible (B03 adds membership
+selection). The adequacy
+gate remains halted; no CLI acceptance bridge or later B17 gate has advanced.
+The [selection restart](../benchmark/results/phase5c/R5_4-SELECTION-ADEQUACY-RESTART-HALT.md)
+now states exact ordered selection for B01/B03 using the same general typed
+relation, with [explicit vocabulary counts](../benchmark/results/phase5c/R5_4-SELECTION-VOCABULARY-LEDGER.md).
+The fresh screen still halts at B01: normal-order binding and arbitrary
+old-task field preservation/default on migration remain unexpressed. This
+prototype is unfrozen and does not advance the bridge or B17.
+The [B01 order/transition restart](../benchmark/results/phase5c/R5_4-B01-ORDER-TRANSITION-ADEQUACY-HALT.md)
+now prototypes typed ascending normal order and keyed migration/default
+preservation. B01 remains inadequate: rules over supplied collections are not
+yet bound universally to create/list/migrate commands and persistent state;
+the meaning of priority rank also needs adjudication. The adequacy gate stays
+at B01 and the semantic format remains unfrozen.
+The [operation-contract investigation](../benchmark/results/phase5c/R5_4-B01-OPERATION-CONTRACT-ADEQUACY-HALT.md)
+finds one plausible generic binder over invocation, pre-state, result and
+post-state, reused by existing relations. Its synthetic typed-tuple witnesses
+are not universally bound to public calls/storage; B01 remains inadequate,
+and priority “above HIGH” has no established observable rank comparison.
+The unfrozen ledger counts 45 provisional constructs. No later adequacy gate
+has advanced.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional

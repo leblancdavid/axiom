@@ -1,0 +1,22 @@
+{
+  "status": "prototype",
+  "operation": "upgrade_items",
+  "schema": {
+    "record": {"id": "string", "label": "string", "flag": "boolean"},
+    "default": {"kind": "default_missing", "identity": "id", "field": "flag", "value": false}
+  },
+  "checks": [
+    {"kind": "equals", "left": "input.rows", "right": "pre.records"},
+    {"kind": "default_missing", "left": "pre.records", "right": "post.records"},
+    {"kind": "equals", "left": "result", "right": "post.records"}
+  ],
+  "cases": [
+    {"id": "first_valid", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "a", "label": "first"}]}, "result": [{"id": "a", "label": "first", "flag": false}], "post": {"records": [{"id": "a", "label": "first", "flag": false}]}, "holds": true},
+    {"id": "second_valid", "input": {"rows": [{"id": "b", "label": "other", "flag": true}, {"id": "c", "label": "last"}]}, "pre": {"records": [{"id": "b", "label": "other", "flag": true}, {"id": "c", "label": "last"}]}, "result": [{"id": "b", "label": "other", "flag": true}, {"id": "c", "label": "last", "flag": false}], "post": {"records": [{"id": "b", "label": "other", "flag": true}, {"id": "c", "label": "last", "flag": false}]}, "holds": true},
+    {"id": "result_right_state_wrong", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "a", "label": "first"}]}, "result": [{"id": "a", "label": "first", "flag": false}], "post": {"records": [{"id": "a", "label": "first", "flag": true}]}, "holds": false},
+    {"id": "state_right_result_wrong", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "a", "label": "first"}]}, "result": [{"id": "a", "label": "first", "flag": true}], "post": {"records": [{"id": "a", "label": "first", "flag": false}]}, "holds": false},
+    {"id": "wrong_source", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "x", "label": "other"}]}, "result": [{"id": "x", "label": "other", "flag": false}], "post": {"records": [{"id": "x", "label": "other", "flag": false}]}, "holds": false},
+    {"id": "omitted_transition", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "a", "label": "first"}]}, "result": [{"id": "a", "label": "first"}], "post": {"records": [{"id": "a", "label": "first"}]}, "holds": false},
+    {"id": "unintended_mutation", "input": {"rows": [{"id": "a", "label": "first"}]}, "pre": {"records": [{"id": "a", "label": "first"}]}, "result": [{"id": "a", "label": "changed", "flag": false}], "post": {"records": [{"id": "a", "label": "changed", "flag": false}]}, "holds": false}
+  ]
+}

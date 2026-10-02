@@ -1,0 +1,61 @@
+{
+  "status": "prototype",
+  "rules": [
+    {
+      "id": "B01.exact_high_query", "origin": "B01", "depends_on": [],
+      "records": {"item": {"priority": "string", "id": "string"}},
+      "bindings": {"tasks": "sequence[item]", "result": "sequence[item]"},
+      "selection": {
+        "source": {"var": "tasks"}, "bind": "task",
+        "predicate": {"equals": [{"field": {"of": {"var": "task"}, "name": "priority"}}, {"literal": "HIGH"}]},
+        "result": {"var": "result"}, "ordering": "source_relative", "exactness": "exact"
+      },
+      "cases": [
+        {"id": "empty", "bindings": {"tasks": [], "result": []}, "holds": true},
+        {"id": "no_match", "bindings": {"tasks": [{"id": "a", "priority": "LOW"}], "result": []}, "holds": true},
+        {"id": "one", "bindings": {"tasks": [{"id": "a", "priority": "HIGH"}], "result": [{"id": "a", "priority": "HIGH"}]}, "holds": true},
+        {"id": "multiple_ordered", "bindings": {"tasks": [{"id": "b", "priority": "HIGH"}, {"id": "x", "priority": "LOW"}, {"id": "a", "priority": "HIGH"}], "result": [{"id": "b", "priority": "HIGH"}, {"id": "a", "priority": "HIGH"}]}, "holds": true},
+        {"id": "reversed", "bindings": {"tasks": [{"id": "b", "priority": "HIGH"}, {"id": "a", "priority": "HIGH"}], "result": [{"id": "a", "priority": "HIGH"}, {"id": "b", "priority": "HIGH"}]}, "holds": false},
+        {"id": "incomplete", "bindings": {"tasks": [{"id": "b", "priority": "HIGH"}, {"id": "a", "priority": "HIGH"}], "result": [{"id": "b", "priority": "HIGH"}]}, "holds": false},
+        {"id": "unsound", "bindings": {"tasks": [{"id": "a", "priority": "LOW"}], "result": [{"id": "a", "priority": "LOW"}]}, "holds": false}
+      ]
+    },
+    {
+      "id": "B03.exact_tag_query", "origin": "B03", "depends_on": ["B02.ordered_normalization"],
+      "records": {"item": {"id": "string", "tags": "sequence[string]", "completed": "boolean"}},
+      "bindings": {"tasks": "sequence[item]", "result": "sequence[item]", "requested": "string"},
+      "selection": {
+        "source": {"var": "tasks"}, "bind": "task",
+        "predicate": {"contains": {"element": {"var": "requested"}, "collection": {"field": {"of": {"var": "task"}, "name": "tags"}}}},
+        "result": {"var": "result"}, "ordering": "source_relative", "exactness": "exact"
+      },
+      "cases": [
+        {"id": "tag_case_and_completed", "bindings": {"requested": "work", "tasks": [{"id": "a", "tags": ["Work"], "completed": false}, {"id": "b", "tags": ["work"], "completed": true}], "result": [{"id": "b", "tags": ["work"], "completed": true}]}, "holds": true},
+        {"id": "tag_absent", "bindings": {"requested": "x", "tasks": [{"id": "a", "tags": ["work"], "completed": false}], "result": []}, "holds": true}
+      ]
+    },
+    {
+      "id": "B01.composed_query_witness", "origin": "B01", "depends_on": [],
+      "records": {"item": {"kind": "string", "enabled": "boolean"}},
+      "bindings": {"source": "sequence[item]", "result": "sequence[item]"},
+      "selection": {
+        "source": {"var": "source"}, "bind": "element",
+        "predicate": {"and": [{"equals": [{"field": {"of": {"var": "element"}, "name": "kind"}}, {"literal": "blue"}]}, {"not": {"equals": [{"field": {"of": {"var": "element"}, "name": "enabled"}}, {"literal": false}]}}]},
+        "result": {"var": "result"}, "ordering": "source_relative", "exactness": "exact"
+      },
+      "cases": [
+        {"id": "all_match", "bindings": {"source": [{"kind": "blue", "enabled": true}, {"kind": "blue", "enabled": true}], "result": [{"kind": "blue", "enabled": true}, {"kind": "blue", "enabled": true}]}, "holds": true},
+        {"id": "conjunction_reject", "bindings": {"source": [{"kind": "blue", "enabled": false}, {"kind": "red", "enabled": true}], "result": []}, "holds": true}
+      ]
+    },
+    {
+      "id": "B01.sound_only_distinction", "origin": "B01", "depends_on": [],
+      "records": {}, "bindings": {"source": "sequence[string]", "result": "sequence[string]"},
+      "selection": {"source": {"var": "source"}, "bind": "element", "predicate": {"equals": [{"var": "element"}, {"literal": "yes"}]}, "result": {"var": "result"}, "ordering": "source_relative", "exactness": "sound_only"},
+      "cases": [
+        {"id": "sound_incomplete", "bindings": {"source": ["yes", "yes"], "result": ["yes"]}, "holds": true},
+        {"id": "duplicate_unsound", "bindings": {"source": ["yes"], "result": ["yes", "yes"]}, "holds": false}
+      ]
+    }
+  ]
+}

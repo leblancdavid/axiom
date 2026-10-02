@@ -11,6 +11,35 @@ records the original gaps. The subsequent
 records the frozen-text analysis; its classification question is resolved by
 the [prospective adjudication](../results/phase5c/R5_4-B17-PARTIAL-DEPENDENCY-ADJUDICATION.md).
 None of this is a pinned semantic schema or B17 acceptance freeze.
+The [adequacy restart halt](../results/phase5c/R5_4-SEMANTIC-ADEQUACY-RESTART-HALT.md)
+records the working controlled subprocess clock and the newly identified
+finite-scenario expressiveness gap at B02; no downstream pre-exposure gate is
+claimed complete.
+The [invariant prototype restart](../results/phase5c/R5_4-INVARIANT-PROTOTYPE-ADEQUACY-RESTART-HALT.md)
+adds typed universal collection/graph rules and links finite semantic fixture
+cases, then halts the fresh B01–B16 screen at B01's missing general selection
+rule. These fixtures are not CLI-derived acceptance cases and do not freeze the
+format or certify the historical bridge.
+The [selection restart](../results/phase5c/R5_4-SELECTION-ADEQUACY-RESTART-HALT.md)
+adds a separate typed exact ordered-query prototype for B01/B03, with finite
+positive and negative witnesses. Its [vocabulary ledger](../results/phase5c/R5_4-SELECTION-VOCABULARY-LEDGER.md)
+measures 42 implemented prototype constructs. The restarted screen stops at
+B01's remaining general state-field preservation/default and normal-order
+binding gaps. `selection.py`, `invariants.py` and scenario `format.py` are
+separate experiments, not a combined schema or acceptance bridge.
+The [B01 order/transition restart](../results/phase5c/R5_4-B01-ORDER-TRANSITION-ADEQUACY-HALT.md)
+adds independent typed `lexicographic_order` and keyed `default_missing`
+relations with finite witnesses in `state-relation-fixtures.json`. Their
+collection inputs are not yet universally bound to public commands and
+persisted state. The B01 adequacy screen therefore still halts; the ledger
+now inventories 44 unfrozen constructs.
+The [operation-contract investigation](../results/phase5c/R5_4-B01-OPERATION-CONTRACT-ADEQUACY-HALT.md)
+prototypes typed input/pre/result/post tuples for an arbitrary operation,
+reusing equality and `default_missing`. Seven synthetic witnesses distinguish
+result, source and state errors, but do not bind actual invocations or prove
+universal behavior. The ledger now counts 45 provisional constructs. B01 and
+the adequacy gate remain halted; the meaning of priority “above HIGH” is
+still uncertain as an independent semantic requirement.
 Prospective blocked-request clause evidence has a
 [separate diagnostic template](diagnostic-template.md); it never contributes
 to `compile_plan`'s achieved-request input or to active replacements.
@@ -43,10 +72,13 @@ Prototype v2 additionally permits a named `clock` step with `source: utc_now`;
 an application field/UTC literal, and `offset` derives an instant in integral
 seconds. `before` compares *typed instants* with a declared expected boolean,
 distinguishing strict-before from equality. Parsing never reads the clock.
-Fixture execution injects a controlled UTC value. The disposable subprocess
-probe cannot control the application's clock and **rejects** plans mixing
-clock reads with CLI invocations; such plans need a separately verified
-controlled application-clock adapter before executable acceptance.
+Fixture execution binds a controlled UTC value once. `probe.py` runs each
+clock-dependent invocation through `clock_adapter.py`, a subprocess bootstrap
+that binds timezone-aware `datetime.now` before loading the application. The
+same instant is used for `clock_ref`, application clock reads and acceptance
+observations; a missing or mismatched binding fails closed. The adapter rejects
+naive/local clock reads. It is a disposable Python execution adapter for these
+scenarios, not an application change or an authoritative acceptance freeze.
 
 `relationships.py` is a separate prospective, checked requirement-ID
 composition vocabulary: each record declares an exact ID, originating request,

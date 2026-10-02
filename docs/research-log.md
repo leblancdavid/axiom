@@ -1,5 +1,74 @@
 # Lykoi research log
 
+## B01 operation-contract adequacy investigation (prospective, 2026-10-02)
+
+**Observation:** Existing relations constrain supplied collections but not
+every actual public invocation and persistent before/after state. A single
+typed operation binding is a plausible common interface; seven synthetic
+fixtures for an arbitrary operation distinguish result/state/source failures
+and two correct populations using equality and keyed missing defaults. They
+are finite witnesses, not application or universal contract verification.
+
+**Halt:** Public observation grounding and universal state/invocation scope
+remain unimplemented; keyed creation/update framing and migration outcome
+semantics are also open. “Above HIGH” has no specified observable rank
+comparison and does not imply priority-sorted lists. B01 is inadequate; the
+prototype ledger now has 45 constructs. See the
+[operation-contract halt](../benchmark/results/phase5c/R5_4-B01-OPERATION-CONTRACT-ADEQUACY-HALT.md).
+
+## Phase 5C exact-selection restart (prospective, 2026-10-02)
+
+**Prototype observation:** A typed exact selection relation now checks
+soundness, completeness, multiplicity and source-relative order for finite
+ordered sources; B01 equality and B03 case-sensitive membership compose from
+the same construct. Thirteen positive/negative fixture cases and extra
+counterexamples exercise it, not universal truth or application acceptance.
+The [ledger](../benchmark/results/phase5c/R5_4-SELECTION-VOCABULARY-LEDGER.md)
+counts 42 implemented prototype constructs, 28 reused across frozen clauses.
+
+**Halt:** B01's arbitrary-task priority preservation/default through migration
+still lacks a general state-field transition/frame rule; its normal sorted
+query order also lacks a typed universal binding. No further clause gate was
+passed. Temporal/graph selection predicates and cross-document clause
+composition are not implemented. See the
+[restart record](../benchmark/results/phase5c/R5_4-SELECTION-ADEQUACY-RESTART-HALT.md).
+
+## Phase 5C invariant vocabulary restart (prospective, 2026-10-02)
+
+**Prototype:** Typed universal transition rules over arbitrary finite string
+sequences and directed graphs now compose trim, stable case-sensitive
+first-occurrence uniqueness, proposed edge addition and acyclicity. Schema
+validation checks types, bindings, relationships and witness links. Twelve
+linked semantic cases exercise the collection and graph rules; this is not
+application acceptance or universal proof. The separate B14 self-error and
+other B02/B14 clauses remain to be represented and bridged.
+
+**Observation/halt:** Re-screening frozen B01–B16 text from B01 found B01's
+general exact-HIGH selection cannot be faithfully stated by this bounded
+vocabulary; B03's tag-membership selection and normal ordering are independent
+instances of the same gap. The
+[restart record](../benchmark/results/phase5c/R5_4-INVARIANT-PROTOTYPE-ADEQUACY-RESTART-HALT.md)
+classifies clause groups and inventories every primitive and remaining gap.
+No schema freeze, R5.2.2 replacement, B17 exposure or B17 classification
+follows from these fixtures.
+
+## Phase 5C clock binding and format restart (prospective, 2026-10-02)
+
+**Implementation/witness:** A disposable subprocess adapter binds one explicit
+UTC instant before loading the Python application. A focused fixture on the
+pinned Conventional post-B16 executable checks strict before/equal/after,
+application creation timestamp equality, repeated execution and missing or
+mismatched binding rejection. This does not revalidate the frozen suites.
+
+**Observation/halt:** Screening frozen B01–B16 text after the clock fix found
+that finite equality/distinctness/time scenarios cannot state B02's rule for
+arbitrary numbers of trimmed, ordered, case-sensitive unique tags; B14's
+general cycle condition is another challenge. The
+[adequacy restart record](../benchmark/results/phase5c/R5_4-SEMANTIC-ADEQUACY-RESTART-HALT.md)
+documents the source-level inventory and stops before schema freeze or B17
+composition. A general rule vocabulary remains a proposal, not a demonstrated
+solution.
+
 ## Phase 5C B17 partial-dependency adjudication (prospective, 2026-10-02)
 
 **Decision:** Phase 5C still measures complete requests. If the frozen track
@@ -288,3 +357,14 @@ are recorded in [R5.3 runtime-trace progress](../benchmark/results/phase5c/R5_3-
 This supports using static and dynamic evidence together, not treating the
 dynamic trace as a new semantic authority. No completeness or equivalence
 claim follows while executable paths remain unmapped.
+# Prospective B01 semantic-format restart (2026-10-02)
+
+Reading the frozen B01 request against the inherited baseline and corrected
+R5.2.2 carrier shows two distinguishable collection relations: ascending
+`(created_at, id)` exact result order, and keyed field-preserving migration
+with NORMAL applied only when priority is absent. The unfrozen
+`benchmark/semantic/state_relations.py` prototypes both and checks finite
+positive/negative witnesses. It does not bind those collections to arbitrary
+public command traces or persisted states, nor settle the observable meaning
+of the priority rank. B01 adequacy remains halted; details and limitations are
+in `benchmark/results/phase5c/R5_4-B01-ORDER-TRANSITION-ADEQUACY-HALT.md`.

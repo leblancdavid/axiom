@@ -2,6 +2,9 @@
 
 import copy
 from datetime import datetime, timezone
+import tarfile
+import tempfile
+from pathlib import Path
 import unittest
 
 from benchmark.semantic import format as semantic
@@ -84,7 +87,7 @@ class ClockVocabulary(unittest.TestCase):
         with self.assertRaisesRegex(semantic.FormatError, "UTC timestamp"):
             semantic.validate(bad)
 
-    def test_b12_entity_due_instants_and_query_plan_require_app_clock(self):
+    def test_b12_entity_due_instants_and_query_plan_share_app_clock(self):
         doc = clock_document()
         steps = doc["scenarios"][0]["variants"][0]["steps"]
         now = {"clock_ref": "now"}
@@ -93,9 +96,10 @@ class ClockVocabulary(unittest.TestCase):
                                         ("future", 1, "future_task")):
             steps.append({"invoke": {"command": "create", "args": [
                 {"literal": "--title"}, {"literal": title},
-                {"literal": "--description"}, {"literal": "x"},
-                {"literal": "--priority"}, {"literal": "HIGH"},
-                {"literal": "--due-date"},
+                 {"literal": "--description"}, {"literal": "x"},
+                 {"literal": "--priority"}, {"literal": "HIGH"},
+                 {"literal": "--owner"}, {"literal": "system"},
+                 {"literal": "--due-date"},
                 {"offset": {"from": now, "seconds": seconds}}], "bind": binding}})
             steps.append({"observe": {"id": f"B12.{title}_due_relation",
                                       "relation": "before",
@@ -105,10 +109,24 @@ class ClockVocabulary(unittest.TestCase):
         steps.append({"observe": {"id": "B12.strict_urgent_result",
                                   "relation": "equals", "actual": {"ref": "urgent"},
                                   "expected": {"list": [{"ref": "past_task"}]}}})
+        steps.append({"observe": {"id": "B12.application_clock_is_semantic_clock",
+                                  "relation": "equals",
+                                  "actual": {"instant": {"ref": "past_task.created_at"}},
+                                  "expected": now}})
         semantic.validate(doc)
-        with self.assertRaisesRegex(semantic.FormatError, "application clock adapter required"):
-            probe.run_variant(None, semantic.compile_plan(doc, ["B12"])[0],
-                              clock=lambda: datetime(2026, 1, 1, tzinfo=timezone.utc))
+        instant = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        name, sha, member, _ = probe.SNAPSHOTS["conventional"]
+        with tarfile.open(probe.RESULTS / name) as archive, tempfile.TemporaryDirectory() as folder:
+            app = Path(folder) / "app.py"
+            app.write_bytes(archive.extractfile(member).read())
+            plan = semantic.compile_plan(doc, ["B12"])[0]
+            for _ in range(2):
+                probe.run_variant(app, plan, clock=lambda: instant, application_clock=instant)
+            with self.assertRaisesRegex(semantic.FormatError, "controlled clock required"):
+                probe.run_variant(app, plan)
+            with self.assertRaisesRegex(semantic.FormatError, "mismatched application clock"):
+                probe.run_variant(app, plan, clock=lambda: instant,
+                                  application_clock=datetime(2026, 1, 2, tzinfo=timezone.utc))
 
 
 class CheckedRelationships(unittest.TestCase):
