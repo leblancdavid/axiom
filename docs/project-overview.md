@@ -182,6 +182,17 @@ adapter failure policy. The candidate core count remains 29. This resolves
 that narrow semantic gap, not general variant-dependent payload typing or
 no-attempted-write proof; B01 remains inadequate and halted, Phase 5C paused,
 B17 unexposed and unclassified, R5.2.2 authoritative, format unfrozen.
+The [R5.9 B01 end-to-end restart](../benchmark/results/phase5c/R5_9-B01-END-TO-END-ADEQUACY-RESTART.md)
+reconstructs the complete frozen B01 contract with its inherited baseline.
+Exact selection and ordering suggest a relational insertion/completion frame,
+but arbitrary migration count lacks an established typed collection-to-numeric
+outcome relation. A checkpoint-pinned B01 executable passes the selected frozen
+cases and independent public/durable observations; it does not emit the internal
+per-operation event needed to challenge B01 grounding or reach #45 semantic
+conformance. This is a **multiple-gap halt** under the 29-candidate ceiling,
+not a new construct, universal adequacy or correctness finding. R5.2.2 stays
+authoritative, Phase 5C paused, B17 unexposed/unclassified and the format
+unfrozen.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional

@@ -1,5 +1,18 @@
 # Experimental decisions
 
+## R5.9 B01 complete-contract gate (prospective, 2026-10-02)
+
+Use the entire frozen B01 and inherited baseline, then attempt composed exact
+selection/ordering and operation-state relations *before* considering new
+vocabulary. Treat “above HIGH” as ordinally underspecified absent an observable
+rank comparator, and preserve normal `(created_at,id)` order. Stop before core
+construct #30: migration's numeric count relation needs focused review, while
+full-schema contract integration, checked interface lowering and challenged
+per-operation B01 execution are distinct responsibilities. Passing frozen
+cases on a pinned artifact plus independent public/durable endpoints is not
+R5.7 grounding without an internal event or B01 #45 conformance. See
+`benchmark/results/phase5c/R5_9-B01-END-TO-END-ADEQUACY-RESTART.md`.
+
 - Bounded collection operations give a validator a tractable semantic surface;
   they postpone arbitrary algorithms and may require a new v0.2 query operator.
 - Stable entity IDs make rename impact observable and keep references intact.

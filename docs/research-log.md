@@ -1,5 +1,24 @@
 # Lykoi research log
 
+## R5.9 B01 complete-contract restart (prospective, 2026-10-02)
+
+**Observation:** Frozen B01 plus inherited baseline require a numeric migration
+count for arbitrary legacy populations. Exact selection, ordering, projection
+and equality suggest insertion and completion framing without a new command
+primitive, but the currently integrated #45 checker cannot evaluate that
+composition. The pinned B01 Lykoi snapshot passed five frozen acceptance
+methods, and independent public/file endpoint capture covered seven selected
+root calls, a completion failure and v1 migration. The snapshot emits no
+per-operation internal event to challenge, so B01 grounding fails and #45
+case conformance is not evaluated. See the [R5.9 evidence](../benchmark/results/phase5c/R5_9-B01-END-TO-END-ADEQUACY-RESTART.md).
+
+**Limit:** Numeric count/cardinality is a provisional core expressiveness gap;
+full typing, migration metadata and checked B01 interface/provenance are separate
+blockers. CRITICAL's independent ordinal behavior is underspecified, not grounds
+for priority sorting. No #30 was added (45 historical raw, 29 candidate core).
+R5.2.2 remains authoritative; B01 halted, Phase 5C paused, B17 unexposed and
+unclassified and the semantic-first format unfrozen.
+
 ## R5.8 conditional outcome expressiveness (prospective, 2026-10-02)
 
 **Implemented observation:** A generalized #45 abstract contract composes
