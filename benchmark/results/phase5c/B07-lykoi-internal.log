@@ -1,0 +1,38 @@
+test_explicit_legacy_migration (test_application.ApplicationTests.test_explicit_legacy_migration) ... ok
+test_failures_leave_state_intact (test_application.ApplicationTests.test_failures_leave_state_intact) ... ok
+test_high_priority_filter_and_default (test_application.ApplicationTests.test_high_priority_filter_and_default) ... ok
+test_invariants_on_load (test_application.ApplicationTests.test_invariants_on_load) ... ok
+test_lifecycle_and_persistence (test_application.ApplicationTests.test_lifecycle_and_persistence) ... ok
+test_overdue_and_optional_due_date (test_application.ApplicationTests.test_overdue_and_optional_due_date) ... ok
+test_semantic_scenario_with_fixed_clock (test_application.ApplicationTests.test_semantic_scenario_with_fixed_clock) ... ok
+test_semantic_transition_scenario (test_application.ApplicationTests.test_semantic_transition_scenario) ... ok
+test_source_is_verbatim_through_storage_and_mutations (test_application.ApplicationTests.test_source_is_verbatim_through_storage_and_mutations) ... ok
+test_version_three_source_migration (test_application.ApplicationTests.test_version_three_source_migration) ... ok
+test_version_two_migration (test_application.ApplicationTests.test_version_two_migration) ... ok
+test_dangling_reference (test_compiler.CompilerTests.test_dangling_reference) ... ok
+test_impact_paths_and_clock_validation (test_compiler.CompilerTests.test_impact_paths_and_clock_validation) ... ok
+test_impossible_contract (test_compiler.CompilerTests.test_impossible_contract) ... ok
+test_incompatible_type_and_mutation (test_compiler.CompilerTests.test_incompatible_type_and_mutation) ... ok
+test_index_and_diff (test_compiler.CompilerTests.test_index_and_diff) ... ok
+test_invalid_filter_migration_and_contract_identity (test_compiler.CompilerTests.test_invalid_filter_migration_and_contract_identity) ... ok
+test_least_authority_for_behaviors_and_migrations (test_compiler.CompilerTests.test_least_authority_for_behaviors_and_migrations) ... ok
+test_lifecycle_rejects_unmodeled_and_inconsistent_changes (test_compiler.CompilerTests.test_lifecycle_rejects_unmodeled_and_inconsistent_changes) ... ok
+test_manifest_and_schema (test_compiler.CompilerTests.test_manifest_and_schema) ... ok
+test_manifest_provenance_is_artifact_wide (test_compiler.CompilerTests.test_manifest_provenance_is_artifact_wide) ... ok
+test_missing_and_duplicate_ids (test_compiler.CompilerTests.test_missing_and_duplicate_ids) ... ok
+test_optional_enum_and_effects_are_validated (test_compiler.CompilerTests.test_optional_enum_and_effects_are_validated) ... ok
+test_parser_rejects_duplicate_keys (test_compiler.CompilerTests.test_parser_rejects_duplicate_keys) ... ok
+test_plan_fails_without_mutating_model (test_compiler.CompilerTests.test_plan_fails_without_mutating_model) ... ok
+test_plan_rejects_duplicate_and_stale_baseline (test_compiler.CompilerTests.test_plan_rejects_duplicate_and_stale_baseline) ... ok
+test_plan_rejects_unauthorized_change_before_generation (test_compiler.CompilerTests.test_plan_rejects_unauthorized_change_before_generation) ... ok
+test_predicates_safety_and_impact (test_compiler.CompilerTests.test_predicates_safety_and_impact) ... ok
+test_renaming_preserves_identity (test_compiler.CompilerTests.test_renaming_preserves_identity) ... ok
+test_safety_cli (test_compiler.CompilerTests.test_safety_cli) ... ok
+test_transition_references_and_guard (test_compiler.CompilerTests.test_transition_references_and_guard) ... ok
+test_undeclared_effect_and_dependency (test_compiler.CompilerTests.test_undeclared_effect_and_dependency) ... ok
+test_valid_and_deterministic (test_compiler.CompilerTests.test_valid_and_deterministic) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 11.707s
+
+OK

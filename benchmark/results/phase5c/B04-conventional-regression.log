@@ -1,0 +1,17 @@
+test_b01_historical_priorities (regression.Regression.test_b01_historical_priorities) ... ok
+test_b01_priority_and_regression (regression.Regression.test_b01_priority_and_regression) ... ok
+test_b02_explicit_migration (regression.Regression.test_b02_explicit_migration) ... ok
+test_b02_tags_and_failure (regression.Regression.test_b02_tags_and_failure) ... ok
+test_baseline_lifecycle_filters_failures (regression.Regression.test_baseline_lifecycle_filters_failures) ... ok
+test_baseline_migration_corruption (regression.Regression.test_baseline_migration_corruption) ... ok
+test_baseline_overdue_fixture (regression.Regression.test_baseline_overdue_fixture) ... ok
+test_blank_queries_leave_storage_unchanged (regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged) ... ok
+test_exact_case_sensitive_tag_with_completed_tasks (regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks) ... ok
+test_explicit_migration_of_prior_storage (regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage) ... ok
+test_verbatim_default_and_mutations (regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 20.154s
+
+OK
+{"achieved": ["B01", "B02", "B03", "B04"], "case_methods": 11, "expectation_sha256": "4f3cab4af9a1d70ebba7c44b731ee8ae2b46cee8640240a35195faa6c6959cc6", "failure_events": 0, "passed": 11, "skipped": 0, "superseded_cases": {}}

@@ -1,0 +1,7 @@
+[
+  {"request": "B01", "outcome": "SUCCESS"},
+  {"request": "B02", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/pilot/REPORT.md#four-primary-runs; phase5b/validation.json:axiom-B02.unmet_B02_probe"},
+  {"request": "B03", "outcome": "BLOCKED_BY_GAP", "depends_on": ["B02"]},
+  {"request": "B04", "outcome": "SUCCESS"},
+  {"request": "B05", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5c/B05-lykoi-implementation.jsonl: candidate validator rejects list inputs or filter"}
+]

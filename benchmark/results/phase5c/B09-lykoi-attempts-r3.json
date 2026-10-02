@@ -1,0 +1,11 @@
+[
+  {"request": "B01", "outcome": "SUCCESS"},
+  {"request": "B02", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/pilot/REPORT.md#four-primary-runs; phase5b/validation.json:axiom-B02.unmet_B02_probe"},
+  {"request": "B03", "outcome": "BLOCKED_BY_GAP", "depends_on": ["B02"]},
+  {"request": "B04", "outcome": "SUCCESS"},
+  {"request": "B05", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5c/B05-lykoi-implementation.jsonl: candidate validator rejects list inputs or filter"},
+  {"request": "B06", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5c/B06-lykoi-implementation.jsonl: in-memory list-input validator probe and missing trim assignment"},
+  {"request": "B07", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5c/B07-lykoi-implementation.jsonl: in-memory validator rejects list-valued record field, array migration default, and append assignment"},
+  {"request": "B08", "outcome": "AXIOM_CAPABILITY_GAP", "evidence": "benchmark/results/phase5c/B08-lykoi-implementation-resume.jsonl: in-memory validator rejects primitive boolean and JSON boolean default; prior B03/B05/B06 list commands also unavailable"},
+  {"request": "B09", "outcome": "BLOCKED_BY_GAP", "depends_on": ["B08"]}
+]

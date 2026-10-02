@@ -1,0 +1,27 @@
+test_append_note_missing_task_does_not_write (test_task_manager.PriorityTests.test_append_note_missing_task_does_not_write) ... ok
+test_append_note_trims_and_preserves_order_and_duplicates (test_task_manager.PriorityTests.test_append_note_trims_and_preserves_order_and_duplicates) ... ok
+test_archive_hides_both_statuses_from_all_regular_lists (test_task_manager.PriorityTests.test_archive_hides_both_statuses_from_all_regular_lists) ... ok
+test_archived_state_requires_boolean (test_task_manager.PriorityTests.test_archived_state_requires_boolean) ... ok
+test_blank_note_rejected_without_changing_task_or_file (test_task_manager.PriorityTests.test_blank_note_rejected_without_changing_task_or_file) ... ok
+test_blank_tag_rejects_create_without_writing (test_task_manager.PriorityTests.test_blank_tag_rejects_create_without_writing) ... ok
+test_category_create_and_exact_filter_include_completed (test_task_manager.PriorityTests.test_category_create_and_exact_filter_include_completed) ... ok
+test_critical_round_trip_and_high_filter (test_task_manager.PriorityTests.test_critical_round_trip_and_high_filter) ... ok
+test_legacy_migration_defaults_to_normal (test_task_manager.PriorityTests.test_legacy_migration_defaults_to_normal) ... ok
+test_list_status_filters_all_matches_in_normal_order_without_writing (test_task_manager.PriorityTests.test_list_status_filters_all_matches_in_normal_order_without_writing) ... ok
+test_list_tag_matches_exactly_in_normal_order_including_completed (test_task_manager.PriorityTests.test_list_tag_matches_exactly_in_normal_order_including_completed) ... ok
+test_list_tag_rejects_blank_query_without_writing (test_task_manager.PriorityTests.test_list_tag_rejects_blank_query_without_writing) ... ok
+test_migration_preserves_existing_priorities (test_task_manager.PriorityTests.test_migration_preserves_existing_priorities) ... ok
+test_repeated_archive_and_missing_id_do_not_write (test_task_manager.PriorityTests.test_repeated_archive_and_missing_id_do_not_write) ... ok
+test_source_is_verbatim_across_create_list_complete_and_delete (test_task_manager.PriorityTests.test_source_is_verbatim_across_create_list_complete_and_delete) ... ok
+test_tags_are_trimmed_ordered_and_case_sensitive (test_task_manager.PriorityTests.test_tags_are_trimmed_ordered_and_case_sensitive) ... ok
+test_version_five_migration_defaults_category_and_retains_source (test_task_manager.PriorityTests.test_version_five_migration_defaults_category_and_retains_source) ... ok
+test_version_four_migration_retains_tags_and_defaults_source (test_task_manager.PriorityTests.test_version_four_migration_retains_tags_and_defaults_source) ... ok
+test_version_seven_migration_preserves_notes_and_status (test_task_manager.PriorityTests.test_version_seven_migration_preserves_notes_and_status) ... ok
+test_version_six_migration_adds_notes_and_preserves_category (test_task_manager.PriorityTests.test_version_six_migration_adds_notes_and_preserves_category) ... ok
+test_version_three_migration_adds_tags_without_changing_fields (test_task_manager.PriorityTests.test_version_three_migration_adds_tags_without_changing_fields) ... ok
+test_whitespace_only_category_rejected_without_writing (test_task_manager.PriorityTests.test_whitespace_only_category_rejected_without_writing) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 28.609s
+
+OK

@@ -1,0 +1,15 @@
+test_b01_historical_priorities (regression.Regression.test_b01_historical_priorities) ... ok
+test_b01_priority_and_regression (regression.Regression.test_b01_priority_and_regression) ... ok
+test_b02_explicit_migration (regression.Regression.test_b02_explicit_migration) ... skipped 'B02 not achieved'
+test_b02_tags_and_failure (regression.Regression.test_b02_tags_and_failure) ... skipped 'B02 not achieved'
+test_baseline_lifecycle_filters_failures (regression.Regression.test_baseline_lifecycle_filters_failures) ... ok
+test_baseline_migration_corruption (regression.Regression.test_baseline_migration_corruption) ... ok
+test_baseline_overdue_fixture (regression.Regression.test_baseline_overdue_fixture) ... ok
+test_explicit_migration_of_prior_storage (regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage) ... ok
+test_verbatim_default_and_mutations (regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 14.179s
+
+OK (skipped=2)
+{"achieved": ["B01", "B04"], "case_methods": 9, "expectation_sha256": "9c7a4ad3103c62d13de808d01ec3af847c296b0f7f0ccbeb78ca6c4d25f46c13", "failure_events": 0, "passed": 7, "skipped": 2, "superseded_cases": {}}

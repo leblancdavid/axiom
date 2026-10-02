@@ -1,0 +1,186 @@
+{
+  "achieved": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10"
+  ],
+  "attempt_case_hashes": {
+    "B03": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+    "B04": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+    "B05": "1f94866798fe6654820032e494ba0d1a805e78fc53b3a4fe989df98327ceb895",
+    "B06": "e558f1c5f0c83fe4e08e9ea2874e51f1ff1e2c9d0863f3806f0706307a45263f",
+    "B07": "d02a0d9ea314a4fcf65eb12ad2ec4ae41cf18cec6a5a7d6aa69e26114b576c5d",
+    "B08": "afc07957ca3bdc33ce8ca63bc0fb3ef78d9ada30f20f251c95863b31c6e31c06",
+    "B09": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+    "B10": "5753a963f1f23932f66be7619cf7232bf3b605b803b6673cb070506777f24851"
+  },
+  "attempt_fragment_hashes": {
+    "B01": "15118f0c52482f2eb1c31be462f6392ac8b11ef0234883740ef12eefe9a885c1",
+    "B02": "71aa0309e092ec72d8f6b23bfee6d4f7f8420f8a5d5ae380eb01d5777323d456",
+    "B03": "11df5bd2f5cc06780ac6c21263b86c3a084aa14fefbe65f3e1c9beb05f62cb5e",
+    "B04": "597a702c6f860330938ecbe982c0bb8adc5f6d2640c0924e9c4619bc60b5b982",
+    "B05": "15118f0c52482f2eb1c31be462f6392ac8b11ef0234883740ef12eefe9a885c1",
+    "B06": "88bcec0fd6d9cda02ef89978d6a4ca840e07d65dc82d6ec9a2ad3b32983b30fb",
+    "B07": "53dd70d998aac4309c3d35b68f438a6c77b822aa2422d76b86326d660c206c91",
+    "B08": "d00aab0d1e94b2d778d3525933f161c7d7ed228b094464987d46cea765e19f56",
+    "B09": "a211e72aed0d468c88ba9a7134ee4acf30027120616be59429922f75e7a18541",
+    "B10": "cb9d76741775e4edb2f72c4ee710d2d92ab15c51249a0d5fcf09f4fc0ed14ea8"
+  },
+  "attempted": [
+    {
+      "outcome": "SUCCESS",
+      "request": "B01"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B02"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B03"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B04"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B05"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B06"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B07"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B08"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B09"
+    },
+    {
+      "outcome": "SUCCESS",
+      "request": "B10"
+    }
+  ],
+  "baseline_manifest_sha256": "0c4488cf3bdff9dbe6e62baa1124f91222bedc1e94f96121a18d83f9abd1feca",
+  "baseline_profile_sha256": "56890855fc2161c06693657e11534349c4ebfef71316e866ebcd3f1cbc6dd808",
+  "capability_hashes": {
+    "B01": "15118f0c52482f2eb1c31be462f6392ac8b11ef0234883740ef12eefe9a885c1",
+    "B02": "71aa0309e092ec72d8f6b23bfee6d4f7f8420f8a5d5ae380eb01d5777323d456",
+    "B03": "11df5bd2f5cc06780ac6c21263b86c3a084aa14fefbe65f3e1c9beb05f62cb5e",
+    "B04": "597a702c6f860330938ecbe982c0bb8adc5f6d2640c0924e9c4619bc60b5b982",
+    "B05": "15118f0c52482f2eb1c31be462f6392ac8b11ef0234883740ef12eefe9a885c1",
+    "B06": "88bcec0fd6d9cda02ef89978d6a4ca840e07d65dc82d6ec9a2ad3b32983b30fb",
+    "B07": "53dd70d998aac4309c3d35b68f438a6c77b822aa2422d76b86326d660c206c91",
+    "B08": "d00aab0d1e94b2d778d3525933f161c7d7ed228b094464987d46cea765e19f56",
+    "B09": "a211e72aed0d468c88ba9a7134ee4acf30027120616be59429922f75e7a18541",
+    "B10": "cb9d76741775e4edb2f72c4ee710d2d92ab15c51249a0d5fcf09f4fc0ed14ea8"
+  },
+  "case_hashes": {
+    "B03": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+    "B04": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+    "B05": "1f94866798fe6654820032e494ba0d1a805e78fc53b3a4fe989df98327ceb895",
+    "B06": "e558f1c5f0c83fe4e08e9ea2874e51f1ff1e2c9d0863f3806f0706307a45263f",
+    "B07": "d02a0d9ea314a4fcf65eb12ad2ec4ae41cf18cec6a5a7d6aa69e26114b576c5d",
+    "B08": "afc07957ca3bdc33ce8ca63bc0fb3ef78d9ada30f20f251c95863b31c6e31c06",
+    "B09": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+    "B10": "5753a963f1f23932f66be7619cf7232bf3b605b803b6673cb070506777f24851"
+  },
+  "composer_sha256": "cd0d318f5e7dd3dc2cdac7c93a0cd8c822c35cf53d83c365093a6c5e6971fb50",
+  "expectation": {
+    "achieved": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10"
+    ],
+    "field_types": {
+      "archived": "bool",
+      "category": "str",
+      "notes": "list",
+      "owner": "str",
+      "source": "str",
+      "tags": "list"
+    },
+    "fields": [
+      "id",
+      "title",
+      "description",
+      "status",
+      "priority",
+      "created_at",
+      "due_date",
+      "tags",
+      "source",
+      "category",
+      "notes",
+      "archived",
+      "owner"
+    ],
+    "migration_defaults": {
+      "archived": false,
+      "category": "",
+      "due_date": null,
+      "notes": [],
+      "owner": "",
+      "priority": "NORMAL",
+      "source": "",
+      "tags": []
+    },
+    "schema_version": 9,
+    "superseded_cases": {}
+  },
+  "expectation_sha256": "62333bf2e49b640ca5c4348650675ee366b59bb097699f87bebe0051d063cb46",
+  "files": {
+    "benchmark/conventional/task_manager.py": "47821cc03c765e8b208e27df8e1cb1b237cf5be2705862e34e8fba87e7f30f56",
+    "benchmark/conventional/test_task_manager.py": "a2ecc02fb7e5b97e2595225d6f0c3c951eb918fe26a5aebf8587c62eb90d130f"
+  },
+  "format": 3,
+  "harness_sha256": "26b593844adf95e8f21fffddfde57e4ff39c46190117c35a7ca4333e48baf6de",
+  "legacy_harness_sha256": "beac945e0102e7e78b15fe7f6e3d8c88bae512f32bfcbf1cbbde9d5fae883e50",
+  "legacy_oracle_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+  "oracle_sha256": "d59392d4f535800491fd047540292888038996b08a8c039078724879cd4791be",
+  "previous_checkpoint_sha256": "c377a7d05d690cb86bac426230c6a5640702e6482a45263bdcbbbff7967b8a9c",
+  "requirement_hashes": {
+    "B01": "b7b2d714db5cee566e9e55982dd4c4d95d3d57f0c341e04ba1e15c24e9a8e94d",
+    "B02": "8a76e276240fa840c473be60a8e7ed0e10bd0c165426b1bfc84741e69872032b",
+    "B03": "56c6ac4c187962c71d5866b27f9568c8b6de055a0bab074896ef41b61a554630",
+    "B04": "2c2e9e3787d53eb45df7b4b48362db2217e62c165dedda38222f5561cd859221",
+    "B05": "fc06265789c2781c913e14dfc22a8c37a0ed627b1e1839d43ebaec31373372ff",
+    "B06": "b2be288e4e5a58ac348169860f3e4123b1560c9a9d787787005ff94b46c04b61",
+    "B07": "588e21f734cf75003dfd96a414a4f7352aded8c4146daab5e1e2b4f74164f1f8",
+    "B08": "dbe9d062092c4fc00c2d32210b8e493dbe0f05d0f2ee2e462c44588988335109",
+    "B09": "dd44a353c5d26c099e7cee3fc7e0d3fe6361f70b139a11e85b61473631b3c121",
+    "B10": "3bf536185111466f225ccc8a1fc8ae10a99cfa6da8e85d3a04fca533306febe5",
+    "B11": "7ab1ea7ac3cf963993a30135ae9cf4f3de1a05b64ab294bc86940bc5ecf66c92",
+    "B12": "d60ee7901f4735fb9903cc24e5abb61a6483b9a884970f029be3ddd7567ab942",
+    "B13": "6a93ed0a15f3869fb6e35f6ddfa34f200a0e1620d1b3e0dc2505711d450e00f5",
+    "B14": "c267a859afff26708f17feea0c88bd77ec53f5768a0087dd8345ada3fd3bd31c",
+    "B15": "fe38279c15d7ed6b3282390539f0bd8a8e2e8e6026e3dface0e1774a2c0ae9ff",
+    "B16": "cf9ede733a5b305677dc954a50a9146d9766a7943e0a2f70099b9db4c4fdc1be",
+    "B17": "2a4cf402ded60283086ff321e614b0fac542410fd9c6ce6b4a89af696b090fe0",
+    "B18": "dc0394bdbfbb0460298a86f9be25c2d6dfcf3340b83b4a423d106907d02e57ae",
+    "B19": "854b9441eb2637dc025fc4e050d7e6bd892b6c27e347d0132c59ca851866abcd",
+    "B20": "94a030660b74bafd44513204e3d3e36c5cca16f24f0fd39101b67eea8d4eaefb"
+  },
+  "track": "conventional"
+}

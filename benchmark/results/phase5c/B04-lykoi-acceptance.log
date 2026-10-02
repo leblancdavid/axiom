@@ -1,0 +1,7 @@
+test_explicit_migration_of_prior_storage (<run_path>.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage) ... ok
+test_verbatim_default_and_mutations (<run_path>.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.733s
+
+OK

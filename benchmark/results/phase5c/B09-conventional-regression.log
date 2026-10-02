@@ -1,0 +1,26 @@
+test_b01_historical_priorities (regression.Regression.test_b01_historical_priorities) ... ok
+test_b01_priority_and_regression (regression.Regression.test_b01_priority_and_regression) ... ok
+test_b02_explicit_migration (regression.Regression.test_b02_explicit_migration) ... ok
+test_b02_tags_and_failure (regression.Regression.test_b02_tags_and_failure) ... ok
+test_baseline_lifecycle_filters_failures (regression.Regression.test_baseline_lifecycle_filters_failures) ... ok
+test_baseline_migration_corruption (regression.Regression.test_baseline_migration_corruption) ... ok
+test_baseline_overdue_fixture (regression.Regression.test_baseline_overdue_fixture) ... ok
+test_blank_queries_leave_storage_unchanged (regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged) ... ok
+test_exact_case_sensitive_tag_with_completed_tasks (regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks) ... ok
+test_explicit_migration_of_prior_storage (regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage) ... ok
+test_verbatim_default_and_mutations (regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations) ... ok
+test_both_statuses_and_no_write (regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write) ... ok
+test_create_filter_and_failed_create (regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create) ... ok
+test_migration_defaults_category (regression_B06.cases.<locals>.Categories.test_migration_defaults_category) ... ok
+test_append_order_trim_and_failed_append (regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append) ... ok
+test_explicit_migration_initializes_notes (regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes) ... ok
+test_archive_pending_completed_and_visibility (regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility) ... ok
+test_explicit_migration_defaults_unarchived (regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived) ... ok
+test_inclusive_window_pending_nonarchived_and_normal_order (regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order) ... ok
+test_invalid_ranges_and_timestamps_do_not_write (regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 40.422s
+
+OK
+{"achieved": ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09"], "case_methods": 20, "expectation_sha256": "6f8bb0e9e277e96860c49af736eb10df559f2dc01a5b65c19ee354f13d662f86", "failure_events": 0, "passed": 20, "skipped": 0, "superseded_cases": {}}

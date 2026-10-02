@@ -1,0 +1,7 @@
+test_create_filter_and_failed_create (<run_path>.cases.<locals>.Categories.test_create_filter_and_failed_create) ... ok
+test_migration_defaults_category (<run_path>.cases.<locals>.Categories.test_migration_defaults_category) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.031s
+
+OK

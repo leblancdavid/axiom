@@ -1,0 +1,7 @@
+test_inclusive_window_pending_nonarchived_and_normal_order (b09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order) ... ok
+test_invalid_ranges_and_timestamps_do_not_write (b09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.761s
+
+OK

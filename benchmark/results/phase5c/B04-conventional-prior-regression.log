@@ -1,0 +1,5 @@
+usage: regression_phase5e.py [-h] --app APP [--achieved ACHIEVED]
+                             --expectation-hash EXPECTATION_HASH
+                             --checkpoint CHECKPOINT
+                             --expected-hash EXPECTED_HASH
+regression_phase5e.py: error: application does not match checkpoint

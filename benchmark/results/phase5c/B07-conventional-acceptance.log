@@ -1,0 +1,7 @@
+test_append_order_trim_and_failed_append (b07.cases.<locals>.Notes.test_append_order_trim_and_failed_append) ... ok
+test_explicit_migration_initializes_notes (b07.cases.<locals>.Notes.test_explicit_migration_initializes_notes) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.041s
+
+OK

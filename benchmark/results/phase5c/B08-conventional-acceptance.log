@@ -1,0 +1,7 @@
+test_archive_pending_completed_and_visibility (b08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility) ... ok
+test_explicit_migration_defaults_unarchived (b08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.666s
+
+OK
