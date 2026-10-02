@@ -215,6 +215,52 @@ a general typed #45 compiler, and universal implementation correctness remains
 unestablished. The historical executable is unchanged and its old acceptance
 is not retroactively grounded. R5.2.2 remains authoritative, Phase 5C paused,
 B17 unexposed/unclassified and the semantic-first format unfrozen.
+The [R5.12 POC health gate](../benchmark/results/phase5c/R5_12-POC-HEALTH-GENERAL-LOWERING-GATE.md)
+finds that R5.11's B01 implementation and most of its checker were separately
+authored Python, while the semantic label index only affected digests. A small
+typed, target-neutral **validating** #45 lowerer now checks read-only B01
+list/list-high cases and a structurally different synthetic filter/order/count
+contract; mutation changes checked outcomes without lowerer edits. No B01
+algorithm is generated from that source, and a valid keyed-default combination
+remains unsupported. The 30-core candidate and grounding direction remain
+plausible, but lowering is **not general enough to scale**: the next step is
+bounded generative operation lowering challenged on a non-task domain, before
+any further frozen-request execution. R5.2.2 remains authoritative, Phase 5C
+paused, B17 unexposed/unclassified, and the semantic-first format unfrozen.
+The [R5.13 non-task generative prototype](../benchmark/results/phase5c/R5_13-SEMANTIC-DRIVEN-GENERATIVE-LOWERING.md)
+now emits stateful executable predicates, tagged outcomes and bounded keyed
+transitions from typed semantic contracts. Value and structural mutations plus
+a novel combination change real subprocess/file behavior without lowerer
+edits; independent grounding and contract conformance distinguish an injected
+lowering fault. This validates a **constrained** generative slice, not B01
+generation, arbitrary synthesis or scaling readiness. Keep 30 candidate core
+constructs / 46 raw entries, format unfrozen, Phase 5C paused, R5.2.2
+historically authoritative and B17 unexposed/unclassified. At the R5.13
+checkpoint, B02 had not been resumed.
+The [R5.14 controlled B02 pressure test](../benchmark/results/phase5c/R5_14-B02-FROZEN-ARCHITECTURE-PRESSURE.md)
+now reconstructs frozen B02 and inherited obligations without adapting that
+architecture. Existing candidate relations express ordered tag normalization,
+blank rejection and abstract migration/defaults, but R5.13's general generator
+cannot emit those compositions or complete task operations. It halts at the
+generative-lowering gate: no B02 candidate, acceptance, grounding or conformance
+result follows. The old frozen v0.3 B02 capability gap remains historical; this
+is a new prospective compiler-boundary finding, not a retroactive repair.
+Next: test general lowering of the missing existing relations on independent
+non-task examples before any B02 retry. Keep 30 candidates / 46 raw entries,
+ format unfrozen, Phase 5C paused after this B02-only pressure test, R5.2.2
+ historically authoritative and B17 unexposed/unclassified.
+The [R5.15 independent lowering study](../benchmark/results/phase5c/R5_15-GENERAL-LOWERING-COVERAGE-EXPANSION.md)
+now generates ordered normalization, typed record outcomes and a bounded keyed
+missing-field default on media, device and library domains. Semantic-only
+mutations change generated behavior; three new capabilities compose in one
+synthetic operation, with grounded executions and a fault that grounds but fails
+conformance. Framed insertion remains an abstract, unintegrated relation; a
+full checked versioned migration is also not generated. The result is
+**partial**, not B02 readiness: no B02 candidate was generated or retried.
+Keep 30 candidate core / 46 historical raw entries, Phase 5C paused, B17
+unexposed/unclassified, R5.2.2 historically authoritative and the
+semantic-first format globally unfrozen. Next: integrate exact insertion
+framing and checked durable version transitions on further non-task domains.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional

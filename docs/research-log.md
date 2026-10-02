@@ -1,5 +1,95 @@
 # Lykoi research log
 
+## R5.15 independent general lowering (prospective, 2026-10-02)
+
+**Observation:** On independent media, device and library operations,
+semantic-source mutations to ordered normalization, typed record field mapping
+and keyed missing-field default alter real generated subprocess results or
+durable state without compiler edits. A library operation composes all three;
+a novel nested normalization/cardinality/device-state combination generates
+without further edits. Internal events agree with public and durable observers;
+a disposable wrong device replacement grounds but fails semantic conformance.
+See the [R5.15 result](../benchmark/results/phase5c/R5_15-GENERAL-LOWERING-COVERAGE-EXPANSION.md).
+
+**Limit:** Insertion remains unintegrated/unsupported; library edition is input
+applicability, not a checked persisted version change. Bounded one-field
+defaults do not establish full migration or all #44 compositions. The shared
+typed AST/verifier still admits common-mode errors. Result:
+`R5_15_GENERAL_LOWERING_PARTIAL`. Candidate core remains 30; historical raw
+numbered inventory 46 with new unnumbered compiler/runtime/test machinery.
+No generated B02 candidate or R5.15 B02 acceptance was run; historical v0.3
+B02 gap unchanged. Phase 5C paused, B17 unexposed/unclassified, R5.2.2
+historically authoritative, semantic-first format unfrozen. Verification:
+harness 155 OK, application/compiler 31 OK, validate/safety OK, diff check OK;
+Git line-ending warnings separate from failures.
+
+## R5.14 controlled B02 architecture pressure (prospective, 2026-10-02)
+
+**Observation:** The frozen B02 repeated-tag, trim/nonblank, case-sensitive
+first-occurrence and empty/migrated-default obligations can be expressed using
+the existing prospective 30-candidate vocabulary. The R5.13 generator's
+supported non-task slice does not emit map(trim), stable_unique, for_each or
+keyed missing defaults; it also cannot build B02 insertion/versioned migration
+and task-valued results. Halted at `GENERATIVE_LOWERING_CAPABILITY` before
+candidate creation. See the [R5.14 record](../benchmark/results/phase5c/R5_14-B02-FROZEN-ARCHITECTURE-PRESSURE.md).
+
+**Limit:** This is conceptual candidate-semantic expressibility across separate
+prototypes, not a single integrated validated B02 model. No generated B02
+acceptance, grounding or semantic-conformance result exists; demonstrated B02
+executable reuse remains zero. The historical frozen v0.3 B02 language gap
+remains unchanged. The result suggests better semantic coverage than compiler
+coverage, not universal correctness or an architecture contradiction. Keep
+30 core / 46 raw, semantic-first format unfrozen, Phase 5C paused after B02,
+R5.2.2 historically authoritative, B17 unexposed/unclassified.
+Verification: harness 149 OK (including architecture, grounding, prototypes
+and R5.10–R5.13), application/compiler 31 OK; model validate and safety OK;
+`git diff --check` passed. Four LF→CRLF warnings were separate from failures.
+
+## R5.13 non-task generative lowering (prospective, 2026-10-02)
+
+**Observation:** Typed container contracts A–C generate disposable stateful
+Python behavior: changing a selection literal or the referenced state field
+changes real subprocess results and persisted bytes without compiler edits.
+A fourth composition replaces a different field under a negated guard. The
+external observer challenges events with independently captured stdout and
+reopened state; an injected replacement-code fault remains grounded but fails
+semantic conformance. Valid unsupported #44 relations reject explicitly,
+type mismatches reject before execution, and repeated builds are byte-identical.
+See the [R5.13 result](../benchmark/results/phase5c/R5_13-SEMANTIC-DRIVEN-GENERATIVE-LOWERING.md).
+
+**Limit:** This is a constrained non-task state shape and string-result slice,
+not B01 generation, arbitrary synthesis or universal correctness. The compiler
+and verifier share typed AST infrastructure and can share bugs; endpoint
+grounding cannot detect every intermediate effect. Representation verbosity and
+AI-authoring cost are unmeasured. The recommended next experiment challenges
+independent non-task state shapes and richer typed binding before any scaling.
+At the R5.13 checkpoint Phase 5C was paused and B02 not yet resumed; B17
+unexposed/unclassified, format unfrozen,
+R5.2.2 historically authoritative, 30 candidate core / 46 raw unchanged.
+Verification: benchmark harness 149 OK, application/compiler 31 OK; focused
+architecture 6, grounding 10, semantic prototypes 33, R5.10 4, R5.11 4,
+R5.12 3, R5.13 5 OK. `git diff --check` passed; four tracked LF→CRLF warnings
+were separate from failures.
+
+## R5.12 POC health review (prospective, 2026-10-02)
+
+**Observation:** R5.11 template generation substitutes metadata rather than
+lowering semantic operation behavior. B01 command rules appear in both target
+Python and its case checker; the operation label index supplies hashes, not
+an authoritative typed contract. A small general typed validating lowerer now
+handles the two B01 read-only success checks and a synthetic non-task typed
+filter/order/cardinality contract. Mutating the latter's predicate reverses
+which grounded-*shape* tuple conforms without modifying lowering code; a novel
+valid keyed-default relation is explicitly unsupported. See the
+[R5.12 gate](../benchmark/results/phase5c/R5_12-POC-HEALTH-GENERAL-LOWERING-GATE.md).
+
+**Limit:** Synthetic tuples are not observed execution; target implementation
+does not regenerate from changed typed contracts. No universal correctness or
+per-program productivity comparison follows. Recommendation: generative
+bounded #45 lowering and independent non-task challenge before scaling. R5.2.2
+remains authoritative; Phase 5C paused; B17 unexposed/unclassified; 30 core
+unchanged; semantic-first format unfrozen.
+
 ## R5.11 B01 instrumented integration (prospective, 2026-10-02)
 
 **Observation:** A separately generated B01-only CLI passes the unmodified

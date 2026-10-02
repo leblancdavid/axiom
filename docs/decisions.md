@@ -1,5 +1,57 @@
 # Experimental decisions
 
+## R5.15 partial general lowering (prospective, 2026-10-02)
+
+Extend R5.13's typed generator only for existing ordered string normalization,
+branch-typed record results and bounded #44 missing-field defaults. Reuse the
+existing grounded subprocess/file challenge and independently interpreted
+contract for non-task media, device and library executions; check semantic-only
+mutations and a grounded lowering fault. Do not substitute append code for the
+unintegrated #10–12/#43 exact insertion/frame hypothesis or treat an invocation
+edition guard as a durable version transition. Leave these paths explicitly
+unsupported until their typed relation and checked state binding are integrated.
+The four-capability gate is **partial**, despite three-capability composition;
+no construct #31 and no B02 retry. See
+`benchmark/results/phase5c/R5_15-GENERAL-LOWERING-COVERAGE-EXPANSION.md`.
+
+## R5.14 B02 frozen-architecture halt (prospective, 2026-10-02)
+
+Hold 30 candidate constructs and R5.13 lowering fixed while screening the
+complete frozen B02 plus B01/baseline contract. Candidate #13-17 already state
+arbitrary ordered case-sensitive normalization; #21-23/#44/#45 and core #30
+frame error, state, default and migration count. Stop at the lowering gate:
+R5.13 cannot generate normalization, legacy defaults, insertion or typed task
+results. Do not add a B02-specific branch, reuse the handwritten B01 template
+as source-authoritative generation, or run acceptance without an authorized
+candidate. Study general compiler breadth separately on non-task domains before
+any retry; historical R5.2.2 classifications remain intact. See
+`benchmark/results/phase5c/R5_14-B02-FROZEN-ARCHITECTURE-PRESSURE.md`.
+
+## R5.13 constrained generative lowering (prospective, 2026-10-02)
+
+Generate the operation's actual guarded control flow, typed result and bounded
+keyed state replacement from non-task semantic data, leaving file I/O and event
+transport in a domain-neutral runtime. Keep generated artifacts disposable and
+challenge their provenance against the source contract and public/file endpoints.
+Use an independent case verifier over the same source, plus a compiler fault
+that grounds but fails conformance, to test the circularity boundary. Reject
+valid relations beyond this subset explicitly; neither successful generation
+nor test count licenses scaling or construct #31. See
+`benchmark/results/phase5c/R5_13-SEMANTIC-DRIVEN-GENERATIVE-LOWERING.md`.
+
+## R5.12 general lowering gate (prospective, 2026-10-02)
+
+Keep the 30-core candidate provisional. R5.11's operation label hashes cannot
+stand in for behavior derived from typed semantics: the B01 target template and
+most verifier rules are separately authored. Introduce only a bounded,
+target-neutral **validating** typed #45 lowerer for relations already justified;
+use a non-task mutation and an explicitly unsupported valid combination to
+challenge it. Two B01 read-only success cases now pass through this validator,
+but B01 target generation remains manual. Gate further frozen-request testing
+on a genuinely generative, source-authoritative operation path and independent
+non-task challenge. See
+`benchmark/results/phase5c/R5_12-POC-HEALTH-GENERAL-LOWERING-GATE.md`.
+
 ## R5.11 separately generated B01 integration (prospective, 2026-10-02)
 
 Compose the 30 candidates for B01 insertion/completion framing, exact ordered

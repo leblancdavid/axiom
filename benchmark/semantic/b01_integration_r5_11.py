@@ -9,6 +9,7 @@ import sys
 import uuid
 
 from benchmark.semantic import cardinality
+from benchmark.semantic.typed_lowering_r5_12 import lower
 
 
 TEMPLATE = Path(__file__).with_name('b01_target_r5_11.py')
@@ -115,6 +116,23 @@ def keyed(items):
     return {r['id']: r for r in items}
 
 
+def _read_contract(priority=None):
+    """Prospective B01 adapter data; the evaluator contains no task vocabulary."""
+    row = {'record': {'id': 'string', 'title': 'string', 'description': 'string',
+                      'status': 'string', 'priority': 'string', 'created_at': 'string',
+                      'due_date': {'nullable': 'string'}}}
+    source = {'ref': ['pre']}
+    if priority is not None:
+        source = {'select': {'source': source, 'where': {'equals': [
+            {'ref': ['item', 'priority']}, {'literal': {'type': 'string', 'value': priority}}]}}}
+    return {'input': {'record': {}}, 'state': {'sequence': row},
+            'outcomes': {'success': {'value': {'sequence': row}, 'constraints': [
+                {'equals': [{'ref': ['post']}, {'ref': ['pre']}]},
+                {'equals': [{'ref': ['outcome']},
+                            {'order': {'source': source, 'keys': ['created_at', 'id']}}]}
+            ]}}}
+
+
 def conforms(command, inputs, outcome, before, after, raw_before, raw_after):
     """Compose existing typed equality, exact selection, ordering, frames and #30.
 
@@ -155,9 +173,10 @@ def conforms(command, inputs, outcome, before, after, raw_before, raw_after):
     if command in ('list', 'list-high', 'list-overdue'):
         if raw_before != raw_after:
             return False
+        if command in ('list', 'list-high'):
+            return lower(_read_contract('HIGH' if command == 'list-high' else None))(
+                {}, old, outcome, new)
         selected = old
-        if command == 'list-high':
-            selected = [r for r in old if r['priority'] == 'HIGH']
         if command == 'list-overdue':
             from datetime import datetime, timezone
             now = datetime.now(timezone.utc)

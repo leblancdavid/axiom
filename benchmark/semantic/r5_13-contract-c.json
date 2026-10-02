@@ -1,0 +1,18 @@
+{
+  "id": "container.release", "version": "C",
+  "input": {"record": {"code": "string"}},
+  "state": {"sequence": {"record": {"code": "string", "seal": "string", "zone": "string"}}},
+  "branches": [
+    {"tag": "released", "when": {"equals": [
+      {"cardinality": {"select": {"source": {"ref": ["pre"]}, "where": {"and": [
+        {"equals": [{"ref": ["item", "code"]}, {"ref": ["input", "code"]}]},
+        {"equals": [{"ref": ["item", "zone"]}, {"literal": {"type": "string", "value": "north"}}]}
+      ]}}}}, {"literal": {"type": "integer", "value": 1}}]},
+     "value": {"ref": ["input", "code"]},
+     "transition": {"replace_field": {"key": "code", "match": {"ref": ["input", "code"]},
+       "field": "seal", "value": {"literal": {"type": "string", "value": "open"}}}}},
+    {"tag": "unavailable", "when": null,
+     "value": {"literal": {"type": "string", "value": "no locked container"}},
+     "transition": {"preserve": true}}
+  ]
+}
