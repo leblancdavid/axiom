@@ -1,0 +1,37 @@
+{
+  "status": "RESOLVED AS R5.3 RECONSTRUCTION; historical stop witness retained",
+  "classification": "R5.3 reconstruction incompleteness",
+  "authoritative_boundary": "R5.2.2 unchanged",
+  "r5_3_frozen": false,
+  "b17_exposed": false,
+  "resolved_prior_witness": {
+    "frozen_root": "B01.high_after_critical",
+    "carrier": "benchmark/harness/assertion_preservation_r5_2_2.py:82",
+    "candidate_root_id": "a1499fc12c474c07467b15fe6efadfe3d6dff8e06e1f0d8c277172adb5005f55",
+    "expected_result": "[high] after CRITICAL completed; NORMAL and HIGH pending",
+    "lineage": "Original B01 -> B11 omission -> R5.2.1 incomplete carrier -> R5.2.2 corrected carrier"
+  },
+  "targeted_same_pattern_audit": {
+    "full_history_instance_call_result_assertion_sites": 101,
+    "early_history_instance_call_result_assertion_sites": 7,
+    "unmapped_sites_for_this_pattern": 0,
+    "scope": "Site-level structural audit of nested self.call assertions only, not global call or path-level completeness"
+  },
+  "new_witness": {
+    "achieved": ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11", "B12", "B13", "B14", "B15", "B16"],
+    "frozen_root": "baseline.ids",
+    "source": "benchmark/harness/assertion_preservation_r5_2_1.py:111-116",
+    "carrier": "assertion_preservation_r5_2_1.cases.<locals>.Preservation.test_baseline_create_assertions_restored",
+    "direct_assertion": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
+    "prior_state": "Three distinct create invocations yielded normal, high and low task rows in the same fresh store",
+    "expected_result": "The three returned task IDs are pairwise distinct",
+    "direct_assertion_disposition": "mapped after prospective reconstruction",
+    "candidate_root_ids": ["b999984c0d5842423f03d953ffb35bdaa57d0a9d107bd412cce609a20877a54f"],
+    "why_helper_roots_do_not_cover_it": "The existing check_created roots check each task's ID type and nonblankness separately; they do not compare IDs across the three created tasks."
+  },
+  "restarted_inventory_files": ["R5_3-full-restarted-coverage.json", "R5_3-early-restarted-coverage.json"],
+  "inventory_caveat": "These files inventory loaded source sites and known roots; they do not yet establish executable branch applicability or exhaustive concrete CLI paths. Their other UNMAPPED rows require independent adjudication.",
+  "rejection_path_completeness": "NOT ESTABLISHED; subsequent unmapped paths remain",
+  "assertion_level_semantic_diff": "BLOCKED",
+  "zero_unexplained_semantic_differences": false
+}

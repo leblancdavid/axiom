@@ -1,0 +1,21 @@
+{
+  "status": "STOP: semantic completeness not established",
+  "classification": "R5.3 reconstruction incompleteness",
+  "authoritative_boundary": "R5.2.2 unchanged",
+  "r5_3_frozen": false,
+  "b17_exposed": false,
+  "achieved": ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11", "B12", "B13", "B14", "B15", "B16"],
+  "frozen_carrier": "assertion_preservation_r5_2_2.cases.<locals>.Correction.test_b01_intermediate_high_exact_precondition",
+  "source": "benchmark/harness/assertion_preservation_r5_2_2.py:70-75",
+  "direct_assertion": "self.assertEqual([default['priority'], high['priority'], critical['priority']], ['NORMAL', 'HIGH', 'CRITICAL'])",
+  "prior_state": "Three successful creates in a fresh task store, in DEFAULT/HIGH/CRITICAL order",
+  "expected_result": "The returned default, high and critical task priority fields are respectively NORMAL, HIGH and CRITICAL",
+  "disposition": "UNMAPPED",
+  "candidate_root_ids": [],
+  "relationship_to_corrected_b01_root": "This separately rejectable assertion establishes priority values before both list-high observations; source-derived entity bindings alone do not assert that returned CLI fields have these values.",
+  "restarted_source_site_inventory": "R5_3-full-restarted-coverage.json",
+  "inventory_limit": "Other source-site UNMAPPED rows are candidates, not adjudicated executable paths; branch applicability and concrete CLI invocations remain unproven.",
+  "rejection_path_completeness": "NOT ESTABLISHED",
+  "assertion_level_semantic_diff": "BLOCKED",
+  "zero_unexplained_semantic_differences": false
+}

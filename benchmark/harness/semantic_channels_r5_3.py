@@ -176,6 +176,8 @@ def collect(achieved):
         helpers = {}
         helper_functions = {}
         parameterized_roots = {}
+        direct_observation_roots = {}
+        direct_assertion_roots = {}
         unresolved_loops = {}
         for test in prior.instances(suite):
             name = test.id()
@@ -230,11 +232,23 @@ def collect(achieved):
                     lineage = {"source_method": old, "carrier": name, "amendment": "B16-R5",
                                "source": "benchmark/harness/cases/B10.py" if old in replacement_lineage.R5_SPECIAL else None,
                                "assertion_lines": replacement_lineage.R5_SPECIAL.get(old, {}).get("preserved", {})}
+            restoration = [{"frozen_root": key, **value, "carrier": name}
+                           for key, value in parent["restored_roots"].items()
+                           if value["chain"][-1] == name or (
+                               value["chain"][-1].rsplit(".", 1)[-1] == name.rsplit(".", 1)[-1]
+                               and value["chain"][-1].startswith(
+                                   source_path(method).rsplit("/", 1)[-1].removesuffix(".py") + "."))]
             expanded = parameterized.expand(method, name, source_path(method),
-                                            methods[name]["state"], lineage=lineage,
-                                            achieved=achieved, profile=profile)
+                                             methods[name]["state"],
+                                             lineage={"replacement": lineage, "restoration": restoration}
+                                             if restoration else lineage,
+                                             achieved=achieved, profile=profile)
             if expanded["roots"]:
                 parameterized_roots[name] = expanded["roots"]
+            if expanded["observations"]:
+                direct_observation_roots[name] = expanded["observations"]
+            if expanded["direct_assertions"]:
+                direct_assertion_roots[name] = expanded["direct_assertions"]
             if expanded["unresolved"]:
                 unresolved_loops[name] = expanded["unresolved"]
         expected = set(parent["parent_methods"]) | set(parent["repair_carrier_ids"])
@@ -246,7 +260,9 @@ def collect(achieved):
         return {"version": VERSION, "achieved": list(achieved),
                  "repair_inventory_sha256": parent["repair_inventory_sha256"],
                  "methods": dict(sorted(methods.items())), "helpers": dict(sorted(helpers.items())),
-                  "parameterized_roots": dict(sorted(parameterized_roots.items())),
+                   "parameterized_roots": dict(sorted(parameterized_roots.items())),
+                   "direct_observation_roots": dict(sorted(direct_observation_roots.items())),
+                   "direct_assertion_roots": dict(sorted(direct_assertion_roots.items())),
                   "helper_invocation_roots": invocation_roots,
                  "unresolved_parameterized_loops": dict(sorted(unresolved_loops.items())),
                  "helper_parameterized_sites": {key: rows for key, helper in sorted(helper_functions.items())

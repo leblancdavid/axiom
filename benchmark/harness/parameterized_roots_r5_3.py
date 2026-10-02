@@ -127,6 +127,47 @@ def expected_filter(node, bindings, entities):
         return None
 
 
+def applicable_lineage(lineage, entities):
+    """Attach frozen restoration roots only at their stated prior state."""
+    if not isinstance(lineage, dict) or "restoration" not in lineage:
+        return copy.deepcopy(lineage)
+    retained = []
+    for entry in lineage["restoration"]:
+        statuses = entry.get("precondition", {}).get("at_list_high")
+        if statuses is not None and any(
+                len(matches := [entity for entity in entities.values()
+                                if entity.get("priority") == priority]) != 1 or
+                matches[0].get("status") != status
+                for priority, status in statuses.items()):
+            continue
+        retained.append(entry)
+    return {**copy.deepcopy(lineage), "restoration": retained}
+
+
+def distinct_field_count(node, bindings):
+    """Resolve a frozen equality on distinct fields of previously bound rows."""
+    if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and
+            node.func.id == "len" and len(node.args) == 1 and
+            isinstance(node.args[0], ast.SetComp)):
+        return None
+    comprehension = node.args[0]
+    if len(comprehension.generators) != 1 or comprehension.generators[0].ifs:
+        return None
+    generator = comprehension.generators[0]
+    field = comprehension.elt
+    if not (isinstance(generator.target, ast.Name) and
+            isinstance(field, ast.Subscript) and isinstance(field.value, ast.Name) and
+            field.value.id == generator.target.id):
+        return None
+    try:
+        rows = literal(generator.iter, bindings)
+        key = literal(field.slice, bindings)
+        values = [row[key] for row in rows]
+    except (ValueError, KeyError, TypeError, IndexError):
+        return None
+    return {"field": key, "values": values, "bindings": [row.get("binding") for row in rows]}
+
+
 def expand(function, method_id, source_path, state, *, lineage=None, achieved=(), profile=None):
     """Expand loop-owned CLI/assertion sites in execution order, with site identity.
 
@@ -142,6 +183,8 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
     entities = {}
     history = []
     roots = []
+    observations = []
+    direct_assertions = []
     unresolved = []
 
     def location(node):
@@ -217,6 +260,92 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                     visit(statement.body, (*loop, {"source": location(statement), "index": index,
                                            "bindings": copy.deepcopy(additions)}), context)
             else:
+                # An assertion over a CLI result is an executable observation
+                # even when it is not owned by a finite loop. Join the nested
+                # call and assertion before advancing the source-derived state.
+                if not loop and isinstance(statement, ast.Expr) and isinstance(statement.value, ast.Call):
+                    assertion = statement.value
+                    if (isinstance(assertion.func, ast.Attribute) and
+                            assertion.func.attr.startswith("assert")):
+                        nested = [item for item in ast.walk(assertion.args[0])
+                                  if isinstance(item, ast.Call) and
+                                  isinstance(item.func, (ast.Attribute, ast.Name)) and
+                                  (item.func.attr if isinstance(item.func, ast.Attribute)
+                                   else item.func.id) == "call"] if assertion.args else []
+                        for call in nested:
+                            try:
+                                args = [literal(arg, bindings) for arg in call.args[1:]]
+                            except (ValueError, KeyError, TypeError, IndexError):
+                                args = None
+                            try:
+                                expected = literal(assertion.args[1], bindings) if len(assertion.args) > 1 else None
+                            except (ValueError, KeyError, TypeError, IndexError):
+                                expected = None
+                            identity = {"method": method_id, "call": location(call),
+                                        "call_column": call.col_offset,
+                                        "assertion": location(assertion),
+                                        "assertion_column": assertion.col_offset,
+                                        "context": list(context)}
+                            error = next((literal(kw.value, bindings) for kw in call.keywords
+                                          if kw.arg == "error"), None)
+                            observations.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                 "state": state, "operation": args[0] if args else None,
+                                                 "arguments": args, "call_expression": resolved(call, bindings),
+                                                 "assertion_expression": resolved(assertion, bindings),
+                                                 "assertion_kind": assertion.func.attr,
+                                                 "expected_result": copy.deepcopy(expected),
+                                                 "expected_expression": resolved(assertion.args[1], bindings)
+                                                 if len(assertion.args) > 1 else None,
+                                                 "expected_result_shape": "exact list of task rows"
+                                                 if isinstance(expected, list) else None,
+                                                 "expected_success": error is None,
+                                                 "expected_error": error,
+                                                 "cli_outcome": {"exit": 1 if error is not None else 0,
+                                                                 "stderr": "JSON error" if error is not None else "empty",
+                                                                 "stdout": "empty" if error is not None else "JSON"},
+                                                 "prior_steps": copy.deepcopy(history),
+                                                 "entities": copy.deepcopy(entities),
+                                                 "lineage": applicable_lineage(lineage, entities)})
+                        if (not nested and assertion.func.attr == "assertEqual" and
+                                len(assertion.args) == 2 and
+                                (distinct := distinct_field_count(assertion.args[0], bindings)) is not None):
+                            try:
+                                expected_count = literal(assertion.args[1], bindings)
+                            except (ValueError, KeyError, TypeError, IndexError):
+                                expected_count = None
+                            identity = {"method": method_id, "assertion": location(assertion),
+                                        "assertion_column": assertion.col_offset,
+                                        "context": list(context)}
+                            direct_assertions.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                      "state": state, "operation": "distinct-field-count",
+                                                      "inputs": distinct, "expected_count": expected_count,
+                                                      "assertion_expression": resolved(assertion, bindings),
+                                                      "entities": copy.deepcopy(entities),
+                                                      "prior_steps": copy.deepcopy(history),
+                                                      "lineage": applicable_lineage(lineage, entities)})
+                        if (not nested and assertion.func.attr == "assertIsNone" and
+                                len(assertion.args) == 1 and
+                                isinstance(assertion.args[0], ast.Subscript) and
+                                isinstance(assertion.args[0].value, ast.Name)):
+                            field_access = assertion.args[0]
+                            binding = field_access.value.id
+                            try:
+                                field = literal(field_access.slice, bindings)
+                            except (ValueError, KeyError, TypeError, IndexError):
+                                field = None
+                            if field is not None and binding in entities:
+                                identity = {"method": method_id, "assertion": location(assertion),
+                                            "assertion_column": assertion.col_offset,
+                                            "context": list(context)}
+                                direct_assertions.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                          "state": state, "operation": "field-is-none",
+                                                          "inputs": {"binding": binding, "field": field,
+                                                                     "entity": copy.deepcopy(entities[binding])},
+                                                          "expected_result": None,
+                                                          "assertion_expression": resolved(assertion, bindings),
+                                                          "entities": copy.deepcopy(entities),
+                                                          "prior_steps": copy.deepcopy(history),
+                                                          "lineage": applicable_lineage(lineage, entities)})
                 if loop:
                     calls = cli_calls(statement)
                     assertions = [item for item in ast.walk(statement) if isinstance(item, ast.Call)
@@ -299,9 +428,11 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                     if args and args[0] == "create":
                         options = dict(zip(args[1::2], args[2::2]))
                         entities[target.id] = {"binding": target.id, "id": f"${target.id}.id", "title": options.get("--title"),
-                                               "owner": options.get("--owner", "system" if "B16" in achieved else "").strip(),
-                                               "category": options.get("--category", "").strip(),
-                                               "status": "pending"}
+                                                "owner": options.get("--owner", "system" if "B16" in achieved else "").strip(),
+                                                "category": options.get("--category", "").strip(),
+                                                "priority": options.get("--priority", "NORMAL"),
+                                                "due_date": options.get("--due-date"),
+                                                "status": "pending"}
                         bindings[target.id] = entities[target.id]
                     elif args and args[0] == "add-dependency" and "--id" in args and "--depends-on" in args:
                         identifier = args[args.index("--id") + 1]
@@ -349,6 +480,25 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                             bindings[target.id] = value
                     except (ValueError, KeyError, TypeError):
                         pass
+                # Transitions also occur inside assertions (e.g. asserting the
+                # status returned by complete). Apply them after recording that
+                # assertion's observation, so the next call sees the new state.
+                if isinstance(statement, ast.Expr) and isinstance(statement.value, ast.Call):
+                    for call in ast.walk(statement.value):
+                        if not (isinstance(call, ast.Call) and isinstance(call.func, (ast.Name, ast.Attribute))
+                                and (call.func.attr if isinstance(call.func, ast.Attribute) else call.func.id) == "call"):
+                            continue
+                        try:
+                            args = [literal(arg, bindings) for arg in call.args[1:]]
+                        except (ValueError, KeyError, TypeError, IndexError):
+                            continue
+                        if (len(args) >= 3 and args[0] in ("complete", "archive") and
+                                "--id" in args and not call.keywords):
+                            identifier = args[args.index("--id") + 1]
+                            for entity in entities.values():
+                                if entity["id"] == identifier:
+                                    entity["status" if args[0] == "complete" else "archived"] = (
+                                        "completed" if args[0] == "complete" else True)
                 if (cli_calls(statement) or isinstance(statement, (ast.Assert, ast.Raise)) or
                         (assignment is not None and "read_bytes()" in ast.unparse(assignment)) or
                         "write_text(" in ast.unparse(statement) or
@@ -361,4 +511,11 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
     visit(tree.body)
     ids = [root["id"] for root in roots]
     w.require(len(ids) == len(set(ids)), f"duplicate parameterized root: {method_id}")
-    return {"roots": roots, "unresolved": unresolved}
+    observation_ids = [root["id"] for root in observations]
+    w.require(len(observation_ids) == len(set(observation_ids)),
+              f"duplicate direct observation root: {method_id}")
+    assertion_ids = [root["id"] for root in direct_assertions]
+    w.require(len(assertion_ids) == len(set(assertion_ids)),
+              f"duplicate distinct-field root: {method_id}")
+    return {"roots": roots, "observations": observations,
+            "direct_assertions": direct_assertions, "unresolved": unresolved}

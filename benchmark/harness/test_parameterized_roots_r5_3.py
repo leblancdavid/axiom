@@ -21,7 +21,83 @@ def six_case_fixture(self, cwd):
     self.assertEqual((cwd / "tasks.json").read_bytes(), before)
 
 
+def transitioned_observation_fixture(self, cwd):
+    ordinary = self.create(cwd, "--title", "ordinary", "--description", "x")
+    selected = self.create(cwd, "--title", "selected", "--description", "x",
+                           "--priority", "HIGH")
+    changed = self.create(cwd, "--title", "changed", "--description", "x",
+                          "--priority", "CRITICAL")
+    self.assertEqual(self.call(cwd, "list-high"), [selected])
+    self.assertEqual(self.call(cwd, "complete", "--id", changed["id"])["status"], "completed")
+    self.assertEqual(self.call(cwd, "list-high"), [selected])
+
+
+def distinct_ids_fixture(self, cwd):
+    alpha = self.create(cwd, "--title", "alpha", "--description", "x")
+    beta = self.create(cwd, "--title", "beta", "--description", "x")
+    gamma = self.create(cwd, "--title", "gamma", "--description", "x")
+    self.assertEqual(len({row["id"] for row in (alpha, beta, gamma)}), 3)
+
+
 class ParameterizedRoots(unittest.TestCase):
+    def test_distinct_ids_from_previous_create_results(self):
+        def build():
+            return roots.expand(distinct_ids_fixture, "fixture", "fixture.py", "restoration")
+
+        first = build()
+        self.assertEqual(first, build())
+        self.assertEqual(len(first["direct_assertions"]), 1)
+        root = first["direct_assertions"][0]
+        self.assertEqual(root["operation"], "distinct-field-count")
+        self.assertEqual(root["inputs"], {"field": "id", "bindings": ["alpha", "beta", "gamma"],
+                                          "values": ["$alpha.id", "$beta.id", "$gamma.id"]})
+        self.assertEqual(root["expected_count"], 3)
+        self.assertEqual(len(root["prior_steps"]), 3)
+        self.assertEqual(root["id"], build()["direct_assertions"][0]["id"])
+
+    def test_direct_observation_joins_transition_assertion_and_lineage(self):
+        lineage = {"restoration": [{"frozen_root": "fixture.original",
+                                    "chain": ["original", "lost", "incomplete", "corrected"],
+                                    "precondition": {"at_list_high": {
+                                        "NORMAL": "pending", "HIGH": "pending",
+                                        "CRITICAL": "completed"}}}]}
+
+        def build():
+            return roots.expand(transitioned_observation_fixture, "fixture", "fixture.py",
+                                "restoration", lineage=lineage, achieved=("B16",))
+
+        first = build()
+        self.assertEqual(first, build())
+        self.assertEqual(w.digest(w.encoded(first)), w.digest(w.encoded(build())))
+        before, transition, after = first["observations"]
+        self.assertEqual(len({row["id"] for row in first["observations"]}), 3)
+        self.assertNotEqual(before["id"], after["id"])
+        self.assertEqual(before["lineage"]["restoration"], [])
+        self.assertEqual(after["lineage"], lineage)
+        self.assertEqual(after["operation"], "list-high")
+        self.assertEqual(after["arguments"], ["list-high"])
+        self.assertEqual(after["expected_result"], [after["entities"]["selected"]])
+        self.assertEqual(after["expected_result_shape"], "exact list of task rows")
+        self.assertEqual(after["entities"]["ordinary"]["status"], "pending")
+        self.assertEqual(after["entities"]["selected"]["status"], "pending")
+        self.assertEqual(after["entities"]["changed"]["status"], "completed")
+        self.assertEqual(before["entities"]["changed"]["status"], "pending")
+        self.assertEqual(after["prior_steps"][-1]["source"], transition["assertion"])
+        self.assertEqual(after["call"], after["assertion"])
+
+    def test_corrected_carrier_post_completion_has_canonical_invocation(self):
+        full = channels.collect([f"B{i:02}" for i in range(1, 17)])
+        name = next(name for name in full["direct_observation_roots"] if name.endswith(
+            "test_b01_intermediate_high_exact_precondition"))
+        observations = full["direct_observation_roots"][name]
+        earlier, later = (row for row in observations if row["operation"] == "list-high")
+        self.assertEqual(earlier["lineage"]["restoration"], [])
+        self.assertEqual(later["lineage"]["restoration"][0]["frozen_root"],
+                         "B01.high_after_critical")
+        self.assertEqual(later["entities"]["critical"]["status"], "completed")
+        self.assertEqual(later["expected_result"], [later["entities"]["high"]])
+        self.assertIn("complete", later["prior_steps"][-1]["expression"])
+
     def test_six_cases_are_source_derived_repeatable_and_track_independent(self):
         def build():
             return roots.expand(six_case_fixture, "fixture", "fixture.py", "replacement",

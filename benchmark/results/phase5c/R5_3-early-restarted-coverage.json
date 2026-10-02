@@ -1,0 +1,1532 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "applicability_limit": "Source-site enumeration; conditional branch viability and concrete CLI invocations outside reconstructed loops are not yet fully classified. UNMAPPED rows are coverage candidates, not automatically applicable rejection paths.",
+  "assertion_level_semantic_diff": "BLOCKED until concrete path completeness",
+  "cli_sites": [
+    {
+      "column": 12,
+      "disposition": "mapped",
+      "expression": "upgraded(self, cwd, {'schema_version': 3, 'records': rows}, [with_defaults(r) for r in rows], count=3)",
+      "kind": "upgraded",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [
+        "4d7fcb19cf85cd58296611ce692feffe76f3bd5646191d8b4e6fc3ad3644eb97",
+        "febab1f0dc7717aae3e344e062239c3e9d4e52c1ab28f84c31da3f350f75152e",
+        "59b448ca7e610b186fb0e2d5ef38c4c7aed9f4dc9a1155500aac74f678a7ead2",
+        "de7f6c139804c165eafc0bb360caadaa30bb6f7147ed29bd65d08dcf9880cbff",
+        "b3c78fe62ebcaa499ea5c945a6a6ff432c793d7ef4196d52732426a725b1d356",
+        "9122e2257120e883e924dfe452d310797bc95458b2fe7fd9f31b141802d97f1e",
+        "f9b6e60f204df62ad361cc49f3c3f465baea31b6d8aaf22b31a4dd353c70116c",
+        "884b0a7e7af156401a423d84f5edf06234a9e85af3b631ea1bea3315cf4d7d7e",
+        "8175211a27551a357e651cd93864ed41fc24b0cd417258855a695925f32be89d",
+        "374ca6bd844bb0faaa32dbb6a3f68c6d240436a313255bc9998849bcaab3cfda",
+        "8b19936d863bd2897831e45a8bff27f72f4952a8661b63737023b5f64ca21f44",
+        "f40d6efe732d80d875bca09752c88cc81133c53d0898cfc1222e8f121adbb215",
+        "4df22b3f7d721ae1faf0710c770072fd262cd4868d164ab248e493f6b753676c",
+        "6f120f03a9259aef995bec0e4ecf0dec93ed49441129393029178ffeb2896917",
+        "381a0527289da248a277882711892bccf7fb597308eda0aa35e132a553a1a5b2",
+        "4f211ef28d54d244f9960b5af45c4603d3828c17322ea818b7e45eb5f3e6b174",
+        "7919445fd17dd8baa201ca9792154ed9687a3a59b989071a0c79edea86ba7eaa",
+        "599a41daebbb74fdf2efe9f9c4f23bb473abb97350acf2fd9db867ec7ce18db9",
+        "b62fe9bd7a0cf75fb9ce657e577bec5449996924baff0391237950b4d4225804",
+        "2ff4a07e60c48fe5940ac7f791950351b511574c198eba548a56f1fc8d5e3a50",
+        "d0193033f26463fb62acec1abf7d03437562e49e92cbf8ee1656fa234ae005a3",
+        "f838cc123b60c96392d15017c4cefd8ba78c8f88569726150b73bbb160a731c9",
+        "8898f4abfe5d63fc4f71db5564ac0f6c8db760033e8f97111fce7b8faa69b1d8",
+        "09e4490f5cc7a2106ad0c3f8fadef3d16c0c3f9d328fbb8254b1b3660d21ec67",
+        "50df7a23905f29498ea8f010afe28c40f3aa84f1b961225d84cba97381138634",
+        "3cd58b060ea5d592e257fb84974e06396cd48943b7be7a65c9bd3e5e283cadaa",
+        "e9cf6962460c92c0b915dbb2bc9dbff3f4f2b12067e9bd7600ca819dd3f68b69"
+      ],
+      "source": "benchmark/harness/regression.py:187"
+    },
+    {
+      "column": 29,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:191"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "upgraded(self, Path(folder), {'schema_version': 2, 'records': older}, [with_defaults(r) for r in rows], count=3)",
+      "kind": "upgraded",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [
+        "67f6e9a4ef867c930e295211080af556ba94321ac69422061aa019f6c0f15822",
+        "656a587ea10508fc52aa4e28b7a1e556b0a7e15ac8a6afceb1d6530cb809cc50",
+        "38144f623363dc6861214f89dcd57ac622bee3d1278658d48dd8e8bc701bde28",
+        "bca324dd7421a731760e6dc912ae61c25a284916cdaccc94a4a3e938a98cda5d",
+        "b3969c9d1b63eef16c814786b54d0fccf91de0e33bbd70b31271bf898a36b1e8",
+        "9015b928ab266682916c7c02e12b62460617ec72b2b3800a9e8d89895aefa3fe",
+        "16f8e260204038b991276f41f479b38621a76cfde4d3498ce11e632446e5c5e1",
+        "c7f97afb08029d8eecfaff73a015980e7b70c5518d5668ab4da3da9f90c47e92",
+        "d5f4d68f5451d7d3ab5a9f77b92f2090e89f0c506dccf4a949cd507ae0423ddf",
+        "7559e0786ca2a48a41c65086809fc084ece280b1ded1c228127b5109cbe459de",
+        "87fd179fd4a8f74c9cff997350676f95534a1f1ebc2015c5aab971b5b6d6b678",
+        "ae688235ced6af0cb482fe9620865ff883e97fdb9131b678e57ea83ea335489a",
+        "ddd2bb854d7fa322a3cc63faf87df78de51717ce615d6ce1485ad216fe86ac2c",
+        "bd760ce65a67ca8c7944ab189a6271d6ad2b0a8bc14abf8bd4270b3050c163fd",
+        "c215a0afda4dfb6f08bef6b6c10d2a070d9849943a627f4d65b0e6dfd6f5a81c",
+        "2d6351575b48aa06ab0dd3f982165a671075c831d7f9527059bc0c3aafd09183",
+        "ad509c58724a70480d07eb21db07f6f8991809ca93d18be129ad046047bb3049",
+        "6b18cfdcfc34462afdb5a85bc9a4491b4bc8d0c907e9203e2dd625a685f61aa5",
+        "c75b38304f569223628dca22961fea22891446ebff49a463f396a705dabf499d",
+        "570c5ecf8d5cc5a83ef625ffb76b7ef3026dc36a5b3c3d22958c0ea754215db8",
+        "106f3337412f4dbbb82358122be2a3ebcedc6049853aeabe119a749061cc667e",
+        "b3cfeedbc4cc0e8c129cea4f590043af92bbe6ebe9526de2f23a3949d177c863",
+        "dbb89cdc53fb6898f668547068af14f407b45d2db5374fc8f43bfd25ba37f28a",
+        "f59b68c83e3a9930d0d30203ef661ef6d66553567a99019f8d4a21c6a5bf3c6b",
+        "78f1d1b536b5a2eb50765aca6fa1b50d7b6768c90e1935750983798888adaed4",
+        "89484d52e698133a3e42677a3b3b5e86e43b0a62e60dfcab0dc8a737c3b6ad0f",
+        "cecfd247d20ba0b14b84f2be5416fc465b6b64fcb15201bf8c4a22e379d60818"
+      ],
+      "source": "benchmark/harness/regression.py:195"
+    },
+    {
+      "column": 18,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:168"
+    },
+    {
+      "column": 15,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:169"
+    },
+    {
+      "column": 19,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:170"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-high')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4"
+      ],
+      "source": "benchmark/harness/regression.py:173"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3"
+      ],
+      "source": "benchmark/harness/regression.py:174"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'complete', '--id', critical['id'])",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5"
+      ],
+      "source": "benchmark/harness/regression.py:175"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-high')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7"
+      ],
+      "source": "benchmark/harness/regression.py:176"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'delete', '--id', critical['id'])",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7"
+      ],
+      "source": "benchmark/harness/regression.py:177"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-overdue')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4"
+      ],
+      "source": "benchmark/harness/regression.py:178"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d"
+      ],
+      "source": "benchmark/harness/regression.py:90"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:92"
+    },
+    {
+      "column": 17,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:94"
+    },
+    {
+      "column": 15,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:95"
+    },
+    {
+      "column": 14,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:97"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5"
+      ],
+      "source": "benchmark/harness/regression.py:105"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-high')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b"
+      ],
+      "source": "benchmark/harness/regression.py:106"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-overdue')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6"
+      ],
+      "source": "benchmark/harness/regression.py:107"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:109"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:110"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'complete', '--id', high['id'])",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242"
+      ],
+      "source": "benchmark/harness/regression.py:113"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-overdue')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb"
+      ],
+      "source": "benchmark/harness/regression.py:114"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:116"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'delete', '--id', high['id'])",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524"
+      ],
+      "source": "benchmark/harness/regression.py:118"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:119"
+    },
+    {
+      "column": 43,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e"
+      ],
+      "source": "benchmark/harness/regression.py:120"
+    },
+    {
+      "column": 12,
+      "disposition": "mapped",
+      "expression": "upgraded(self, cwd, payload, [with_defaults(expected)])",
+      "kind": "upgraded",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [
+        "95b8697816aa48132f6b577e1e3cec33cae8e6b227657907cfad1d1e57403525",
+        "c8398f44cb0fcaf540ebc41f797ed69e8cedfb7e71787ea00ae04eb06a6cf988",
+        "357da81522122ef0092247be4da2eef83dbc5aed1265a13caaa9e773bff350f2",
+        "13386b308e8ebb972c916f0c4801b2fbc9a120431e02df2acc1248508a493d9c",
+        "7cc24d09d8abb756edb0e005864569edd65131fec3588e649be3b52f84fd20c5",
+        "66b0fbf8ae9f3db388aadb998b20e8391c9ae76e8393d5434a0f32eb832eb3d9",
+        "45011ba8718e2459d41ce1a6c9e3e44d8a0c4a7e51b93722c7faf55e43a17bc7",
+        "6eff5e92c75f59f01d485f5a74546c5cfc2b515496535d4ddd939790e72b9490",
+        "9681c5cd6e0e996fe6d340f0972f2502e34ff736182c934819e30490311f6532",
+        "dec5771372392da550288b707ed215bad49022efe7b8888f6d3ef4f6226eb331",
+        "cee742c90bceac7ab913788053d2943746977b2aa61c0e9cc6bbf0aea953ed6f",
+        "a0f5a56a5567bdba414b11d8c93bd1dbd3980a2e8dc2ff0e9196fd67d294b740",
+        "fb976ee62a18f9626bcb602e694d51371e07e2ccd10562e2cdbcabedaf080c70",
+        "ecc228677c98662c7eba2685f446455293ca810e1ef49fce1cb48815799dbfbc",
+        "1aa08c459f1b9a15a3225e735b65250b39240d5c850fcfa93a6e73021a618a79",
+        "2c290ce3506f87991b659ffaf9c4c7027716d9875058fbe9059176673ea66611",
+        "4d34b64a9e48ffd5b0e4e61403f34ce42346b08290529ae9eb77e8959bc38b35",
+        "eeff44987b4a287cbb1263b7b5342b3ad3fc860912219cef3d873c9886d3b606",
+        "705c8e153579900a7cdd16d7cb7cdf5f47a9bb477d349af68c1062866d57bdb8",
+        "02297463779e65f013acdb39b4d83614db9f9fc9d44d8c7ad383b85ea91e5628",
+        "51bb2e88b3ec7918a3d160900927cf937a4f0d50b0bdd883dcd91aec96ee6a32",
+        "8d2ea100aa0f5835b83897245365910cdc7c8c20180231e47f19c87809f3613b",
+        "b48e10dbe3cf6448c62b6fbfa7cb726d78a83b128bc2036a339f4bae563127c8",
+        "623b7435df1ccb45978168e7f6f44a5f9f4b0eba3364112fb085bf01ef0994f4",
+        "edae220c7d8bdcb801b466cd5e0a0a7e8fcc4d7d5e1eac1832d822bb6fe3a51f",
+        "10e33b69a546a1ff7a394bb4a5da369f9aff95e77fdc2806bad69514cca2c71f",
+        "dbfd050550b88641d8166a18bf99890221d0300566b3684ed7d438ab664c598a",
+        "a9b22d4e2c22e554ad76d5be2c94177ac915f590e3cdec7ac59f3e9201f51551"
+      ],
+      "source": "benchmark/harness/regression.py:135"
+    },
+    {
+      "column": 16,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:138"
+    },
+    {
+      "column": 12,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [
+        "027e029acf0a77798f56e0a7328af2f74dd87976089689c63f05718e27c1c2b2",
+        "0959b63fd04222850873aa465ffe7488cd81037c29e42779478ff23aa5741701"
+      ],
+      "source": "benchmark/harness/regression.py:143"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:145"
+    },
+    {
+      "column": 20,
+      "disposition": "UNMAPPED",
+      "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:156"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "call(cwd, 'list-overdue')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [
+        "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1"
+      ],
+      "source": "benchmark/harness/regression.py:161"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'list', error='migration_required')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:58"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'migrate')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c"
+      ],
+      "source": "benchmark/harness/cases/B04.py:60"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2"
+      ],
+      "source": "benchmark/harness/cases/B04.py:62"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'migrate')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+      ],
+      "source": "benchmark/harness/cases/B04.py:66"
+    },
+    {
+      "column": 19,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:28"
+    },
+    {
+      "column": 18,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:30"
+    },
+    {
+      "column": 16,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:31"
+    },
+    {
+      "column": 65,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee"
+      ],
+      "source": "benchmark/harness/cases/B04.py:36"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'list-high')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5"
+      ],
+      "source": "benchmark/harness/cases/B04.py:38"
+    },
+    {
+      "column": 20,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:39"
+    },
+    {
+      "column": 47,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268"
+      ],
+      "source": "benchmark/harness/cases/B04.py:41"
+    },
+    {
+      "column": 25,
+      "disposition": "mapped",
+      "expression": "self.call(cwd, 'delete', '--id', labelled['id'])",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+      ],
+      "source": "benchmark/harness/cases/B04.py:43"
+    }
+  ],
+  "direct_assertions": [
+    {
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(call(cwd, 'list'), sorted(rows, key=lambda r: (r['created_at'], r['id'])))",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:191"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual([default['priority'], high['priority'], critical['priority']], ['NORMAL', 'HIGH', 'CRITICAL'])",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:171"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4"
+      ],
+      "source": "benchmark/harness/regression.py:173"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list'), sorted((default, high, critical), key=lambda r: (r['created_at'], r['id'])))",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3"
+      ],
+      "source": "benchmark/harness/regression.py:174"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'complete', '--id', critical['id'])['status'], 'completed')",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5"
+      ],
+      "source": "benchmark/harness/regression.py:175"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7"
+      ],
+      "source": "benchmark/harness/regression.py:176"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'delete', '--id', critical['id'])['priority'], 'CRITICAL')",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7"
+      ],
+      "source": "benchmark/harness/regression.py:177"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-overdue'), [])",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [
+        "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4"
+      ],
+      "source": "benchmark/harness/regression.py:178"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list'), [])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d"
+      ],
+      "source": "benchmark/harness/regression.py:90"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:91"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:93"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "8c75989db046543b66964008911e3bd023b5b219bb5b24e230e312f025564645"
+      ],
+      "source": "benchmark/harness/regression.py:99"
+    },
+    {
+      "column": 12,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(task['status'], 'pending')",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694",
+        "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741",
+        "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003"
+      ],
+      "source": "benchmark/harness/regression.py:102"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual([normal['priority'], high['priority'], low['priority']], ['NORMAL', 'HIGH', 'LOW'])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:103"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertIsNone(normal['due_date'])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "0f91802185e3ea7808b7400fd8566c2ebff111b8dc94e0a14cf79d501e762fcf"
+      ],
+      "source": "benchmark/harness/regression.py:104"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list'), sorted((normal, high, low), key=lambda r: (r['created_at'], r['id'])))",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5"
+      ],
+      "source": "benchmark/harness/regression.py:105"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b"
+      ],
+      "source": "benchmark/harness/regression.py:106"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-overdue'), [high])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6"
+      ],
+      "source": "benchmark/harness/regression.py:107"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:111"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'complete', '--id', high['id']), done)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242"
+      ],
+      "source": "benchmark/harness/regression.py:113"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-overdue'), [])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb"
+      ],
+      "source": "benchmark/harness/regression.py:114"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:117"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'delete', '--id', high['id']), done)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524"
+      ],
+      "source": "benchmark/harness/regression.py:118"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual({r['id'] for r in call(cwd, 'list')}, {normal['id'], low['id']})",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [
+        "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e"
+      ],
+      "source": "benchmark/harness/regression.py:120"
+    },
+    {
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(set(probe), fields())",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:157"
+    },
+    {
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:159"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(call(cwd, 'list-overdue'), [rows[0]])",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [
+        "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1"
+      ],
+      "source": "benchmark/harness/regression.py:161"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(path.read_bytes(), before)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:59"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 1})",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c"
+      ],
+      "source": "benchmark/harness/cases/B04.py:60"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(self.call(cwd, 'list'), [expected])",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2"
+      ],
+      "source": "benchmark/harness/cases/B04.py:62"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:63"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 0})",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [
+        "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+      ],
+      "source": "benchmark/harness/cases/B04.py:66"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:67"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(labelled['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:33"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(omitted['source'], '')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:34"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(empty['source'], '')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:35"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual({task['id']: task['source'] for task in self.call(cwd, 'list')}, {labelled['id']: '  API\\tfeed  ', omitted['id']: '', empty['id']: ''})",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee"
+      ],
+      "source": "benchmark/harness/cases/B04.py:36"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(self.call(cwd, 'list-high')[0]['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5"
+      ],
+      "source": "benchmark/harness/cases/B04.py:38"
+    },
+    {
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(completed['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:40"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(next((task for task in self.call(cwd, 'list') if task['id'] == labelled['id']))['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268"
+      ],
+      "source": "benchmark/harness/cases/B04.py:41"
+    },
+    {
+      "column": 8,
+      "disposition": "mapped",
+      "expression": "self.assertEqual(self.call(cwd, 'delete', '--id', labelled['id'])['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [
+        "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+      ],
+      "source": "benchmark/harness/cases/B04.py:43"
+    }
+  ],
+  "rejection_path_completeness": "NOT ESTABLISHED",
+  "root_hashes": {
+    "direct_assertion_roots": "39a9038fd106733322e20c8af15874df537f446443dffc51f777ab238cb3c0ce",
+    "direct_observation_roots": "43cadea8937ac12591dd6cf50af4c5e81365efdd63233bfa4251edef505650f8",
+    "helper_invocation_roots": "3dda2071095088a98cd62dd984c1a7fd898fee8ae1f9f7cd5656cc70536e6b4c",
+    "parameterized_roots": "5f98ff36ca7a6a025d134a7f31ff35b41ce2a5775a68a933ab224a65fb856214"
+  },
+  "root_inventory": {
+    "direct_assertion_roots": {
+      "regression.Regression.test_baseline_lifecycle_filters_failures": [
+        "8c75989db046543b66964008911e3bd023b5b219bb5b24e230e312f025564645",
+        "0f91802185e3ea7808b7400fd8566c2ebff111b8dc94e0a14cf79d501e762fcf"
+      ]
+    },
+    "direct_observation_roots": {
+      "regression.Regression.test_b01_priority_and_regression": [
+        "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4",
+        "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3",
+        "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5",
+        "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7",
+        "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7",
+        "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4"
+      ],
+      "regression.Regression.test_b02_tags_and_failure": [
+        "24306e78e80d1092ca6c0e281832bdea6dea03beb1892d22c5bcee56b68d58d2",
+        "bb15f28e1ca40c72422c087f28489555775aba60748dfd35eb1d7ddeed6e5ce3",
+        "65fcb0c086e3df0b4f2a8ef3426c470a0e16785d5749b07f0ada48e67ab6068b"
+      ],
+      "regression.Regression.test_baseline_lifecycle_filters_failures": [
+        "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d",
+        "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5",
+        "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b",
+        "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6",
+        "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242",
+        "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb",
+        "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524",
+        "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e"
+      ],
+      "regression.Regression.test_baseline_overdue_fixture": [
+        "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1"
+      ],
+      "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": [
+        "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c",
+        "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2",
+        "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+      ],
+      "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": [
+        "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee",
+        "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5",
+        "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268",
+        "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+      ]
+    },
+    "helper_invocation_roots": {
+      "regression.Regression.test_b01_historical_priorities": [
+        "4d7fcb19cf85cd58296611ce692feffe76f3bd5646191d8b4e6fc3ad3644eb97",
+        "febab1f0dc7717aae3e344e062239c3e9d4e52c1ab28f84c31da3f350f75152e",
+        "59b448ca7e610b186fb0e2d5ef38c4c7aed9f4dc9a1155500aac74f678a7ead2",
+        "de7f6c139804c165eafc0bb360caadaa30bb6f7147ed29bd65d08dcf9880cbff",
+        "b3c78fe62ebcaa499ea5c945a6a6ff432c793d7ef4196d52732426a725b1d356",
+        "9122e2257120e883e924dfe452d310797bc95458b2fe7fd9f31b141802d97f1e",
+        "f9b6e60f204df62ad361cc49f3c3f465baea31b6d8aaf22b31a4dd353c70116c",
+        "884b0a7e7af156401a423d84f5edf06234a9e85af3b631ea1bea3315cf4d7d7e",
+        "8175211a27551a357e651cd93864ed41fc24b0cd417258855a695925f32be89d",
+        "374ca6bd844bb0faaa32dbb6a3f68c6d240436a313255bc9998849bcaab3cfda",
+        "8b19936d863bd2897831e45a8bff27f72f4952a8661b63737023b5f64ca21f44",
+        "f40d6efe732d80d875bca09752c88cc81133c53d0898cfc1222e8f121adbb215",
+        "4df22b3f7d721ae1faf0710c770072fd262cd4868d164ab248e493f6b753676c",
+        "6f120f03a9259aef995bec0e4ecf0dec93ed49441129393029178ffeb2896917",
+        "381a0527289da248a277882711892bccf7fb597308eda0aa35e132a553a1a5b2",
+        "4f211ef28d54d244f9960b5af45c4603d3828c17322ea818b7e45eb5f3e6b174",
+        "7919445fd17dd8baa201ca9792154ed9687a3a59b989071a0c79edea86ba7eaa",
+        "599a41daebbb74fdf2efe9f9c4f23bb473abb97350acf2fd9db867ec7ce18db9",
+        "b62fe9bd7a0cf75fb9ce657e577bec5449996924baff0391237950b4d4225804",
+        "2ff4a07e60c48fe5940ac7f791950351b511574c198eba548a56f1fc8d5e3a50",
+        "d0193033f26463fb62acec1abf7d03437562e49e92cbf8ee1656fa234ae005a3",
+        "f838cc123b60c96392d15017c4cefd8ba78c8f88569726150b73bbb160a731c9",
+        "8898f4abfe5d63fc4f71db5564ac0f6c8db760033e8f97111fce7b8faa69b1d8",
+        "09e4490f5cc7a2106ad0c3f8fadef3d16c0c3f9d328fbb8254b1b3660d21ec67",
+        "50df7a23905f29498ea8f010afe28c40f3aa84f1b961225d84cba97381138634",
+        "3cd58b060ea5d592e257fb84974e06396cd48943b7be7a65c9bd3e5e283cadaa",
+        "e9cf6962460c92c0b915dbb2bc9dbff3f4f2b12067e9bd7600ca819dd3f68b69",
+        "67f6e9a4ef867c930e295211080af556ba94321ac69422061aa019f6c0f15822",
+        "656a587ea10508fc52aa4e28b7a1e556b0a7e15ac8a6afceb1d6530cb809cc50",
+        "38144f623363dc6861214f89dcd57ac622bee3d1278658d48dd8e8bc701bde28",
+        "bca324dd7421a731760e6dc912ae61c25a284916cdaccc94a4a3e938a98cda5d",
+        "b3969c9d1b63eef16c814786b54d0fccf91de0e33bbd70b31271bf898a36b1e8",
+        "9015b928ab266682916c7c02e12b62460617ec72b2b3800a9e8d89895aefa3fe",
+        "16f8e260204038b991276f41f479b38621a76cfde4d3498ce11e632446e5c5e1",
+        "c7f97afb08029d8eecfaff73a015980e7b70c5518d5668ab4da3da9f90c47e92",
+        "d5f4d68f5451d7d3ab5a9f77b92f2090e89f0c506dccf4a949cd507ae0423ddf",
+        "7559e0786ca2a48a41c65086809fc084ece280b1ded1c228127b5109cbe459de",
+        "87fd179fd4a8f74c9cff997350676f95534a1f1ebc2015c5aab971b5b6d6b678",
+        "ae688235ced6af0cb482fe9620865ff883e97fdb9131b678e57ea83ea335489a",
+        "ddd2bb854d7fa322a3cc63faf87df78de51717ce615d6ce1485ad216fe86ac2c",
+        "bd760ce65a67ca8c7944ab189a6271d6ad2b0a8bc14abf8bd4270b3050c163fd",
+        "c215a0afda4dfb6f08bef6b6c10d2a070d9849943a627f4d65b0e6dfd6f5a81c",
+        "2d6351575b48aa06ab0dd3f982165a671075c831d7f9527059bc0c3aafd09183",
+        "ad509c58724a70480d07eb21db07f6f8991809ca93d18be129ad046047bb3049",
+        "6b18cfdcfc34462afdb5a85bc9a4491b4bc8d0c907e9203e2dd625a685f61aa5",
+        "c75b38304f569223628dca22961fea22891446ebff49a463f396a705dabf499d",
+        "570c5ecf8d5cc5a83ef625ffb76b7ef3026dc36a5b3c3d22958c0ea754215db8",
+        "106f3337412f4dbbb82358122be2a3ebcedc6049853aeabe119a749061cc667e",
+        "b3cfeedbc4cc0e8c129cea4f590043af92bbe6ebe9526de2f23a3949d177c863",
+        "dbb89cdc53fb6898f668547068af14f407b45d2db5374fc8f43bfd25ba37f28a",
+        "f59b68c83e3a9930d0d30203ef661ef6d66553567a99019f8d4a21c6a5bf3c6b",
+        "78f1d1b536b5a2eb50765aca6fa1b50d7b6768c90e1935750983798888adaed4",
+        "89484d52e698133a3e42677a3b3b5e86e43b0a62e60dfcab0dc8a737c3b6ad0f",
+        "cecfd247d20ba0b14b84f2be5416fc465b6b64fcb15201bf8c4a22e379d60818"
+      ],
+      "regression.Regression.test_baseline_migration_corruption": [
+        "357da81522122ef0092247be4da2eef83dbc5aed1265a13caaa9e773bff350f2",
+        "13386b308e8ebb972c916f0c4801b2fbc9a120431e02df2acc1248508a493d9c",
+        "7cc24d09d8abb756edb0e005864569edd65131fec3588e649be3b52f84fd20c5",
+        "66b0fbf8ae9f3db388aadb998b20e8391c9ae76e8393d5434a0f32eb832eb3d9",
+        "45011ba8718e2459d41ce1a6c9e3e44d8a0c4a7e51b93722c7faf55e43a17bc7",
+        "6eff5e92c75f59f01d485f5a74546c5cfc2b515496535d4ddd939790e72b9490",
+        "9681c5cd6e0e996fe6d340f0972f2502e34ff736182c934819e30490311f6532",
+        "dec5771372392da550288b707ed215bad49022efe7b8888f6d3ef4f6226eb331",
+        "cee742c90bceac7ab913788053d2943746977b2aa61c0e9cc6bbf0aea953ed6f",
+        "a0f5a56a5567bdba414b11d8c93bd1dbd3980a2e8dc2ff0e9196fd67d294b740",
+        "fb976ee62a18f9626bcb602e694d51371e07e2ccd10562e2cdbcabedaf080c70",
+        "ecc228677c98662c7eba2685f446455293ca810e1ef49fce1cb48815799dbfbc",
+        "1aa08c459f1b9a15a3225e735b65250b39240d5c850fcfa93a6e73021a618a79",
+        "2c290ce3506f87991b659ffaf9c4c7027716d9875058fbe9059176673ea66611",
+        "4d34b64a9e48ffd5b0e4e61403f34ce42346b08290529ae9eb77e8959bc38b35",
+        "eeff44987b4a287cbb1263b7b5342b3ad3fc860912219cef3d873c9886d3b606",
+        "705c8e153579900a7cdd16d7cb7cdf5f47a9bb477d349af68c1062866d57bdb8",
+        "02297463779e65f013acdb39b4d83614db9f9fc9d44d8c7ad383b85ea91e5628",
+        "51bb2e88b3ec7918a3d160900927cf937a4f0d50b0bdd883dcd91aec96ee6a32",
+        "8d2ea100aa0f5835b83897245365910cdc7c8c20180231e47f19c87809f3613b",
+        "b48e10dbe3cf6448c62b6fbfa7cb726d78a83b128bc2036a339f4bae563127c8",
+        "623b7435df1ccb45978168e7f6f44a5f9f4b0eba3364112fb085bf01ef0994f4",
+        "edae220c7d8bdcb801b466cd5e0a0a7e8fcc4d7d5e1eac1832d822bb6fe3a51f",
+        "10e33b69a546a1ff7a394bb4a5da369f9aff95e77fdc2806bad69514cca2c71f",
+        "dbfd050550b88641d8166a18bf99890221d0300566b3684ed7d438ab664c598a",
+        "a9b22d4e2c22e554ad76d5be2c94177ac915f590e3cdec7ac59f3e9201f51551"
+      ]
+    },
+    "parameterized_roots": {
+      "regression.Regression.test_b02_explicit_migration": [
+        "88f0dce77e67e50b70c189369f9f645242ab82c030b8ca2d162b90d0e40b997e",
+        "943c8a424e839547172f5dfe34b45906c0a805ee7607f7ad6231fd8e887c6339"
+      ],
+      "regression.Regression.test_baseline_lifecycle_filters_failures": [
+        "c6bde48330e711c18628c887805c50a9b8c4c720d0528541a730f2f17a751fa4",
+        "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694",
+        "78428ffb95f8439575c78d1d814af2fc211c5b49fb4c5d87161e50587707e1a6",
+        "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741",
+        "3df50fe843464f08ed92d2f1c6e3e1285ca4cc36ea28aee399a9fcbf6cdb6bb5",
+        "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003"
+      ],
+      "regression.Regression.test_baseline_migration_corruption": [
+        "95b8697816aa48132f6b577e1e3cec33cae8e6b227657907cfad1d1e57403525",
+        "c8398f44cb0fcaf540ebc41f797ed69e8cedfb7e71787ea00ae04eb06a6cf988",
+        "027e029acf0a77798f56e0a7328af2f74dd87976089689c63f05718e27c1c2b2",
+        "0959b63fd04222850873aa465ffe7488cd81037c29e42779478ff23aa5741701"
+      ]
+    }
+  },
+  "same_pattern_audit": {
+    "achieved": [
+      "B01",
+      "B04"
+    ],
+    "note": "This is a targeted site-pattern audit, not the exhaustive semantic rejection-path proof.",
+    "pattern": "CLI call inside direct result assertion",
+    "site_inventory": [
+      {
+        "assertion": "benchmark/harness/cases/B04.py:60",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 1})",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+        "roots": [
+          "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:62",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(self.call(cwd, 'list'), [expected])",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+        "roots": [
+          "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:66",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 0})",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+        "roots": [
+          "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:36",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual({task['id']: task['source'] for task in self.call(cwd, 'list')}, {labelled['id']: '  API\\tfeed  ', omitted['id']: '', empty['id']: ''})",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+        "roots": [
+          "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:38",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(self.call(cwd, 'list-high')[0]['source'], '  API\\tfeed  ')",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+        "roots": [
+          "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:41",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(next((task for task in self.call(cwd, 'list') if task['id'] == labelled['id']))['source'], '  API\\tfeed  ')",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+        "roots": [
+          "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268"
+        ],
+        "state": "active"
+      },
+      {
+        "assertion": "benchmark/harness/cases/B04.py:43",
+        "cli_calls": 1,
+        "disposition": "mapped",
+        "expression": "self.assertEqual(self.call(cwd, 'delete', '--id', labelled['id'])['source'], '  API\\tfeed  ')",
+        "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+        "roots": [
+          "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+        ],
+        "state": "active"
+      }
+    ],
+    "unmapped": []
+  },
+  "unmapped_source_channels": [
+    {
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(call(cwd, 'list'), sorted(rows, key=lambda r: (r['created_at'], r['id'])))",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:191"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual([default['priority'], high['priority'], critical['priority']], ['NORMAL', 'HIGH', 'CRITICAL'])",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:171"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:91"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:93"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual([normal['priority'], high['priority'], low['priority']], ['NORMAL', 'HIGH', 'LOW'])",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:103"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:111"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:117"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(set(probe), fields())",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:157"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:159"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(path.read_bytes(), before)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:59"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:63"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:67"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(labelled['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:33"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(omitted['source'], '')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:34"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(empty['source'], '')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:35"
+    },
+    {
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.assertEqual(completed['source'], '  API\\tfeed  ')",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:40"
+    },
+    {
+      "channel": "CLI",
+      "column": 29,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'list')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_historical_priorities",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:191"
+    },
+    {
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:168"
+    },
+    {
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:169"
+    },
+    {
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:170"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:92"
+    },
+    {
+      "channel": "CLI",
+      "column": 17,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:94"
+    },
+    {
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:95"
+    },
+    {
+      "channel": "CLI",
+      "column": 14,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:97"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:109"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:110"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:116"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:119"
+    },
+    {
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:138"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:145"
+    },
+    {
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNMAPPED",
+      "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "roots": [],
+      "source": "benchmark/harness/regression.py:156"
+    },
+    {
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'list', error='migration_required')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:58"
+    },
+    {
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:28"
+    },
+    {
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:30"
+    },
+    {
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:31"
+    },
+    {
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNMAPPED",
+      "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "roots": [],
+      "source": "benchmark/harness/cases/B04.py:39"
+    }
+  ]
+}
