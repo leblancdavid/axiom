@@ -200,3 +200,23 @@ guaranteed by its validated equality filter. It does not count passing tests
 as formal proof. The model has six declared invariants and one transition;
 the verification suite now runs 31 tests. Phase 3's 16/12/0 comparison remains
 a conservative reachability observation, not an accuracy or safety score.
+
+## Phase 5C: executable-path observation (2026-10-02)
+
+The prospective R5.3 reconstruction revealed a measurement distinction:
+source sites indicate possible assertions, while a runtime trace supplies
+concrete invocations, operands and reached paths. Two frozen R5.2.2 achieved
+histories produced repeatable normalized external-suite traces, but a same-line
+event/root correlation alone cannot demonstrate that the reconstructed root
+preserves the CLI input, returned value, later persisted observation and
+rejection precondition. Generated IDs and creation times require relational
+aliases rather than removal; B12's wall-clock-relative deadline additionally
+requires recording its *source-derived* relative-time rule. An initial
+in-process rerun also exposed frozen skip-marker mutation of the baseline
+test class; restoring those methods after execution made repetition possible
+without changing the frozen runner. The evidence and open reconciliation gates
+are recorded in [R5.3 runtime-trace progress](../benchmark/results/phase5c/R5_3-RUNTIME-TRACE-VALIDATION-PROGRESS.md).
+
+This supports using static and dynamic evidence together, not treating the
+dynamic trace as a new semantic authority. No completeness or equivalence
+claim follows while executable paths remain unmapped.

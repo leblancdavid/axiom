@@ -7,6 +7,7 @@
   "assertion_level_semantic_diff": "BLOCKED until concrete path completeness",
   "cli_sites": [
     {
+      "branch": null,
       "column": 12,
       "disposition": "mapped",
       "expression": "upgraded(self, cwd, {'schema_version': 3, 'records': rows}, [with_defaults(r) for r in rows], count=3)",
@@ -44,8 +45,16 @@
       "source": "benchmark/harness/regression.py:187"
     },
     {
+      "branch": [
+        {
+          "branch": "else",
+          "condition": "PROFILE['schema_version'] > 3",
+          "reachable": false,
+          "resolution": "profile/achievement"
+        }
+      ],
       "column": 29,
-      "disposition": "UNMAPPED",
+      "disposition": "unreachable",
       "expression": "call(cwd, 'list')",
       "kind": "call",
       "method": "regression.Regression.test_b01_historical_priorities",
@@ -53,6 +62,7 @@
       "source": "benchmark/harness/regression.py:191"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "upgraded(self, Path(folder), {'schema_version': 2, 'records': older}, [with_defaults(r) for r in rows], count=3)",
@@ -90,6 +100,7 @@
       "source": "benchmark/harness/regression.py:195"
     },
     {
+      "branch": null,
       "column": 18,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
@@ -99,6 +110,7 @@
       "source": "benchmark/harness/regression.py:168"
     },
     {
+      "branch": null,
       "column": 15,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
@@ -108,6 +120,7 @@
       "source": "benchmark/harness/regression.py:169"
     },
     {
+      "branch": null,
       "column": 19,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
@@ -117,6 +130,7 @@
       "source": "benchmark/harness/regression.py:170"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-high')",
@@ -128,6 +142,7 @@
       "source": "benchmark/harness/regression.py:173"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list')",
@@ -139,6 +154,7 @@
       "source": "benchmark/harness/regression.py:174"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'complete', '--id', critical['id'])",
@@ -150,6 +166,7 @@
       "source": "benchmark/harness/regression.py:175"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-high')",
@@ -161,6 +178,7 @@
       "source": "benchmark/harness/regression.py:176"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'delete', '--id', critical['id'])",
@@ -172,6 +190,7 @@
       "source": "benchmark/harness/regression.py:177"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-overdue')",
@@ -183,6 +202,7 @@
       "source": "benchmark/harness/regression.py:178"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list')",
@@ -194,6 +214,7 @@
       "source": "benchmark/harness/regression.py:90"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
@@ -203,6 +224,7 @@
       "source": "benchmark/harness/regression.py:92"
     },
     {
+      "branch": null,
       "column": 17,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
@@ -212,6 +234,7 @@
       "source": "benchmark/harness/regression.py:94"
     },
     {
+      "branch": null,
       "column": 15,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
@@ -221,6 +244,7 @@
       "source": "benchmark/harness/regression.py:95"
     },
     {
+      "branch": null,
       "column": 14,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
@@ -230,6 +254,7 @@
       "source": "benchmark/harness/regression.py:97"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list')",
@@ -241,6 +266,7 @@
       "source": "benchmark/harness/regression.py:105"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-high')",
@@ -252,6 +278,7 @@
       "source": "benchmark/harness/regression.py:106"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-overdue')",
@@ -263,6 +290,7 @@
       "source": "benchmark/harness/regression.py:107"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
@@ -272,6 +300,7 @@
       "source": "benchmark/harness/regression.py:109"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
@@ -281,6 +310,7 @@
       "source": "benchmark/harness/regression.py:110"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'complete', '--id', high['id'])",
@@ -292,6 +322,7 @@
       "source": "benchmark/harness/regression.py:113"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-overdue')",
@@ -303,6 +334,7 @@
       "source": "benchmark/harness/regression.py:114"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
@@ -312,6 +344,7 @@
       "source": "benchmark/harness/regression.py:116"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'delete', '--id', high['id'])",
@@ -323,6 +356,7 @@
       "source": "benchmark/harness/regression.py:118"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
@@ -332,6 +366,7 @@
       "source": "benchmark/harness/regression.py:119"
     },
     {
+      "branch": null,
       "column": 43,
       "disposition": "mapped",
       "expression": "call(cwd, 'list')",
@@ -343,6 +378,7 @@
       "source": "benchmark/harness/regression.py:120"
     },
     {
+      "branch": null,
       "column": 12,
       "disposition": "mapped",
       "expression": "upgraded(self, cwd, payload, [with_defaults(expected)])",
@@ -381,6 +417,7 @@
       "source": "benchmark/harness/regression.py:135"
     },
     {
+      "branch": null,
       "column": 16,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
@@ -390,6 +427,7 @@
       "source": "benchmark/harness/regression.py:138"
     },
     {
+      "branch": null,
       "column": 12,
       "disposition": "mapped",
       "expression": "call(cwd, 'list', error='invalid_state')",
@@ -402,6 +440,7 @@
       "source": "benchmark/harness/regression.py:143"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "call(cwd, 'list', error='invalid_state')",
@@ -411,6 +450,7 @@
       "source": "benchmark/harness/regression.py:145"
     },
     {
+      "branch": null,
       "column": 20,
       "disposition": "UNMAPPED",
       "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
@@ -420,6 +460,7 @@
       "source": "benchmark/harness/regression.py:156"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "call(cwd, 'list-overdue')",
@@ -431,6 +472,7 @@
       "source": "benchmark/harness/regression.py:161"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.call(cwd, 'list', error='migration_required')",
@@ -440,6 +482,7 @@
       "source": "benchmark/harness/cases/B04.py:58"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'migrate')",
@@ -451,6 +494,7 @@
       "source": "benchmark/harness/cases/B04.py:60"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'list')",
@@ -462,6 +506,7 @@
       "source": "benchmark/harness/cases/B04.py:62"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'migrate')",
@@ -473,6 +518,7 @@
       "source": "benchmark/harness/cases/B04.py:66"
     },
     {
+      "branch": null,
       "column": 19,
       "disposition": "UNMAPPED",
       "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
@@ -482,6 +528,7 @@
       "source": "benchmark/harness/cases/B04.py:28"
     },
     {
+      "branch": null,
       "column": 18,
       "disposition": "UNMAPPED",
       "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
@@ -491,6 +538,7 @@
       "source": "benchmark/harness/cases/B04.py:30"
     },
     {
+      "branch": null,
       "column": 16,
       "disposition": "UNMAPPED",
       "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
@@ -500,6 +548,7 @@
       "source": "benchmark/harness/cases/B04.py:31"
     },
     {
+      "branch": null,
       "column": 65,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'list')",
@@ -511,6 +560,7 @@
       "source": "benchmark/harness/cases/B04.py:36"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'list-high')",
@@ -522,6 +572,7 @@
       "source": "benchmark/harness/cases/B04.py:38"
     },
     {
+      "branch": null,
       "column": 20,
       "disposition": "UNMAPPED",
       "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
@@ -531,6 +582,7 @@
       "source": "benchmark/harness/cases/B04.py:39"
     },
     {
+      "branch": null,
       "column": 47,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'list')",
@@ -542,6 +594,7 @@
       "source": "benchmark/harness/cases/B04.py:41"
     },
     {
+      "branch": null,
       "column": 25,
       "disposition": "mapped",
       "expression": "self.call(cwd, 'delete', '--id', labelled['id'])",
@@ -555,22 +608,36 @@
   ],
   "direct_assertions": [
     {
+      "branch": [
+        {
+          "branch": "else",
+          "condition": "PROFILE['schema_version'] > 3",
+          "reachable": false,
+          "resolution": "profile/achievement"
+        }
+      ],
       "column": 12,
-      "disposition": "UNMAPPED",
+      "disposition": "unreachable",
       "expression": "self.assertEqual(call(cwd, 'list'), sorted(rows, key=lambda r: (r['created_at'], r['id'])))",
       "method": "regression.Regression.test_b01_historical_priorities",
       "roots": [],
       "source": "benchmark/harness/regression.py:191"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual([default['priority'], high['priority'], critical['priority']], ['NORMAL', 'HIGH', 'CRITICAL'])",
       "method": "regression.Regression.test_b01_priority_and_regression",
-      "roots": [],
+      "roots": [
+        "8dcddc480961d7e8bd94e7fc2430fb0d8080a2b9226c4e8af755df20dedcf169",
+        "a184496d9c3e6fc41735e1c3db72f368037e058259febae0cdef1cf881f334fc",
+        "718fdf4407b4fb9be6132ddcb7ffddd8c16a015ac57e5616d19e9cc0ef706d87"
+      ],
       "source": "benchmark/harness/regression.py:171"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
@@ -581,6 +648,7 @@
       "source": "benchmark/harness/regression.py:173"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list'), sorted((default, high, critical), key=lambda r: (r['created_at'], r['id'])))",
@@ -591,6 +659,7 @@
       "source": "benchmark/harness/regression.py:174"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'complete', '--id', critical['id'])['status'], 'completed')",
@@ -601,6 +670,7 @@
       "source": "benchmark/harness/regression.py:175"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
@@ -611,6 +681,7 @@
       "source": "benchmark/harness/regression.py:176"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'delete', '--id', critical['id'])['priority'], 'CRITICAL')",
@@ -621,6 +692,7 @@
       "source": "benchmark/harness/regression.py:177"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-overdue'), [])",
@@ -631,6 +703,7 @@
       "source": "benchmark/harness/regression.py:178"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list'), [])",
@@ -641,6 +714,7 @@
       "source": "benchmark/harness/regression.py:90"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
@@ -649,6 +723,7 @@
       "source": "benchmark/harness/regression.py:91"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
@@ -657,6 +732,7 @@
       "source": "benchmark/harness/regression.py:93"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
@@ -667,6 +743,7 @@
       "source": "benchmark/harness/regression.py:99"
     },
     {
+      "branch": null,
       "column": 12,
       "disposition": "mapped",
       "expression": "self.assertEqual(task['status'], 'pending')",
@@ -679,14 +756,20 @@
       "source": "benchmark/harness/regression.py:102"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual([normal['priority'], high['priority'], low['priority']], ['NORMAL', 'HIGH', 'LOW'])",
       "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
-      "roots": [],
+      "roots": [
+        "eeb5ad8944dbcbf3fc2dad5f2859e07098cfcb2b3830fcc87b496e884715e054",
+        "2f9b0f5fcdc14f6834164a01751b5563eb8825081b6fa5b888191162dc5f1d98",
+        "20a85d87e33cf5322fc44c38bd214dc1625de4ee0d0cbb2c0d5ec72f529bb3e7"
+      ],
       "source": "benchmark/harness/regression.py:103"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertIsNone(normal['due_date'])",
@@ -697,6 +780,7 @@
       "source": "benchmark/harness/regression.py:104"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list'), sorted((normal, high, low), key=lambda r: (r['created_at'], r['id'])))",
@@ -707,6 +791,7 @@
       "source": "benchmark/harness/regression.py:105"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-high'), [high])",
@@ -717,6 +802,7 @@
       "source": "benchmark/harness/regression.py:106"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-overdue'), [high])",
@@ -727,6 +813,7 @@
       "source": "benchmark/harness/regression.py:107"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
@@ -735,6 +822,7 @@
       "source": "benchmark/harness/regression.py:111"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'complete', '--id', high['id']), done)",
@@ -745,6 +833,7 @@
       "source": "benchmark/harness/regression.py:113"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-overdue'), [])",
@@ -755,6 +844,7 @@
       "source": "benchmark/harness/regression.py:114"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
@@ -763,6 +853,7 @@
       "source": "benchmark/harness/regression.py:117"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'delete', '--id', high['id']), done)",
@@ -773,6 +864,7 @@
       "source": "benchmark/harness/regression.py:118"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual({r['id'] for r in call(cwd, 'list')}, {normal['id'], low['id']})",
@@ -783,6 +875,7 @@
       "source": "benchmark/harness/regression.py:120"
     },
     {
+      "branch": null,
       "column": 12,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual(set(probe), fields())",
@@ -791,6 +884,7 @@
       "source": "benchmark/harness/regression.py:157"
     },
     {
+      "branch": null,
       "column": 12,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
@@ -799,6 +893,7 @@
       "source": "benchmark/harness/regression.py:159"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(call(cwd, 'list-overdue'), [rows[0]])",
@@ -809,6 +904,7 @@
       "source": "benchmark/harness/regression.py:161"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual(path.read_bytes(), before)",
@@ -817,6 +913,7 @@
       "source": "benchmark/harness/cases/B04.py:59"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 1})",
@@ -827,6 +924,7 @@
       "source": "benchmark/harness/cases/B04.py:60"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(self.call(cwd, 'list'), [expected])",
@@ -837,6 +935,7 @@
       "source": "benchmark/harness/cases/B04.py:62"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
@@ -845,6 +944,7 @@
       "source": "benchmark/harness/cases/B04.py:63"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(self.call(cwd, 'migrate'), {'migrated': 0})",
@@ -855,6 +955,7 @@
       "source": "benchmark/harness/cases/B04.py:66"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "UNMAPPED",
       "expression": "self.assertEqual(path.read_bytes(), unchanged)",
@@ -863,30 +964,40 @@
       "source": "benchmark/harness/cases/B04.py:67"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual(labelled['source'], '  API\\tfeed  ')",
       "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
+      "roots": [
+        "20b8ae06eff0d0bcf2efe57dea69ee009e7aed2ee6b6bafc1188d7a440419e61"
+      ],
       "source": "benchmark/harness/cases/B04.py:33"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual(omitted['source'], '')",
       "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
+      "roots": [
+        "adceb44cf343177cc73281423c3764846e9def73f2067507b4cf38fc6021d9a6"
+      ],
       "source": "benchmark/harness/cases/B04.py:34"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual(empty['source'], '')",
       "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
+      "roots": [
+        "4f1beda8d49097b9b647fbff696804f3105c1df0dc1c77c7561e3702c4877565"
+      ],
       "source": "benchmark/harness/cases/B04.py:35"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual({task['id']: task['source'] for task in self.call(cwd, 'list')}, {labelled['id']: '  API\\tfeed  ', omitted['id']: '', empty['id']: ''})",
@@ -897,6 +1008,7 @@
       "source": "benchmark/harness/cases/B04.py:36"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(self.call(cwd, 'list-high')[0]['source'], '  API\\tfeed  ')",
@@ -907,14 +1019,18 @@
       "source": "benchmark/harness/cases/B04.py:38"
     },
     {
+      "branch": null,
       "column": 8,
-      "disposition": "UNMAPPED",
+      "disposition": "mapped",
       "expression": "self.assertEqual(completed['source'], '  API\\tfeed  ')",
       "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
+      "roots": [
+        "28f6b76ccdb99b60285a149aa6cefb83e06936462e0979dfd8ad2baa7c405f9b"
+      ],
       "source": "benchmark/harness/cases/B04.py:40"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(next((task for task in self.call(cwd, 'list') if task['id'] == labelled['id']))['source'], '  API\\tfeed  ')",
@@ -925,6 +1041,7 @@
       "source": "benchmark/harness/cases/B04.py:41"
     },
     {
+      "branch": null,
       "column": 8,
       "disposition": "mapped",
       "expression": "self.assertEqual(self.call(cwd, 'delete', '--id', labelled['id'])['source'], '  API\\tfeed  ')",
@@ -937,16 +1054,34 @@
   ],
   "rejection_path_completeness": "NOT ESTABLISHED",
   "root_hashes": {
-    "direct_assertion_roots": "39a9038fd106733322e20c8af15874df537f446443dffc51f777ab238cb3c0ce",
+    "direct_assertion_roots": "17b5cb77c78cdeb908f67295305abbb0c25813dc5131d5cc4ce5f2d4d78a8a56",
     "direct_observation_roots": "43cadea8937ac12591dd6cf50af4c5e81365efdd63233bfa4251edef505650f8",
     "helper_invocation_roots": "3dda2071095088a98cd62dd984c1a7fd898fee8ae1f9f7cd5656cc70536e6b4c",
     "parameterized_roots": "5f98ff36ca7a6a025d134a7f31ff35b41ce2a5775a68a933ab224a65fb856214"
   },
   "root_inventory": {
     "direct_assertion_roots": {
+      "regression.Regression.test_b01_priority_and_regression": [
+        "8dcddc480961d7e8bd94e7fc2430fb0d8080a2b9226c4e8af755df20dedcf169",
+        "a184496d9c3e6fc41735e1c3db72f368037e058259febae0cdef1cf881f334fc",
+        "718fdf4407b4fb9be6132ddcb7ffddd8c16a015ac57e5616d19e9cc0ef706d87"
+      ],
+      "regression.Regression.test_b02_tags_and_failure": [
+        "6afdd3cbc019c3bdaa9a612ae0a77803ccff3d3fa22a2fa3ed143bf59be0fa63",
+        "7d3fb4020f41543af53c30402b122fba00fa509b8b2ce6cf181496154dc0daec"
+      ],
       "regression.Regression.test_baseline_lifecycle_filters_failures": [
         "8c75989db046543b66964008911e3bd023b5b219bb5b24e230e312f025564645",
+        "eeb5ad8944dbcbf3fc2dad5f2859e07098cfcb2b3830fcc87b496e884715e054",
+        "2f9b0f5fcdc14f6834164a01751b5563eb8825081b6fa5b888191162dc5f1d98",
+        "20a85d87e33cf5322fc44c38bd214dc1625de4ee0d0cbb2c0d5ec72f529bb3e7",
         "0f91802185e3ea7808b7400fd8566c2ebff111b8dc94e0a14cf79d501e762fcf"
+      ],
+      "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": [
+        "20b8ae06eff0d0bcf2efe57dea69ee009e7aed2ee6b6bafc1188d7a440419e61",
+        "adceb44cf343177cc73281423c3764846e9def73f2067507b4cf38fc6021d9a6",
+        "4f1beda8d49097b9b647fbff696804f3105c1df0dc1c77c7561e3702c4877565",
+        "28f6b76ccdb99b60285a149aa6cefb83e06936462e0979dfd8ad2baa7c405f9b"
       ]
     },
     "direct_observation_roots": {
@@ -1185,24 +1320,7 @@
   },
   "unmapped_source_channels": [
     {
-      "channel": "direct_assertion",
-      "column": 12,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual(call(cwd, 'list'), sorted(rows, key=lambda r: (r['created_at'], r['id'])))",
-      "method": "regression.Regression.test_b01_historical_priorities",
-      "roots": [],
-      "source": "benchmark/harness/regression.py:191"
-    },
-    {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual([default['priority'], high['priority'], critical['priority']], ['NORMAL', 'HIGH', 'CRITICAL'])",
-      "method": "regression.Regression.test_b01_priority_and_regression",
-      "roots": [],
-      "source": "benchmark/harness/regression.py:171"
-    },
-    {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1212,6 +1330,7 @@
       "source": "benchmark/harness/regression.py:91"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1221,15 +1340,7 @@
       "source": "benchmark/harness/regression.py:93"
     },
     {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual([normal['priority'], high['priority'], low['priority']], ['NORMAL', 'HIGH', 'LOW'])",
-      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
-      "roots": [],
-      "source": "benchmark/harness/regression.py:103"
-    },
-    {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1239,6 +1350,7 @@
       "source": "benchmark/harness/regression.py:111"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1248,6 +1360,7 @@
       "source": "benchmark/harness/regression.py:117"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 12,
       "disposition": "UNMAPPED",
@@ -1257,6 +1370,7 @@
       "source": "benchmark/harness/regression.py:157"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 12,
       "disposition": "UNMAPPED",
@@ -1266,6 +1380,7 @@
       "source": "benchmark/harness/regression.py:159"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1275,6 +1390,7 @@
       "source": "benchmark/harness/cases/B04.py:59"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1284,6 +1400,7 @@
       "source": "benchmark/harness/cases/B04.py:63"
     },
     {
+      "branch": null,
       "channel": "direct_assertion",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1293,52 +1410,7 @@
       "source": "benchmark/harness/cases/B04.py:67"
     },
     {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual(labelled['source'], '  API\\tfeed  ')",
-      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
-      "source": "benchmark/harness/cases/B04.py:33"
-    },
-    {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual(omitted['source'], '')",
-      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
-      "source": "benchmark/harness/cases/B04.py:34"
-    },
-    {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual(empty['source'], '')",
-      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
-      "source": "benchmark/harness/cases/B04.py:35"
-    },
-    {
-      "channel": "direct_assertion",
-      "column": 8,
-      "disposition": "UNMAPPED",
-      "expression": "self.assertEqual(completed['source'], '  API\\tfeed  ')",
-      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
-      "roots": [],
-      "source": "benchmark/harness/cases/B04.py:40"
-    },
-    {
-      "channel": "CLI",
-      "column": 29,
-      "disposition": "UNMAPPED",
-      "expression": "call(cwd, 'list')",
-      "kind": "call",
-      "method": "regression.Regression.test_b01_historical_priorities",
-      "roots": [],
-      "source": "benchmark/harness/regression.py:191"
-    },
-    {
+      "branch": null,
       "channel": "CLI",
       "column": 18,
       "disposition": "UNMAPPED",
@@ -1349,6 +1421,7 @@
       "source": "benchmark/harness/regression.py:168"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 15,
       "disposition": "UNMAPPED",
@@ -1359,6 +1432,7 @@
       "source": "benchmark/harness/regression.py:169"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 19,
       "disposition": "UNMAPPED",
@@ -1369,6 +1443,7 @@
       "source": "benchmark/harness/regression.py:170"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1379,6 +1454,7 @@
       "source": "benchmark/harness/regression.py:92"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 17,
       "disposition": "UNMAPPED",
@@ -1389,6 +1465,7 @@
       "source": "benchmark/harness/regression.py:94"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 15,
       "disposition": "UNMAPPED",
@@ -1399,6 +1476,7 @@
       "source": "benchmark/harness/regression.py:95"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 14,
       "disposition": "UNMAPPED",
@@ -1409,6 +1487,7 @@
       "source": "benchmark/harness/regression.py:97"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1419,6 +1498,7 @@
       "source": "benchmark/harness/regression.py:109"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1429,6 +1509,7 @@
       "source": "benchmark/harness/regression.py:110"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1439,6 +1520,7 @@
       "source": "benchmark/harness/regression.py:116"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1449,6 +1531,7 @@
       "source": "benchmark/harness/regression.py:119"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 16,
       "disposition": "UNMAPPED",
@@ -1459,6 +1542,7 @@
       "source": "benchmark/harness/regression.py:138"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1469,6 +1553,7 @@
       "source": "benchmark/harness/regression.py:145"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 20,
       "disposition": "UNMAPPED",
@@ -1479,6 +1564,7 @@
       "source": "benchmark/harness/regression.py:156"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 8,
       "disposition": "UNMAPPED",
@@ -1489,6 +1575,7 @@
       "source": "benchmark/harness/cases/B04.py:58"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 19,
       "disposition": "UNMAPPED",
@@ -1499,6 +1586,7 @@
       "source": "benchmark/harness/cases/B04.py:28"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 18,
       "disposition": "UNMAPPED",
@@ -1509,6 +1597,7 @@
       "source": "benchmark/harness/cases/B04.py:30"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 16,
       "disposition": "UNMAPPED",
@@ -1519,6 +1608,7 @@
       "source": "benchmark/harness/cases/B04.py:31"
     },
     {
+      "branch": null,
       "channel": "CLI",
       "column": 20,
       "disposition": "UNMAPPED",

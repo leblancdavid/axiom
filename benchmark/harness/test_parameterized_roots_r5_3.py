@@ -39,7 +39,92 @@ def distinct_ids_fixture(self, cwd):
     self.assertEqual(len({row["id"] for row in (alpha, beta, gamma)}), 3)
 
 
+def returned_and_persisted_fixture(self, cwd):
+    normal = self.create(cwd, "--title", "normal", "--description", "x")
+    high = self.create(cwd, "--title", "high", "--description", "x", "--priority", "HIGH")
+    critical = self.create(cwd, "--title", "critical", "--description", "x", "--priority", "CRITICAL")
+    self.assertEqual([normal["priority"], high["priority"], critical["priority"]],
+                     ["NORMAL", "HIGH", "CRITICAL"])
+    self.assertEqual(self.call(cwd, "list-high"), [high])
+
+
+def comprehended_return_fixture(self, cwd):
+    first = self.create(cwd, "--title", "first", "--owner", "Alex")
+    second = self.create(cwd, "--title", "second", "--owner", "system")
+    self.assertEqual([task["owner"] for task in (first, second)], ["Alex", "system"])
+
+
 class ParameterizedRoots(unittest.TestCase):
+    def test_comprehended_returned_fields_are_separate(self):
+        expanded = roots.expand(comprehended_return_fixture, "fixture", "fixture.py", "active")
+        self.assertEqual([(row["binding"], row["field"], row["expected_result"])
+                          for row in expanded["direct_assertions"]],
+                         [("first", "owner", "Alex"), ("second", "owner", "system")])
+
+    def test_returned_values_are_independent_of_requested_and_persisted_values(self):
+        def build():
+            return roots.expand(returned_and_persisted_fixture, "fixture", "fixture.py",
+                                "restoration", lineage={"frozen": "R5.2.2"})
+
+        first = build()
+        self.assertEqual(first, build())
+        self.assertEqual(w.digest(w.encoded(first)), w.digest(w.encoded(build())))
+        returned = first["direct_assertions"]
+        self.assertEqual([(r["binding"], r["field"], r["expected_result"]) for r in returned],
+                         [("normal", "priority", "NORMAL"), ("high", "priority", "HIGH"),
+                          ("critical", "priority", "CRITICAL")])
+        self.assertEqual(len({r["id"] for r in returned}), 3)
+        self.assertEqual(returned[0]["creation_input"]["requested_fields"].get("--priority"), None)
+        self.assertEqual(returned[1]["creation_input"]["requested_fields"]["--priority"], "HIGH")
+        self.assertEqual(returned[2]["creation_input"]["requested_fields"]["--priority"], "CRITICAL")
+        self.assertTrue(all(r["operation"] == "returned-field-equality" and
+                            r["observed_value"] == f"${r['binding']}.priority" and
+                            r["creation_input"]["returned_binding"] == r["binding"] and
+                            r["lineage"] == {"frozen": "R5.2.2"} and
+                            len(r["prior_steps"]) == 3 for r in returned))
+        persisted = first["observations"][0]
+        self.assertEqual(persisted["operation"], "list-high")
+        self.assertNotIn(persisted["id"], {r["id"] for r in returned})
+        self.assertEqual(persisted["expected_result"], [persisted["entities"]["high"]])
+
+    def test_input_alone_creates_no_returned_field_root(self):
+        def input_only(self, cwd):
+            high = self.create(cwd, "--title", "high", "--priority", "HIGH")
+            self.assertEqual(self.call(cwd, "list-high"), [high])
+
+        result = roots.expand(input_only, "fixture", "fixture.py", "restoration")
+        self.assertEqual(result["direct_assertions"], [])
+        self.assertEqual(len(result["observations"]), 1)
+
+    def test_real_corrected_carrier_returned_priority_roots(self):
+        inventory = channels.collect([f"B{i:02}" for i in range(1, 17)])
+        name = next(name for name in inventory["direct_assertion_roots"] if name.endswith(
+            "test_b01_intermediate_high_exact_precondition"))
+        rows = [r for r in inventory["direct_assertion_roots"][name]
+                if r["operation"] == "returned-field-equality"]
+        self.assertEqual([(r["binding"], r["expected_result"]) for r in rows],
+                         [("default", "NORMAL"), ("high", "HIGH"), ("critical", "CRITICAL")])
+        self.assertTrue(all(r["assertion"].endswith(":75") and
+                            r["lineage"]["restoration"][0]["frozen_root"] ==
+                            "B01.high_after_critical" for r in rows))
+
+    def test_early_source_return_and_later_persisted_source_are_distinct(self):
+        inventory = channels.collect(["B01", "B04"])
+        name = next(name for name in inventory["direct_assertion_roots"] if name.endswith(
+            "SourceLabel.test_verbatim_default_and_mutations"))
+        returned = [row for row in inventory["direct_assertion_roots"][name]
+                    if row["operation"] == "returned-field-equality"]
+        self.assertEqual([(row["binding"], row["expected_result"]) for row in returned],
+                         [("labelled", "  API\tfeed  "), ("omitted", ""), ("empty", ""),
+                          ("completed", "  API\tfeed  ")])
+        self.assertEqual(returned[0]["creation_input"]["requested_fields"]["--source"],
+                         "  API\tfeed  ")
+        self.assertEqual(returned[-1]["creation_input"]["returned_binding"], "labelled")
+        persisted = [row for row in inventory["direct_observation_roots"][name]
+                     if row["operation"] == "list"]
+        self.assertTrue(persisted)
+        self.assertFalse({row["id"] for row in returned} & {row["id"] for row in persisted})
+
     def test_distinct_ids_from_previous_create_results(self):
         def build():
             return roots.expand(distinct_ids_fixture, "fixture", "fixture.py", "restoration")

@@ -11,6 +11,15 @@ question is: what should software look like when AI, rather than humans, is the
 primary programmer? Human intent leads to an AI-authored Lykoi semantic model,
 then validation, lowering and generation, and finally an executable system.
 
+For the work to date, current research boundary and long-term goal, see
+[`docs/project-overview.md`](docs/project-overview.md). The project is **Lykoi,
+not Axiom**; historical `axiom` names are retained only for compatibility and
+reproducible research records.
+
+Contributors and AI agents should start with [`AGENTS.md`](AGENTS.md) and the
+[agent workflow](docs/agent-workflow.md) before changing the model, compiler or
+benchmark.
+
 The task application lives in [`air/task_manager.json`](air/task_manager.json)
 (the `air/` path and `air_compiler` import path are retained for compatibility).
 The current v0.3 model is documented in [`docs/axiom-v0.3.md`](docs/axiom-v0.3.md),
@@ -20,9 +29,11 @@ The historical v0.1 semantics are preserved in [`docs/air-v0.1.md`](docs/air-v0.
 Existing `air/`, `air_compiler`, `axiom_version`, and schema paths remain stable
 compatibility interfaces for saved models and research artifacts.
 
-Phase 5's frozen comparative-maintenance setup, conventional Python baseline,
-external behavioral oracle, and twenty sequential requests are in
-[`benchmark/`](benchmark/README.md). The benchmark changes have not been run.
+Phase 5's comparative-maintenance setup, conventional Python baseline,
+external behavioral oracle, twenty sequential requests and execution records
+are in [`benchmark/`](benchmark/README.md). The benchmark is in progress:
+post-B16 histories have been revalidated against the corrected oracle, while
+R5.3 acceptance reconstruction remains unfrozen and B17 is unexposed.
 
 Python 3.10+; no third-party dependencies. In PowerShell from the repository root:
 

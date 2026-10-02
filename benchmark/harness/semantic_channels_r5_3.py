@@ -223,6 +223,7 @@ def collect(achieved):
                     channel.append(site)
             methods[name] = {"state": disposition.get(name, {}).get("state", "restoration"),
                               "source": source_path(method),
+                              "first_line": start,
                               "source_sha256": w.file_hash(Path(inspect.getfile(method))),
                               "body": source, "channels": channel}
             lineage = None

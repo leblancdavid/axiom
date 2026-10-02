@@ -168,6 +168,50 @@ def distinct_field_count(node, bindings):
     return {"field": key, "values": values, "bindings": [row.get("binding") for row in rows]}
 
 
+def returned_fields(assertion, bindings, entities):
+    """Only explicit equalities on bound result fields are observable checks.
+
+    Entity attributes inferred from input options must never satisfy this check:
+    the expected values come exclusively from the assertion's right operand.
+    """
+    if not (isinstance(assertion.func, ast.Attribute) and
+            assertion.func.attr == "assertEqual" and len(assertion.args) == 2):
+        return []
+    left, right = assertion.args
+    accesses = left.elts if isinstance(left, (ast.List, ast.Tuple)) else [left]
+    if isinstance(left, ast.ListComp) and len(left.generators) == 1:
+        gen = left.generators[0]
+        if (isinstance(gen.target, ast.Name) and not gen.ifs and
+                isinstance(gen.iter, (ast.Tuple, ast.List)) and
+                all(isinstance(item, ast.Name) and item.id in entities for item in gen.iter.elts)
+                and isinstance(left.elt, ast.Subscript) and
+                isinstance(left.elt.value, ast.Name) and left.elt.value.id == gen.target.id):
+            accesses = [ast.Subscript(value=item, slice=left.elt.slice, ctx=ast.Load())
+                        for item in gen.iter.elts]
+        else:
+            return []
+    try:
+        expected = literal(right, bindings)
+    except (ValueError, KeyError, TypeError, IndexError):
+        return []
+    values = expected if isinstance(left, (ast.List, ast.Tuple, ast.ListComp)) and isinstance(expected, list) else [expected]
+    if len(accesses) != len(values):
+        return []
+    result = []
+    for access, value in zip(accesses, values):
+        if not (isinstance(access, ast.Subscript) and isinstance(access.value, ast.Name)):
+            return []
+        name = access.value.id
+        try:
+            field = literal(access.slice, bindings)
+        except (ValueError, KeyError, TypeError, IndexError):
+            return []
+        if name not in entities or not isinstance(field, str):
+            return []
+        result.append((name, field, value))
+    return result
+
+
 def expand(function, method_id, source_path, state, *, lineage=None, achieved=(), profile=None):
     """Expand loop-owned CLI/assertion sites in execution order, with site identity.
 
@@ -181,6 +225,7 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
     first = function.__code__.co_firstlineno
     bindings = {"PROFILE": profile, "profile": profile} if profile is not None else {}
     entities = {}
+    creation_inputs = {}
     history = []
     roots = []
     observations = []
@@ -321,8 +366,25 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                                                       "inputs": distinct, "expected_count": expected_count,
                                                       "assertion_expression": resolved(assertion, bindings),
                                                       "entities": copy.deepcopy(entities),
-                                                      "prior_steps": copy.deepcopy(history),
-                                                      "lineage": applicable_lineage(lineage, entities)})
+                                                       "prior_steps": copy.deepcopy(history),
+                                                       "lineage": applicable_lineage(lineage, entities)})
+                        if not nested:
+                            for binding, field, expected_value in returned_fields(assertion, bindings, entities):
+                                identity = {"method": method_id, "assertion": location(assertion),
+                                            "assertion_column": assertion.col_offset,
+                                            "binding": binding, "field": field, "context": list(context)}
+                                direct_assertions.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                          "state": state, "operation": "returned-field-equality",
+                                                          "observed_value": f"${binding}.{field}",
+                                                          "expected_result": expected_value,
+                                                          "creation_input": copy.deepcopy(creation_inputs.get(
+                                                              entities[binding].get("binding", binding))),
+                                                          "assertion_expression": resolved(assertion, bindings),
+                                                          "entities": copy.deepcopy(entities),
+                                                          "prior_steps": copy.deepcopy(history),
+                                                          "lineage": copy.deepcopy(lineage),
+                                                          "provenance": {"carrier": method_id,
+                                                                         "assertion": location(assertion)}})
                         if (not nested and assertion.func.attr == "assertIsNone" and
                                 len(assertion.args) == 1 and
                                 isinstance(assertion.args[0], ast.Subscript) and
@@ -392,6 +454,24 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                         root["id"] = w.digest(w.encoded({"method": method_id, "site": root["site"],
                                                           "column": root["column"], "loop": loop}))
                         roots.append(root)
+                    for assertion in assertions:
+                        for binding, field, expected_value in returned_fields(assertion, bindings, entities):
+                            identity = {"method": method_id, "assertion": location(assertion),
+                                        "assertion_column": assertion.col_offset,
+                                        "binding": binding, "field": field, "loop": copy.deepcopy(loop),
+                                        "context": list(context)}
+                            direct_assertions.append({"id": w.digest(w.encoded(identity)), **identity,
+                                                      "state": state, "operation": "returned-field-equality",
+                                                      "observed_value": f"${binding}.{field}",
+                                                      "expected_result": expected_value,
+                                                      "creation_input": copy.deepcopy(creation_inputs.get(
+                                                          entities[binding].get("binding", binding))),
+                                                      "assertion_expression": resolved(assertion, bindings),
+                                                      "entities": copy.deepcopy(entities),
+                                                      "prior_steps": copy.deepcopy(history),
+                                                      "lineage": copy.deepcopy(lineage),
+                                                      "provenance": {"carrier": method_id,
+                                                                     "assertion": location(assertion)}})
                 # Track source-derived task identities and the state at each site.
                 assignment = statement.value if isinstance(statement, (ast.Assign, ast.AnnAssign)) else None
                 target = (statement.targets[0] if isinstance(statement, ast.Assign) and len(statement.targets) == 1
@@ -427,6 +507,10 @@ def expand(function, method_id, source_path, state, *, lineage=None, achieved=()
                         args = ["create", *args]
                     if args and args[0] == "create":
                         options = dict(zip(args[1::2], args[2::2]))
+                        creation_inputs[target.id] = {"source": location(assignment),
+                                                      "returned_binding": target.id,
+                                                      "arguments": copy.deepcopy(args),
+                                                      "requested_fields": copy.deepcopy(options)}
                         entities[target.id] = {"binding": target.id, "id": f"${target.id}.id", "title": options.get("--title"),
                                                 "owner": options.get("--owner", "system" if "B16" in achieved else "").strip(),
                                                 "category": options.get("--category", "").strip(),

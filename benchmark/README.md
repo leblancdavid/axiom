@@ -15,7 +15,11 @@ python -m unittest discover -s tests -v
 
 Read `baseline.md` for the external behavioral contract, `requirements/README.md`
 for the ordered frozen requests, `harness/README.md` for the oracle protocol, and
-`results/BASELINE.md` for provenance and evidence. B01–B20 have **not** been run.
+`results/BASELINE.md` for baseline provenance. For execution progress and the
+current acceptance boundary, see the [project overview](../docs/project-overview.md).
+The original execution protocol below is retained as historical context;
+later protocol amendments and checkpoints are documented under `results/`.
+
 The test harness treats both applications as subprocesses; it never imports
 their internal modules or uses their internal test suites as the shared oracle.
 

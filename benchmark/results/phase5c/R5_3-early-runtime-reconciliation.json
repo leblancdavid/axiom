@@ -1,0 +1,1441 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "assertion_level_semantic_diff": "BLOCKED",
+  "candidate_counts": {
+    "DUPLICATE_REPRESENTATION": 0,
+    "EXECUTED_SEMANTIC": 0,
+    "INFRASTRUCTURE_ONLY": 0,
+    "REPRESENTED_INDIRECTLY": 0,
+    "UNEXPLAINED": 28,
+    "UNREACHABLE": 0
+  },
+  "candidate_reachability": {
+    "observed": 28,
+    "unobserved": 0
+  },
+  "events_without_provisional_site_roots": [
+    4,
+    6,
+    7,
+    9,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    35,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    50,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    65,
+    70,
+    72,
+    74,
+    78,
+    80,
+    81,
+    83,
+    84,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    109,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    124,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    139,
+    144,
+    146,
+    148,
+    152,
+    154,
+    157,
+    159,
+    162,
+    164,
+    168,
+    170,
+    174,
+    176,
+    180,
+    182,
+    186,
+    188,
+    192,
+    194,
+    198,
+    200,
+    206,
+    208,
+    211,
+    213,
+    215,
+    216,
+    218,
+    220,
+    222,
+    225,
+    227,
+    230,
+    232,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    247,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    263,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    279,
+    287,
+    289,
+    293,
+    295,
+    299,
+    301,
+    305,
+    307,
+    308,
+    311,
+    313,
+    314,
+    316,
+    318,
+    320,
+    324,
+    326,
+    330,
+    332,
+    333,
+    335,
+    337,
+    339,
+    343,
+    345,
+    346,
+    349,
+    351,
+    358,
+    360,
+    361,
+    363,
+    364,
+    366,
+    368,
+    370,
+    372,
+    374,
+    376,
+    380,
+    381,
+    382,
+    383,
+    384,
+    385,
+    389,
+    394,
+    396,
+    398,
+    404,
+    406,
+    407,
+    409,
+    410,
+    412,
+    414,
+    416,
+    418,
+    420,
+    422,
+    426,
+    427,
+    428,
+    429,
+    430,
+    431,
+    435,
+    440,
+    442,
+    444,
+    448,
+    450,
+    454,
+    456,
+    457,
+    461,
+    463,
+    464,
+    468,
+    470,
+    471,
+    474,
+    476,
+    478,
+    479,
+    481,
+    483,
+    487,
+    489,
+    490,
+    491,
+    493,
+    495,
+    497,
+    498,
+    502,
+    504,
+    505,
+    508,
+    510,
+    512,
+    513,
+    516,
+    518,
+    520,
+    521,
+    524,
+    526,
+    527,
+    530,
+    532,
+    533,
+    539,
+    541,
+    542,
+    546,
+    548,
+    549,
+    553,
+    555,
+    556,
+    560,
+    562,
+    563,
+    567,
+    569,
+    570
+  ],
+  "provisional_site_event_to_roots": {
+    "166": [
+      "718fdf4407b4fb9be6132ddcb7ffddd8c16a015ac57e5616d19e9cc0ef706d87",
+      "8dcddc480961d7e8bd94e7fc2430fb0d8080a2b9226c4e8af755df20dedcf169",
+      "a184496d9c3e6fc41735e1c3db72f368037e058259febae0cdef1cf881f334fc"
+    ],
+    "167": [
+      "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4"
+    ],
+    "172": [
+      "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4"
+    ],
+    "173": [
+      "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3"
+    ],
+    "178": [
+      "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3"
+    ],
+    "179": [
+      "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5"
+    ],
+    "184": [
+      "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5"
+    ],
+    "185": [
+      "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7"
+    ],
+    "190": [
+      "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7"
+    ],
+    "191": [
+      "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7"
+    ],
+    "196": [
+      "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7"
+    ],
+    "197": [
+      "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4"
+    ],
+    "2": [
+      "09e4490f5cc7a2106ad0c3f8fadef3d16c0c3f9d328fbb8254b1b3660d21ec67",
+      "2ff4a07e60c48fe5940ac7f791950351b511574c198eba548a56f1fc8d5e3a50",
+      "374ca6bd844bb0faaa32dbb6a3f68c6d240436a313255bc9998849bcaab3cfda",
+      "381a0527289da248a277882711892bccf7fb597308eda0aa35e132a553a1a5b2",
+      "3cd58b060ea5d592e257fb84974e06396cd48943b7be7a65c9bd3e5e283cadaa",
+      "4d7fcb19cf85cd58296611ce692feffe76f3bd5646191d8b4e6fc3ad3644eb97",
+      "4df22b3f7d721ae1faf0710c770072fd262cd4868d164ab248e493f6b753676c",
+      "4f211ef28d54d244f9960b5af45c4603d3828c17322ea818b7e45eb5f3e6b174",
+      "50df7a23905f29498ea8f010afe28c40f3aa84f1b961225d84cba97381138634",
+      "599a41daebbb74fdf2efe9f9c4f23bb473abb97350acf2fd9db867ec7ce18db9",
+      "59b448ca7e610b186fb0e2d5ef38c4c7aed9f4dc9a1155500aac74f678a7ead2",
+      "6f120f03a9259aef995bec0e4ecf0dec93ed49441129393029178ffeb2896917",
+      "7919445fd17dd8baa201ca9792154ed9687a3a59b989071a0c79edea86ba7eaa",
+      "8175211a27551a357e651cd93864ed41fc24b0cd417258855a695925f32be89d",
+      "884b0a7e7af156401a423d84f5edf06234a9e85af3b631ea1bea3315cf4d7d7e",
+      "8898f4abfe5d63fc4f71db5564ac0f6c8db760033e8f97111fce7b8faa69b1d8",
+      "8b19936d863bd2897831e45a8bff27f72f4952a8661b63737023b5f64ca21f44",
+      "9122e2257120e883e924dfe452d310797bc95458b2fe7fd9f31b141802d97f1e",
+      "b3c78fe62ebcaa499ea5c945a6a6ff432c793d7ef4196d52732426a725b1d356",
+      "b62fe9bd7a0cf75fb9ce657e577bec5449996924baff0391237950b4d4225804",
+      "d0193033f26463fb62acec1abf7d03437562e49e92cbf8ee1656fa234ae005a3",
+      "de7f6c139804c165eafc0bb360caadaa30bb6f7147ed29bd65d08dcf9880cbff",
+      "e9cf6962460c92c0b915dbb2bc9dbff3f4f2b12067e9bd7600ca819dd3f68b69",
+      "f40d6efe732d80d875bca09752c88cc81133c53d0898cfc1222e8f121adbb215",
+      "f838cc123b60c96392d15017c4cefd8ba78c8f88569726150b73bbb160a731c9",
+      "f9b6e60f204df62ad361cc49f3c3f465baea31b6d8aaf22b31a4dd353c70116c",
+      "febab1f0dc7717aae3e344e062239c3e9d4e52c1ab28f84c31da3f350f75152e"
+    ],
+    "202": [
+      "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4"
+    ],
+    "205": [
+      "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d"
+    ],
+    "210": [
+      "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d"
+    ],
+    "234": [
+      "8c75989db046543b66964008911e3bd023b5b219bb5b24e230e312f025564645"
+    ],
+    "250": [
+      "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003",
+      "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694",
+      "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741"
+    ],
+    "266": [
+      "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003",
+      "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694",
+      "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741"
+    ],
+    "282": [
+      "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003",
+      "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694",
+      "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741"
+    ],
+    "284": [
+      "20a85d87e33cf5322fc44c38bd214dc1625de4ee0d0cbb2c0d5ec72f529bb3e7",
+      "2f9b0f5fcdc14f6834164a01751b5563eb8825081b6fa5b888191162dc5f1d98",
+      "eeb5ad8944dbcbf3fc2dad5f2859e07098cfcb2b3830fcc87b496e884715e054"
+    ],
+    "285": [
+      "0f91802185e3ea7808b7400fd8566c2ebff111b8dc94e0a14cf79d501e762fcf"
+    ],
+    "286": [
+      "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5"
+    ],
+    "291": [
+      "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5"
+    ],
+    "292": [
+      "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b"
+    ],
+    "297": [
+      "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b"
+    ],
+    "298": [
+      "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6"
+    ],
+    "303": [
+      "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6"
+    ],
+    "317": [
+      "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242"
+    ],
+    "322": [
+      "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242"
+    ],
+    "323": [
+      "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb"
+    ],
+    "328": [
+      "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb"
+    ],
+    "336": [
+      "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524"
+    ],
+    "341": [
+      "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524"
+    ],
+    "348": [
+      "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e"
+    ],
+    "353": [
+      "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e"
+    ],
+    "356": [
+      "02297463779e65f013acdb39b4d83614db9f9fc9d44d8c7ad383b85ea91e5628",
+      "10e33b69a546a1ff7a394bb4a5da369f9aff95e77fdc2806bad69514cca2c71f",
+      "13386b308e8ebb972c916f0c4801b2fbc9a120431e02df2acc1248508a493d9c",
+      "1aa08c459f1b9a15a3225e735b65250b39240d5c850fcfa93a6e73021a618a79",
+      "2c290ce3506f87991b659ffaf9c4c7027716d9875058fbe9059176673ea66611",
+      "357da81522122ef0092247be4da2eef83dbc5aed1265a13caaa9e773bff350f2",
+      "45011ba8718e2459d41ce1a6c9e3e44d8a0c4a7e51b93722c7faf55e43a17bc7",
+      "4d34b64a9e48ffd5b0e4e61403f34ce42346b08290529ae9eb77e8959bc38b35",
+      "51bb2e88b3ec7918a3d160900927cf937a4f0d50b0bdd883dcd91aec96ee6a32",
+      "623b7435df1ccb45978168e7f6f44a5f9f4b0eba3364112fb085bf01ef0994f4",
+      "66b0fbf8ae9f3db388aadb998b20e8391c9ae76e8393d5434a0f32eb832eb3d9",
+      "6eff5e92c75f59f01d485f5a74546c5cfc2b515496535d4ddd939790e72b9490",
+      "705c8e153579900a7cdd16d7cb7cdf5f47a9bb477d349af68c1062866d57bdb8",
+      "7cc24d09d8abb756edb0e005864569edd65131fec3588e649be3b52f84fd20c5",
+      "8d2ea100aa0f5835b83897245365910cdc7c8c20180231e47f19c87809f3613b",
+      "95b8697816aa48132f6b577e1e3cec33cae8e6b227657907cfad1d1e57403525",
+      "9681c5cd6e0e996fe6d340f0972f2502e34ff736182c934819e30490311f6532",
+      "a0f5a56a5567bdba414b11d8c93bd1dbd3980a2e8dc2ff0e9196fd67d294b740",
+      "a9b22d4e2c22e554ad76d5be2c94177ac915f590e3cdec7ac59f3e9201f51551",
+      "b48e10dbe3cf6448c62b6fbfa7cb726d78a83b128bc2036a339f4bae563127c8",
+      "c8398f44cb0fcaf540ebc41f797ed69e8cedfb7e71787ea00ae04eb06a6cf988",
+      "cee742c90bceac7ab913788053d2943746977b2aa61c0e9cc6bbf0aea953ed6f",
+      "dbfd050550b88641d8166a18bf99890221d0300566b3684ed7d438ab664c598a",
+      "dec5771372392da550288b707ed215bad49022efe7b8888f6d3ef4f6226eb331",
+      "ecc228677c98662c7eba2685f446455293ca810e1ef49fce1cb48815799dbfbc",
+      "edae220c7d8bdcb801b466cd5e0a0a7e8fcc4d7d5e1eac1832d822bb6fe3a51f",
+      "eeff44987b4a287cbb1263b7b5342b3ad3fc860912219cef3d873c9886d3b606",
+      "fb976ee62a18f9626bcb602e694d51371e07e2ccd10562e2cdbcabedaf080c70"
+    ],
+    "402": [
+      "02297463779e65f013acdb39b4d83614db9f9fc9d44d8c7ad383b85ea91e5628",
+      "10e33b69a546a1ff7a394bb4a5da369f9aff95e77fdc2806bad69514cca2c71f",
+      "13386b308e8ebb972c916f0c4801b2fbc9a120431e02df2acc1248508a493d9c",
+      "1aa08c459f1b9a15a3225e735b65250b39240d5c850fcfa93a6e73021a618a79",
+      "2c290ce3506f87991b659ffaf9c4c7027716d9875058fbe9059176673ea66611",
+      "357da81522122ef0092247be4da2eef83dbc5aed1265a13caaa9e773bff350f2",
+      "45011ba8718e2459d41ce1a6c9e3e44d8a0c4a7e51b93722c7faf55e43a17bc7",
+      "4d34b64a9e48ffd5b0e4e61403f34ce42346b08290529ae9eb77e8959bc38b35",
+      "51bb2e88b3ec7918a3d160900927cf937a4f0d50b0bdd883dcd91aec96ee6a32",
+      "623b7435df1ccb45978168e7f6f44a5f9f4b0eba3364112fb085bf01ef0994f4",
+      "66b0fbf8ae9f3db388aadb998b20e8391c9ae76e8393d5434a0f32eb832eb3d9",
+      "6eff5e92c75f59f01d485f5a74546c5cfc2b515496535d4ddd939790e72b9490",
+      "705c8e153579900a7cdd16d7cb7cdf5f47a9bb477d349af68c1062866d57bdb8",
+      "7cc24d09d8abb756edb0e005864569edd65131fec3588e649be3b52f84fd20c5",
+      "8d2ea100aa0f5835b83897245365910cdc7c8c20180231e47f19c87809f3613b",
+      "95b8697816aa48132f6b577e1e3cec33cae8e6b227657907cfad1d1e57403525",
+      "9681c5cd6e0e996fe6d340f0972f2502e34ff736182c934819e30490311f6532",
+      "a0f5a56a5567bdba414b11d8c93bd1dbd3980a2e8dc2ff0e9196fd67d294b740",
+      "a9b22d4e2c22e554ad76d5be2c94177ac915f590e3cdec7ac59f3e9201f51551",
+      "b48e10dbe3cf6448c62b6fbfa7cb726d78a83b128bc2036a339f4bae563127c8",
+      "c8398f44cb0fcaf540ebc41f797ed69e8cedfb7e71787ea00ae04eb06a6cf988",
+      "cee742c90bceac7ab913788053d2943746977b2aa61c0e9cc6bbf0aea953ed6f",
+      "dbfd050550b88641d8166a18bf99890221d0300566b3684ed7d438ab664c598a",
+      "dec5771372392da550288b707ed215bad49022efe7b8888f6d3ef4f6226eb331",
+      "ecc228677c98662c7eba2685f446455293ca810e1ef49fce1cb48815799dbfbc",
+      "edae220c7d8bdcb801b466cd5e0a0a7e8fcc4d7d5e1eac1832d822bb6fe3a51f",
+      "eeff44987b4a287cbb1263b7b5342b3ad3fc860912219cef3d873c9886d3b606",
+      "fb976ee62a18f9626bcb602e694d51371e07e2ccd10562e2cdbcabedaf080c70"
+    ],
+    "453": [
+      "027e029acf0a77798f56e0a7328af2f74dd87976089689c63f05718e27c1c2b2",
+      "0959b63fd04222850873aa465ffe7488cd81037c29e42779478ff23aa5741701"
+    ],
+    "460": [
+      "027e029acf0a77798f56e0a7328af2f74dd87976089689c63f05718e27c1c2b2",
+      "0959b63fd04222850873aa465ffe7488cd81037c29e42779478ff23aa5741701"
+    ],
+    "480": [
+      "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1"
+    ],
+    "485": [
+      "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1"
+    ],
+    "494": [
+      "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c"
+    ],
+    "500": [
+      "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c"
+    ],
+    "501": [
+      "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2"
+    ],
+    "507": [
+      "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2"
+    ],
+    "509": [
+      "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+    ],
+    "515": [
+      "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16"
+    ],
+    "535": [
+      "20b8ae06eff0d0bcf2efe57dea69ee009e7aed2ee6b6bafc1188d7a440419e61"
+    ],
+    "536": [
+      "adceb44cf343177cc73281423c3764846e9def73f2067507b4cf38fc6021d9a6"
+    ],
+    "537": [
+      "4f1beda8d49097b9b647fbff696804f3105c1df0dc1c77c7561e3702c4877565"
+    ],
+    "538": [
+      "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee"
+    ],
+    "544": [
+      "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee"
+    ],
+    "545": [
+      "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5"
+    ],
+    "551": [
+      "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5"
+    ],
+    "558": [
+      "28f6b76ccdb99b60285a149aa6cefb83e06936462e0979dfd8ad2baa7c405f9b"
+    ],
+    "559": [
+      "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268"
+    ],
+    "565": [
+      "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268"
+    ],
+    "566": [
+      "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+    ],
+    "572": [
+      "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6"
+    ],
+    "76": [
+      "106f3337412f4dbbb82358122be2a3ebcedc6049853aeabe119a749061cc667e",
+      "16f8e260204038b991276f41f479b38621a76cfde4d3498ce11e632446e5c5e1",
+      "2d6351575b48aa06ab0dd3f982165a671075c831d7f9527059bc0c3aafd09183",
+      "38144f623363dc6861214f89dcd57ac622bee3d1278658d48dd8e8bc701bde28",
+      "570c5ecf8d5cc5a83ef625ffb76b7ef3026dc36a5b3c3d22958c0ea754215db8",
+      "656a587ea10508fc52aa4e28b7a1e556b0a7e15ac8a6afceb1d6530cb809cc50",
+      "67f6e9a4ef867c930e295211080af556ba94321ac69422061aa019f6c0f15822",
+      "6b18cfdcfc34462afdb5a85bc9a4491b4bc8d0c907e9203e2dd625a685f61aa5",
+      "7559e0786ca2a48a41c65086809fc084ece280b1ded1c228127b5109cbe459de",
+      "78f1d1b536b5a2eb50765aca6fa1b50d7b6768c90e1935750983798888adaed4",
+      "87fd179fd4a8f74c9cff997350676f95534a1f1ebc2015c5aab971b5b6d6b678",
+      "89484d52e698133a3e42677a3b3b5e86e43b0a62e60dfcab0dc8a737c3b6ad0f",
+      "9015b928ab266682916c7c02e12b62460617ec72b2b3800a9e8d89895aefa3fe",
+      "ad509c58724a70480d07eb21db07f6f8991809ca93d18be129ad046047bb3049",
+      "ae688235ced6af0cb482fe9620865ff883e97fdb9131b678e57ea83ea335489a",
+      "b3969c9d1b63eef16c814786b54d0fccf91de0e33bbd70b31271bf898a36b1e8",
+      "b3cfeedbc4cc0e8c129cea4f590043af92bbe6ebe9526de2f23a3949d177c863",
+      "bca324dd7421a731760e6dc912ae61c25a284916cdaccc94a4a3e938a98cda5d",
+      "bd760ce65a67ca8c7944ab189a6271d6ad2b0a8bc14abf8bd4270b3050c163fd",
+      "c215a0afda4dfb6f08bef6b6c10d2a070d9849943a627f4d65b0e6dfd6f5a81c",
+      "c75b38304f569223628dca22961fea22891446ebff49a463f396a705dabf499d",
+      "c7f97afb08029d8eecfaff73a015980e7b70c5518d5668ab4da3da9f90c47e92",
+      "cecfd247d20ba0b14b84f2be5416fc465b6b64fcb15201bf8c4a22e379d60818",
+      "d5f4d68f5451d7d3ab5a9f77b92f2090e89f0c506dccf4a949cd507ae0423ddf",
+      "dbb89cdc53fb6898f668547068af14f407b45d2db5374fc8f43bfd25ba37f28a",
+      "ddd2bb854d7fa322a3cc63faf87df78de51717ce615d6ce1485ad216fe86ac2c",
+      "f59b68c83e3a9930d0d30203ef661ef6d66553567a99019f8d4a21c6a5bf3c6b"
+    ]
+  },
+  "provisional_site_root_to_events": {
+    "02297463779e65f013acdb39b4d83614db9f9fc9d44d8c7ad383b85ea91e5628": [
+      356,
+      402
+    ],
+    "024ed4674d3ead404e806355b22234830bc9b47811da24549b659435f1287edb": [
+      323,
+      328
+    ],
+    "027e029acf0a77798f56e0a7328af2f74dd87976089689c63f05718e27c1c2b2": [
+      453,
+      460
+    ],
+    "02c418303ae66d4262caa6ff8c322faf8ad63d34c7143aef945379dcd0da0524": [
+      336,
+      341
+    ],
+    "08b0f76c3d7e519a2df41023df996bc27e9659f3b69535e3a5ac8e0ab68d4003": [
+      250,
+      266,
+      282
+    ],
+    "0959b63fd04222850873aa465ffe7488cd81037c29e42779478ff23aa5741701": [
+      453,
+      460
+    ],
+    "09e4490f5cc7a2106ad0c3f8fadef3d16c0c3f9d328fbb8254b1b3660d21ec67": [
+      2
+    ],
+    "0f91802185e3ea7808b7400fd8566c2ebff111b8dc94e0a14cf79d501e762fcf": [
+      285
+    ],
+    "106f3337412f4dbbb82358122be2a3ebcedc6049853aeabe119a749061cc667e": [
+      76
+    ],
+    "10e33b69a546a1ff7a394bb4a5da369f9aff95e77fdc2806bad69514cca2c71f": [
+      356,
+      402
+    ],
+    "11a93406637ee5cfdda505ea0fa15bc13798bd59d25e98de0719f0c9d672c694": [
+      250,
+      266,
+      282
+    ],
+    "13386b308e8ebb972c916f0c4801b2fbc9a120431e02df2acc1248508a493d9c": [
+      356,
+      402
+    ],
+    "134d45f78181e63dccc0a0fc490c1af87f8c635c5994e6de71d28007ef888268": [
+      559,
+      565
+    ],
+    "16f8e260204038b991276f41f479b38621a76cfde4d3498ce11e632446e5c5e1": [
+      76
+    ],
+    "1aa08c459f1b9a15a3225e735b65250b39240d5c850fcfa93a6e73021a618a79": [
+      356,
+      402
+    ],
+    "20a85d87e33cf5322fc44c38bd214dc1625de4ee0d0cbb2c0d5ec72f529bb3e7": [
+      284
+    ],
+    "20b8ae06eff0d0bcf2efe57dea69ee009e7aed2ee6b6bafc1188d7a440419e61": [
+      535
+    ],
+    "217022ad825ec3bbb64b1d077b523104c300ddd82d33153fdeb84628325e50d3": [
+      173,
+      178
+    ],
+    "28f6b76ccdb99b60285a149aa6cefb83e06936462e0979dfd8ad2baa7c405f9b": [
+      558
+    ],
+    "2c290ce3506f87991b659ffaf9c4c7027716d9875058fbe9059176673ea66611": [
+      356,
+      402
+    ],
+    "2d6351575b48aa06ab0dd3f982165a671075c831d7f9527059bc0c3aafd09183": [
+      76
+    ],
+    "2f9b0f5fcdc14f6834164a01751b5563eb8825081b6fa5b888191162dc5f1d98": [
+      284
+    ],
+    "2ff4a07e60c48fe5940ac7f791950351b511574c198eba548a56f1fc8d5e3a50": [
+      2
+    ],
+    "346bd05c6fe3d7be841707adc404fc9eaf802c1ebb07be028a04e2e77d1fa71c": [
+      494,
+      500
+    ],
+    "357da81522122ef0092247be4da2eef83dbc5aed1265a13caaa9e773bff350f2": [
+      356,
+      402
+    ],
+    "374ca6bd844bb0faaa32dbb6a3f68c6d240436a313255bc9998849bcaab3cfda": [
+      2
+    ],
+    "38144f623363dc6861214f89dcd57ac622bee3d1278658d48dd8e8bc701bde28": [
+      76
+    ],
+    "381a0527289da248a277882711892bccf7fb597308eda0aa35e132a553a1a5b2": [
+      2
+    ],
+    "3cd58b060ea5d592e257fb84974e06396cd48943b7be7a65c9bd3e5e283cadaa": [
+      2
+    ],
+    "45011ba8718e2459d41ce1a6c9e3e44d8a0c4a7e51b93722c7faf55e43a17bc7": [
+      356,
+      402
+    ],
+    "4a8638680bf70e05fcafcfeb3e816177f31667d4af143888e00e99929573efe5": [
+      286,
+      291
+    ],
+    "4bfcd65cc9b0e257be5103277cd9c58a818ebf947d4c9723fa91a81926ee2ef4": [
+      197,
+      202
+    ],
+    "4d34b64a9e48ffd5b0e4e61403f34ce42346b08290529ae9eb77e8959bc38b35": [
+      356,
+      402
+    ],
+    "4d7fcb19cf85cd58296611ce692feffe76f3bd5646191d8b4e6fc3ad3644eb97": [
+      2
+    ],
+    "4df22b3f7d721ae1faf0710c770072fd262cd4868d164ab248e493f6b753676c": [
+      2
+    ],
+    "4f1beda8d49097b9b647fbff696804f3105c1df0dc1c77c7561e3702c4877565": [
+      537
+    ],
+    "4f211ef28d54d244f9960b5af45c4603d3828c17322ea818b7e45eb5f3e6b174": [
+      2
+    ],
+    "50df7a23905f29498ea8f010afe28c40f3aa84f1b961225d84cba97381138634": [
+      2
+    ],
+    "51bb2e88b3ec7918a3d160900927cf937a4f0d50b0bdd883dcd91aec96ee6a32": [
+      356,
+      402
+    ],
+    "54ad5968973ff3dccd36e8620a432e6f7aae03b46ea10c37eb0d9ababd0d685e": [
+      348,
+      353
+    ],
+    "570c5ecf8d5cc5a83ef625ffb76b7ef3026dc36a5b3c3d22958c0ea754215db8": [
+      76
+    ],
+    "599a41daebbb74fdf2efe9f9c4f23bb473abb97350acf2fd9db867ec7ce18db9": [
+      2
+    ],
+    "59b448ca7e610b186fb0e2d5ef38c4c7aed9f4dc9a1155500aac74f678a7ead2": [
+      2
+    ],
+    "601542763b057bf7cabe4c01ea4e9fd2194cd0875a537a5f73080280007efbb6": [
+      566,
+      572
+    ],
+    "623b7435df1ccb45978168e7f6f44a5f9f4b0eba3364112fb085bf01ef0994f4": [
+      356,
+      402
+    ],
+    "656a587ea10508fc52aa4e28b7a1e556b0a7e15ac8a6afceb1d6530cb809cc50": [
+      76
+    ],
+    "66b0fbf8ae9f3db388aadb998b20e8391c9ae76e8393d5434a0f32eb832eb3d9": [
+      356,
+      402
+    ],
+    "67b1dd3a1b191bc4c2e6e87750b96155550f9dbb89aed209c75eee9dbd509bd7": [
+      185,
+      190
+    ],
+    "67f6e9a4ef867c930e295211080af556ba94321ac69422061aa019f6c0f15822": [
+      76
+    ],
+    "6b18cfdcfc34462afdb5a85bc9a4491b4bc8d0c907e9203e2dd625a685f61aa5": [
+      76
+    ],
+    "6cf3dafcbd26d4c743c2e9cf17cf97dd36e203af193f325009936e4a3e609bee": [
+      538,
+      544
+    ],
+    "6eff5e92c75f59f01d485f5a74546c5cfc2b515496535d4ddd939790e72b9490": [
+      356,
+      402
+    ],
+    "6f120f03a9259aef995bec0e4ecf0dec93ed49441129393029178ffeb2896917": [
+      2
+    ],
+    "705c8e153579900a7cdd16d7cb7cdf5f47a9bb477d349af68c1062866d57bdb8": [
+      356,
+      402
+    ],
+    "718fdf4407b4fb9be6132ddcb7ffddd8c16a015ac57e5616d19e9cc0ef706d87": [
+      166
+    ],
+    "7559e0786ca2a48a41c65086809fc084ece280b1ded1c228127b5109cbe459de": [
+      76
+    ],
+    "78f1d1b536b5a2eb50765aca6fa1b50d7b6768c90e1935750983798888adaed4": [
+      76
+    ],
+    "7919445fd17dd8baa201ca9792154ed9687a3a59b989071a0c79edea86ba7eaa": [
+      2
+    ],
+    "7cc24d09d8abb756edb0e005864569edd65131fec3588e649be3b52f84fd20c5": [
+      356,
+      402
+    ],
+    "8175211a27551a357e651cd93864ed41fc24b0cd417258855a695925f32be89d": [
+      2
+    ],
+    "83f16bd8e72432226b7a91ec08bbb77598df7a95caebd5e6b7e81c78fa86639b": [
+      292,
+      297
+    ],
+    "87fd179fd4a8f74c9cff997350676f95534a1f1ebc2015c5aab971b5b6d6b678": [
+      76
+    ],
+    "884b0a7e7af156401a423d84f5edf06234a9e85af3b631ea1bea3315cf4d7d7e": [
+      2
+    ],
+    "8898f4abfe5d63fc4f71db5564ac0f6c8db760033e8f97111fce7b8faa69b1d8": [
+      2
+    ],
+    "89484d52e698133a3e42677a3b3b5e86e43b0a62e60dfcab0dc8a737c3b6ad0f": [
+      76
+    ],
+    "8b19936d863bd2897831e45a8bff27f72f4952a8661b63737023b5f64ca21f44": [
+      2
+    ],
+    "8c75989db046543b66964008911e3bd023b5b219bb5b24e230e312f025564645": [
+      234
+    ],
+    "8d2ea100aa0f5835b83897245365910cdc7c8c20180231e47f19c87809f3613b": [
+      356,
+      402
+    ],
+    "8dcddc480961d7e8bd94e7fc2430fb0d8080a2b9226c4e8af755df20dedcf169": [
+      166
+    ],
+    "9015b928ab266682916c7c02e12b62460617ec72b2b3800a9e8d89895aefa3fe": [
+      76
+    ],
+    "9122e2257120e883e924dfe452d310797bc95458b2fe7fd9f31b141802d97f1e": [
+      2
+    ],
+    "92ad27e366f841b304f31bf348d1c6410644ead9bd1af80a02f20829ecb1dc16": [
+      509,
+      515
+    ],
+    "95b8697816aa48132f6b577e1e3cec33cae8e6b227657907cfad1d1e57403525": [
+      356,
+      402
+    ],
+    "963b51aff313f1311acab86a2dd24ed971c894d8aef865a2e8eef68500243ac5": [
+      179,
+      184
+    ],
+    "9681c5cd6e0e996fe6d340f0972f2502e34ff736182c934819e30490311f6532": [
+      356,
+      402
+    ],
+    "a0f5a56a5567bdba414b11d8c93bd1dbd3980a2e8dc2ff0e9196fd67d294b740": [
+      356,
+      402
+    ],
+    "a0fff617fce33c808050b8bd2bb97966393b75dbeb715260874520f611f5e5d7": [
+      191,
+      196
+    ],
+    "a184496d9c3e6fc41735e1c3db72f368037e058259febae0cdef1cf881f334fc": [
+      166
+    ],
+    "a831d7090029fe7729151591e920d8f1e58e0382de1a3935298be6c0817a03a6": [
+      298,
+      303
+    ],
+    "a9b22d4e2c22e554ad76d5be2c94177ac915f590e3cdec7ac59f3e9201f51551": [
+      356,
+      402
+    ],
+    "acd08494226b54ff22593affb5d9083f05c8ceb8d213d857938082a64cca6e9d": [
+      205,
+      210
+    ],
+    "ad509c58724a70480d07eb21db07f6f8991809ca93d18be129ad046047bb3049": [
+      76
+    ],
+    "adceb44cf343177cc73281423c3764846e9def73f2067507b4cf38fc6021d9a6": [
+      536
+    ],
+    "ae688235ced6af0cb482fe9620865ff883e97fdb9131b678e57ea83ea335489a": [
+      76
+    ],
+    "b3969c9d1b63eef16c814786b54d0fccf91de0e33bbd70b31271bf898a36b1e8": [
+      76
+    ],
+    "b3c78fe62ebcaa499ea5c945a6a6ff432c793d7ef4196d52732426a725b1d356": [
+      2
+    ],
+    "b3cfeedbc4cc0e8c129cea4f590043af92bbe6ebe9526de2f23a3949d177c863": [
+      76
+    ],
+    "b48e10dbe3cf6448c62b6fbfa7cb726d78a83b128bc2036a339f4bae563127c8": [
+      356,
+      402
+    ],
+    "b62fe9bd7a0cf75fb9ce657e577bec5449996924baff0391237950b4d4225804": [
+      2
+    ],
+    "bca324dd7421a731760e6dc912ae61c25a284916cdaccc94a4a3e938a98cda5d": [
+      76
+    ],
+    "bd760ce65a67ca8c7944ab189a6271d6ad2b0a8bc14abf8bd4270b3050c163fd": [
+      76
+    ],
+    "bf8352be637e913970ae9cafa55f13f64d15d81e90a4f4eda38be84399fbd741": [
+      250,
+      266,
+      282
+    ],
+    "c215a0afda4dfb6f08bef6b6c10d2a070d9849943a627f4d65b0e6dfd6f5a81c": [
+      76
+    ],
+    "c6aa05da0f7af964ac2fcf0d7214d65c11da812254c875e8d6f89d513f3f4dd2": [
+      501,
+      507
+    ],
+    "c75b38304f569223628dca22961fea22891446ebff49a463f396a705dabf499d": [
+      76
+    ],
+    "c7f97afb08029d8eecfaff73a015980e7b70c5518d5668ab4da3da9f90c47e92": [
+      76
+    ],
+    "c8398f44cb0fcaf540ebc41f797ed69e8cedfb7e71787ea00ae04eb06a6cf988": [
+      356,
+      402
+    ],
+    "cecfd247d20ba0b14b84f2be5416fc465b6b64fcb15201bf8c4a22e379d60818": [
+      76
+    ],
+    "cee742c90bceac7ab913788053d2943746977b2aa61c0e9cc6bbf0aea953ed6f": [
+      356,
+      402
+    ],
+    "d0193033f26463fb62acec1abf7d03437562e49e92cbf8ee1656fa234ae005a3": [
+      2
+    ],
+    "d5f4d68f5451d7d3ab5a9f77b92f2090e89f0c506dccf4a949cd507ae0423ddf": [
+      76
+    ],
+    "d649c684bf5f1e9cdd9dc650a5ed0b504c1b646d36fd802cb3ed05e3e1ff75c5": [
+      545,
+      551
+    ],
+    "dbb89cdc53fb6898f668547068af14f407b45d2db5374fc8f43bfd25ba37f28a": [
+      76
+    ],
+    "dbfd050550b88641d8166a18bf99890221d0300566b3684ed7d438ab664c598a": [
+      356,
+      402
+    ],
+    "ddd2bb854d7fa322a3cc63faf87df78de51717ce615d6ce1485ad216fe86ac2c": [
+      76
+    ],
+    "de7f6c139804c165eafc0bb360caadaa30bb6f7147ed29bd65d08dcf9880cbff": [
+      2
+    ],
+    "dead8ea51e153e6328a6eb8728436835d81438a4114d30e1a842c42c659f61d4": [
+      167,
+      172
+    ],
+    "dec5771372392da550288b707ed215bad49022efe7b8888f6d3ef4f6226eb331": [
+      356,
+      402
+    ],
+    "e9cf6962460c92c0b915dbb2bc9dbff3f4f2b12067e9bd7600ca819dd3f68b69": [
+      2
+    ],
+    "ecc228677c98662c7eba2685f446455293ca810e1ef49fce1cb48815799dbfbc": [
+      356,
+      402
+    ],
+    "edae220c7d8bdcb801b466cd5e0a0a7e8fcc4d7d5e1eac1832d822bb6fe3a51f": [
+      356,
+      402
+    ],
+    "eeb5ad8944dbcbf3fc2dad5f2859e07098cfcb2b3830fcc87b496e884715e054": [
+      284
+    ],
+    "eeff44987b4a287cbb1263b7b5342b3ad3fc860912219cef3d873c9886d3b606": [
+      356,
+      402
+    ],
+    "f40d6efe732d80d875bca09752c88cc81133c53d0898cfc1222e8f121adbb215": [
+      2
+    ],
+    "f59b68c83e3a9930d0d30203ef661ef6d66553567a99019f8d4a21c6a5bf3c6b": [
+      76
+    ],
+    "f838cc123b60c96392d15017c4cefd8ba78c8f88569726150b73bbb160a731c9": [
+      2
+    ],
+    "f9b6e60f204df62ad361cc49f3c3f465baea31b6d8aaf22b31a4dd353c70116c": [
+      2
+    ],
+    "fb125483f6d5f9702c7313e356cd5f4136e1ee1aadebd40fbfaac47bd0def2d1": [
+      480,
+      485
+    ],
+    "fb976ee62a18f9626bcb602e694d51371e07e2ccd10562e2cdbcabedaf080c70": [
+      356,
+      402
+    ],
+    "fe4a26fe3be195e9da8141c11c425f698fc259843bec08b9ac93e2311be40242": [
+      317,
+      322
+    ],
+    "febab1f0dc7717aae3e344e062239c3e9d4e52c1ab28f84c31da3f350f75152e": [
+      2
+    ]
+  },
+  "rejection_path_completeness": "NOT ESTABLISHED",
+  "semantic_event_to_roots": {},
+  "semantic_root_to_events": {},
+  "source_candidates": [
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        211
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:91"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertFalse((cwd / 'tasks.json').exists())",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        218
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:93"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        316
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:111"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual((cwd / 'tasks.json').read_bytes(), before)",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        335
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:117"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(set(probe), fields())",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        478
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:157"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 12,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(schema, PROFILE['schema_version'])",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        479
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:159"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(path.read_bytes(), before)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        493
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:59"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['schema_version'], profile['schema_version'])",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        508
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:63"
+    },
+    {
+      "branch": null,
+      "channel": "direct_assertion",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.assertEqual(path.read_bytes(), unchanged)",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        516
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:67"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'Default', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        151
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:168"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'High', '--description', 'x', '--priority', 'HIGH')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        156
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:169"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'Critical', '--description', 'x', '--priority', 'CRITICAL')",
+      "kind": "call",
+      "method": "regression.Regression.test_b01_priority_and_regression",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        161
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:170"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', '  ', '--description', 'x', error='invalid_title')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        212
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:92"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 17,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'normal', '--description', 'details')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        219
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:94"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 15,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'high', '--description', 'x', '--priority', 'HIGH', '--due-date', '2020-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        224
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:95"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 14,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'low', '--description', 'x', '--priority', 'LOW', '--due-date', '2999-01-01T00:00:00Z')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        229
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:97"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'bad', '--description', 'x', '--due-date', 'yesterday', error='invalid_due_date')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        304
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:109"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'complete', '--id', 'missing', error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        310
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:110"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'complete', '--id', high['id'], error='invalid_transition')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        329
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:116"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'delete', '--id', high['id'], error='task_not_found')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_lifecycle_filters_failures",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        342
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:119"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'create', '--title', 'valid', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        447
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:138"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(cwd, 'list', error='invalid_state')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_migration_corruption",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        467
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:145"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNEXPLAINED",
+      "expression": "call(Path(seed), 'create', '--title', 'probe', '--description', 'x')",
+      "kind": "call",
+      "method": "regression.Regression.test_baseline_overdue_fixture",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        473
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/regression.py:156"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 8,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'list', error='migration_required')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        486
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:58"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 19,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'labelled', '--description', 'x', '--priority', 'HIGH', '--source', '  API\\tfeed  ')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        517
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:28"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 18,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'omitted', '--description', 'x')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        523
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:30"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 16,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'create', '--title', 'empty', '--description', 'x', '--source', '')",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        529
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:31"
+    },
+    {
+      "branch": null,
+      "channel": "CLI",
+      "column": 20,
+      "disposition": "UNEXPLAINED",
+      "expression": "self.call(cwd, 'complete', '--id', labelled['id'])",
+      "kind": "call",
+      "method": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations",
+      "reason": "Executed site has no proven semantic root mapping",
+      "roots": [],
+      "runtime_event_indices": [
+        552
+      ],
+      "runtime_reached": true,
+      "source": "benchmark/harness/cases/B04.py:39"
+    }
+  ],
+  "trace_sha256": "1d177b10df8f150a8c0d91edc7c6cf8a5fef16a976bdc5651b904361d6943c7e"
+}
