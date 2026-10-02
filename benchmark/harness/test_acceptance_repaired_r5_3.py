@@ -21,6 +21,13 @@ class RepairedLineage(unittest.TestCase):
                 for key, row in first["restored_roots"].items():
                     self.assertEqual(row["original_carrier"], repair.ORIGINS[key][0])
                     self.assertEqual(row["chain"][0], repair.ORIGINS[key][0])
+                    if key == "B01.high_after_critical":
+                        self.assertEqual(row["precondition"]["at_list_high"],
+                                         {"NORMAL": "pending", "HIGH": "pending",
+                                          "CRITICAL": "completed"})
+                        self.assertEqual(row["incomplete_carrier"],
+                                         "assertion_preservation_r5_2_1.cases.<locals>.Preservation."
+                                         "test_b01_intermediate_high_restored")
 
     def test_source_drift_fails_closed(self):
         expected = bridge.REPAIR_SHA256

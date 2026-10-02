@@ -1,0 +1,25 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "checkpoint_sha256": "7318a230fb2a89bce5722b02a0899f72122e5bde5679c0fba4d0a896c55edf95",
+  "corrected_carrier_active": false,
+  "expectation_sha256": "9c7a4ad3103c62d13de808d01ec3af847c296b0f7f0ccbeb78ca6c4d25f46c13",
+  "external": {
+    "case_methods": 9,
+    "failure_events": 0,
+    "passed": 7,
+    "skipped": 2
+  },
+  "external_failures": [],
+  "file_count": 27,
+  "internal_output": ".................................\n----------------------------------------------------------------------\nRan 33 tests in 4.255s\n\nOK\n",
+  "internal_passed": true,
+  "old_carrier_active": false,
+  "original_carrier_active": true,
+  "parent_inventory_sha256": "07a5e464e994369fbc000b52bbe4cd037c292a4ff736b3b943db793e17472d0c",
+  "repair_inventory_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "restored": {},
+  "snapshot_sha256": "36e34184bd3d9cd9c65287d49d813838ca31197de6467b387defb1e1147c4ff5"
+}
