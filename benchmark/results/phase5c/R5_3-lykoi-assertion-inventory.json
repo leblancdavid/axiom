@@ -1,0 +1,451 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "methods": {
+    "regression.Regression.test_b01_historical_priorities": {
+      "assertions": [
+        {
+          "expression_sha256": "7c2367637256a4ccf76cb24bd1e07c147d6b57eb21f5d3acfa51fbb2f64687bb",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:12:12",
+          "kind": "assertEqual",
+          "line": 191
+        },
+        {
+          "expression_sha256": "531d9bce4f093774fe35e226c28797c825f42df57b9ef8606c4b661dc0b27f1b",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:16:8",
+          "kind": "upgraded",
+          "line": 195
+        },
+        {
+          "expression_sha256": "6a1881c5a67a350e7a096dc561bdceb7d1f5019e5bf4fe35ab2de401599c6da5",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:8:12",
+          "kind": "upgraded",
+          "line": 187
+        }
+      ],
+      "body_sha256": "34096c7d9c281398fef71c640fd9378b21b900c23f4b0b932dcac1e9d0ee9be8",
+      "mutation_lines": [
+        187,
+        195
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b01_priority_and_regression": {
+      "assertions": [
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:11:8",
+          "kind": "assertEqual",
+          "line": 173
+        },
+        {
+          "expression_sha256": "e47857813ca1676b758376a5b755c002793595f04b32031c6428e26b7214daff",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:12:8",
+          "kind": "assertEqual",
+          "line": 174
+        },
+        {
+          "expression_sha256": "096d181e5817cfdf4d999ae4200ab4f7485b515004b114029d3f337a128e8d1f",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:13:8",
+          "kind": "assertEqual",
+          "line": 175
+        },
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:14:8",
+          "kind": "assertEqual",
+          "line": 176
+        },
+        {
+          "expression_sha256": "a490a54ec3a7e97721d6e961c01d158cb9b86103b6398043ffbf096bc43fece1",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:15:8",
+          "kind": "assertEqual",
+          "line": 177
+        },
+        {
+          "expression_sha256": "fd84f50e38298f97b583ae94b9904f3eb6ad40836fc10154082dd9898acea9d9",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:16:8",
+          "kind": "assertEqual",
+          "line": 178
+        },
+        {
+          "expression_sha256": "90e43d72c54b2dc72501fbc722f84fd0819c042dff599115a23b5a0032ccbd17",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:9:8",
+          "kind": "assertEqual",
+          "line": 171
+        }
+      ],
+      "body_sha256": "cc6650bac59103d7dd1480ad70cc3c3bb5abdd5a2d3a0d031212ea629ef14dd0",
+      "mutation_lines": [
+        168,
+        169,
+        170,
+        175,
+        177
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b02_explicit_migration": {
+      "assertions": [
+        {
+          "expression_sha256": "aa95f1abdad48b3fc2165537c0cc2e8f91ee5613555682641d21ecfc8e488493",
+          "id": "regression.Regression.test_b02_explicit_migration#assert:9:12",
+          "kind": "upgraded",
+          "line": 223
+        }
+      ],
+      "body_sha256": "3b0c9e9ddc5608f330bc99e9bcb8a18658c6fb471ae4aeb0ea9a3a3c2b6efa03",
+      "mutation_lines": [
+        223
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b02_tags_and_failure": {
+      "assertions": [
+        {
+          "expression_sha256": "57b3eb7fa3e7c1c1b615df28f19781812d9fc4267582222ecfb4ca1c941186ac",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:10:8",
+          "kind": "assertEqual",
+          "line": 207
+        },
+        {
+          "expression_sha256": "f690477dabe618f03417ec22c688a919edbddfa09daba654ba2bf452a6037dac",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:11:8",
+          "kind": "assertEqual",
+          "line": 208
+        },
+        {
+          "expression_sha256": "fe41d9c36b1504feeac6737df9b34227155fa0082cb92bc927ba7cd12afbc2e7",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:12:8",
+          "kind": "assertEqual",
+          "line": 209
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:15:8",
+          "kind": "assertEqual",
+          "line": 212
+        },
+        {
+          "expression_sha256": "79067405077af56467533b1730b059eafc032af122abb90cb0190221588a0dfb",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:16:8",
+          "kind": "assertEqual",
+          "line": 213
+        },
+        {
+          "expression_sha256": "587fe118ca9253925c63e06ce3f57274923beac120a1e66fa2a7f94c51e7b180",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:7:8",
+          "kind": "assertEqual",
+          "line": 204
+        }
+      ],
+      "body_sha256": "c6a707e5db12cca24905997d5f6e67844e8c4e3b0b642764b2c26c264af6ca22",
+      "mutation_lines": [
+        203,
+        205,
+        211,
+        213
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_lifecycle_filters_failures": {
+      "assertions": [
+        {
+          "expression_sha256": "95fbaa8ffb5a4342302fd8560b2cc0f741a878085711153931207b0b55851445",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:13:8",
+          "kind": "assertEqual",
+          "line": 99
+        },
+        {
+          "expression_sha256": "c9406bf5b26a2d8cf820bf117fead0ec00215a911880586f88812c2f02a0133b",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:15:12",
+          "kind": "check_task",
+          "line": 101
+        },
+        {
+          "expression_sha256": "64b4b45db926d4c4e10c24154e17d73afed168d8f7e39b7e6e777db6e96e66dc",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:16:12",
+          "kind": "assertEqual",
+          "line": 102
+        },
+        {
+          "expression_sha256": "8224bfc81666d7590e11d5ac798d4f6a496c0c9a7f2580931b7e574a4d0ea6c4",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:17:8",
+          "kind": "assertEqual",
+          "line": 103
+        },
+        {
+          "expression_sha256": "c668da4710b01dc9732ba679cb0d6054ba5af39105be674afb1d757c974203ed",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:18:8",
+          "kind": "assertIsNone",
+          "line": 104
+        },
+        {
+          "expression_sha256": "6792246dd6bcc59154915db3f5a1a9c447ea4d44c7e4de4dcee1dd8f4f9b7879",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:19:8",
+          "kind": "assertEqual",
+          "line": 105
+        },
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:20:8",
+          "kind": "assertEqual",
+          "line": 106
+        },
+        {
+          "expression_sha256": "8951a28803dff2c13f8626027dd01a25c5e399848e23c7f2a329da3a234e2458",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:21:8",
+          "kind": "assertEqual",
+          "line": 107
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:25:8",
+          "kind": "assertEqual",
+          "line": 111
+        },
+        {
+          "expression_sha256": "befca263fd8a720fd5896c6c218e3be7333ab4fd9b09b2d0fd5e65e55775b578",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:27:8",
+          "kind": "assertEqual",
+          "line": 113
+        },
+        {
+          "expression_sha256": "fd84f50e38298f97b583ae94b9904f3eb6ad40836fc10154082dd9898acea9d9",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:28:8",
+          "kind": "assertEqual",
+          "line": 114
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:31:8",
+          "kind": "assertEqual",
+          "line": 117
+        },
+        {
+          "expression_sha256": "b5e161a4b56c558629c76bf33c93f07499f080d112afb3978afe6b573c75f253",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:32:8",
+          "kind": "assertEqual",
+          "line": 118
+        },
+        {
+          "expression_sha256": "f7ab363bd3edbf5a02f3c42e85288ca0a8aa1192d6be5155cc9a573590da1e92",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:34:8",
+          "kind": "assertEqual",
+          "line": 120
+        },
+        {
+          "expression_sha256": "52408c366af5a1aafb1f4e14abc34906833c7f5d5422eb38ee92a84dd508ea29",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:4:8",
+          "kind": "assertEqual",
+          "line": 90
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:5:8",
+          "kind": "assertFalse",
+          "line": 91
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:7:8",
+          "kind": "assertFalse",
+          "line": 93
+        }
+      ],
+      "body_sha256": "8bd114c418a79f9a201fd62b0d78544bb680179cb7718bedbaa30af833d945a8",
+      "mutation_lines": [
+        92,
+        94,
+        95,
+        97,
+        109,
+        110,
+        113,
+        116,
+        118,
+        119
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_migration_corruption": {
+      "assertions": [
+        {
+          "expression_sha256": "ebb3fdb8f679a192710538b3a65670169f0eceb9ccd71f07563818ec49a1bd6e",
+          "id": "regression.Regression.test_baseline_migration_corruption#assert:14:12",
+          "kind": "upgraded",
+          "line": 135
+        }
+      ],
+      "body_sha256": "4b67c8f6239a07589dba978773f42b72d4e05d7091d1ffcae3208241e77028ac",
+      "mutation_lines": [
+        135,
+        138
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_overdue_fixture": {
+      "assertions": [
+        {
+          "expression_sha256": "6038a05f22600e57b2a4925150119ff32bd2bbc0c56cd5b60211646292e41baf",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:11:12",
+          "kind": "assertEqual",
+          "line": 157
+        },
+        {
+          "expression_sha256": "cd3260a3700f74e646385f562fa5b48882be96afe43ae0cbe54c83b5b91aded8",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:13:12",
+          "kind": "assertEqual",
+          "line": 159
+        },
+        {
+          "expression_sha256": "e6912468eba148d09af657f235416afc64e77a2e0e1ab96ee1c4321a696c5f07",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:15:8",
+          "kind": "assertEqual",
+          "line": 161
+        }
+      ],
+      "body_sha256": "f7f5d71558c6e6ee85f08c3ab8839e559cc8687d0fb261284eff3b1ce322407c",
+      "mutation_lines": [
+        156
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:14:8",
+          "kind": "assertEqual",
+          "line": 59
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:15:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "934b7d5b010785951c1690bff504caa2aeb320f4c79118e59a9a7baa6c00f339",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:17:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:18:8",
+          "kind": "assertEqual",
+          "line": 63
+        },
+        {
+          "expression_sha256": "42a1cb3b3cd23fada7453791554bfc2a155e995ba8efc9dc99f1b53667fdf9e0",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:21:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "107ff9e72881d0ae9893ea7d9c450c687833fbf88851a0aa956019057ec744cd",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:22:8",
+          "kind": "assertEqual",
+          "line": 67
+        }
+      ],
+      "body_sha256": "eb737d52901cd5840e3ff7698b8c5a0de92208e9699b1c38f9e1932ee694638a",
+      "mutation_lines": [
+        60,
+        66
+      ],
+      "source": "benchmark/harness/cases/B04.py",
+      "source_sha256": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": {
+      "assertions": [
+        {
+          "expression_sha256": "b71cc24c1ebbcd1efdcbac4728eb0fcc1127ab7e97286b6c08c51bc57567b179",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:10:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "ad0fe3ef6813b00ea727e0f333324597585a7b63088f2b10ff2896927a19a4cf",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:11:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "af28d99de79021d4edb9153bb0e615fdf29f79faf11b5517e2fce8bc4aa9e6e0",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:12:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "c4283b656749c1aa85123eb65836108c8d04b5080d1e1c62ddd3617f5de1d05b",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:14:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "f4f5f5c318acda684dc7909c3fae2c292ff5e0f7381b59c2431febb854ac6eb5",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:16:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "5d523deca5055d0bfeaab88a7cd820a5cf824387f07fa6d37191081430abd97d",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:17:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "fae2bb22d08b922d0abda409e4d5d2699e2d1676b4104b6119b21a119eb8c9fa",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:19:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "e0d463667d564fee750aca3012628850bc32ed8fe142ae5fb188270ecfaf14fa",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:9:8",
+          "kind": "assertEqual",
+          "line": 33
+        }
+      ],
+      "body_sha256": "34f5ef9ad01705b0c05ff7331ddc8558d8d7c13a747c2f99d82dda56b804c2d3",
+      "mutation_lines": [
+        28,
+        30,
+        31,
+        39,
+        43
+      ],
+      "source": "benchmark/harness/cases/B04.py",
+      "source_sha256": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+      "user_result_lines": [],
+      "version": "frozen"
+    }
+  }
+}

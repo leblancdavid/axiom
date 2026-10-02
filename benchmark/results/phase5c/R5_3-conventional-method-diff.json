@@ -1,0 +1,266 @@
+{
+  "achieved": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16"
+  ],
+  "assertion_equivalence_proven": false,
+  "inventory_sha256": "6706171247d40a725142ded41cf357fd1d7e5bf30f34875153cc2746c661652a",
+  "method_disposition_diff": {},
+  "observed": {
+    "regression.Regression.test_b01_historical_priorities": "active",
+    "regression.Regression.test_b01_priority_and_regression": "superseded",
+    "regression.Regression.test_b02_explicit_migration": "active",
+    "regression.Regression.test_b02_tags_and_failure": "superseded",
+    "regression.Regression.test_baseline_lifecycle_filters_failures": "superseded",
+    "regression.Regression.test_baseline_migration_corruption": "superseded",
+    "regression.Regression.test_baseline_overdue_fixture": "superseded",
+    "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged": "superseded",
+    "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks": "superseded",
+    "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": "active",
+    "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": "superseded",
+    "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write": "superseded",
+    "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create": "superseded",
+    "regression_B06.cases.<locals>.Categories.test_migration_defaults_category": "active",
+    "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append": "superseded",
+    "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes": "active",
+    "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility": "superseded",
+    "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived": "active",
+    "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order": "superseded",
+    "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write": "superseded",
+    "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned": "superseded",
+    "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing": "superseded",
+    "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule": "superseded",
+    "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive": "superseded",
+    "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11": "superseded",
+    "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11": "superseded",
+    "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write": "superseded",
+    "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue": "superseded",
+    "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected": "superseded",
+    "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid": "superseded",
+    "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration": "superseded",
+    "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures": "superseded",
+    "regression_B15.cases.<locals>.CompletionDependencies.test_archived_parent_still_obeys_terminal_transition": "superseded",
+    "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed": "superseded",
+    "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system": "active",
+    "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable": "active",
+    "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter": "active",
+    "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.BaselineMigration.test_baseline_migration_corruption_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.CompletionArchived.test_archived_parent_still_obeys_terminal_transition_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing": "replacement",
+    "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system": "replacement",
+    "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner": "replacement",
+    "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner": "replacement"
+  },
+  "reconstructed": {
+    "dispositions": {
+      "regression.Regression.test_b01_historical_priorities": "active",
+      "regression.Regression.test_b01_priority_and_regression": "superseded",
+      "regression.Regression.test_b02_explicit_migration": "active",
+      "regression.Regression.test_b02_tags_and_failure": "superseded",
+      "regression.Regression.test_baseline_lifecycle_filters_failures": "superseded",
+      "regression.Regression.test_baseline_migration_corruption": "superseded",
+      "regression.Regression.test_baseline_overdue_fixture": "superseded",
+      "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged": "superseded",
+      "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks": "superseded",
+      "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": "active",
+      "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": "superseded",
+      "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write": "superseded",
+      "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create": "superseded",
+      "regression_B06.cases.<locals>.Categories.test_migration_defaults_category": "active",
+      "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append": "superseded",
+      "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes": "active",
+      "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility": "superseded",
+      "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived": "active",
+      "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order": "superseded",
+      "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write": "superseded",
+      "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned": "superseded",
+      "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing": "superseded",
+      "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule": "superseded",
+      "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive": "superseded",
+      "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11": "superseded",
+      "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11": "superseded",
+      "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write": "superseded",
+      "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue": "superseded",
+      "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected": "superseded",
+      "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid": "superseded",
+      "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration": "superseded",
+      "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures": "superseded",
+      "regression_B15.cases.<locals>.CompletionDependencies.test_archived_parent_still_obeys_terminal_transition": "superseded",
+      "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed": "superseded",
+      "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system": "active",
+      "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable": "active",
+      "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter": "active",
+      "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.BaselineMigration.test_baseline_migration_corruption_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.CompletionArchived.test_archived_parent_still_obeys_terminal_transition_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing": "replacement",
+      "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system": "replacement",
+      "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner": "replacement",
+      "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner": "replacement"
+    },
+    "edges": {
+      "regression.Regression.test_b01_priority_and_regression": {
+        "amendment": "B11",
+        "replacement": "B11"
+      },
+      "regression.Regression.test_b02_tags_and_failure": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner"
+      },
+      "regression.Regression.test_baseline_lifecycle_filters_failures": {
+        "amendment": "B11",
+        "replacement": "B11"
+      },
+      "regression.Regression.test_baseline_migration_corruption": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.BaselineMigration.test_baseline_migration_corruption_with_owner"
+      },
+      "regression.Regression.test_baseline_overdue_fixture": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner"
+      },
+      "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner"
+      },
+      "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner"
+      },
+      "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": {
+        "amendment": "B11-R4",
+        "replacement": "B11"
+      },
+      "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner"
+      },
+      "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner"
+      },
+      "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append": {
+        "amendment": "B11-R4",
+        "replacement": "B11"
+      },
+      "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner"
+      },
+      "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner"
+      },
+      "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner"
+      },
+      "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system"
+      },
+      "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing"
+      },
+      "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner"
+      },
+      "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner"
+      },
+      "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner"
+      },
+      "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner"
+      },
+      "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner"
+      },
+      "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner"
+      },
+      "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner"
+      },
+      "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner"
+      },
+      "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner"
+      },
+      "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner"
+      },
+      "regression_B15.cases.<locals>.CompletionDependencies.test_archived_parent_still_obeys_terminal_transition": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.CompletionArchived.test_archived_parent_still_obeys_terminal_transition_with_owner"
+      },
+      "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed": {
+        "amendment": "B16-R5",
+        "replacement": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner"
+      }
+    }
+  },
+  "reconstruction_sha256": "15604f0ac259d52c163e785b6637a989f51ba901fb2074772ee0648e3f6c3cd4"
+}

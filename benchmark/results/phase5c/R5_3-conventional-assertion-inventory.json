@@ -1,0 +1,3467 @@
+{
+  "achieved": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16"
+  ],
+  "methods": {
+    "regression.Regression.test_b01_historical_priorities": {
+      "assertions": [
+        {
+          "expression_sha256": "7c2367637256a4ccf76cb24bd1e07c147d6b57eb21f5d3acfa51fbb2f64687bb",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:12:12",
+          "kind": "assertEqual",
+          "line": 191
+        },
+        {
+          "expression_sha256": "531d9bce4f093774fe35e226c28797c825f42df57b9ef8606c4b661dc0b27f1b",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:16:8",
+          "kind": "upgraded",
+          "line": 195
+        },
+        {
+          "expression_sha256": "6a1881c5a67a350e7a096dc561bdceb7d1f5019e5bf4fe35ab2de401599c6da5",
+          "id": "regression.Regression.test_b01_historical_priorities#assert:8:12",
+          "kind": "upgraded",
+          "line": 187
+        }
+      ],
+      "body_sha256": "34096c7d9c281398fef71c640fd9378b21b900c23f4b0b932dcac1e9d0ee9be8",
+      "mutation_lines": [
+        187,
+        195
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b01_priority_and_regression": {
+      "assertions": [
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:11:8",
+          "kind": "assertEqual",
+          "line": 173
+        },
+        {
+          "expression_sha256": "e47857813ca1676b758376a5b755c002793595f04b32031c6428e26b7214daff",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:12:8",
+          "kind": "assertEqual",
+          "line": 174
+        },
+        {
+          "expression_sha256": "096d181e5817cfdf4d999ae4200ab4f7485b515004b114029d3f337a128e8d1f",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:13:8",
+          "kind": "assertEqual",
+          "line": 175
+        },
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:14:8",
+          "kind": "assertEqual",
+          "line": 176
+        },
+        {
+          "expression_sha256": "a490a54ec3a7e97721d6e961c01d158cb9b86103b6398043ffbf096bc43fece1",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:15:8",
+          "kind": "assertEqual",
+          "line": 177
+        },
+        {
+          "expression_sha256": "fd84f50e38298f97b583ae94b9904f3eb6ad40836fc10154082dd9898acea9d9",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:16:8",
+          "kind": "assertEqual",
+          "line": 178
+        },
+        {
+          "expression_sha256": "90e43d72c54b2dc72501fbc722f84fd0819c042dff599115a23b5a0032ccbd17",
+          "id": "regression.Regression.test_b01_priority_and_regression#assert:9:8",
+          "kind": "assertEqual",
+          "line": 171
+        }
+      ],
+      "body_sha256": "cc6650bac59103d7dd1480ad70cc3c3bb5abdd5a2d3a0d031212ea629ef14dd0",
+      "mutation_lines": [
+        168,
+        169,
+        170,
+        175,
+        177
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b02_explicit_migration": {
+      "assertions": [
+        {
+          "expression_sha256": "aa95f1abdad48b3fc2165537c0cc2e8f91ee5613555682641d21ecfc8e488493",
+          "id": "regression.Regression.test_b02_explicit_migration#assert:9:12",
+          "kind": "upgraded",
+          "line": 223
+        }
+      ],
+      "body_sha256": "3b0c9e9ddc5608f330bc99e9bcb8a18658c6fb471ae4aeb0ea9a3a3c2b6efa03",
+      "mutation_lines": [
+        223
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_b02_tags_and_failure": {
+      "assertions": [
+        {
+          "expression_sha256": "57b3eb7fa3e7c1c1b615df28f19781812d9fc4267582222ecfb4ca1c941186ac",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:10:8",
+          "kind": "assertEqual",
+          "line": 207
+        },
+        {
+          "expression_sha256": "f690477dabe618f03417ec22c688a919edbddfa09daba654ba2bf452a6037dac",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:11:8",
+          "kind": "assertEqual",
+          "line": 208
+        },
+        {
+          "expression_sha256": "fe41d9c36b1504feeac6737df9b34227155fa0082cb92bc927ba7cd12afbc2e7",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:12:8",
+          "kind": "assertEqual",
+          "line": 209
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:15:8",
+          "kind": "assertEqual",
+          "line": 212
+        },
+        {
+          "expression_sha256": "79067405077af56467533b1730b059eafc032af122abb90cb0190221588a0dfb",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:16:8",
+          "kind": "assertEqual",
+          "line": 213
+        },
+        {
+          "expression_sha256": "587fe118ca9253925c63e06ce3f57274923beac120a1e66fa2a7f94c51e7b180",
+          "id": "regression.Regression.test_b02_tags_and_failure#assert:7:8",
+          "kind": "assertEqual",
+          "line": 204
+        }
+      ],
+      "body_sha256": "c6a707e5db12cca24905997d5f6e67844e8c4e3b0b642764b2c26c264af6ca22",
+      "mutation_lines": [
+        203,
+        205,
+        211,
+        213
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_lifecycle_filters_failures": {
+      "assertions": [
+        {
+          "expression_sha256": "95fbaa8ffb5a4342302fd8560b2cc0f741a878085711153931207b0b55851445",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:13:8",
+          "kind": "assertEqual",
+          "line": 99
+        },
+        {
+          "expression_sha256": "c9406bf5b26a2d8cf820bf117fead0ec00215a911880586f88812c2f02a0133b",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:15:12",
+          "kind": "check_task",
+          "line": 101
+        },
+        {
+          "expression_sha256": "64b4b45db926d4c4e10c24154e17d73afed168d8f7e39b7e6e777db6e96e66dc",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:16:12",
+          "kind": "assertEqual",
+          "line": 102
+        },
+        {
+          "expression_sha256": "8224bfc81666d7590e11d5ac798d4f6a496c0c9a7f2580931b7e574a4d0ea6c4",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:17:8",
+          "kind": "assertEqual",
+          "line": 103
+        },
+        {
+          "expression_sha256": "c668da4710b01dc9732ba679cb0d6054ba5af39105be674afb1d757c974203ed",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:18:8",
+          "kind": "assertIsNone",
+          "line": 104
+        },
+        {
+          "expression_sha256": "6792246dd6bcc59154915db3f5a1a9c447ea4d44c7e4de4dcee1dd8f4f9b7879",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:19:8",
+          "kind": "assertEqual",
+          "line": 105
+        },
+        {
+          "expression_sha256": "1a3c7b31ed2913d2ee12509dbaff21929ed53d9dccc54cfcaa05984d3fe13cf0",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:20:8",
+          "kind": "assertEqual",
+          "line": 106
+        },
+        {
+          "expression_sha256": "8951a28803dff2c13f8626027dd01a25c5e399848e23c7f2a329da3a234e2458",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:21:8",
+          "kind": "assertEqual",
+          "line": 107
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:25:8",
+          "kind": "assertEqual",
+          "line": 111
+        },
+        {
+          "expression_sha256": "befca263fd8a720fd5896c6c218e3be7333ab4fd9b09b2d0fd5e65e55775b578",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:27:8",
+          "kind": "assertEqual",
+          "line": 113
+        },
+        {
+          "expression_sha256": "fd84f50e38298f97b583ae94b9904f3eb6ad40836fc10154082dd9898acea9d9",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:28:8",
+          "kind": "assertEqual",
+          "line": 114
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:31:8",
+          "kind": "assertEqual",
+          "line": 117
+        },
+        {
+          "expression_sha256": "b5e161a4b56c558629c76bf33c93f07499f080d112afb3978afe6b573c75f253",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:32:8",
+          "kind": "assertEqual",
+          "line": 118
+        },
+        {
+          "expression_sha256": "f7ab363bd3edbf5a02f3c42e85288ca0a8aa1192d6be5155cc9a573590da1e92",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:34:8",
+          "kind": "assertEqual",
+          "line": 120
+        },
+        {
+          "expression_sha256": "52408c366af5a1aafb1f4e14abc34906833c7f5d5422eb38ee92a84dd508ea29",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:4:8",
+          "kind": "assertEqual",
+          "line": 90
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:5:8",
+          "kind": "assertFalse",
+          "line": 91
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression.Regression.test_baseline_lifecycle_filters_failures#assert:7:8",
+          "kind": "assertFalse",
+          "line": 93
+        }
+      ],
+      "body_sha256": "8bd114c418a79f9a201fd62b0d78544bb680179cb7718bedbaa30af833d945a8",
+      "mutation_lines": [
+        92,
+        94,
+        95,
+        97,
+        109,
+        110,
+        113,
+        116,
+        118,
+        119
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_migration_corruption": {
+      "assertions": [
+        {
+          "expression_sha256": "ebb3fdb8f679a192710538b3a65670169f0eceb9ccd71f07563818ec49a1bd6e",
+          "id": "regression.Regression.test_baseline_migration_corruption#assert:14:12",
+          "kind": "upgraded",
+          "line": 135
+        }
+      ],
+      "body_sha256": "4b67c8f6239a07589dba978773f42b72d4e05d7091d1ffcae3208241e77028ac",
+      "mutation_lines": [
+        135,
+        138
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression.Regression.test_baseline_overdue_fixture": {
+      "assertions": [
+        {
+          "expression_sha256": "6038a05f22600e57b2a4925150119ff32bd2bbc0c56cd5b60211646292e41baf",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:11:12",
+          "kind": "assertEqual",
+          "line": 157
+        },
+        {
+          "expression_sha256": "cd3260a3700f74e646385f562fa5b48882be96afe43ae0cbe54c83b5b91aded8",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:13:12",
+          "kind": "assertEqual",
+          "line": 159
+        },
+        {
+          "expression_sha256": "e6912468eba148d09af657f235416afc64e77a2e0e1ab96ee1c4321a696c5f07",
+          "id": "regression.Regression.test_baseline_overdue_fixture#assert:15:8",
+          "kind": "assertEqual",
+          "line": 161
+        }
+      ],
+      "body_sha256": "f7f5d71558c6e6ee85f08c3ab8839e559cc8687d0fb261284eff3b1ce322407c",
+      "mutation_lines": [
+        156
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged#assert:10:8",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B03.cases.<locals>.TagListing.test_blank_queries_leave_storage_unchanged#assert:6:12",
+          "kind": "assertFalse",
+          "line": 51
+        }
+      ],
+      "body_sha256": "bc64cbf62481c70c0312424f0ca0264338935a2b2967bf8ee2f3864e0058b86b",
+      "mutation_lines": [
+        52
+      ],
+      "source": "benchmark/harness/cases/B03.py",
+      "source_sha256": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks": {
+      "assertions": [
+        {
+          "expression_sha256": "7851164cd992315c9f8ded89851a1f7ad1d84bd056ad024685f195c5eb6ec80f",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:14:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "cbe6d42be62b32e5627907b59ba3748b4cb74e61387f2f5cc63273627603e030",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:16:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "ac1927e76bd70ed168a973a3e0d84a1ea7e8256ec674958887ee6f32a5a8e579",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:17:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "60cf3236379637081af52eb0ef835091b9d2dcb0d7825c734f9c0ca21105b991",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:18:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "526757707854d92a5ba7a91af4df6fd4af1f434d8ea042dd7f10c5cccc4dd2eb",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:19:8",
+          "kind": "assertNotIn",
+          "line": 43
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B03.cases.<locals>.TagListing.test_exact_case_sensitive_tag_with_completed_tasks#assert:20:8",
+          "kind": "assertEqual",
+          "line": 44
+        }
+      ],
+      "body_sha256": "7bd9eaf25d79d8b3727adc239499426c1b9b133bd35952481e234cdf78423494",
+      "mutation_lines": [
+        28,
+        30,
+        32,
+        33,
+        35
+      ],
+      "source": "benchmark/harness/cases/B03.py",
+      "source_sha256": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:14:8",
+          "kind": "assertEqual",
+          "line": 59
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:15:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "934b7d5b010785951c1690bff504caa2aeb320f4c79118e59a9a7baa6c00f339",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:17:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:18:8",
+          "kind": "assertEqual",
+          "line": 63
+        },
+        {
+          "expression_sha256": "42a1cb3b3cd23fada7453791554bfc2a155e995ba8efc9dc99f1b53667fdf9e0",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:21:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "107ff9e72881d0ae9893ea7d9c450c687833fbf88851a0aa956019057ec744cd",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage#assert:22:8",
+          "kind": "assertEqual",
+          "line": 67
+        }
+      ],
+      "body_sha256": "eb737d52901cd5840e3ff7698b8c5a0de92208e9699b1c38f9e1932ee694638a",
+      "mutation_lines": [
+        60,
+        66
+      ],
+      "source": "benchmark/harness/cases/B04.py",
+      "source_sha256": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": {
+      "assertions": [
+        {
+          "expression_sha256": "b71cc24c1ebbcd1efdcbac4728eb0fcc1127ab7e97286b6c08c51bc57567b179",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:10:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "ad0fe3ef6813b00ea727e0f333324597585a7b63088f2b10ff2896927a19a4cf",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:11:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "af28d99de79021d4edb9153bb0e615fdf29f79faf11b5517e2fce8bc4aa9e6e0",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:12:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "c4283b656749c1aa85123eb65836108c8d04b5080d1e1c62ddd3617f5de1d05b",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:14:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "f4f5f5c318acda684dc7909c3fae2c292ff5e0f7381b59c2431febb854ac6eb5",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:16:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "5d523deca5055d0bfeaab88a7cd820a5cf824387f07fa6d37191081430abd97d",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:17:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "fae2bb22d08b922d0abda409e4d5d2699e2d1676b4104b6119b21a119eb8c9fa",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:19:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "e0d463667d564fee750aca3012628850bc32ed8fe142ae5fb188270ecfaf14fa",
+          "id": "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations#assert:9:8",
+          "kind": "assertEqual",
+          "line": 33
+        }
+      ],
+      "body_sha256": "34f5ef9ad01705b0c05ff7331ddc8558d8d7c13a747c2f99d82dda56b804c2d3",
+      "mutation_lines": [
+        28,
+        30,
+        31,
+        39,
+        43
+      ],
+      "source": "benchmark/harness/cases/B04.py",
+      "source_sha256": "85be09e650943ac296fea889577d21657a31a6e9993e32603e9604e2b7b89c03",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write": {
+      "assertions": [
+        {
+          "expression_sha256": "c6ac1310942be8b7ef84c4c11baf002adc93df006d87af12ba353a36bc628927",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:13:8",
+          "kind": "assertEqual",
+          "line": 32
+        },
+        {
+          "expression_sha256": "86a86c3959eb74b4dfa8be523c06205781aea457842e56139570ddadaab71f9a",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:15:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "d07e352e5a992fda7b9c894a7ce7465ffa3e3ffc1493541a8e5ae0ca91fd5713",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:16:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:17:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "fe032d928464cc244b683e206c69ffd8fd5428122c40c0bbfdf5505d8640527d",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:21:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "a65bfa1e194fcec483cda2bcb2c815141ac974eff2b3e9bb14401fb458c9a712",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:22:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:23:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "fe032d928464cc244b683e206c69ffd8fd5428122c40c0bbfdf5505d8640527d",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:4:8",
+          "kind": "assertEqual",
+          "line": 23
+        },
+        {
+          "expression_sha256": "59c32c00acbf52668786e266aa79b9e8effc9bffcf26ed4d3471bfd310987063",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:5:8",
+          "kind": "assertEqual",
+          "line": 24
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B05.cases.<locals>.StatusListing.test_both_statuses_and_no_write#assert:6:8",
+          "kind": "assertFalse",
+          "line": 25
+        }
+      ],
+      "body_sha256": "61dcd4f1445506b7ee1c8358ae5622b730c6173d134c706f9c493e6b832017b9",
+      "mutation_lines": [
+        26,
+        27,
+        28,
+        29,
+        37,
+        38
+      ],
+      "source": "benchmark/harness/cases/B05.py",
+      "source_sha256": "1f94866798fe6654820032e494ba0d1a805e78fc53b3a4fe989df98327ceb895",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create": {
+      "assertions": [
+        {
+          "expression_sha256": "f4bafec17e6f1f8de979f27b9e5199a903a8b285dcdb1511b9c515d92a8760a3",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "775571e9fce5a94b9700df6d418faae6e1080dd7fe28acbbaeb3c554e82afee2",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "4e75d6805ae6e305aa5d94c0c0c8f14698ee686db4ed1c0cc66fd779433dc50f",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:23:12",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:25:8",
+          "kind": "assertEqual",
+          "line": 48
+        },
+        {
+          "expression_sha256": "47ecaa60b1919643333fe910079b41e882c824cfbe376e740c06d2b428ed83f1",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B06.cases.<locals>.Categories.test_create_filter_and_failed_create#assert:6:8",
+          "kind": "assertFalse",
+          "line": 29
+        }
+      ],
+      "body_sha256": "030954387319b2bd859b22e6e32600517b332d4f6c1da2667b0e132ac444c4be",
+      "mutation_lines": [
+        27,
+        30,
+        32,
+        34,
+        36,
+        37,
+        41,
+        49
+      ],
+      "source": "benchmark/harness/cases/B06.py",
+      "source_sha256": "e558f1c5f0c83fe4e08e9ea2874e51f1ff1e2c9d0863f3806f0706307a45263f",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B06.cases.<locals>.Categories.test_migration_defaults_category": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B06.cases.<locals>.Categories.test_migration_defaults_category#assert:10:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B06.cases.<locals>.Categories.test_migration_defaults_category#assert:11:8",
+          "kind": "assertEqual",
+          "line": 61
+        },
+        {
+          "expression_sha256": "d8cb080b3714f99a193cb2df7213f20291c81501d551ec430084cf66402f7df7",
+          "id": "regression_B06.cases.<locals>.Categories.test_migration_defaults_category#assert:12:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B06.cases.<locals>.Categories.test_migration_defaults_category#assert:13:8",
+          "kind": "assertEqual",
+          "line": 63
+        }
+      ],
+      "body_sha256": "7e117641c10bc734a57da10c41c52742070e0d4a02f50564de9644c35ae9ba16",
+      "mutation_lines": [
+        61
+      ],
+      "source": "benchmark/harness/cases/B06.py",
+      "source_sha256": "e558f1c5f0c83fe4e08e9ea2874e51f1ff1e2c9d0863f3806f0706307a45263f",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append": {
+      "assertions": [
+        {
+          "expression_sha256": "a2572309c040a2cfd76f80c91acb4974734c4ca92d82d15cc749f6346427383e",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:11:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:12:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:17:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "96887b1ad3dd84f87b4097daaa5c35ca9c9f7a7923923996c5a01dc6f2573327",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "ca021a9f5fae251049b34635c0b38ee18b06a56d5d6352adfb33935c5b589bd6",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:20:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "88d831fbd4746f0514da50a912935d7d331acbb3daf5420136a9ddaf1ee5bac2",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "bc2fe24a49dfac46796ca94278453f641533c698816451cbb0f7e52532685fbe",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:6:8",
+          "kind": "assertEqual",
+          "line": 29
+        },
+        {
+          "expression_sha256": "f662ed44eb0929a0e63cb0b804f95ad59bf9e7860b3af0a7e63fb3e7bd609c5f",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:7:8",
+          "kind": "assertEqual",
+          "line": 30
+        },
+        {
+          "expression_sha256": "9e3e36818803ce77e5273dac657e24c9366602142fc5062edf460d26c1b7be39",
+          "id": "regression_B07.cases.<locals>.Notes.test_append_order_trim_and_failed_append#assert:9:8",
+          "kind": "assertEqual",
+          "line": 32
+        }
+      ],
+      "body_sha256": "d30f6dea5076929fd1ee6f924888e63024351e4951eaeba5fda3f04e3de0a943",
+      "mutation_lines": [
+        27,
+        28,
+        31,
+        33,
+        37,
+        42,
+        44
+      ],
+      "source": "benchmark/harness/cases/B07.py",
+      "source_sha256": "d02a0d9ea314a4fcf65eb12ad2ec4ae41cf18cec6a5a7d6aa69e26114b576c5d",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:10:8",
+          "kind": "assertEqual",
+          "line": 56
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:11:8",
+          "kind": "assertEqual",
+          "line": 57
+        },
+        {
+          "expression_sha256": "6a090ac0a412fd6548b720567afe6c46d118f31457624e818a997dadc6710eb5",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:13:8",
+          "kind": "assertEqual",
+          "line": 59
+        },
+        {
+          "expression_sha256": "78f77cfed31f53606c3f75593f8b436fcaea4428fbab0aef7a8044198b8301d9",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:14:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:15:8",
+          "kind": "assertEqual",
+          "line": 61
+        },
+        {
+          "expression_sha256": "3cd2bbc1be321b78fd6d0a1231383774e233ef6a4abed0885fcd4c11c627d310",
+          "id": "regression_B07.cases.<locals>.Notes.test_explicit_migration_initializes_notes#assert:18:8",
+          "kind": "assertEqual",
+          "line": 64
+        }
+      ],
+      "body_sha256": "0a9f8907148db0ea1ce7b6084ef2b325b4afd356303a3131042fd49608ff40e0",
+      "mutation_lines": [
+        57,
+        63
+      ],
+      "source": "benchmark/harness/cases/B07.py",
+      "source_sha256": "d02a0d9ea314a4fcf65eb12ad2ec4ae41cf18cec6a5a7d6aa69e26114b576c5d",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility": {
+      "assertions": [
+        {
+          "expression_sha256": "7d7ee8ba451aa9bb2606d77d308e457cca3bc62ab64fe6fde19e8f6105c8e588",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:15:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "0e34e51d9f1d6141f6ab7f3876eacee35ee4a88633f69b7dd407a60d94ff9364",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "7c0fbd4635a9fb08565412333d8f744a09514d1b85c70ac0d45e82bdf761e473",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:20:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "b7a93154d38f4bd179f862d9e87722450e56ba56b28984332428460183f22dd9",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "a86c7685c0e05daf74159f673aea0b2adb2461a0176a78c68a400e9ebf2e991d",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "efe90e1044eb26ae338b6ba3d6e5d2e58af99f7e91e57c3e133f566a04402138",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:27:12",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "b28dc1cbafd1c636c706ae3854c32b442229bed3e2ab55076393020b19b66552",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:29:12",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "59c32c00acbf52668786e266aa79b9e8effc9bffcf26ed4d3471bfd310987063",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:30:12",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "7d5b82c00340fc50e1e67e8b7fe7c52244a92b808a12d2c21a6370ca1a633854",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:32:12",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:33:8",
+          "kind": "assertEqual",
+          "line": 56
+        },
+        {
+          "expression_sha256": "444704ee270a40273d945bab74a38325cdaf8532379eb579684d07aec6cbd950",
+          "id": "regression_B08.cases.<locals>.Archival.test_archive_pending_completed_and_visibility#assert:9:8",
+          "kind": "assertEqual",
+          "line": 32
+        }
+      ],
+      "body_sha256": "1d9965a3f0a5e403d8f2b436233fb28f27fd38fe6a5f79fd5db48a87a8e3015c",
+      "mutation_lines": [
+        27,
+        29,
+        31,
+        34,
+        36,
+        37,
+        41
+      ],
+      "source": "benchmark/harness/cases/B08.py",
+      "source_sha256": "afc07957ca3bdc33ce8ca63bc0fb3ef78d9ada30f20f251c95863b31c6e31c06",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:10:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:11:8",
+          "kind": "assertEqual",
+          "line": 68
+        },
+        {
+          "expression_sha256": "58e9319cc193941479a1e5a98befa112cace2dee613461843fdf62da8427a6ae",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:13:8",
+          "kind": "assertIs",
+          "line": 70
+        },
+        {
+          "expression_sha256": "78f77cfed31f53606c3f75593f8b436fcaea4428fbab0aef7a8044198b8301d9",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:14:8",
+          "kind": "assertEqual",
+          "line": 71
+        },
+        {
+          "expression_sha256": "219208082128b265e25a1e7283fd35f29b0e5388245fd191e195ca862861aeeb",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:15:8",
+          "kind": "assertEqual",
+          "line": 72
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B08.cases.<locals>.Archival.test_explicit_migration_defaults_unarchived#assert:16:8",
+          "kind": "assertEqual",
+          "line": 73
+        }
+      ],
+      "body_sha256": "e181c4c0656b2a9983038f0750e004bdeae0ef202c9354682192fb68de0acaed",
+      "mutation_lines": [
+        68
+      ],
+      "source": "benchmark/harness/cases/B08.py",
+      "source_sha256": "afc07957ca3bdc33ce8ca63bc0fb3ef78d9ada30f20f251c95863b31c6e31c06",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order": {
+      "assertions": [
+        {
+          "expression_sha256": "8c2d6fe53130777486d25a3451ddc132e745c3c327260e7217eaa823855ad469",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "7349202537b821be3440d523a4b32e51d0c8f761abf029080b0354959c17b981",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order#assert:24:8",
+          "kind": "assertEqual",
+          "line": 47
+        },
+        {
+          "expression_sha256": "030d71ca272da854c476d9d640890166f703f3ab6eb92e1c6ffe25136983652c",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "9c22a21abfe349c9371b2080f4035bf3d24548ab9de86813dc362036845bad91",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order#assert:28:8",
+          "kind": "assertEqual",
+          "line": 51
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order#assert:30:8",
+          "kind": "assertEqual",
+          "line": 53
+        }
+      ],
+      "body_sha256": "7b4c15aaa5d2e345e8052e35362e659ce0838d158f90dabac047d09595813c09",
+      "mutation_lines": [
+        30,
+        32,
+        33,
+        35,
+        37,
+        39,
+        41,
+        42
+      ],
+      "source": "benchmark/harness/cases/B09.py",
+      "source_sha256": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write": {
+      "assertions": [
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write#assert:14:8",
+          "kind": "assertFalse",
+          "line": 68
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B09.cases.<locals>.DueWindow.test_invalid_ranges_and_timestamps_do_not_write#assert:19:8",
+          "kind": "assertEqual",
+          "line": 73
+        }
+      ],
+      "body_sha256": "54b8fc5e52713106f0d61dcb328661fb8c9fc664cca5dcc906c28aafd4bec0d2",
+      "mutation_lines": [
+        69
+      ],
+      "source": "benchmark/harness/cases/B09.py",
+      "source_sha256": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:10:8",
+          "kind": "assertEqual",
+          "line": 59
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:11:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "3becf221148292b21a6e9539162a1e8946c60578f1806b050280d3e8d7579116",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:13:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "78f77cfed31f53606c3f75593f8b436fcaea4428fbab0aef7a8044198b8301d9",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:14:8",
+          "kind": "assertEqual",
+          "line": 63
+        },
+        {
+          "expression_sha256": "74cb2db03156c4d501ced16e9c3855efa094020b5c3a4d4547838792ae4d6816",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:15:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B10.cases.<locals>.Owner.test_migration_defaults_unowned#assert:16:8",
+          "kind": "assertEqual",
+          "line": 65
+        }
+      ],
+      "body_sha256": "5c8fda6b5940f17bb0050bf75952ec34adc15019d51b30d856a47320235b776b",
+      "mutation_lines": [
+        60
+      ],
+      "source": "benchmark/harness/cases/B10.py",
+      "source_sha256": "5753a963f1f23932f66be7619cf7232bf3b605b803b6673cb070506777f24851",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing": {
+      "assertions": [
+        {
+          "expression_sha256": "1845dac0def7e39914f6d7f2f9abde1994ac4bfccb94b26a8169822a6dabde14",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:15:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "4d86285959aa4cb842e2597e4be523b463e94f1015b0bd872f4632e352a4c8ab",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "239c59d431efd8fa09235ace79d3a11f22e415855f61173986b1ff6187b88537",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:22:12",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:24:8",
+          "kind": "assertEqual",
+          "line": 47
+        },
+        {
+          "expression_sha256": "76c84704483e81c2cb860e4f93e0598038635cf3fe3ff8acd6433ea659e747fd",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:25:8",
+          "kind": "assertEqual",
+          "line": 48
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B10.cases.<locals>.Owner.test_trim_reject_and_exact_owner_listing#assert:7:8",
+          "kind": "assertFalse",
+          "line": 30
+        }
+      ],
+      "body_sha256": "1e25876b0cdceb6eb4a2ff9fedc38c6e69fa9330228780ed2dbe4c75243e31ed",
+      "mutation_lines": [
+        28,
+        31,
+        33,
+        35,
+        37,
+        40,
+        48
+      ],
+      "source": "benchmark/harness/cases/B10.py",
+      "source_sha256": "5753a963f1f23932f66be7619cf7232bf3b605b803b6673cb070506777f24851",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule": {
+      "assertions": [
+        {
+          "expression_sha256": "6cc40fcf87750c89cca15ad4f18e8e9c0e09a72468c11c6f6d033666c56a482e",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "17ce8e393bc5533902ca74f8acaf3632b4e9d36dde7a396c27079f5d1ad21fbc",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "93e1ee88453c2e3cb5667a86e8ace549c7cb34d2ae0c29539f924b701a09793b",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "901f4bfbab582c82c93430cf15a7828ca336294d5764ae3a02f062fb324d7de8",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:27:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "2434df2d691142aad01b221d5fbdc6ed5be2390441e752fa58e940d84e17d9b7",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:30:8",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "3c2535087678980bf1758e7e90d5cf86004da5e7df2c9914404389966eaa11bf",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:31:8",
+          "kind": "assertEqual",
+          "line": 54
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:32:8",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:37:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "f8ac4e874517be19823fa7b1ddd5403c8a73d982c80f67d67e57da2d8adca4b4",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:38:8",
+          "kind": "assertIn",
+          "line": 61
+        },
+        {
+          "expression_sha256": "12de1c124e0bdf9f01c0a4f48eb13ae97901f3d5084743deaf546247c3112314",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:41:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "cab1142e48dce5bae90d4d91d6158c05c782a47b1bc0cb598ba5fbdd10fe3391",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:42:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "051e90a1a6edef3a97561ebcdf1300378eaf2b5db3c9254bd44a8dacf2b4423b",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:43:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "5a198780ad5919b36f6012f0bf8e088f421fe64664a76cfb3bbc2c2a020fed1b",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:44:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "b7a93154d38f4bd179f862d9e87722450e56ba56b28984332428460183f22dd9",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:46:8",
+          "kind": "assertEqual",
+          "line": 69
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:47:8",
+          "kind": "assertEqual",
+          "line": 70
+        },
+        {
+          "expression_sha256": "c1c4358610e6feff922fad685f4fe2dee81eb65a12cb774c9868253c5c8673b9",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:48:8",
+          "kind": "assertEqual",
+          "line": 71
+        },
+        {
+          "expression_sha256": "7cefb58438ef065a217572f0fac80ec52dbee8a422cd7238cb1d312d2163c461",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:4:8",
+          "kind": "assertEqual",
+          "line": 27
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:5:8",
+          "kind": "assertFalse",
+          "line": 28
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule#assert:8:8",
+          "kind": "assertFalse",
+          "line": 31
+        }
+      ],
+      "body_sha256": "ad101f18392dfc8057aceb127059289f0849d6c7c798d73efd22ae09bb5f58c3",
+      "mutation_lines": [
+        29,
+        32,
+        33,
+        35,
+        37,
+        47,
+        49,
+        51,
+        52,
+        57,
+        58,
+        59,
+        62,
+        63,
+        66,
+        67,
+        68
+      ],
+      "source": "benchmark/harness/cases/B11.py",
+      "source_sha256": "721fc2fb1c4d9f7d51978721799fd26be12a3186d481667fff5b0060be64201a",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive": {
+      "assertions": [
+        {
+          "expression_sha256": "7cefb58438ef065a217572f0fac80ec52dbee8a422cd7238cb1d312d2163c461",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive#assert:10:8",
+          "kind": "assertEqual",
+          "line": 83
+        },
+        {
+          "expression_sha256": "219208082128b265e25a1e7283fd35f29b0e5388245fd191e195ca862861aeeb",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive#assert:11:8",
+          "kind": "assertEqual",
+          "line": 84
+        },
+        {
+          "expression_sha256": "2e47ef9fb2471d09f7679bc972f6a0a1bf32bb3ff1d2eb552d3f2fc8e18ee055",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive#assert:6:8",
+          "kind": "assertEqual",
+          "line": 79
+        },
+        {
+          "expression_sha256": "063bc8712a3d7107c706bf4047bf9a1854657f63014ab11f64f56704ae724e18",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive#assert:8:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "d518f5dc38ef0d2795fe89c9bbc9a805443f87af8f8b60113946559b9bfb2cfe",
+          "id": "regression_B11.cases.<locals>.DeletionRule.test_pending_deletion_with_and_without_archive#assert:9:8",
+          "kind": "assertEqual",
+          "line": 82
+        }
+      ],
+      "body_sha256": "cb04a93ded00061a5e23d24dec812dfb7d7c2005836a8c168b3981d4898843c2",
+      "mutation_lines": [
+        77,
+        78,
+        79,
+        80,
+        82
+      ],
+      "source": "benchmark/harness/cases/B11.py",
+      "source_sha256": "721fc2fb1c4d9f7d51978721799fd26be12a3186d481667fff5b0060be64201a",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11": {
+      "assertions": [
+        {
+          "expression_sha256": "a2572309c040a2cfd76f80c91acb4974734c4ca92d82d15cc749f6346427383e",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:11:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:12:8",
+          "kind": "assertEqual",
+          "line": 68
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:16:8",
+          "kind": "assertEqual",
+          "line": 72
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:17:8",
+          "kind": "assertEqual",
+          "line": 73
+        },
+        {
+          "expression_sha256": "96887b1ad3dd84f87b4097daaa5c35ca9c9f7a7923923996c5a01dc6f2573327",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:18:8",
+          "kind": "assertEqual",
+          "line": 74
+        },
+        {
+          "expression_sha256": "ca021a9f5fae251049b34635c0b38ee18b06a56d5d6352adfb33935c5b589bd6",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:20:8",
+          "kind": "assertEqual",
+          "line": 76
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:23:8",
+          "kind": "assertEqual",
+          "line": 79
+        },
+        {
+          "expression_sha256": "e4f8796de6b276ae5784a3ab6c89ff3a62cb33abac720b866694bc9ab73de366",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:25:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "88d831fbd4746f0514da50a912935d7d331acbb3daf5420136a9ddaf1ee5bac2",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:26:8",
+          "kind": "assertEqual",
+          "line": 82
+        },
+        {
+          "expression_sha256": "bc2fe24a49dfac46796ca94278453f641533c698816451cbb0f7e52532685fbe",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:6:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "f662ed44eb0929a0e63cb0b804f95ad59bf9e7860b3af0a7e63fb3e7bd609c5f",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:7:8",
+          "kind": "assertEqual",
+          "line": 63
+        },
+        {
+          "expression_sha256": "9e3e36818803ce77e5273dac657e24c9366602142fc5062edf460d26c1b7be39",
+          "id": "regression_B11_R4.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11#assert:9:8",
+          "kind": "assertEqual",
+          "line": 65
+        }
+      ],
+      "body_sha256": "6020d752158cc69febd61eb256f54c198e38241e9bef730cf5bbbfaf9196dd3d",
+      "mutation_lines": [
+        60,
+        61,
+        64,
+        66,
+        70,
+        75,
+        78,
+        80,
+        82
+      ],
+      "source": "benchmark/harness/cases/B11_R4_replacements.py",
+      "source_sha256": "8a8bfad8451e747e31429f1bd87055689d3115ef851861ec48810fbe4678ca60",
+      "user_result_lines": [],
+      "version": "B11-R4"
+    },
+    "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11": {
+      "assertions": [
+        {
+          "expression_sha256": "b71cc24c1ebbcd1efdcbac4728eb0fcc1127ab7e97286b6c08c51bc57567b179",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:10:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "ad0fe3ef6813b00ea727e0f333324597585a7b63088f2b10ff2896927a19a4cf",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:11:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "45b0e045e082e368fb4e92e95be6db5cf17d1893bb5897a9ee0d834cce096707",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:12:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "c4283b656749c1aa85123eb65836108c8d04b5080d1e1c62ddd3617f5de1d05b",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:14:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "f4f5f5c318acda684dc7909c3fae2c292ff5e0f7381b59c2431febb854ac6eb5",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:16:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "7df95cd6d024ae23ccd1d5959d3206a583930927f628d7602d3dc6c2080427ef",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:17:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:21:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "477a60bd942e4d2c01dd26e07f309ced045414753486db7bc6c000fd12c1c623",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:23:8",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "fae2bb22d08b922d0abda409e4d5d2699e2d1676b4104b6119b21a119eb8c9fa",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:24:8",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "e0d463667d564fee750aca3012628850bc32ed8fe142ae5fb188270ecfaf14fa",
+          "id": "regression_B11_R4.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11#assert:9:8",
+          "kind": "assertEqual",
+          "line": 38
+        }
+      ],
+      "body_sha256": "84b0382f7b3502dca9f4bd66e48705951eb72dab76c714ea36a4b31d05c0e94b",
+      "mutation_lines": [
+        33,
+        35,
+        36,
+        44,
+        49,
+        51,
+        53
+      ],
+      "source": "benchmark/harness/cases/B11_R4_replacements.py",
+      "source_sha256": "8a8bfad8451e747e31429f1bd87055689d3115ef851861ec48810fbe4678ca60",
+      "user_result_lines": [],
+      "version": "B11-R4"
+    },
+    "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write": {
+      "assertions": [
+        {
+          "expression_sha256": "0789e238ddaf30b4717b4ec361b113c7e58569015d66111f2100b3d69bfc3880",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:10:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:11:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "e8ac52f22fff20cbe98840dff12d487c20713f75293e66caaccad7dba5d3d368",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:12:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:13:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "0789e238ddaf30b4717b4ec361b113c7e58569015d66111f2100b3d69bfc3880",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:4:8",
+          "kind": "assertEqual",
+          "line": 58
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B12.cases.<locals>.Urgent.test_strict_current_time_and_empty_query_never_write#assert:5:8",
+          "kind": "assertFalse",
+          "line": 59
+        }
+      ],
+      "body_sha256": "defaa7a215e1b55a15f928d5888c9b45a75a13d7630df0bb01cc55aca01deb98",
+      "mutation_lines": [
+        61
+      ],
+      "source": "benchmark/harness/cases/B12.py",
+      "source_sha256": "2a6550d2758dd9f2eee102b89818661380e8fb18516ccc226d6673b1d244eec6",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue": {
+      "assertions": [
+        {
+          "expression_sha256": "ffd4e8c5748ab9fe58aaab73f6fdfbb44abd010ea215c1eeaceabc854105331e",
+          "id": "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue#assert:27:8",
+          "kind": "assertEqual",
+          "line": 47
+        },
+        {
+          "expression_sha256": "4f5ed5cf94258ddd8dbbefab20b653e9587967b30a98d1d8443737e5104fd390",
+          "id": "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue#assert:29:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "1ed19f6a5d726c62b7aa2e2ae96f0c03ae08f8b9a10abb0c4fc7969d2028b4de",
+          "id": "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue#assert:31:8",
+          "kind": "assertNotIn",
+          "line": 51
+        },
+        {
+          "expression_sha256": "522d8df3b75359763c6458d194e16dc2f8bd7c6fe61051320253b1216f391525",
+          "id": "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue#assert:32:8",
+          "kind": "assertNotIn",
+          "line": 52
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B12.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue#assert:33:8",
+          "kind": "assertEqual",
+          "line": 53
+        }
+      ],
+      "body_sha256": "5cce98efb09a378bbbc7d2dbcdccf10e0d575672e1ccf8c137b0a2713272fd5d",
+      "mutation_lines": [
+        42,
+        43
+      ],
+      "source": "benchmark/harness/cases/B12.py",
+      "source_sha256": "2a6550d2758dd9f2eee102b89818661380e8fb18516ccc226d6673b1d244eec6",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected#assert:14:12",
+          "kind": "assertEqual",
+          "line": 37
+        },
+        {
+          "expression_sha256": "1abbd3c1649b83a2071451ed9f9e45b14a1befdbde982164df67fca0c04cc9ff",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected#assert:15:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "72458064846bcd3db39dda5eb33bfc04223897f637ad537f6c6f4625b761c19c",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected#assert:17:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "b22ad77bf749d4de03b5dbe58a0fae83662f7cdc9037c68f3ad58ea1d8d283b4",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "219208082128b265e25a1e7283fd35f29b0e5388245fd191e195ca862861aeeb",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_archived_pending_and_completed_mutations_are_rejected#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        }
+      ],
+      "body_sha256": "a51624a0cb70066e9ae21cb25554e3c3e4a3a9d78e4af71764e881c0b2af4d1f",
+      "mutation_lines": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        34,
+        35,
+        40,
+        41
+      ],
+      "source": "benchmark/harness/cases/B13.py",
+      "source_sha256": "137f7d5e6b8fb1fccb711fec33e2072d6cb0fd5dd906dcfe2f34e77a1449951d",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid#assert:11:8",
+          "kind": "assertEqual",
+          "line": 54
+        },
+        {
+          "expression_sha256": "579bbd24fdc3e43e3f30860c768324798c745666e022d95b2ecd664c588fcc40",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid#assert:6:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "6586706f5baf08b851e9b80afe192113056877ab573dc4558ccb1c0a53afa9d1",
+          "id": "regression_B13.cases.<locals>.ArchivedMutations.test_unarchived_operations_remain_valid#assert:8:8",
+          "kind": "assertEqual",
+          "line": 51
+        }
+      ],
+      "body_sha256": "699a9c65a868c79d4e401cd684583c556d80df0d61e39d3e0753e6b62529440a",
+      "mutation_lines": [
+        47,
+        48,
+        50,
+        53
+      ],
+      "source": "benchmark/harness/cases/B13.py",
+      "source_sha256": "137f7d5e6b8fb1fccb711fec33e2072d6cb0fd5dd906dcfe2f34e77a1449951d",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:11:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "d39ee28e98d49549ccf9980ba972cf2ee8b8b64d4384d3408e4e130ee1fd13a2",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:12:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "21f470217250840f3940af57899b46de7348068ac03052d55f8be1028ae5f1e6",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:13:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "b550e37a46817b7ea32e67934b5d3ed59458a6585b32b488c08a14b46460b20f",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:20:8",
+          "kind": "assertGreater",
+          "line": 73
+        },
+        {
+          "expression_sha256": "6310e0287c3f3ba1a4399f0acfd2050b31d1afe35d65f59c6c0b17fe7aa0eda8",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:27:8",
+          "kind": "assertEqual",
+          "line": 80
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:28:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "bf8865c8ef557662bbd3d3604d60ed0aeaaecd7271646be2ac56a9b7ae02052e",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:29:8",
+          "kind": "assertEqual",
+          "line": 82
+        },
+        {
+          "expression_sha256": "42a1cb3b3cd23fada7453791554bfc2a155e995ba8efc9dc99f1b53667fdf9e0",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_archived_reference_and_explicit_migration#assert:30:8",
+          "kind": "assertEqual",
+          "line": 83
+        }
+      ],
+      "body_sha256": "fda4b1631a7493b3bdb4eff573060f887d1fe28bc7e27b27cf48cc4595ed5373",
+      "mutation_lines": [
+        57,
+        58,
+        59,
+        60,
+        63,
+        65,
+        66,
+        70,
+        81,
+        83
+      ],
+      "source": "benchmark/harness/cases/B14.py",
+      "source_sha256": "6d17945700606cbab38fb933d281e5880c2becc8bdefd638201dc635c106a729",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures": {
+      "assertions": [
+        {
+          "expression_sha256": "306affea19a425bd3bda4e02bc53660fd36e4db63aecb7d9fead2f4d1b31ccc3",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:10:8",
+          "kind": "assertEqual",
+          "line": 33
+        },
+        {
+          "expression_sha256": "8704d26ce16841ee24adec54ed4193b1fabf0272a85a87bef11a358ec27c5e60",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:12:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:22:12",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "0298d4de71818c04220106771386a52e2df46b62e6b1ad265f89864f896a650f",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "221403635a3ac77e6a788762aa051cfbd647ae8017bd258d5462f4fdc167166e",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:27:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "b6d5ffc328b5142f7f0c66ab0751494f69c401628c8c8ecd42d91773dfe2c833",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:28:8",
+          "kind": "assertEqual",
+          "line": 51
+        },
+        {
+          "expression_sha256": "dfe27173587242ff2c5aa3810ec1748776b570447e08dc876f6f44112914839d",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:29:8",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "6a2b4cb79244e47c98371c40662344a96cc4bf60e6529c1e97912261eebaf167",
+          "id": "regression_B14.cases.<locals>.Dependencies.test_order_cycles_and_no_write_failures#assert:7:8",
+          "kind": "assertEqual",
+          "line": 30
+        }
+      ],
+      "body_sha256": "36af9bb571c26b20cd225437dfc60fa776d60d9d9323901b39f9ff1f731e7060",
+      "mutation_lines": [
+        27,
+        31,
+        32,
+        34,
+        43,
+        47,
+        48,
+        50,
+        51,
+        52
+      ],
+      "source": "benchmark/harness/cases/B14.py",
+      "source_sha256": "6d17945700606cbab38fb933d281e5880c2becc8bdefd638201dc635c106a729",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B15.cases.<locals>.CompletionDependencies.test_archived_parent_still_obeys_terminal_transition": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_archived_parent_still_obeys_terminal_transition#assert:11:8",
+          "kind": "assertEqual",
+          "line": 61
+        }
+      ],
+      "body_sha256": "5c9c73fd25505d2176782cc4f0476925f76d441b1ff88d578831632accab39ed",
+      "mutation_lines": [
+        54,
+        55,
+        56,
+        58,
+        60
+      ],
+      "source": "benchmark/harness/cases/B15.py",
+      "source_sha256": "536f9b3840ee011700470aa8992834e744a0a1fba1c4aba4f40f3476ac2645db",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:13:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:17:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "0ca405e68d004afb7db435c686e5ae00df8ec2d484f02da900943ea6bde2a109",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:20:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "47031a7458be8d427b9157eb6f28372f265782f05215225077cd4c363574c10f",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "24015b2e22660118572e9b8ef14ffbce714e405417d261ca30d8ebd5fc44d586",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B15.cases.<locals>.CompletionDependencies.test_pending_dependencies_reject_without_writes_then_succeed#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        }
+      ],
+      "body_sha256": "4282aacb2a52d85abdf5db527bfa5e62f27afb1320899989b566383fd542ab00",
+      "mutation_lines": [
+        27,
+        28,
+        29,
+        30,
+        32,
+        35,
+        37,
+        39,
+        41,
+        42,
+        44,
+        48
+      ],
+      "source": "benchmark/harness/cases/B15.py",
+      "source_sha256": "536f9b3840ee011700470aa8992834e744a0a1fba1c4aba4f40f3476ac2645db",
+      "user_result_lines": [],
+      "version": "frozen"
+    },
+    "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:10:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:11:8",
+          "kind": "assertEqual",
+          "line": 68
+        },
+        {
+          "expression_sha256": "8516ff02dc00f44476fbf45d5f4916e839fc5974570bbc94bf2d089df2a2be56",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:13:8",
+          "kind": "assertEqual",
+          "line": 70
+        },
+        {
+          "expression_sha256": "934b7d5b010785951c1690bff504caa2aeb320f4c79118e59a9a7baa6c00f339",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:14:8",
+          "kind": "assertEqual",
+          "line": 71
+        },
+        {
+          "expression_sha256": "9926b9bd59ba0515216ebacb6a744885368473ff127cbf80012e006cc1f3cdea",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:15:8",
+          "kind": "assertEqual",
+          "line": 72
+        },
+        {
+          "expression_sha256": "42b908400dc7481bd5e25afef14d31836ea613a47ad7213f33e67c201073b664",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unowned_migration_defaults_to_system#assert:17:8",
+          "kind": "assertEqual",
+          "line": 74
+        }
+      ],
+      "body_sha256": "79ab824c595eb400b934bee9b326ff5fb4bc4291305950662c9faf70d2c7e9f4",
+      "mutation_lines": [
+        68
+      ],
+      "source": "benchmark/harness/cases/B16.py",
+      "source_sha256": "b4e3bf5eaa3286d3f9569a0f48a3a8974fbc0d4defaf97f8f64958d64b24f49b",
+      "user_result_lines": [
+        74
+      ],
+      "version": "frozen"
+    },
+    "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable#assert:16:8",
+          "kind": "assertEqual",
+          "line": 91
+        },
+        {
+          "expression_sha256": "2d97be36d077496a9b48b8d7b2394a135045f8991ba5811eba12c00aff0a0dd9",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable#assert:17:8",
+          "kind": "assertEqual",
+          "line": 92
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable#assert:19:8",
+          "kind": "assertEqual",
+          "line": 94
+        },
+        {
+          "expression_sha256": "5a1f0e7b4c99008aef32508401b8620d957f1ef9d6b38b5ae1e099dca62e16b7",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable#assert:20:8",
+          "kind": "assertEqual",
+          "line": 95
+        },
+        {
+          "expression_sha256": "d095571584b58793288ae6d22d3f6340b09f2d314ca0adbb5ca9dbe79c0593a5",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_unresolved_nonempty_owner_migration_is_atomic_and_retryable#assert:21:8",
+          "kind": "assertEqual",
+          "line": 96
+        }
+      ],
+      "body_sha256": "f0a17351070f6596f820c776ac4416547b938cf6ea1b5a1cb538000cebab4990",
+      "mutation_lines": [
+        82,
+        90,
+        94
+      ],
+      "source": "benchmark/harness/cases/B16.py",
+      "source_sha256": "b4e3bf5eaa3286d3f9569a0f48a3a8974fbc0d4defaf97f8f64958d64b24f49b",
+      "user_result_lines": [
+        81,
+        92
+      ],
+      "version": "frozen"
+    },
+    "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter": {
+      "assertions": [
+        {
+          "expression_sha256": "fae0c0a23b514a5978016341cc5c1018c844e7c6f189130f2ab80d9c0f9b43ba",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:11:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "c82024c1b520dbc01c504dd81ec3171eda9f2e09b3cdf960e69274d88347a3de",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "9764dc6e80bbd9e2c0122ae1c3837f8f463ebcf0de489082d244167742e66639",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "9337c2158c6975f7a48c00e2b88daf7bb7aad0bd3328774117692a6a89d6d0ca",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:27:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "40e1dc6c920612dd3e3373f8390e047f41d89a65ad507b833f407cf054b263ba",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:28:8",
+          "kind": "assertEqual",
+          "line": 51
+        },
+        {
+          "expression_sha256": "db77855b1ff0e2ce5329855e6a7bd95841a81e674d6e5bcd249d00b66b79213e",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:31:12",
+          "kind": "assertEqual",
+          "line": 54
+        },
+        {
+          "expression_sha256": "f78756634d3529a630a5add09a433e1890714ee506f86ff11f87cbfb916aeab9",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:32:12",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "55224c35366267987975168f608a50ec69bc945f0a6a9a82a27e5474c96b1fad",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:33:12",
+          "kind": "assertEqual",
+          "line": 56
+        },
+        {
+          "expression_sha256": "42b908400dc7481bd5e25afef14d31836ea613a47ad7213f33e67c201073b664",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:4:8",
+          "kind": "assertEqual",
+          "line": 27
+        },
+        {
+          "expression_sha256": "90024412e94f16dd425d7428e1f1b843555aa32311667b997dca6976e8f6581e",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:7:8",
+          "kind": "assertEqual",
+          "line": 30
+        },
+        {
+          "expression_sha256": "6189708fac474f654aa83d439ab7c852e286232fac8a8663d2915e8cb4d3cdd5",
+          "id": "regression_B16.cases.<locals>.RequiredOwnership.test_users_required_owner_and_existing_filter#assert:8:8",
+          "kind": "assertEqual",
+          "line": 31
+        }
+      ],
+      "body_sha256": "7c576a43dc91a1f7c95a25ec7d592ee651f4480e99aac5e088d0778485ae8f24",
+      "mutation_lines": [
+        38,
+        40,
+        42,
+        45,
+        47
+      ],
+      "source": "benchmark/harness/cases/B16.py",
+      "source_sha256": "b4e3bf5eaa3286d3f9569a0f48a3a8974fbc0d4defaf97f8f64958d64b24f49b",
+      "user_result_lines": [
+        27,
+        29,
+        30,
+        31,
+        33,
+        34
+      ],
+      "version": "frozen"
+    },
+    "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 54
+        },
+        {
+          "expression_sha256": "579bbd24fdc3e43e3f30860c768324798c745666e022d95b2ecd664c588fcc40",
+          "id": "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner#assert:6:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "6586706f5baf08b851e9b80afe192113056877ab573dc4558ccb1c0a53afa9d1",
+          "id": "regression_B16_R5.cases.<locals>.Active.test_unarchived_operations_remain_valid_with_owner#assert:8:8",
+          "kind": "assertEqual",
+          "line": 51
+        }
+      ],
+      "body_sha256": "699a9c65a868c79d4e401cd684583c556d80df0d61e39d3e0753e6b62529440a",
+      "mutation_lines": [
+        47,
+        48,
+        50,
+        53
+      ],
+      "source": "benchmark/harness/cases/B13.py",
+      "source_sha256": "137f7d5e6b8fb1fccb711fec33e2072d6cb0fd5dd906dcfe2f34e77a1449951d",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "7d7ee8ba451aa9bb2606d77d308e457cca3bc62ab64fe6fde19e8f6105c8e588",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:15:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "0e34e51d9f1d6141f6ab7f3876eacee35ee4a88633f69b7dd407a60d94ff9364",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "7c0fbd4635a9fb08565412333d8f744a09514d1b85c70ac0d45e82bdf761e473",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:20:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "b7a93154d38f4bd179f862d9e87722450e56ba56b28984332428460183f22dd9",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "a86c7685c0e05daf74159f673aea0b2adb2461a0176a78c68a400e9ebf2e991d",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "efe90e1044eb26ae338b6ba3d6e5d2e58af99f7e91e57c3e133f566a04402138",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:27:12",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "b28dc1cbafd1c636c706ae3854c32b442229bed3e2ab55076393020b19b66552",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:29:12",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "59c32c00acbf52668786e266aa79b9e8effc9bffcf26ed4d3471bfd310987063",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:30:12",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "7d5b82c00340fc50e1e67e8b7fe7c52244a92b808a12d2c21a6370ca1a633854",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:32:12",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:33:8",
+          "kind": "assertEqual",
+          "line": 56
+        },
+        {
+          "expression_sha256": "444704ee270a40273d945bab74a38325cdaf8532379eb579684d07aec6cbd950",
+          "id": "regression_B16_R5.cases.<locals>.Archival.test_archive_pending_completed_and_visibility_with_owner#assert:9:8",
+          "kind": "assertEqual",
+          "line": 32
+        }
+      ],
+      "body_sha256": "1d9965a3f0a5e403d8f2b436233fb28f27fd38fe6a5f79fd5db48a87a8e3015c",
+      "mutation_lines": [
+        27,
+        29,
+        31,
+        34,
+        36,
+        37,
+        41
+      ],
+      "source": "benchmark/harness/cases/B08.py",
+      "source_sha256": "afc07957ca3bdc33ce8ca63bc0fb3ef78d9ada30f20f251c95863b31c6e31c06",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner#assert:14:12",
+          "kind": "assertEqual",
+          "line": 37
+        },
+        {
+          "expression_sha256": "1abbd3c1649b83a2071451ed9f9e45b14a1befdbde982164df67fca0c04cc9ff",
+          "id": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner#assert:15:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "72458064846bcd3db39dda5eb33bfc04223897f637ad537f6c6f4625b761c19c",
+          "id": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "b22ad77bf749d4de03b5dbe58a0fae83662f7cdc9037c68f3ad58ea1d8d283b4",
+          "id": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "219208082128b265e25a1e7283fd35f29b0e5388245fd191e195ca862861aeeb",
+          "id": "regression_B16_R5.cases.<locals>.Archived.test_archived_pending_and_completed_mutations_are_rejected_with_owner#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        }
+      ],
+      "body_sha256": "a51624a0cb70066e9ae21cb25554e3c3e4a3a9d78e4af71764e881c0b2af4d1f",
+      "mutation_lines": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        34,
+        35,
+        40,
+        41
+      ],
+      "source": "benchmark/harness/cases/B13.py",
+      "source_sha256": "137f7d5e6b8fb1fccb711fec33e2072d6cb0fd5dd906dcfe2f34e77a1449951d",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.BaselineMigration.test_baseline_migration_corruption_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "ebb3fdb8f679a192710538b3a65670169f0eceb9ccd71f07563818ec49a1bd6e",
+          "id": "regression_B16_R5.cases.<locals>.BaselineMigration.test_baseline_migration_corruption_with_owner#assert:14:12",
+          "kind": "upgraded",
+          "line": 135
+        }
+      ],
+      "body_sha256": "4b67c8f6239a07589dba978773f42b72d4e05d7091d1ffcae3208241e77028ac",
+      "mutation_lines": [
+        135,
+        138
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "6038a05f22600e57b2a4925150119ff32bd2bbc0c56cd5b60211646292e41baf",
+          "id": "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner#assert:11:12",
+          "kind": "assertEqual",
+          "line": 157
+        },
+        {
+          "expression_sha256": "cd3260a3700f74e646385f562fa5b48882be96afe43ae0cbe54c83b5b91aded8",
+          "id": "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner#assert:13:12",
+          "kind": "assertEqual",
+          "line": 159
+        },
+        {
+          "expression_sha256": "e6912468eba148d09af657f235416afc64e77a2e0e1ab96ee1c4321a696c5f07",
+          "id": "regression_B16_R5.cases.<locals>.BaselineOverdue.test_baseline_overdue_fixture_with_owner#assert:15:8",
+          "kind": "assertEqual",
+          "line": 161
+        }
+      ],
+      "body_sha256": "f7f5d71558c6e6ee85f08c3ab8839e559cc8687d0fb261284eff3b1ce322407c",
+      "mutation_lines": [
+        156
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "f4bafec17e6f1f8de979f27b9e5199a903a8b285dcdb1511b9c515d92a8760a3",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "775571e9fce5a94b9700df6d418faae6e1080dd7fe28acbbaeb3c554e82afee2",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:19:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "4e75d6805ae6e305aa5d94c0c0c8f14698ee686db4ed1c0cc66fd779433dc50f",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:23:12",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:25:8",
+          "kind": "assertEqual",
+          "line": 48
+        },
+        {
+          "expression_sha256": "47ecaa60b1919643333fe910079b41e882c824cfbe376e740c06d2b428ed83f1",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.Categories.test_create_filter_and_failed_create_with_owner#assert:6:8",
+          "kind": "assertFalse",
+          "line": 29
+        }
+      ],
+      "body_sha256": "030954387319b2bd859b22e6e32600517b332d4f6c1da2667b0e132ac444c4be",
+      "mutation_lines": [
+        27,
+        30,
+        32,
+        34,
+        36,
+        37,
+        41,
+        49
+      ],
+      "source": "benchmark/harness/cases/B06.py",
+      "source_sha256": "e558f1c5f0c83fe4e08e9ea2874e51f1ff1e2c9d0863f3806f0706307a45263f",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.CompletionArchived.test_archived_parent_still_obeys_terminal_transition_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.CompletionArchived.test_archived_parent_still_obeys_terminal_transition_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 61
+        }
+      ],
+      "body_sha256": "5c9c73fd25505d2176782cc4f0476925f76d441b1ff88d578831632accab39ed",
+      "mutation_lines": [
+        54,
+        55,
+        56,
+        58,
+        60
+      ],
+      "source": "benchmark/harness/cases/B15.py",
+      "source_sha256": "536f9b3840ee011700470aa8992834e744a0a1fba1c4aba4f40f3476ac2645db",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:13:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "0ca405e68d004afb7db435c686e5ae00df8ec2d484f02da900943ea6bde2a109",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:20:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "47031a7458be8d427b9157eb6f28372f265782f05215225077cd4c363574c10f",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "24015b2e22660118572e9b8ef14ffbce714e405417d261ca30d8ebd5fc44d586",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.CompletionGate.test_pending_dependencies_reject_without_writes_then_succeed_with_owner#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        }
+      ],
+      "body_sha256": "4282aacb2a52d85abdf5db527bfa5e62f27afb1320899989b566383fd542ab00",
+      "mutation_lines": [
+        27,
+        28,
+        29,
+        30,
+        32,
+        35,
+        37,
+        39,
+        41,
+        42,
+        44,
+        48
+      ],
+      "source": "benchmark/harness/cases/B15.py",
+      "source_sha256": "536f9b3840ee011700470aa8992834e744a0a1fba1c4aba4f40f3476ac2645db",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "6cc40fcf87750c89cca15ad4f18e8e9c0e09a72468c11c6f6d033666c56a482e",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "17ce8e393bc5533902ca74f8acaf3632b4e9d36dde7a396c27079f5d1ad21fbc",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:18:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "93e1ee88453c2e3cb5667a86e8ace549c7cb34d2ae0c29539f924b701a09793b",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:21:8",
+          "kind": "assertEqual",
+          "line": 44
+        },
+        {
+          "expression_sha256": "901f4bfbab582c82c93430cf15a7828ca336294d5764ae3a02f062fb324d7de8",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:22:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:27:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "2434df2d691142aad01b221d5fbdc6ed5be2390441e752fa58e940d84e17d9b7",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:30:8",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "3c2535087678980bf1758e7e90d5cf86004da5e7df2c9914404389966eaa11bf",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:31:8",
+          "kind": "assertEqual",
+          "line": 54
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:32:8",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:37:8",
+          "kind": "assertEqual",
+          "line": 60
+        },
+        {
+          "expression_sha256": "f8ac4e874517be19823fa7b1ddd5403c8a73d982c80f67d67e57da2d8adca4b4",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:38:8",
+          "kind": "assertIn",
+          "line": 61
+        },
+        {
+          "expression_sha256": "12de1c124e0bdf9f01c0a4f48eb13ae97901f3d5084743deaf546247c3112314",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:41:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "cab1142e48dce5bae90d4d91d6158c05c782a47b1bc0cb598ba5fbdd10fe3391",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:42:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "051e90a1a6edef3a97561ebcdf1300378eaf2b5db3c9254bd44a8dacf2b4423b",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:43:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "5a198780ad5919b36f6012f0bf8e088f421fe64664a76cfb3bbc2c2a020fed1b",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:44:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "b7a93154d38f4bd179f862d9e87722450e56ba56b28984332428460183f22dd9",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:46:8",
+          "kind": "assertEqual",
+          "line": 69
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:47:8",
+          "kind": "assertEqual",
+          "line": 70
+        },
+        {
+          "expression_sha256": "c1c4358610e6feff922fad685f4fe2dee81eb65a12cb774c9868253c5c8673b9",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:48:8",
+          "kind": "assertEqual",
+          "line": 71
+        },
+        {
+          "expression_sha256": "7cefb58438ef065a217572f0fac80ec52dbee8a422cd7238cb1d312d2163c461",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:4:8",
+          "kind": "assertEqual",
+          "line": 27
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:5:8",
+          "kind": "assertFalse",
+          "line": 28
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner#assert:8:8",
+          "kind": "assertFalse",
+          "line": 31
+        }
+      ],
+      "body_sha256": "ad101f18392dfc8057aceb127059289f0849d6c7c798d73efd22ae09bb5f58c3",
+      "mutation_lines": [
+        29,
+        32,
+        33,
+        35,
+        37,
+        47,
+        49,
+        51,
+        52,
+        57,
+        58,
+        59,
+        62,
+        63,
+        66,
+        67,
+        68
+      ],
+      "source": "benchmark/harness/cases/B11.py",
+      "source_sha256": "721fc2fb1c4d9f7d51978721799fd26be12a3186d481667fff5b0060be64201a",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "7cefb58438ef065a217572f0fac80ec52dbee8a422cd7238cb1d312d2163c461",
+          "id": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 83
+        },
+        {
+          "expression_sha256": "219208082128b265e25a1e7283fd35f29b0e5388245fd191e195ca862861aeeb",
+          "id": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 84
+        },
+        {
+          "expression_sha256": "2e47ef9fb2471d09f7679bc972f6a0a1bf32bb3ff1d2eb552d3f2fc8e18ee055",
+          "id": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner#assert:6:8",
+          "kind": "assertEqual",
+          "line": 79
+        },
+        {
+          "expression_sha256": "063bc8712a3d7107c706bf4047bf9a1854657f63014ab11f64f56704ae724e18",
+          "id": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner#assert:8:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "d518f5dc38ef0d2795fe89c9bbc9a805443f87af8f8b60113946559b9bfb2cfe",
+          "id": "regression_B16_R5.cases.<locals>.DeletionPending.test_pending_deletion_with_and_without_archive_with_owner#assert:9:8",
+          "kind": "assertEqual",
+          "line": 82
+        }
+      ],
+      "body_sha256": "cb04a93ded00061a5e23d24dec812dfb7d7c2005836a8c168b3981d4898843c2",
+      "mutation_lines": [
+        77,
+        78,
+        79,
+        80,
+        82
+      ],
+      "source": "benchmark/harness/cases/B11.py",
+      "source_sha256": "721fc2fb1c4d9f7d51978721799fd26be12a3186d481667fff5b0060be64201a",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "306affea19a425bd3bda4e02bc53660fd36e4db63aecb7d9fead2f4d1b31ccc3",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 33
+        },
+        {
+          "expression_sha256": "8704d26ce16841ee24adec54ed4193b1fabf0272a85a87bef11a358ec27c5e60",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:22:12",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "0298d4de71818c04220106771386a52e2df46b62e6b1ad265f89864f896a650f",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "221403635a3ac77e6a788762aa051cfbd647ae8017bd258d5462f4fdc167166e",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:27:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "b6d5ffc328b5142f7f0c66ab0751494f69c401628c8c8ecd42d91773dfe2c833",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:28:8",
+          "kind": "assertEqual",
+          "line": 51
+        },
+        {
+          "expression_sha256": "dfe27173587242ff2c5aa3810ec1748776b570447e08dc876f6f44112914839d",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:29:8",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "6a2b4cb79244e47c98371c40662344a96cc4bf60e6529c1e97912261eebaf167",
+          "id": "regression_B16_R5.cases.<locals>.DependencyCycles.test_order_cycles_and_no_write_failures_with_owner#assert:7:8",
+          "kind": "assertEqual",
+          "line": 30
+        }
+      ],
+      "body_sha256": "36af9bb571c26b20cd225437dfc60fa776d60d9d9323901b39f9ff1f731e7060",
+      "mutation_lines": [
+        27,
+        31,
+        32,
+        34,
+        43,
+        47,
+        48,
+        50,
+        51,
+        52
+      ],
+      "source": "benchmark/harness/cases/B14.py",
+      "source_sha256": "6d17945700606cbab38fb933d281e5880c2becc8bdefd638201dc635c106a729",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "d39ee28e98d49549ccf9980ba972cf2ee8b8b64d4384d3408e4e130ee1fd13a2",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "21f470217250840f3940af57899b46de7348068ac03052d55f8be1028ae5f1e6",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:13:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "b550e37a46817b7ea32e67934b5d3ed59458a6585b32b488c08a14b46460b20f",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:20:8",
+          "kind": "assertGreater",
+          "line": 73
+        },
+        {
+          "expression_sha256": "6310e0287c3f3ba1a4399f0acfd2050b31d1afe35d65f59c6c0b17fe7aa0eda8",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:27:8",
+          "kind": "assertEqual",
+          "line": 80
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:28:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "bf8865c8ef557662bbd3d3604d60ed0aeaaecd7271646be2ac56a9b7ae02052e",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:29:8",
+          "kind": "assertEqual",
+          "line": 82
+        },
+        {
+          "expression_sha256": "42a1cb3b3cd23fada7453791554bfc2a155e995ba8efc9dc99f1b53667fdf9e0",
+          "id": "regression_B16_R5.cases.<locals>.DependencyMigration.test_archived_reference_and_explicit_migration_with_owner#assert:30:8",
+          "kind": "assertEqual",
+          "line": 83
+        }
+      ],
+      "body_sha256": "fda4b1631a7493b3bdb4eff573060f887d1fe28bc7e27b27cf48cc4595ed5373",
+      "mutation_lines": [
+        57,
+        58,
+        59,
+        60,
+        63,
+        65,
+        66,
+        70,
+        81,
+        83
+      ],
+      "source": "benchmark/harness/cases/B14.py",
+      "source_sha256": "6d17945700606cbab38fb933d281e5880c2becc8bdefd638201dc635c106a729",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner#assert:14:8",
+          "kind": "assertFalse",
+          "line": 68
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DueInvalid.test_invalid_ranges_and_timestamps_do_not_write_with_owner#assert:19:8",
+          "kind": "assertEqual",
+          "line": 73
+        }
+      ],
+      "body_sha256": "54b8fc5e52713106f0d61dcb328661fb8c9fc664cca5dcc906c28aafd4bec0d2",
+      "mutation_lines": [
+        69
+      ],
+      "source": "benchmark/harness/cases/B09.py",
+      "source_sha256": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "8c2d6fe53130777486d25a3451ddc132e745c3c327260e7217eaa823855ad469",
+          "id": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "7349202537b821be3440d523a4b32e51d0c8f761abf029080b0354959c17b981",
+          "id": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner#assert:24:8",
+          "kind": "assertEqual",
+          "line": 47
+        },
+        {
+          "expression_sha256": "030d71ca272da854c476d9d640890166f703f3ab6eb92e1c6ffe25136983652c",
+          "id": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner#assert:26:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "9c22a21abfe349c9371b2080f4035bf3d24548ab9de86813dc362036845bad91",
+          "id": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner#assert:28:8",
+          "kind": "assertEqual",
+          "line": 51
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.DueWindow.test_inclusive_window_pending_nonarchived_and_normal_order_with_owner#assert:30:8",
+          "kind": "assertEqual",
+          "line": 53
+        }
+      ],
+      "body_sha256": "7b4c15aaa5d2e345e8052e35362e659ce0838d158f90dabac047d09595813c09",
+      "mutation_lines": [
+        30,
+        32,
+        33,
+        35,
+        37,
+        39,
+        41,
+        42
+      ],
+      "source": "benchmark/harness/cases/B09.py",
+      "source_sha256": "bd9c6d33eeb7948b1e2da63e19b23358353e758c7d86b09296562ded6beadade",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "a2572309c040a2cfd76f80c91acb4974734c4ca92d82d15cc749f6346427383e",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 68
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 72
+        },
+        {
+          "expression_sha256": "2f4fd95d0dc771686b5ee7f76d4508ba0704b8a3b38383604d3eb966c29d8d35",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 73
+        },
+        {
+          "expression_sha256": "96887b1ad3dd84f87b4097daaa5c35ca9c9f7a7923923996c5a01dc6f2573327",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:18:8",
+          "kind": "assertEqual",
+          "line": 74
+        },
+        {
+          "expression_sha256": "ca021a9f5fae251049b34635c0b38ee18b06a56d5d6352adfb33935c5b589bd6",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:20:8",
+          "kind": "assertEqual",
+          "line": 76
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 79
+        },
+        {
+          "expression_sha256": "e4f8796de6b276ae5784a3ab6c89ff3a62cb33abac720b866694bc9ab73de366",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:25:8",
+          "kind": "assertEqual",
+          "line": 81
+        },
+        {
+          "expression_sha256": "88d831fbd4746f0514da50a912935d7d331acbb3daf5420136a9ddaf1ee5bac2",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:26:8",
+          "kind": "assertEqual",
+          "line": 82
+        },
+        {
+          "expression_sha256": "bc2fe24a49dfac46796ca94278453f641533c698816451cbb0f7e52532685fbe",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:6:8",
+          "kind": "assertEqual",
+          "line": 62
+        },
+        {
+          "expression_sha256": "f662ed44eb0929a0e63cb0b804f95ad59bf9e7860b3af0a7e63fb3e7bd609c5f",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:7:8",
+          "kind": "assertEqual",
+          "line": 63
+        },
+        {
+          "expression_sha256": "9e3e36818803ce77e5273dac657e24c9366602142fc5062edf460d26c1b7be39",
+          "id": "regression_B16_R5.cases.<locals>.Notes.test_append_order_trim_and_failed_append_after_b11_with_owner#assert:9:8",
+          "kind": "assertEqual",
+          "line": 65
+        }
+      ],
+      "body_sha256": "6020d752158cc69febd61eb256f54c198e38241e9bef730cf5bbbfaf9196dd3d",
+      "mutation_lines": [
+        60,
+        61,
+        64,
+        66,
+        70,
+        75,
+        78,
+        80,
+        82
+      ],
+      "source": "benchmark/harness/cases/B11_R4_replacements.py",
+      "source_sha256": "8a8bfad8451e747e31429f1bd87055689d3115ef851861ec48810fbe4678ca60",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing": {
+      "assertions": [
+        {
+          "expression_sha256": "fb909a2c14018d7c2dd35f31fe05e3e3c0a7093b2d638e221b2895c4393b008a",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:18:8",
+          "kind": "assertEqual",
+          "line": 106
+        },
+        {
+          "expression_sha256": "4d86285959aa4cb842e2597e4be523b463e94f1015b0bd872f4632e352a4c8ab",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:21:8",
+          "kind": "assertEqual",
+          "line": 109
+        },
+        {
+          "expression_sha256": "239c59d431efd8fa09235ace79d3a11f22e415855f61173986b1ff6187b88537",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:25:12",
+          "kind": "assertEqual",
+          "line": 113
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:27:8",
+          "kind": "assertEqual",
+          "line": 115
+        },
+        {
+          "expression_sha256": "76c84704483e81c2cb860e4f93e0598038635cf3fe3ff8acd6433ea659e747fd",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:28:8",
+          "kind": "assertEqual",
+          "line": 116
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:7:8",
+          "kind": "assertFalse",
+          "line": 95
+        },
+        {
+          "expression_sha256": "90024412e94f16dd425d7428e1f1b843555aa32311667b997dca6976e8f6581e",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:8:8",
+          "kind": "assertEqual",
+          "line": 96
+        },
+        {
+          "expression_sha256": "6189708fac474f654aa83d439ab7c852e286232fac8a8663d2915e8cb4d3cdd5",
+          "id": "regression_B16_R5.cases.<locals>.Owner.test_registered_trim_reject_and_exact_owner_listing#assert:9:8",
+          "kind": "assertEqual",
+          "line": 97
+        }
+      ],
+      "body_sha256": "0d34c43d3e54ff72940235854d589e7ca7543e28628cb88e434ac9dc1073cd1a",
+      "mutation_lines": [
+        93,
+        98,
+        100,
+        102,
+        104,
+        108,
+        116
+      ],
+      "source": "benchmark/harness/cases/B16_R5_replacements.py",
+      "source_sha256": "9310e8f19557c8e9dfee4a1c4527524ec38c5de238d5b11d3ef9f5e08aa72d74",
+      "user_result_lines": [
+        96,
+        97
+      ],
+      "version": "B16-R5"
+    },
+    "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system": {
+      "assertions": [
+        {
+          "expression_sha256": "60fc19fe72322e80fea18ee5ae60a91b2492675942c0f8a7d61a6144d8b90860",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:10:8",
+          "kind": "assertEqual",
+          "line": 128
+        },
+        {
+          "expression_sha256": "06c27fdd9e9ed89ca27fd19c556f547b3d7b50b6995958999e19069d69f8a840",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:11:8",
+          "kind": "assertEqual",
+          "line": 129
+        },
+        {
+          "expression_sha256": "2f85bdf9ffd10db8f7ae54dd6101db60a08d4a014661f4e3223d416422191111",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:13:8",
+          "kind": "assertEqual",
+          "line": 131
+        },
+        {
+          "expression_sha256": "78f77cfed31f53606c3f75593f8b436fcaea4428fbab0aef7a8044198b8301d9",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:14:8",
+          "kind": "assertEqual",
+          "line": 132
+        },
+        {
+          "expression_sha256": "70c786abad823e96b1e407cddedba5b57567b1de2dd64dd68de94b71f8598786",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:15:8",
+          "kind": "assertEqual",
+          "line": 133
+        },
+        {
+          "expression_sha256": "55224c35366267987975168f608a50ec69bc945f0a6a9a82a27e5474c96b1fad",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:16:8",
+          "kind": "assertEqual",
+          "line": 134
+        },
+        {
+          "expression_sha256": "ca65d54fc79ea91a0d9b32e14812abb8d7bcc38feb7302d62e364b543e8b11a3",
+          "id": "regression_B16_R5.cases.<locals>.OwnerMigration.test_migration_defaults_system#assert:17:8",
+          "kind": "assertEqual",
+          "line": 135
+        }
+      ],
+      "body_sha256": "a8d41381a1a5199f26fe7b95b759df6e4698afe6d59cb9c4694463de5708b975",
+      "mutation_lines": [
+        129
+      ],
+      "source": "benchmark/harness/cases/B16_R5_replacements.py",
+      "source_sha256": "9310e8f19557c8e9dfee4a1c4527524ec38c5de238d5b11d3ef9f5e08aa72d74",
+      "user_result_lines": [],
+      "version": "B16-R5"
+    },
+    "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "b71cc24c1ebbcd1efdcbac4728eb0fcc1127ab7e97286b6c08c51bc57567b179",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 39
+        },
+        {
+          "expression_sha256": "ad0fe3ef6813b00ea727e0f333324597585a7b63088f2b10ff2896927a19a4cf",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "45b0e045e082e368fb4e92e95be6db5cf17d1893bb5897a9ee0d834cce096707",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "c4283b656749c1aa85123eb65836108c8d04b5080d1e1c62ddd3617f5de1d05b",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:14:8",
+          "kind": "assertEqual",
+          "line": 43
+        },
+        {
+          "expression_sha256": "f4f5f5c318acda684dc7909c3fae2c292ff5e0f7381b59c2431febb854ac6eb5",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 45
+        },
+        {
+          "expression_sha256": "7df95cd6d024ae23ccd1d5959d3206a583930927f628d7602d3dc6c2080427ef",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 46
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:21:8",
+          "kind": "assertEqual",
+          "line": 50
+        },
+        {
+          "expression_sha256": "477a60bd942e4d2c01dd26e07f309ced045414753486db7bc6c000fd12c1c623",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 52
+        },
+        {
+          "expression_sha256": "fae2bb22d08b922d0abda409e4d5d2699e2d1676b4104b6119b21a119eb8c9fa",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:24:8",
+          "kind": "assertEqual",
+          "line": 53
+        },
+        {
+          "expression_sha256": "e0d463667d564fee750aca3012628850bc32ed8fe142ae5fb188270ecfaf14fa",
+          "id": "regression_B16_R5.cases.<locals>.Source.test_verbatim_default_and_mutations_after_b11_with_owner#assert:9:8",
+          "kind": "assertEqual",
+          "line": 38
+        }
+      ],
+      "body_sha256": "84b0382f7b3502dca9f4bd66e48705951eb72dab76c714ea36a4b31d05c0e94b",
+      "mutation_lines": [
+        33,
+        35,
+        36,
+        44,
+        49,
+        51,
+        53
+      ],
+      "source": "benchmark/harness/cases/B11_R4_replacements.py",
+      "source_sha256": "8a8bfad8451e747e31429f1bd87055689d3115ef851861ec48810fbe4678ca60",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "c6ac1310942be8b7ef84c4c11baf002adc93df006d87af12ba353a36bc628927",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:13:8",
+          "kind": "assertEqual",
+          "line": 32
+        },
+        {
+          "expression_sha256": "86a86c3959eb74b4dfa8be523c06205781aea457842e56139570ddadaab71f9a",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:15:8",
+          "kind": "assertEqual",
+          "line": 34
+        },
+        {
+          "expression_sha256": "d07e352e5a992fda7b9c894a7ce7465ffa3e3ffc1493541a8e5ae0ca91fd5713",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 35
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 36
+        },
+        {
+          "expression_sha256": "fe032d928464cc244b683e206c69ffd8fd5428122c40c0bbfdf5505d8640527d",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:21:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "a65bfa1e194fcec483cda2bcb2c815141ac974eff2b3e9bb14401fb458c9a712",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:22:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:23:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "fe032d928464cc244b683e206c69ffd8fd5428122c40c0bbfdf5505d8640527d",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:4:8",
+          "kind": "assertEqual",
+          "line": 23
+        },
+        {
+          "expression_sha256": "59c32c00acbf52668786e266aa79b9e8effc9bffcf26ed4d3471bfd310987063",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:5:8",
+          "kind": "assertEqual",
+          "line": 24
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.Status.test_both_statuses_and_no_write_with_owner#assert:6:8",
+          "kind": "assertFalse",
+          "line": 25
+        }
+      ],
+      "body_sha256": "61dcd4f1445506b7ee1c8358ae5622b730c6173d134c706f9c493e6b832017b9",
+      "mutation_lines": [
+        26,
+        27,
+        28,
+        29,
+        37,
+        38
+      ],
+      "source": "benchmark/harness/cases/B05.py",
+      "source_sha256": "1f94866798fe6654820032e494ba0d1a805e78fc53b3a4fe989df98327ceb895",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 55
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.TagBlank.test_blank_queries_leave_storage_unchanged_with_owner#assert:6:12",
+          "kind": "assertFalse",
+          "line": 51
+        }
+      ],
+      "body_sha256": "bc64cbf62481c70c0312424f0ca0264338935a2b2967bf8ee2f3864e0058b86b",
+      "mutation_lines": [
+        52
+      ],
+      "source": "benchmark/harness/cases/B03.py",
+      "source_sha256": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "7851164cd992315c9f8ded89851a1f7ad1d84bd056ad024685f195c5eb6ec80f",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:14:8",
+          "kind": "assertEqual",
+          "line": 38
+        },
+        {
+          "expression_sha256": "cbe6d42be62b32e5627907b59ba3748b4cb74e61387f2f5cc63273627603e030",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 40
+        },
+        {
+          "expression_sha256": "ac1927e76bd70ed168a973a3e0d84a1ea7e8256ec674958887ee6f32a5a8e579",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:17:8",
+          "kind": "assertEqual",
+          "line": 41
+        },
+        {
+          "expression_sha256": "60cf3236379637081af52eb0ef835091b9d2dcb0d7825c734f9c0ca21105b991",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:18:8",
+          "kind": "assertEqual",
+          "line": 42
+        },
+        {
+          "expression_sha256": "526757707854d92a5ba7a91af4df6fd4af1f434d8ea042dd7f10c5cccc4dd2eb",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:19:8",
+          "kind": "assertNotIn",
+          "line": 43
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.TagExact.test_exact_case_sensitive_tag_with_completed_tasks_with_owner#assert:20:8",
+          "kind": "assertEqual",
+          "line": 44
+        }
+      ],
+      "body_sha256": "7bd9eaf25d79d8b3727adc239499426c1b9b133bd35952481e234cdf78423494",
+      "mutation_lines": [
+        28,
+        30,
+        32,
+        33,
+        35
+      ],
+      "source": "benchmark/harness/cases/B03.py",
+      "source_sha256": "dd99843e8ff79c0f9c3d174671b9a54e9becf64ce8bca19e9ff8e47fa14ae9df",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "57b3eb7fa3e7c1c1b615df28f19781812d9fc4267582222ecfb4ca1c941186ac",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 207
+        },
+        {
+          "expression_sha256": "f690477dabe618f03417ec22c688a919edbddfa09daba654ba2bf452a6037dac",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 208
+        },
+        {
+          "expression_sha256": "fe41d9c36b1504feeac6737df9b34227155fa0082cb92bc927ba7cd12afbc2e7",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 209
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:15:8",
+          "kind": "assertEqual",
+          "line": 212
+        },
+        {
+          "expression_sha256": "79067405077af56467533b1730b059eafc032af122abb90cb0190221588a0dfb",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:16:8",
+          "kind": "assertEqual",
+          "line": 213
+        },
+        {
+          "expression_sha256": "587fe118ca9253925c63e06ce3f57274923beac120a1e66fa2a7f94c51e7b180",
+          "id": "regression_B16_R5.cases.<locals>.Tags.test_b02_tags_and_failure_with_owner#assert:7:8",
+          "kind": "assertEqual",
+          "line": 204
+        }
+      ],
+      "body_sha256": "c6a707e5db12cca24905997d5f6e67844e8c4e3b0b642764b2c26c264af6ca22",
+      "mutation_lines": [
+        203,
+        205,
+        211,
+        213
+      ],
+      "source": "benchmark/harness/regression.py",
+      "source_sha256": "8fa1ff4e8b627cc3c334a099151b97647219abac41949a3a3d32c5e9da2fc596",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "ffd4e8c5748ab9fe58aaab73f6fdfbb44abd010ea215c1eeaceabc854105331e",
+          "id": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner#assert:27:8",
+          "kind": "assertEqual",
+          "line": 47
+        },
+        {
+          "expression_sha256": "4f5ed5cf94258ddd8dbbefab20b653e9587967b30a98d1d8443737e5104fd390",
+          "id": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner#assert:29:8",
+          "kind": "assertEqual",
+          "line": 49
+        },
+        {
+          "expression_sha256": "1ed19f6a5d726c62b7aa2e2ae96f0c03ae08f8b9a10abb0c4fc7969d2028b4de",
+          "id": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner#assert:31:8",
+          "kind": "assertNotIn",
+          "line": 51
+        },
+        {
+          "expression_sha256": "522d8df3b75359763c6458d194e16dc2f8bd7c6fe61051320253b1216f391525",
+          "id": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner#assert:32:8",
+          "kind": "assertNotIn",
+          "line": 52
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.Urgent.test_urgent_overdue_exclusions_order_and_prior_overdue_with_owner#assert:33:8",
+          "kind": "assertEqual",
+          "line": 53
+        }
+      ],
+      "body_sha256": "5cce98efb09a378bbbc7d2dbcdccf10e0d575672e1ccf8c137b0a2713272fd5d",
+      "mutation_lines": [
+        42,
+        43
+      ],
+      "source": "benchmark/harness/cases/B12.py",
+      "source_sha256": "2a6550d2758dd9f2eee102b89818661380e8fb18516ccc226d6673b1d244eec6",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    },
+    "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner": {
+      "assertions": [
+        {
+          "expression_sha256": "0789e238ddaf30b4717b4ec361b113c7e58569015d66111f2100b3d69bfc3880",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:10:8",
+          "kind": "assertEqual",
+          "line": 64
+        },
+        {
+          "expression_sha256": "3c52a98f954475116b623319adbf89fadb1af080e8cac6bff07fc6b8956820af",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:11:8",
+          "kind": "assertEqual",
+          "line": 65
+        },
+        {
+          "expression_sha256": "e8ac52f22fff20cbe98840dff12d487c20713f75293e66caaccad7dba5d3d368",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:12:8",
+          "kind": "assertEqual",
+          "line": 66
+        },
+        {
+          "expression_sha256": "d9f458bd671281524dccf08195bd24935839c702caff5501d3cb47ea76eb1e6e",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:13:8",
+          "kind": "assertEqual",
+          "line": 67
+        },
+        {
+          "expression_sha256": "0789e238ddaf30b4717b4ec361b113c7e58569015d66111f2100b3d69bfc3880",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:4:8",
+          "kind": "assertEqual",
+          "line": 58
+        },
+        {
+          "expression_sha256": "e8be5341c43795473bf0a8419f06e1abcbde16ccf8f792dc8974267850e63bbe",
+          "id": "regression_B16_R5.cases.<locals>.UrgentBoundary.test_strict_current_time_and_empty_query_never_write_with_owner#assert:5:8",
+          "kind": "assertFalse",
+          "line": 59
+        }
+      ],
+      "body_sha256": "defaa7a215e1b55a15f928d5888c9b45a75a13d7630df0bb01cc55aca01deb98",
+      "mutation_lines": [
+        61
+      ],
+      "source": "benchmark/harness/cases/B12.py",
+      "source_sha256": "2a6550d2758dd9f2eee102b89818661380e8fb18516ccc226d6673b1d244eec6",
+      "user_result_lines": [],
+      "version": "B16-R5:original-body"
+    }
+  }
+}

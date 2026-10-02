@@ -1,13 +1,18 @@
 """Frozen-input fixtures for prospective acceptance supersession composition."""
 
 import copy
+import ast
+import inspect
 import json
 from pathlib import Path
+import textwrap
 import unittest
 
 import acceptance_state_r5_3 as relative
+import acceptance_inventory_r5_3 as inventory
 import capability_profile_r5_2 as schema
 import regression_phase5c_r5 as r5
+import regression as original
 import workspace as w
 
 
@@ -111,6 +116,80 @@ class AcceptanceTransition(unittest.TestCase):
             with self.assertRaises(w.ProtocolError):
                 relative.compose(prior, rule)
         self.assertEqual(prior["methods"]["M"]["status"], "active")
+
+    def test_real_frozen_inventory_and_method_disposition_reconstruction(self):
+        for achieved, digest, method_count, assertion_count in (
+            ([f"B{i:02}" for i in range(1, 17)],
+             "6706171247d40a725142ded41cf357fd1d7e5bf30f34875153cc2746c661652a",
+             61, 405),
+            (["B01", "B04"],
+             "07a5e464e994369fbc000b52bbe4cd037c292a4ff736b3b943db793e17472d0c",
+             9, 52),
+        ):
+            with self.subTest(achieved=achieved):
+                methods, _, observed = inventory.collect(achieved)
+                inventory.validate_sources(methods)
+                self.assertEqual(len(methods), method_count)
+                self.assertEqual(sum(len(row["assertions"]) for row in methods.values()),
+                                 assertion_count)
+                self.assertEqual(w.digest(w.encoded({"achieved": achieved, "methods": methods})),
+                                 digest)
+                actual = {name: item["state"] for name, item in observed.items()}
+                self.assertEqual(inventory.reconstruct(methods, achieved)["dispositions"],
+                                 actual)
+
+    def test_real_inventory_duplicate_missing_and_source_drift_fail_closed(self):
+        methods, _, _ = inventory.collect(["B01", "B04"])
+        altered = copy.deepcopy(methods)
+        name = next(iter(altered))
+        altered[name]["assertions"].append(copy.deepcopy(altered[name]["assertions"][0]))
+        with self.assertRaises(w.ProtocolError):
+            inventory.validate_sources(altered)
+        altered = copy.deepcopy(methods)
+        altered[name]["source_sha256"] = "0" * 64
+        with self.assertRaises(w.ProtocolError):
+            inventory.validate_sources(altered)
+        altered = copy.deepcopy(methods)
+        altered.pop("regression.Regression.test_b02_tags_and_failure")
+        with self.assertRaises(w.ProtocolError):
+            inventory.reconstruct(altered, ["B01", "B04"])
+
+    def test_helper_expansion_is_invocation_and_profile_dependent(self):
+        # The real runner installs a closure over the current profile, and
+        # repeated suite construction nests closures rather than replacing one.
+        baseline = original.check_task
+        try:
+            inventory.collect(["B01", "B04"])
+            first = original.check_task
+            self.assertIs(first.__closure__[0].cell_contents, baseline)
+            inventory.collect([f"B{i:02}" for i in range(1, 17)])
+            second = original.check_task
+            self.assertIs(second.__closure__[0].cell_contents, first)
+            self.assertEqual(len(schema.compose(["B01", "B04"])["field_types"]), 1)
+            self.assertEqual(len(schema.compose([f"B{i:02}" for i in range(1, 17)])["field_types"]), 7)
+        finally:
+            original.check_task = baseline
+
+    def test_b11_replacement_does_not_preserve_all_unrelated_baseline_assertions(self):
+        def body(function):
+            return ast.parse(textwrap.dedent(inspect.getsource(function))).body[0]
+
+        baseline = body(original.Regression.test_baseline_lifecycle_filters_failures)
+        b11 = r5.load_module("regression_B11", w.CASES / "B11.py")
+        suite = b11.cases(w.ROOT / "benchmark/conventional/task_manager.py", {}, frozenset())
+        replacement = next(inventory.instances(suite))
+        new = body(getattr(type(replacement), replacement._testMethodName))
+        old_calls = [node for node in ast.walk(baseline) if isinstance(node, ast.Call)]
+        new_calls = [node for node in ast.walk(new) if isinstance(node, ast.Call)]
+        self.assertTrue(any(isinstance(node.func, ast.Name) and node.func.id == "check_task"
+                            for node in old_calls))
+        self.assertFalse(any(isinstance(node.func, ast.Name) and node.func.id == "check_task"
+                             for node in new_calls))
+        # A concrete lost expectation, independent of the helper's field checks.
+        self.assertIn("len({r['id'] for r in (normal, high, low)})",
+                      ast.unparse(baseline))
+        self.assertNotIn("len({r['id'] for r in (normal, high, low)})",
+                         ast.unparse(new))
 
 
 if __name__ == "__main__":

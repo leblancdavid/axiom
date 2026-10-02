@@ -1,0 +1,35 @@
+{
+  "achieved": [
+    "B01",
+    "B04"
+  ],
+  "assertion_equivalence_proven": false,
+  "inventory_sha256": "07a5e464e994369fbc000b52bbe4cd037c292a4ff736b3b943db793e17472d0c",
+  "method_disposition_diff": {},
+  "observed": {
+    "regression.Regression.test_b01_historical_priorities": "active",
+    "regression.Regression.test_b01_priority_and_regression": "active",
+    "regression.Regression.test_b02_explicit_migration": "skipped",
+    "regression.Regression.test_b02_tags_and_failure": "skipped",
+    "regression.Regression.test_baseline_lifecycle_filters_failures": "active",
+    "regression.Regression.test_baseline_migration_corruption": "active",
+    "regression.Regression.test_baseline_overdue_fixture": "active",
+    "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": "active",
+    "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": "active"
+  },
+  "reconstructed": {
+    "dispositions": {
+      "regression.Regression.test_b01_historical_priorities": "active",
+      "regression.Regression.test_b01_priority_and_regression": "active",
+      "regression.Regression.test_b02_explicit_migration": "skipped",
+      "regression.Regression.test_b02_tags_and_failure": "skipped",
+      "regression.Regression.test_baseline_lifecycle_filters_failures": "active",
+      "regression.Regression.test_baseline_migration_corruption": "active",
+      "regression.Regression.test_baseline_overdue_fixture": "active",
+      "regression_B04.cases.<locals>.SourceLabel.test_explicit_migration_of_prior_storage": "active",
+      "regression_B04.cases.<locals>.SourceLabel.test_verbatim_default_and_mutations": "active"
+    },
+    "edges": {}
+  },
+  "reconstruction_sha256": "cb8729263f7ba94a6853c06976ddb0e66c9eca1b6e4f8833e0ca5ccf8ca1cddf"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "STOP_NOT_FROZEN",
+  "gate": "assertion_level_semantic_equivalence",
+  "gate_satisfied": false,
+  "scope": "identified lineage discrepancies; not an exhaustive semantic inventory or zero-diff certificate",
+  "history": ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11", "B12", "B13", "B14", "B15", "B16"],
+  "lineage": {
+    "source": "regression.Regression.test_baseline_lifecycle_filters_failures",
+    "amendment": "B11",
+    "replacement": "regression_B11.cases.<locals>.DeletionRule.test_lifecycle_priority_and_completed_delete_rule",
+    "source_file": "benchmark/harness/regression.py",
+    "replacement_file": "benchmark/harness/cases/B11.py",
+    "subsequent_replacement": "regression_B16_R5.cases.<locals>.DeletionLifecycle.test_lifecycle_priority_and_completed_delete_rule_with_owner",
+    "subsequent_replacement_mechanism": "B16-R5 replays the B11 code object with create-owner adaptation; it cannot reintroduce absent assertions"
+  },
+  "unreconciled_preservation": [
+    {
+      "source_line": 99,
+      "semantic_requirement": "the three created task IDs are distinct",
+      "source_expression": "self.assertEqual(len({r['id'] for r in (normal, high, low)}), 3)",
+      "replacement_carrier": null
+    },
+    {
+      "source_line": 101,
+      "semantic_requirement": "each of the three created tasks satisfies check_task: exact profile field set, nonblank string ID, UTC timestamp and conditional tags type, plus R5 runner profile-dependent type assertions",
+      "source_expression": "check_task(self, task)",
+      "replacement_carrier": null
+    },
+    {
+      "source_line": 102,
+      "semantic_requirement": "each newly created task starts pending",
+      "source_expression": "self.assertEqual(task['status'], 'pending')",
+      "replacement_carrier": null
+    },
+    {
+      "source_line": 104,
+      "semantic_requirement": "a task created without a due date has a null due_date",
+      "source_expression": "self.assertIsNone(normal['due_date'])",
+      "replacement_carrier": null
+    }
+  ],
+  "amendment_claim": "benchmark/harness/capabilities/B11.json says the replacement covers remaining lifecycle, filtering, failure and no-write behavior",
+  "helper_observation": {
+    "helper": "regression.check_task",
+    "base_source": "benchmark/harness/regression.py:60-69",
+    "wrapper_source": "benchmark/harness/regression_phase5c_r5_1.py:87-94",
+    "profile_fields_B01_B04": 1,
+    "profile_fields_B01_B16": 7,
+    "reentrancy": "each build_suite nests the prior check_task closure; repeated in-process construction adds profile-dependent assertions"
+  },
+  "action": "Do not freeze R5.3 or construct or expose B17. Reconcile preservation intent with the frozen B11 executable behavior without editing frozen history, then perform the full assertion-level audit and independent restores."
+}
