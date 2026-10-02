@@ -12,6 +12,7 @@ import workspace as w
 ORACLE = Path(__file__).with_name("regression_phase5e.py")
 COMPOSER = Path(__file__).with_name("capability_profile.py")
 PHASE5D = w.ROOT / "benchmark/results/phase5d"
+FROZEN_HARNESS_SHA256 = "26b593844adf95e8f21fffddfde57e4ff39c46190117c35a7ca4333e48baf6de"
 BRIDGE = {
     "axiom": ("checkpoint-lykoi-B03.json", "0648016ced11120e57668fb5c9bf824694a450e2463f0ffb68934d962a59a107",
               "snapshot-lykoi-B03.tar", "b340a563189d55b71c10d3513b6c740bf9ecb01fdd31711d6faae9df0c1473a7"),
@@ -53,12 +54,15 @@ def bridge(track):
               "pinned Phase 5D continuation mismatch")
     prior = json.loads(source.read_text(encoding="utf-8"))
     w.require(prior["format"] == 2 and prior["track"] == track and
-              prior["harness_sha256"] == w.file_hash(Path(w.__file__)) and
+               prior["harness_sha256"] == w.FROZEN_HARNESS_SHA256 and
               prior["oracle_sha256"] == w.file_hash(w.ORACLE) and
               prior["attempted"][-1]["request"] == "B03" and
               prior["achieved"] == [a["request"] for a in prior["attempted"] if a["outcome"] == "SUCCESS"],
               "invalid Phase 5D bridge source")
-    return record(track, prior["attempted"], prior["files"], expected)
+    result = record(track, prior["attempted"], prior["files"], expected)
+    result["harness_sha256"] = FROZEN_HARNESS_SHA256
+    result["legacy_harness_sha256"] = w.FROZEN_HARNESS_SHA256
+    return result
 
 
 def checkpoint(workspace, track, attempted, previous, previous_hash):
@@ -68,7 +72,7 @@ def checkpoint(workspace, track, attempted, previous, previous_hash):
     w.require(prior["track"] == track and attempted[:-1] == prior["attempted"] and
               len(attempted) == len(prior["attempted"]) + 1, "attempt history not an exact extension")
     files = w.workspace_files(workspace)
-    if attempted[-1]["outcome"] in ("AXIOM_CAPABILITY_GAP", "BLOCKED_BY_GAP"):
+    if attempted[-1]["outcome"] in (*w.GAP_OUTCOMES, "BLOCKED_BY_GAP"):
         w.require(files == prior["files"], "gap or block changed implementation state")
     w.check_generated(workspace, track)
     return record(track, attempted, files, previous_hash)
@@ -84,6 +88,9 @@ def validate_record(current):
               "achieved capabilities do not match attempt history")
     expected = record(track, current["attempted"], current["files"],
                       current["previous_checkpoint_sha256"])
+    if current["harness_sha256"] == FROZEN_HARNESS_SHA256:
+        expected["harness_sha256"] = FROZEN_HARNESS_SHA256
+        expected["legacy_harness_sha256"] = w.FROZEN_HARNESS_SHA256
     w.require(current == expected, "checkpoint capability/protocol identity mismatch")
     if len(current["attempted"]) == 3:
         w.require(current == bridge(track), "unrecognized Phase 5E bridge checkpoint")

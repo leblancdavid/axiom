@@ -81,6 +81,17 @@ class CapabilityProfileTests(unittest.TestCase):
                         new.validate_record(tampered)
                 self.assertEqual(w.file_hash(new.PHASE5D / name), before)
 
+    def test_capability_gap_labels_accept_new_and_recorded_attempts(self):
+        for label in w.GAP_OUTCOMES:
+            with self.subTest(label=label):
+                attempts = [{"request": "B01", "outcome": label, "evidence": "validator probe"},
+                            {"request": "B02", "outcome": "BLOCKED_BY_GAP", "depends_on": ["B01"]}]
+                w.validate_attempts("axiom", attempts)
+                with self.assertRaises(w.ProtocolError):
+                    w.validate_attempts("conventional", attempts)
+                with self.assertRaises(w.ProtocolError):
+                    w.validate_attempts("axiom", [{"request": "B01", "outcome": label}])
+
     def test_explicit_supersession_skips_only_named_old_method(self):
         class Historical(unittest.TestCase):
             def test_superseded(self):
@@ -154,6 +165,11 @@ class CapabilityProfileTests(unittest.TestCase):
                 result = new.checkpoint(work, "axiom", attempted, pinned, w.file_hash(pinned))
                 self.assertEqual(result["files"], prior["files"])
                 self.assertEqual(result["achieved"], ["B01"])
+                gap_attempted = [*prior["attempted"], {"request": "B04", "outcome": w.CAPABILITY_GAP,
+                                                      "evidence": "validator probe"}]
+                gap_result = new.checkpoint(work, "axiom", gap_attempted, pinned, w.file_hash(pinned))
+                self.assertEqual(gap_result["files"], prior["files"])
+                self.assertEqual(gap_result["attempted"][-1]["outcome"], w.CAPABILITY_GAP)
                 with self.assertRaises(w.ProtocolError):
                     new.checkpoint(work, "axiom", attempted, pinned, "0" * 64)
                 (work / "unexplained.log").write_text("unexpected", encoding="utf-8")

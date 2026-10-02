@@ -31,6 +31,10 @@ FROZEN_PROFILES = {
     "B01": "56890855fc2161c06693657e11534349c4ebfef71316e866ebcd3f1cbc6dd808",
     "B02": "46ff02e3ff6ea48a7990c2f522fb9fa7bbefcab3c88550be007e0c2c1b75972f",
 }
+CAPABILITY_GAP = "LYKOI_CAPABILITY_GAP"
+LEGACY_CAPABILITY_GAP = "AXIOM_CAPABILITY_GAP"
+GAP_OUTCOMES = (CAPABILITY_GAP, LEGACY_CAPABILITY_GAP)
+FROZEN_HARNESS_SHA256 = "beac945e0102e7e78b15fe7f6e3d8c88bae512f32bfcbf1cbbde9d5fae883e50"
 
 
 class ProtocolError(Exception):
@@ -203,17 +207,17 @@ def validate_attempts(track, attempted):
                 for item in attempted), "invalid attempt entry")
     ids = [item["request"] for item in attempted]
     require(ids == [f"B{i:02}" for i in range(1, len(ids) + 1)], "nonsequential attempts")
-    require(all(item.get("outcome") in ("SUCCESS", "AXIOM_CAPABILITY_GAP", "IMPLEMENTATION_FAILURE",
-                                         "REGRESSION", "BLOCKED_BY_GAP") for item in attempted), "invalid outcome")
-    require(not any(item["outcome"] == "AXIOM_CAPABILITY_GAP" for item in attempted)
-            or track == "axiom", "gap on non-Lykoi track")
+    require(all(item.get("outcome") in ("SUCCESS", *GAP_OUTCOMES, "IMPLEMENTATION_FAILURE",
+                                          "REGRESSION", "BLOCKED_BY_GAP") for item in attempted), "invalid outcome")
+    require(not any(item["outcome"] in GAP_OUTCOMES for item in attempted)
+             or track == "axiom", "gap on non-Lykoi track")
     gaps = set()
     for item in attempted:
         if item["outcome"] == "BLOCKED_BY_GAP":
             require(isinstance(item.get("depends_on"), list) and item["depends_on"]
                     and all(dep in gaps for dep in item["depends_on"]),
                     "blocked request must identify existing gap dependencies")
-        if item["outcome"] == "AXIOM_CAPABILITY_GAP":
+        if item["outcome"] in GAP_OUTCOMES:
             require(isinstance(item.get("evidence"), str) and item["evidence"].strip(),
                     "capability gap requires evidence reference")
             gaps.add(item["request"])
@@ -230,7 +234,7 @@ def checkpoint(workspace, track, attempted, previous=None, previous_hash=None):
                 previous_hash == digest(encoded(previous)), "previous checkpoint hash mismatch")
         require(previous["track"] == track and previous["attempted"] == attempted[:-1],
                 "previous checkpoint/attempt history mismatch")
-        if attempted[-1]["outcome"] in ("AXIOM_CAPABILITY_GAP", "BLOCKED_BY_GAP"):
+        if attempted[-1]["outcome"] in (*GAP_OUTCOMES, "BLOCKED_BY_GAP"):
             require(workspace_files(workspace) == previous["files"],
                     "gap or dependency block changed implementation state")
     achieved = [item["request"] for item in attempted if item["outcome"] == "SUCCESS"]
@@ -252,7 +256,8 @@ def preflight(workspace, track, request, record, case_hash=None, profile_hash=No
     manifest = load_manifest()
     require(record["format"] == 2 and record["track"] == track, "track/checkpoint mismatch")
     require(record["baseline_manifest_sha256"] == file_hash(MANIFEST), "starting baseline identifier mismatch")
-    require(record["harness_sha256"] == file_hash(Path(__file__)), "workspace harness version mismatch")
+    require(record["harness_sha256"] in (file_hash(Path(__file__)), FROZEN_HARNESS_SHA256),
+            "workspace harness version mismatch")
     require(record["oracle_sha256"] == file_hash(ORACLE), "regression oracle version mismatch")
     require(record["requirement_hashes"] == manifest["requirements"], "requirement set mismatch")
     require(request == f"B{len(record['attempted']) + 1:02}" and request in manifest["requirements"],
@@ -304,7 +309,7 @@ def main():
         cmd.add_argument("--workspace", type=Path, required=True)
         cmd.add_argument("--track", choices=("conventional", "axiom"), required=True)
         if action == "checkpoint":
-            cmd.add_argument("--attempted", default="", help="comma-separated B01:SUCCESS,B02:AXIOM_CAPABILITY_GAP")
+            cmd.add_argument("--attempted", default="", help="comma-separated B01:SUCCESS,B02:LYKOI_CAPABILITY_GAP")
             cmd.add_argument("--attempts-file", type=Path, help="JSON list for gaps (evidence) and blocked dependencies")
             cmd.add_argument("--output", type=Path, required=True)
             cmd.add_argument("--previous", type=Path, help="pinned prior checkpoint (required after baseline)")

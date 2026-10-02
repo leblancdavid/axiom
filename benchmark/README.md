@@ -21,8 +21,11 @@ their internal modules or uses their internal test suites as the shared oracle.
 
 ## Execution protocol
 
-The frozen Track B instruction and its `AXIOM_CAPABILITY_GAP` outcome label
-retain their original wording for comparability with recorded benchmark runs.
+New runs report `LYKOI_CAPABILITY_GAP` (and refer to Lykoi in the Track B
+instruction). Existing benchmark records retain the historical
+`AXIOM_CAPABILITY_GAP` outcome, which the harness still accepts when reading
+recorded attempts. The original Track B instruction below is preserved for
+comparability with those runs.
 
 Use the same AI model/configuration, requirement text, tool limits and time
 budget for both tracks. Give Track A only its conventional working tree and

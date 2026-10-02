@@ -1,3 +1,12 @@
 __pycache__/
 *.py[cod]
 tasks.json
+
+# Local Python environments and tool output
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
