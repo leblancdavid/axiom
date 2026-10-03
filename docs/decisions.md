@@ -1,5 +1,39 @@
 # Experimental decisions
 
+## R5.25 scoped optional elimination (prospective, 2026-10-03)
+
+Choose `EXISTING_TYPE_SYSTEM_GENERALIZATION`, not core construct #31. The
+existing optional record shape defines absence by key membership, and the
+present key's value already has the inner type. Represent presence as an
+explicit type-directed witness in the smallest positive conjunction; gather
+its same-path type fact before checking all conjuncts regardless of serialized
+order, then safely evaluate the guard before consumers. Do not widen nullable
+to non-null, propagate facts across a scope boundary, or substitute fallback
+for presence. A separate publication generator/contract checker demonstrates
+the rule, not general R5.23 integration. Core 30; R5.26 should integrate the
+rule prospectively and test cross-domain scope. See the
+[R5.25 review](../benchmark/results/phase5c/R5_25-OPTIONAL-PRESENCE-REFINEMENT-SEMANTIC-REVIEW.md).
+
+## R5.24 cross-capability review gate (prospective, 2026-10-03)
+
+Do not reinterpret R5.23's per-relation evidence as whole-program closure.
+Keep its pinned compiler/runtime/verifier unchanged: direct edits to instant
+ordering broke its historical lock-integrity and first-failure tests, so those
+edits were rolled back. A separate, target-independent chronological-order
+interpreter establishes the semantic type junction without claiming generation.
+The existing optional field shape, fallback and keyed missing-field default do
+not supply a general presence predicate with path-sensitive refinement in
+`select`/`before`. Treat this exact cross-domain application-semantic question
+as an explicit #31 **review gate**, not an automatic construct addition or a
+runtime truthiness shortcut. Cross-shape #45 pre/post state generalization
+remains unimplemented; a second state label alone is insufficient without
+typed mapping and independent frame verification. Revise future compiler
+coverage to track type closure, optional/binding/state shape, whole-program and
+grounding separately from relation-level support. Decision:
+`R5_24_SEMANTIC_EXTENSION_REVIEW_REQUIRED`; core remains 30. See the
+[R5.24 result](../benchmark/results/phase5c/R5_24-CROSS-CAPABILITY-TYPE-STATE-COHERENCE.md).
+
+
 ## R5.22 known general lowering-coverage completion (prospective, 2026-10-03)
 
 Replace the serial one-capability B02 discovery loop with a single coverage-completion

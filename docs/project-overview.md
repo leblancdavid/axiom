@@ -69,6 +69,40 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.25 optional-presence/refinement review](../benchmark/results/phase5c/R5_25-OPTIONAL-PRESENCE-REFINEMENT-SEMANTIC-REVIEW.md)
+chooses `EXISTING_TYPE_SYSTEM_GENERALIZATION`: optional state-row presence is
+already defined by typed record membership; a scoped type-elimination witness
+lets an existing predicate consume the present value without adding a new core
+relation. A separate publication-domain generator checks both conjunction
+orders and four absent/before/after/equal witnesses, with a grounded but
+nonconforming absent-row fault. This resolves the semantic architecture in a
+narrow prototype, **not** the pinned general compiler's integration; the R5.23
+optional blocker is partially resolved. Core stays 30; R5.26 should integrate
+scoped refinement into a separately versioned general checker, generator and
+verifier on independent domains. No B02 retry or frozen acceptance, Phase 5C
+remains paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historically
+authoritative, semantic-first format globally unfrozen, universal correctness
+unestablished.
+
+The [R5.24 cross-capability coherence review](../benchmark/results/phase5c/R5_24-CROSS-CAPABILITY-TYPE-STATE-COHERENCE.md)
+has **halted at semantic-extension review**, not validated whole-program
+coherence. An independent publication-domain interpreter confirms that the
+existing typed UTC `instant` admits chronological ordering, but the R5.23-
+locked generator still rejects instant keys. An independent generated input
+probe preserves omitted versus explicitly supplied values and grounds the
+valid cases; malformed input stops before a typed semantic outcome. Existing
+construct compositions cannot yet express presence-conditioned refinement of
+an optional state-row field; pre/post durable shapes also remain coupled to
+one declaration. Historical compiler/runtime/verifier locks remain intact;
+the full harness passes 249 tests and the application/compiler suite passes
+31. Review whether existing optional semantics and #45 can express the
+missing guard before any #31 decision, then develop a separately versioned
+coherence pipeline and independent cross-shape/whole-program witnesses.
+No B02 retry or candidate was produced. Candidate core remains 30, R5.2.2
+historical authority, Phase 5C paused, B03 untouched, B17 unexposed and
+unclassified, the semantic-first format globally unfrozen and universal
+implementation correctness unestablished.
+
 The B01–B20 sequence is intended as a cumulative diagnostic: early requests
 probe local data/query operations (B01–B05); middle requests increasingly
 stress cross-cutting state and relationships (B06–B10), then behavioral rules,

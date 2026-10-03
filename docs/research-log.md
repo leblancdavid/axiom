@@ -1,5 +1,58 @@
 # Lykoi research log
 
+## R5.25 optional-presence/refinement review (prospective, 2026-10-03)
+
+**Observation:** Existing typed records distinguish a missing optional key
+from a present value; `optional<nullable<T>>` additionally admits present null.
+Existing equality, fallback, defaults and #45 selection do not type-check a
+presence-guarded optional projection. The separate R5.25 type-directed
+elimination prototype generates publication selection for either conjunction
+serialization; absent/before/after/equal rows select only the earlier row.
+Unsafe unguarded, wrong-field, non-optional and escaping refinements reject.
+A disposable emitted fault includes the absent row, remains publicly and
+durably grounded, and fails independent semantic conformance. The witness is
+generic over optional string/integer/record/instant at the type boundary, but
+only instant's `before` consumer is generated. See the
+[R5.25 review](../benchmark/results/phase5c/R5_25-OPTIONAL-PRESENCE-REFINEMENT-SEMANTIC-REVIEW.md).
+
+**Limit:** The narrow prototype does not integrate with the R5.23-pinned
+compiler/runtime/verifier or establish nullable refinement and general proof
+scope. Decision `EXISTING_TYPE_SYSTEM_GENERALIZATION`, gate
+`R5_25_OPTIONAL_REFINEMENT_RESOLVED` for the bounded semantic architecture;
+R5.23 optional blocker **PARTIALLY_RESOLVED**. Candidate core remains 30;
+R5.26 should integrate scoped optional elimination prospectively. No B02
+retry, Phase 5C advance or claim of universal correctness. Verification:
+benchmark harness 253/253 (including R5.10–R5.24), application/compiler
+31/31, new focused 4/4, model validation ok, safety 0 violations/invalid
+transitions, `git diff --check` clean. LF→CRLF notices were warnings only.
+
+## R5.24 type/state coherence investigation (prospective, 2026-10-03)
+
+**Observation:** The existing `instant` type parses checked UTC `Z` timestamps
+and compares chronologically under `before`; an independent publication-domain
+ordering interpreter confirms one-key and mixed-key order, ties and semantic
+key mutation. The R5.23-locked generator remains limited to string/integer
+keys. A separate generated publication input probe grounds omitted and
+explicitly supplied fallback inputs with distinct recorded input values;
+malformed supplied input fails before the semantic operation with durable bytes
+unchanged, not with a typed failure outcome. A machine-readable matrix and
+type-closure inventory distinguish these cases. Full harness 249/249,
+application/compiler 31/31, focused new 6/6, model validation and safety
+checks pass. Git LF→CRLF notices were warnings; `git diff --check` was clean.
+See the [R5.24 result](../benchmark/results/phase5c/R5_24-CROSS-CAPABILITY-TYPE-STATE-COHERENCE.md).
+
+**Limit:** Neither a generated instant-ordered program nor an optional-instant
+guard, typed malformed-input outcome, cross-shape migration or integrated
+non-task whole program has been demonstrated. Attempts to change R5.23-pinned
+modules broke its historical integrity and first-failure tests; those edits
+were rolled back before the green final harness. Existing compositions do not
+provide a presence condition that refines an optional field for `before`.
+Result: `R5_24_SEMANTIC_EXTENSION_REVIEW_REQUIRED`; review the semantic
+constraint before any #31 choice. Core 30, B02 not retried, Phase 5C paused,
+B03 untouched, B17 unexposed/unclassified, format unfrozen, R5.2.2 historical
+authority and universal correctness not established.
+
+
 ## R5.22 known general lowering-coverage completion (prospective, 2026-10-03)
 
 **Observation:** The known lowering-coverage backlog left by R5.21 was closed on
