@@ -1,5 +1,27 @@
 # Experimental decisions
 
+## R5.32 — Decode before semantic invocation; preserve absence until fallback
+
+The review finds no missing application-semantic concept in the independent
+observatory domain. Consume sealed CheckedPlan input shapes to generate binding
+descriptors; preserve omitted optional keys and suppliedness evidence. Keep
+fallback and state-sensitive validity in existing semantic operation contracts.
+Do not admit malformed instant/scalar data as semantic values. Choose Model C's
+public-mapping variant: explicit category-to-code policy returns a structured
+boundary failure without operation invocation or invented execution evidence.
+Keep binding grounding/conformance separate from current semantic verification.
+The current profile has no nominal enums; finite decode domains are explicitly
+checked interface metadata over existing scalar types, distinct from application
+predicates. The tradeoff is bounded scalar/JSON transport support and no mapping
+of pre-invocation failure into operation-declared outcome tags. Thus the R5.23
+malformed-input outcome class remains partially resolved while the generic
+binding architecture is validated. Byte-equal observations do not prove physical
+no-write. Four re-sealed disposable faults justify layer-specific detection;
+shared static authority does not substitute for independent behavior checking.
+Core 30, no #31; recommend a separate R5.33 cross-shape review. Evidence:
+`benchmark/results/phase5c/R5_32-INPUT-BINDING-TYPED-FAILURE-BOUNDARY.md`;
+versioned interface: `docs/input-binding-r5.32.md`.
+
 ## R5.31 — One static semantic interpretation, independent behavioral verdicts
 
 Record every supported expression's declared/effective type during the designated

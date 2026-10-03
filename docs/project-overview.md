@@ -69,6 +69,28 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.32 input-binding checkpoint](../benchmark/results/phase5c/R5_32-INPUT-BINDING-TYPED-FAILURE-BOUNDARY.md)
+validates a bounded generic public boundary around the single-authority current
+pipeline: raw omitted/supplied scalar data becomes checked typed input or a
+structured binding failure before semantic invocation. Existing optional key
+membership preserves suppliedness through semantic fallback. One generated
+four-operation observatory console exercises instant/integer/string and explicit
+finite decode domains; malformed input and typed semantic rejection have separate
+public outcomes and binding/semantic evidence. Eighteen shared-store calls and
+three source-only mutations conform; four grounded disposable faults fail binding
+conformance, including independently observed forbidden durable mutation.
+Core remains 30, no #31. Suppliedness/well-formedness is resolved independently;
+malformed-input outcomes are partially resolved: public boundary mapping is
+validated, mapping into declared semantic operation outcomes remains separate.
+The full 298-test discovery passes 297 with one deliberate skip to avoid nested
+frozen B02 acceptance; 31 application/compiler tests, validation and safety pass.
+Gate **`R5_32_INPUT_BINDING_BOUNDARY_VALIDATED`** is bounded architecture evidence.
+R5.33 should review cross-shape state evolution independently before implementation.
+Frozen transport remains unresolved; no B02 retry/acceptance, Phase 5C paused,
+B03 untouched, B17 unexposed/unclassified, R5.2.2 historical authority, format
+globally unfrozen and universal correctness unclaimed. Interface profile:
+[R5.32 binding rules](input-binding-r5.32.md).
+
 The [R5.31 single semantic authority checkpoint](../benchmark/results/phase5c/R5_31-SINGLE-SEMANTIC-AUTHORITY-CONSOLIDATION.md)
 establishes **one current semantic/type-analysis authority** for the supported
 same-shape non-task subset. `benchmark.semantic.current_pipeline` records complete

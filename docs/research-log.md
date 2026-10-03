@@ -1,5 +1,38 @@
 # Lykoi research log
 
+## R5.32 prospective input binding boundary (2026-10-03)
+
+Observation: CheckedPlan already carries sufficient authoritative input shapes;
+no type-system change or extra analysis was needed. Generic scalar binding and
+explicit finite-domain metadata now surround current_pipeline. The generated
+observatory console preserves omitted preferred/seen keys, produces quiet through
+semantic fallback, and distinguishes explicitly supplied quiet through existing
+present semantics, public tags and durable nested membership. Malformed instant,
+integer, string and outside-domain raw values fail before invocation. Integer 8,
+boundary instant and domain-valid/state-forbidden modes bind then return semantic
+rule_rejected. Eighteen shared-store cases ground/conform at the appropriate
+layers, with ten semantic invocations and eight binding failures; three source
+mutations propagate defaults, types and domain predicates. All four disposable
+faults ground and fail binding conformance; forbidden Fault C invocation produces
+independently observed durable mutation. Binding failure has no semantic event or
+semantic conformance verdict. Diagnostic provenance avoids raw values; synthetic
+research fixtures deliberately retain their non-sensitive raw examples.
+
+Python 3.12.10 in an isolated LF checkout runs full harness discovery: 298 found,
+297 pass, one restriction skip for a historical method that would execute frozen
+B02 acceptance. Historical tests are unchanged. The 31 application/compiler
+tests, model validation, safety, focused binding tests and capability matrix pass.
+LF→CRLF Git notices are separate from actual failures. Suppliedness/well-formedness
+is resolved independently; malformed-input outcomes are partially resolved because
+validated public failure mapping does not fabricate operation-declared outcomes.
+Limitations include scalar-only public shapes, no nominal enum, standard JSON
+duplicate-key policy, resource limits and no physical no-write/hostile-runtime
+attestation. Core remains 30 with no #31. R5.33 recommendation: independently
+review cross-shape state evolution, preserving the single-authority pipeline.
+No B02 retry/acceptance, cross-shape implementation or benchmark activation.
+Evidence: `benchmark/results/phase5c/R5_32-INPUT-BINDING-TYPED-FAILURE-BOUNDARY.md`
+and `R5_32-binding-evidence.json`; interface rules: `docs/input-binding-r5.32.md`.
+
 ## R5.31 prospective semantic-authority consolidation (2026-10-03)
 
 Observation: the current analyzer now records complete checked expression facts

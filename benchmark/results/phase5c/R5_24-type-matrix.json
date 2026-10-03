@@ -1,5 +1,5 @@
 {
-  "scope": "historical entries retained; R5.31 single-authority current application profile is prospective and independent of frozen benchmark",
+  "scope": "historical entries retained; R5.32 input binding around the single-authority current application profile is prospective and independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -126,6 +126,31 @@
       "malformed_input_typed_outcomes": "UNRESOLVED_INDEPENDENT_CLASS",
       "cross_shape_state_evolution": "UNRESOLVED_INDEPENDENT_CLASS",
       "frozen_transport_binding": "UNRESOLVED_INDEPENDENT_CLASS"
+    }
+  },
+  "r5_32_input_binding": {
+    "entry_point": "benchmark.semantic.public_binding_r5_32 around benchmark.semantic.current_pipeline",
+    "semantic_authority": "sealed CheckedPlan.slots.input; no alternate analyzer",
+    "candidate_core_constructs": 30,
+    "scope": "synthetic JSON argument-object adapter; existing scalar types and explicit finite decode domains; same-shape non-task observatory",
+    "dimensions": ["raw_input_binding", "suppliedness", "parse_decode", "binding_failure", "typed_invocation", "semantic_invalidity_distinction", "public_adapter", "binding_grounding"],
+    "per_dimension": {
+      "raw_input_binding": {"supported": true, "evidence": "R5.32 public subprocess study"},
+      "suppliedness": {"supported": true, "evidence": "omitted versus explicit fallback equivalent; Fault B"},
+      "parse_decode": {"supported": true, "evidence": "string, integer, existing UTC instant; finite base-type domain; Fault A"},
+      "binding_failure": {"supported": true, "evidence": "structured public boundary result with no semantic invocation; Fault C"},
+      "typed_invocation": {"supported": true, "evidence": "four generated operations; checked shape runtime validation"},
+      "semantic_invalidity_distinction": {"supported": true, "evidence": "integer, instant and state-sensitive finite-domain predicates; Fault D"},
+      "public_adapter": {"supported": true, "evidence": "generic JSON-object CLI; aliases and category-to-public-code metadata"},
+      "binding_grounding": {"supported": true, "evidence": "independent decode oracle, external output, durable readback; four faults"}
+    },
+    "frozen_transport_binding": {"supported": false, "status": "UNRESOLVED"},
+    "cross_shape_state_evolution": {"supported": false, "status": "UNRESOLVED"},
+    "r5_23_blockers": {
+      "suppliedness_well_formedness": "RESOLVED_INDEPENDENTLY",
+      "malformed_input_typed_outcomes": "PARTIALLY_RESOLVED",
+      "cross_shape_state_evolution": "UNRESOLVED",
+      "frozen_transport_binding": "UNRESOLVED"
     }
   },
   "r5_26_integration": {
