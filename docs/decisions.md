@@ -1,5 +1,17 @@
 # Experimental decisions
 
+## R5.28 — Preserve the historical hash lock while integrating refinement
+
+Decision: keep R5.23's pinned general emitter, runtime and evidence files
+byte-identical. A checked source-bound R5.27 plan may feed a prospective R5.28
+fork to test scoped emission and independent verification, but fork evidence
+does not authorize marking the pinned general pipeline resolved. The attempt
+to edit the historical components directly triggered their lock-integrity
+test; the historical bytes were restored. The tradeoff is deliberate duplicated
+implementation until a versioned multi-operation general interface can replace
+the fork with a single source of truth. See
+`benchmark/results/phase5c/R5_28-REFINED-PLAN-CONSUMPTION-INTEGRATION.md`.
+
 ## R5.27 partial general typed-analysis integration (prospective, 2026-10-03)
 
 Keep R5.23 pinned and R5.26's read-only evidence as a historical prototype.

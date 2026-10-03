@@ -1,5 +1,22 @@
 # Lykoi research log
 
+## R5.28 prospective refined-plan observation (2026-10-03)
+
+The unified checker now produces source-identity-bound witness dependencies,
+typed relation operands and ordering plans. A prospective fork of the general
+emitter/verifier generated grounded non-task refined reads, chronological
+ordered reads, guarded keyed replacement and removal, plus required-instant
+external insertion. Four disposable faults (absent match, lost secondary order,
+wrong replacement field, external/persistence divergence) remained grounded
+but failed semantic conformance. Semantic-only mutations altered refinement,
+cutoff, key, replacement value and remove predicate without editing the fork.
+These are individual operations, not one generated multi-command program.
+No shared durable-state continuity or read-after-write optional closure was
+established. The pinned general R5.23 pipeline cannot consume the checked plan
+without a separately versioned integration interface. Candidate core remains
+30; no B02 retry or benchmark-boundary advance. Detailed audit and limitations:
+`benchmark/results/phase5c/R5_28-REFINED-PLAN-CONSUMPTION-INTEGRATION.md`.
+
 ## R5.27 typed-analysis checkpoint (prospective, 2026-10-03)
 
 **Observation:** One new R5.27 checker checks read selection/order and typed

@@ -8,6 +8,8 @@ predicate); a selection never exports its item binding to another expression.
 from benchmark.semantic import generative_r5_13 as general
 from benchmark.semantic.capability_boundary_r5_22 import capability_type
 from benchmark.semantic.typed_lowering_r5_12 import _compile, _field
+from benchmark.semantic.capability_boundary_r5_22 import parse_instant
+from dataclasses import dataclass
 
 
 ORDERABLE = ('string', 'integer', 'instant')
@@ -227,6 +229,125 @@ def typed(contract):
     return contract
 
 
+@dataclass(frozen=True)
+class CheckedPlan:
+    """Checked source identity and scoped relation dependencies, not an AST copy.
+
+    Node IDs refer to the actual source objects. A consumer cannot silently
+    substitute a different expression or export a selection's item witness.
+    """
+    contract: dict
+    digest: str
+    scopes: dict
+    orders: dict
+    operands: dict
+
+    def assert_current(self):
+        if general.sha(general.canonical(self.contract)) != self.digest:
+            raise ValueError('typed plan source changed')
+
+    def operand_type(self, expr):
+        self.assert_current()
+        if id(expr) not in self.operands:
+            raise ValueError('operand is not in checked plan')
+        return self.operands[id(expr)]
+
+
+def checked_plan(contract):
+    typed(contract)
+    scopes, orders, operands = {}, {}, {}
+    slots = {'input': contract['input'], 'pre': contract['state']}
+
+    def visit(expr, environment):
+        if not isinstance(expr, dict) or len(expr) != 1:
+            return
+        kind, arg = next(iter(expr.items()))
+        if kind == 'and':
+            _, guards = conjunction(arg, environment)
+            # Dependencies are on semantic node identity, not the field label.
+            producers = {tuple(part['present']['ref']): id(part) for part in arg if 'present' in part}
+            scopes[id(expr)] = tuple((path, producers[path]) for path in sorted(guards))
+            for part in arg:
+                visit(part, environment)
+        elif kind == 'select':
+            visit(arg['source'], environment)
+            element = analyze(arg['source'], environment)['sequence']
+            visit(arg['where'], {**environment, 'item': element})
+        elif kind == 'order':
+            orders[id(expr)] = ordering_plan(arg, environment)
+            visit(arg['source'], environment)
+        elif kind in ('equals', 'before'):
+            for part in arg:
+                visit(part, environment)
+        elif kind == 'record':
+            for part in arg.values():
+                visit(part, environment)
+        elif kind in ('not', 'cardinality', 'sole'):
+            visit(arg, environment)
+        elif kind == 'project':
+            visit(arg['row'], environment)
+        elif kind == 'fallback':
+            visit(arg['value'], environment)
+            visit(arg['default'], environment)
+
+    for branch in contract['branches']:
+        if branch['when'] is not None:
+            visit(branch['when'], slots)
+        visit(branch['value'], {**slots, 'post': contract['state']})
+        for relation in branch['transition'].get('relations', []):
+            kind, rule = next(iter(relation.items()))
+            for name in ('match', 'record', 'value'):
+                if name in rule:
+                    operands[id(rule[name])] = analyze(rule[name], slots)
+                    visit(rule[name], slots)
+    return CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders, operands)
+
+
+def interpret(expr, facts, slots, plan):
+    """Interpret semantic source against observations; never read emitted code."""
+    plan.assert_current()
+    kind, arg = next(iter(expr.items()))
+    def ev(node, values=facts, shapes=slots):
+        return interpret(node, values, shapes, plan)
+    if kind == 'present':
+        path = arg['ref']
+        return path[-1] in ev({'ref': path[:-1]})
+    if kind == 'and':
+        guarded = {producer for _, producer in plan.scopes[id(expr)]}
+        parts = [p for p in arg if id(p) in guarded] + [p for p in arg if id(p) not in guarded]
+        return all(ev(part) for part in parts)
+    if kind == 'not':
+        return not ev(arg)
+    if kind == 'equals':
+        return ev(arg[0]) == ev(arg[1])
+    if kind == 'before':
+        return parse_instant(ev(arg[0])) < parse_instant(ev(arg[1]))
+    if kind == 'select':
+        source = ev(arg['source'])
+        element = analyze(arg['source'], slots)['sequence']
+        return [row for row in source if ev(arg['where'], {**facts, 'item': row}, {**slots, 'item': element})]
+    if kind == 'order':
+        keys = plan.orders[id(expr)]['keys']
+        return sorted(ev(arg['source']), key=lambda row: tuple(
+            parse_instant(row[key]) if shape == 'instant' else row[key] for key, shape in keys))
+    if kind == 'cardinality':
+        return len(ev(arg))
+    if kind == 'sole':
+        return _sole(ev(arg))
+    if kind == 'record':
+        return {key: ev(value) for key, value in arg.items()}
+    if kind == 'project':
+        row = ev(arg['row'])
+        return {key: row[key] for key in arg['fields']}
+    return _compile(expr, slots)[1](facts)
+
+
+def _sole(rows):
+    if len(rows) != 1:
+        raise ValueError('sole needs exactly one selected element')
+    return rows[0]
+
+
 def generate_legacy_subset(contract, directory):
     """Exercise existing general lowering after R5.27 typing where it still applies.
 
@@ -237,3 +358,10 @@ def generate_legacy_subset(contract, directory):
     typed(contract)
     general.typed(contract)
     return general.generate(contract, directory)
+
+
+def generate(contract, directory, fault=False):
+    """R5.28 general generator entry with an authoritative checked source plan."""
+    plan = checked_plan(contract)
+    from benchmark.semantic import refined_generator_r5_28
+    return refined_generator_r5_28.generate(contract, directory, fault=fault, plan=plan)

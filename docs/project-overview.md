@@ -69,6 +69,20 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.28 refined-plan consumption checkpoint](../benchmark/results/phase5c/R5_28-REFINED-PLAN-CONSUMPTION-INTEGRATION.md)
+adds a source-bound checked plan consumed by a prospective non-task generator
+and independent verifier fork. Refined chronological reads and guarded replace/
+remove writes each execute, ground and conform; all four disposable faults
+ground but fail conformance. Historical R5.23 hash-locked components remain
+intact. This is **partial** (`R5_28_REFINED_PIPELINE_INTEGRATION_PARTIAL`):
+there is no single generated five-command durable program, read-after-write
+closure or independently verified command-to-command continuity, and the actual
+pinned general compiler/verifier still does not consume the plan. R5.29 should
+version a coherent multi-operation general pipeline before revisiting either
+R5.23 type-blocker classification. Core 30, no #31; B02 not retried, Phase 5C
+paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historical authority,
+semantic-first format unfrozen and universal correctness unestablished.
+
 The [R5.27 unified typed pipeline checkpoint](../benchmark/results/phase5c/R5_27-UNIFIED-TYPED-PIPELINE-INTEGRATION.md)
 adds a prospective, shared operand analyzer for read and write contracts:
 scoped optional presence, order-independent conjunctions, instant keys and

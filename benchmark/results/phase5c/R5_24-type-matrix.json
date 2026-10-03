@@ -1,5 +1,5 @@
 {
-  "scope": "historical R5.24 locked generative_r5_13 entries below, separately versioned R5.26 read-only generated profile, and R5.27 static typed-analysis checkpoint; independent of frozen benchmark",
+  "scope": "historical R5.24 locked generative_r5_13 entries below, separately versioned R5.26 read-only generated profile, R5.27 typed analysis and prospective R5.28 checked-plan fork; independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -40,6 +40,13 @@
     "legacy read/write relations": {
       "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "historical R5.23; not completely revalidated in R5.27", "GENERAL_GENERATOR_SUPPORTED": "historical R5.23 only", "GENERAL_VERIFIER_SUPPORTED": "historical R5.23 only", "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": false, "FAULT_TESTED": false
     }
+  },
+  "r5_28_prospective_checked_plan": {
+    "profile": "R5.27 checked_plan consumed by separate R5.28 fork of general generator/runtime/evidence; pinned R5.23 pipeline unchanged; no whole-program support",
+    "dimensions": ["SEMANTIC_SUPPORT", "UNIFIED_CHECKER", "GENERAL_GENERATOR", "GENERAL_VERIFIER", "READ_SUPPORT", "WRITE_SUPPORT", "WHOLE_PROGRAM_SUPPORT", "GROUNDED", "FAULT_TESTED"],
+    "optional refinement": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": false, "GENERAL_VERIFIER": false, "READ_SUPPORT": "prospective fork", "WRITE_SUPPORT": "prospective fork: guarded keyed replace/remove", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "absent match and wrong replacement field"},
+    "instant ordering": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": false, "GENERAL_VERIFIER": false, "READ_SUPPORT": "prospective fork: chronological primary and secondary key", "WRITE_SUPPORT": "guarded before predicate in prospective fork", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "secondary key fault"},
+    "external instant insertion": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": "historical required-instant path only", "GENERAL_VERIFIER": "historical required-instant path only", "READ_SUPPORT": false, "WRITE_SUPPORT": "prospective fork", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "external/persistence mismatch"}
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",
