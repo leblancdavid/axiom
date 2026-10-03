@@ -349,8 +349,40 @@ assert a complete B02 serializes or advance acceptance/interface/transport layer
 Core remains 30 with no #31 (the typed instant, `sole`/`project` and boundary are
 lowering/typing/binding machinery, not new semantics), Phase 5C paused, B17
 unexposed/unclassified, R5.2.2 historical authority, format unfrozen, universal
-correctness unestablished. Next: one separately locked comprehensive B02 retry against
-the closed lowerer. Longer term, complete the ordered benchmark with
+correctness unestablished. A separately locked comprehensive B02 retry
+against the closed lowerer followed.
+The [R5.23 comprehensive locked B02 integration retry](../benchmark/results/phase5c/R5_23-B02-COMPREHENSIVE-INTEGRATION-RETRY.md)
+reconfirmed the 30-construct model's representation adequacy and reached new
+integration firsts: B02-shaped create-success with typed external identity/clock
+and fallback inputs executed, grounded and conformed under controlled and real
+providers; a twelve-branch multi-command B02-shaped program typed, rendered and
+ran as one generated program through the locked pipeline; envelope lifecycle
+replacement, keyed removal, N-way migration defaults with the #30 count,
+migration-required no-write reads and string-typed ordered reads all re-grounded
+conformant (13/13 executable slice cases). Complete whole-program generation
+still halted at typed validation, now for a newly identified class: independently
+validated capabilities collide on **shared representation domains**. A
+semantically typed `instant` creation timestamp is not an admissible ordering key
+(`non-orderable key`), while the orderable string column refuses the
+`instant`-typed clock (`outcome payload type mismatch`); `before`/`equals` cannot
+bind optional or nullable record fields (faithful `list-overdue`, legacy-row
+`list-high`); no relation expresses input suppliedness or domain well-formedness,
+so `invalid_due_date`/`invalid_state` cannot become typed failure branches; and
+one contract admits one state shape, so version-dependent rows (v2/v3 ∩ v4) and
+bare-list→envelope promotion are unlowerable. The deliberately deferred
+frozen-transport binding (positional argv, error envelope/exit codes,
+missing-file→`[]`, shared store) was separately confirmed absent as the known
+secondary blocker. Frozen acceptance never ran (7 cases blocked, no candidate);
+no repair and no #31; the R5.22 per-relation backlog methodology was true per
+relation yet false per program. Result
+`R5_23_PREVIOUSLY_UNKNOWN_LOWERING_GAP` directs the next step not to another
+isolated one-capability retry but to a focused whole-program integration phase
+(inter-capability type integration, versioned-storage handling, input-validity
+relations and checked transport binding on independent domains) plus revision of
+coverage enumeration from relation kinds to shared-domain compositions, before a
+final B02 retry. Keep core 30, Phase 5C paused, B17 unexposed/unclassified,
+R5.2.2 historical authority, format unfrozen and universal correctness
+unestablished. Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
 equivalence against frozen requirements, not similarity to Conventional's

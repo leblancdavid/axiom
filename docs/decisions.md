@@ -376,3 +376,23 @@ failure postcondition; attempted writes require separate effect/observation
 work if that stronger property is requested. This decision resolves the narrow
 R5.7 conditional classification gap without changing the benchmark boundary.
 See `benchmark/results/phase5c/R5_8-CONDITIONAL-OUTCOME-EXPRESSIVENESS.md`.
+
+## R5.23 whole-program integration direction (prospective, 2026-10-03)
+
+The comprehensive locked B02 retry generated no complete candidate but moved the
+finding decisively: per-relation lowering coverage was genuinely closed (R5.22),
+and the remaining B02 failures are inter-capability **type-integration** and
+**binding** gaps over shared representation domains (instant-typed ordering keys,
+optional/nullable guard operands, input-validity relations, one state shape per
+contract, frozen CLI transport), plus a confirmed methodology blind spot: the
+backlog enumerated relation kinds, so no row could ever express `two validated
+capabilities meeting on one field`. The chosen direction is a focused
+whole-program integration phase on independent non-task domains — generalize
+ordering/comparison operand typing over instants, optional/nullable-aware
+predicates, input suppliedness/domain-validity guards, versioned multi-shape
+storage applicability, and a checked transport/binding contract — while revising
+coverage enumeration to shared-domain compositions, then one final comprehensive
+B02 retry. Not chosen: another isolated one-capability discovery loop, a B03
+advance, or any post-lock repair; the locked compiler state and the 30-candidate
+ceiling stand unchanged. See
+`benchmark/results/phase5c/R5_23-B02-COMPREHENSIVE-INTEGRATION-RETRY.md`.

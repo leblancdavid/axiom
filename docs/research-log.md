@@ -803,3 +803,41 @@ positive/negative witnesses. It does not bind those collections to arbitrary
 public command traces or persisted states, nor settle the observable meaning
 of the priority rank. B01 adequacy remains halted; details and limitations are
 in `benchmark/results/phase5c/R5_4-B01-ORDER-TRANSITION-ADEQUACY-HALT.md`.
+
+## R5.23 comprehensive B02 integration-retry observations (prospective, 2026-10-03)
+
+The first comprehensive B02 retry after closing the known lowering-coverage
+backlog relation-by-relation reached a new integration first — a twelve-branch
+multi-command B02-shaped semantic program typed, rendered and executed as one
+generated program, with create-success (typed external identity and clock,
+fallback defaults, framed insertion, embedded tag normalization) grounded and
+semantically conformant under both controlled and real providers. Thirteen of
+thirteen executable B02-shaped operations grounded with byte-level no-write
+obligations honored on every failure and read. Yet the *complete* document still
+halted at typed validation, and the failures were not of the kind the backlog
+could enumerate: independently validated capabilities collided where they share
+one representation domain. `instant` creation timestamps (required by the clock
+capability) are rejected as ordering keys, while orderable string columns reject
+the clock; `before`/`equals` bind neither optional nor nullable record fields, so
+faithful overdue selection and legacy-row filters cannot guard; the grammar has
+no suppliedness or domain-well-formedness relation, so `invalid_due_date` and
+read-time `invalid_state` have no typed failure branch; one contract admits one
+state shape, so v2/v3-versus-v4 row typing and bare-list-to-envelope promotion
+cannot coexist with current reads. The deferred frozen-transport binding
+(positional argv, repeated flags, shared store, missing-file semantics, error
+envelope and exit codes) was separately observed absent — as expected, and never
+secretly substituted.
+
+The measurement lesson: "no known required relation remains unsupported" held
+per relation while being false per program. The "Integrated AST / CLI binding"
+coverage row was closed from a single-operation probe while the multi-operation
+document was excluded from the backlog as assembly, leaving the composition
+pressure uncategorized. Coverage enumeration must track *shared domains*
+(field type junctions, optional/nullable operand rules, storage-shape versioning,
+contract arity, transport contracts), not relation kinds alone. Slice
+grounding/conformance remains non-substitutable for whole-program generation;
+no frozen acceptance ran, and no repair occurred after lock. No semantic
+construct was added: the candidate core count remains 30 with no #31; every
+observed blocker references existing semantics (#24/#25, #27, #43, #44, #45, #30)
+at the lowering/type-integration/binding layer. Details and the exact gate are in
+`benchmark/results/phase5c/R5_23-B02-COMPREHENSIVE-INTEGRATION-RETRY.md`.
