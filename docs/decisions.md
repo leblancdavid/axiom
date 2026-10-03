@@ -1,5 +1,46 @@
 # Experimental decisions
 
+## R5.18 typed relation-set planning (prospective, 2026-10-02)
+
+Plan same-collection keyed missing-field defaults as an N-way conjunction:
+validate one identity and typed optional fields, deduplicate identical writes,
+reject distinct literal writes to one field as `CONFLICTING_RELATIONS`, and
+canonicalize independent writes before Python emission. Values read input/pre,
+not intermediate post-state; disjoint field writes commute. The verifier builds
+one expected post-population. Keep frame/default and unresolved same-field
+expression overlaps explicitly unsupported rather than inferring list order.
+This is compiler machinery under the existing 30-core vocabulary, not a new
+semantic construct or authorization for benchmark execution. Preserve the
+historical R5.17 locked test even though its old-lowerer rejection assertion
+does not hold on the prospective implementation. See the
+[R5.18 result](../benchmark/results/phase5c/R5_18-OVERLAPPING-RELATION-COMPOSITION-LOWERING.md).
+
+## R5.17 clean frozen B02 retry halt (prospective, 2026-10-02)
+
+Keep the pre-attempt R5.16 working-copy hashes fixed and classify B02's
+multi-field legacy defaults as valid candidate semantics but unsupported
+unchanged general lowering: the second keyed default on one collection raises
+`UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection relations`. Do not
+divide one migration into multiple invocations, hand-author an adapter, or
+patch compiler/runtime/verifiers within this retry. Without a generated B02
+candidate, source authority, frozen acceptance and grounded conformance cannot
+be claimed. Continue general compiler studies on independent domains in a
+separate prospective experiment; do not activate B03 or B17. See
+`benchmark/results/phase5c/R5_17-B02-GENERALIZATION-RETRY.md`.
+
+## R5.16 framed and versioned general lowering (prospective, 2026-10-02)
+
+Recognize the existing exact target/outside-target selection frame as a bounded
+typed compiler relation category, and generate a fresh-key collection witness
+without imposing storage order. Bind keyed missing-field defaults, version
+applicability, version update and candidate cardinality to one actual durable
+envelope/operation, rather than an invocation-supplied edition. Reject
+overlapping collection changes explicitly. Independent specimen/archive calls,
+semantic-only mutations and grounded fault variants support closing these two
+targeted lowering gaps under the unchanged 30-core candidate vocabulary; this
+does not establish all #45 combinations or permit a B02 retry. See
+`benchmark/results/phase5c/R5_16-FRAMED-INSERTION-DURABLE-MIGRATION-LOWERING.md`.
+
 ## R5.15 partial general lowering (prospective, 2026-10-02)
 
 Extend R5.13's typed generator only for existing ordered string normalization,

@@ -79,6 +79,51 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
     transition = branch['transition']
     if transition == {'preserve': True}:
         return post == pre and bytes_equal and not attempted_write
+    if 'relations' in transition:
+        touched = set()
+        expected_collections = {}
+        for relation in transition['relations']:
+            kind, rule = next(iter(relation.items()))
+            if kind == 'post_equals':
+                touched.add(rule['field'])
+                if post[rule['field']] != _compile(rule['value'], slots)[1](facts):
+                    return False
+                continue
+            name = rule['collection']
+            touched.add(name)
+            rows = pre if name is None else pre[name]
+            new = post if name is None else post[name]
+            identity = rule['identity']
+            if (len({row[identity] for row in rows}) != len(rows) or
+                    len({row[identity] for row in new}) != len(new)):
+                return False
+            if kind == 'exact_frame':
+                record = _compile(rule['record'], slots)[1](facts)
+                if record[identity] in {row[identity] for row in rows}:
+                    return False
+                # Exact singleton selection and full-record equality of the
+                # outside-target multiset; storage order is not a constraint.
+                if ([row for row in new if row[identity] == record[identity]] != [record] or
+                        len(new) != len(rows) + 1 or
+                        sorted(canonical(row) for row in new if row[identity] != record[identity]) !=
+                        sorted(canonical(row) for row in rows)):
+                    return False
+            else:
+                value = _compile(rule['value'], slots)[1](facts)
+                # Interpret all compatible defaults against one pre-state and
+                # compare their joint post-state, not each intermediate result.
+                expected_collections.setdefault(name, rows)
+                expected_collections[name] = [
+                    {**row, rule['field']: value} if rule['field'] not in row else row
+                    for row in expected_collections[name]]
+        for name, expected in expected_collections.items():
+            actual = post if name is None else post[name]
+            if sorted(canonical(row) for row in actual) != sorted(canonical(row) for row in expected):
+                return False
+        if isinstance(pre, dict) and (set(pre) != set(post) or
+                any(pre[key] != post[key] for key in pre if key not in touched)):
+            return False
+        return attempted_write
     if 'default_missing' in transition:
         rule = transition['default_missing']
         identity, field = rule['identity'], rule['field']

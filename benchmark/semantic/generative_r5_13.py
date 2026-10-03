@@ -45,8 +45,9 @@ def typed(contract):
         raise ValueError('invalid identity')
     inp, state = contract['input'], contract['state']
     if not (isinstance(inp, dict) and set(inp) == {'record'} and
-            isinstance(state, dict) and set(state) == {'sequence'} and
-            isinstance(state['sequence'], dict) and set(state['sequence']) == {'record'}):
+            isinstance(state, dict) and (set(state) == {'sequence'} and
+            isinstance(state['sequence'], dict) and set(state['sequence']) == {'record'} or
+            set(state) == {'record'})):
         raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state/input shape')
     for shape in (inp, state):
         shape_valid(shape)
@@ -72,6 +73,11 @@ def typed(contract):
         transition = branch['transition']
         if transition == {'preserve': True}:
             continue
+        if isinstance(transition, dict) and set(transition) == {'relations'}:
+            _relational(transition['relations'], state, slots)
+            continue
+        if set(state) != {'sequence'}:
+            raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state relation')
         if isinstance(transition, dict) and set(transition) == {'default_missing'}:
             rule = transition['default_missing']
             if not isinstance(rule, dict) or set(rule) != {'identity', 'field', 'value'}:
@@ -101,6 +107,82 @@ def typed(contract):
     if len({b['tag'] for b in branches}) != len(branches):
         raise ValueError('duplicate outcome tag')
     return contract
+
+
+def _relational(relations, state, slots):
+    """Check a bounded conjunction of existing exact frame/default/equality relations.
+
+    A relation has no operation name. Its collection path is storage binding
+    metadata; the equality target is a typed post-state field projection.
+    """
+    if not isinstance(relations, list) or not relations:
+        raise ValueError('missing state relations')
+    collection_changes = {}
+    scalar_changes = set()
+    defaults = {}
+    planned = []
+    for relation in relations:
+        if not isinstance(relation, dict) or len(relation) != 1:
+            raise ValueError('invalid state relation')
+        kind, rule = next(iter(relation.items()))
+        if kind not in ('exact_frame', 'default_missing', 'post_equals'):
+            raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state relation')
+        if not isinstance(rule, dict):
+            raise ValueError('invalid state relation parameters')
+        if kind == 'post_equals':
+            if set(rule) != {'field', 'value'} or set(state) != {'record'}:
+                raise ValueError('invalid post equality')
+            field = rule['field']
+            if field in scalar_changes or field in collection_changes or _compile(rule['value'], slots)[0] != state['record'].get(field):
+                raise ValueError('invalid post equality field or type')
+            scalar_changes.add(field)
+            planned.append(relation)
+            continue
+        expected = {'collection', 'identity', 'record'} if kind == 'exact_frame' else {'collection', 'identity', 'field', 'value'}
+        if set(rule) != expected:
+            raise ValueError('invalid collection relation')
+        name = rule['collection']
+        collection = state if name is None and set(state) == {'sequence'} else (
+            state['record'].get(name) if set(state) == {'record'} and type(name) is str else None)
+        if not isinstance(collection, dict) or set(collection) != {'sequence'} or not isinstance(collection['sequence'], dict) or set(collection['sequence']) != {'record'}:
+            raise ValueError('invalid collection projection')
+        fields = collection['sequence']['record']
+        identity = rule['identity']
+        if fields.get(identity) != 'string' or name in scalar_changes:
+            raise ValueError('invalid identity')
+        # A frame or a default maps each collection once; no implicit order of
+        # multiple noncommuting transforms is inferred from a relation list.
+        if kind == 'exact_frame':
+            if _compile(rule['record'], slots)[0] != collection['sequence']:
+                raise ValueError('framed record type mismatch')
+            if name in collection_changes:
+                raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection relations')
+            collection_changes[name] = (kind, identity)
+            planned.append(relation)
+        else:
+            field = rule['field']
+            owner = collection_changes.get(name)
+            if owner is not None and owner != ('default_missing', identity):
+                raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection relations')
+            if (field == identity or not isinstance(fields.get(field), dict) or
+                    set(fields[field]) != {'optional'} or
+                    _compile(rule['value'], slots)[0] != fields[field]['optional']):
+                raise ValueError('invalid default field or type')
+            collection_changes[name] = ('default_missing', identity)
+            key = (name, field)
+            previous = defaults.get(key)
+            if previous is not None:
+                if canonical(previous['value']) == canonical(rule['value']):
+                    continue  # identical relation is idempotent
+                if 'literal' in previous['value'] and 'literal' in rule['value']:
+                    raise ValueError('CONFLICTING_RELATIONS: incompatible defaults for one field')
+                raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: unresolved default equivalence')
+            defaults[key] = rule
+    # Collection plans are sorted by typed projection and field, not serialization
+    # order. Expressions are bound only to input/pre, so disjoint defaults commute.
+    planned.extend({'default_missing': defaults[key]} for key in sorted(
+        defaults, key=lambda key: ('' if key[0] is None else key[0], key[1])))
+    return planned
 
 
 def expression(expr, bindings=None):
@@ -153,6 +235,30 @@ def render(contract, fault=False):
         transition = branch['transition']
         if transition == {'preserve': True}:
             lines.extend(['        post = pre', '        write = False'])
+        elif 'relations' in transition:
+            lines.extend(['        post = pre', '        write = True'])
+            for relation in _relational(transition['relations'], contract['state'],
+                                        {'input': contract['input'], 'pre': contract['state']}):
+                kind, rule = next(iter(relation.items()))
+                if kind == 'post_equals':
+                    lines.append('        post = {**post, ' + repr(rule['field']) + ': ' + expression(rule['value']) + '}')
+                    continue
+                name = rule['collection']
+                source = 'post' if name is None else 'post[' + repr(name) + ']'
+                key = repr(rule['identity'])
+                lines.extend(['        if len({row[' + key + '] for row in ' + source + '}) != len(' + source + '):',
+                              '            raise ValueError("duplicate identity")'])
+                if kind == 'exact_frame':
+                    lines.extend(['        _new = ' + expression(rule['record']),
+                                  '        if _new[' + key + '] in {row[' + key + '] for row in ' + source + '}:',
+                                  '            raise ValueError("identity not fresh")',
+                                  '        _rows = [*' + source + ', _new]'])
+                else:
+                    field = repr(rule['field'])
+                    lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value']) +
+                                 '} if ' + field + ' not in item else item for item in ' + source + ']')
+                lines.append('        post = _rows' if name is None else
+                             '        post = {**post, ' + repr(name) + ': _rows}')
         elif 'default_missing' in transition:
             rule = transition['default_missing']
             identity, field = repr(rule['identity']), repr(rule['field'])

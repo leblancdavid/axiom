@@ -1,5 +1,70 @@
 # Lykoi research log
 
+## R5.18 overlapping relation lowering (prospective, 2026-10-02)
+
+**Observation:** The previous one-owner-per-collection check blocked N
+compatible relations before generation. A typed canonical plan and joint
+verifier now compose 1/2/3 independent defaults on instrument records; reverse
+relation ordering is behaviorally equivalent, duplicates are redundant and
+incompatible literals reject. A durable old→new transition counts records,
+not defaulted fields; the injected wrong second default is grounded but fails
+conformance. See the [R5.18 record](../benchmark/results/phase5c/R5_18-OVERLAPPING-RELATION-COMPOSITION-LOWERING.md).
+
+**Limit:** Frame/default overlap, post-state-dependent or unresolved same-field
+expressions and normalization/write interactions are still unsupported; no
+arbitrary relation solver or general optimizer follows. Final full harness:
+164 tests, 163 pass and one preserved historical R5.17 assertion fails because
+it expects rejection from the old lowerer. Application/compiler 31 OK, R5.16
+focused 4 OK, R5.18 focused 4 OK. `git diff --check` clean, separate LF→CRLF
+warnings. Core 30 / historical raw 46, no frozen retry, Phase 5C paused,
+B17 unexposed/unclassified, R5.2.2 historical authority, format unfrozen;
+universal correctness not established.
+
+## R5.17 frozen B02 generalization retry (prospective, 2026-10-02)
+
+**Observation:** The unchanged 30-candidate vocabulary still abstractly
+represents frozen B02 including inherited B01/baseline obligations. A contract
+slice combining B02's missing priority, nullable due date and empty ordered
+tags defaults on the same keyed legacy collection, post-version 4 and a typed
+population count reaches the unchanged R5.16 `typed` checker and rejects the
+second default as `UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection
+relations`. The focused rejection test and 160-test harness pass; this is a
+**lowering halt**, not a passing B02 integration. See the
+[R5.17 record](../benchmark/results/phase5c/R5_17-B02-GENERALIZATION-RETRY.md).
+
+**Limit:** R5.15/R5.16 generated normalization, record outcomes, exact
+insertion and *single-default* durable migration on unrelated domains, but no
+B02 operation was generated or grounded. Frozen B02 acceptance and conformance
+are N/A, not zero-pass observations. Task ordering/lifecycle/CLI binding remain
+untested or unsupported in this path. No repair, new construct or B03 advance;
+core 30 / historical raw 46, R5.2.2 historical authority, B17 unexposed and
+unclassified, semantic-first format unfrozen. Application/compiler 31 OK;
+R5.10–R5.17 focused 101 OK; whitespace checks clean with separate Git
+LF→CRLF warnings. Universal correctness not established.
+
+## R5.16 independent framed insertion and durable transition (prospective, 2026-10-02)
+
+**Observation:** The checked exact-selection/full-record frame now generates a
+fresh-key specimen registration over empty and populated durable collections.
+A separate archive contract reads actual persisted V1/V2/unsupported versions,
+defaults only missing fields in a uniquely keyed population, reports #30's
+0/1/2 candidate cardinalities and persists V2. Independent public/file/event
+grounding and semantic verification distinguish four insertion and six migration
+fault variants; mutation of semantic field mapping/default changes generated
+durable behavior. Trim and record-valued results compose without new lowering
+branches. See the [R5.16 result](../benchmark/results/phase5c/R5_16-FRAMED-INSERTION-DURABLE-MIGRATION-LOWERING.md).
+
+**Limit:** These are bounded one-frame/one-default collection transitions on
+checked typed records, not arbitrary mixed relation synthesis, full CLI
+binding, an acceptance result or universal implementation correctness.
+Overlapping transforms reject; generated append is one valid storage-order
+witness, not insertion ordering semantics. Result:
+`R5_16_LOWERING_GAPS_CLOSED` for the two targeted capabilities only. Core 30,
+historical raw 46, no B02 retry; Phase 5C paused, B17 unexposed/unclassified,
+R5.2.2 historical authority and semantic-first format unfrozen. Harness 159
+OK, application/compiler 31 OK, focused final R5.16 4 OK; tracked diff check
+passed with separate Git line-ending warnings.
+
 ## R5.15 independent general lowering (prospective, 2026-10-02)
 
 **Observation:** On independent media, device and library operations,

@@ -261,6 +261,34 @@ Keep 30 candidate core / 46 historical raw entries, Phase 5C paused, B17
 unexposed/unclassified, R5.2.2 historically authoritative and the
 semantic-first format globally unfrozen. Next: integrate exact insertion
 framing and checked durable version transitions on further non-task domains.
+The [R5.16 independent transition study](../benchmark/results/phase5c/R5_16-FRAMED-INSERTION-DURABLE-MIGRATION-LOWERING.md)
+now constructively lowers an exact full-record insertion frame and a checked
+durable V1→V2 default/version/count transition on specimen and archive data.
+Independent public/file grounding, semantic-only mutations, composition and
+faithfully grounded nonconforming faults close these **bounded general-lowering**
+gaps, not all relation shapes or interface binding. Candidate core remains 30;
+no B02 candidate or retry followed. Phase 5C remains paused, R5.2.2 historical
+authority, B17 unexposed/unclassified and the semantic-first format unfrozen.
+The [R5.17 frozen B02 retry](../benchmark/results/phase5c/R5_17-B02-GENERALIZATION-RETRY.md)
+locks the R5.16 working-copy architecture and reconfirms B02 expressibility
+with 30 candidate core constructs, but stops at unchanged general lowering:
+three missing-field defaults on the same legacy task population encounter the
+explicit overlapping-collection rejection. No B02 candidate was generated;
+frozen acceptance, grounding and conformance were not reached. This is a
+compiler-composition gap, not a new semantic construct or a retroactive change
+to the historical v0.3 B02 gap. Next study the unresolved general composition
+on independent non-task domains in a separate experiment before any further
+frozen retry. Phase 5C does not proceed to B03; B17 remains unexposed and
+ unclassified, R5.2.2 historical authority and semantic-first format unfrozen.
+The [R5.18 independent relation-composition study](../benchmark/results/phase5c/R5_18-OVERLAPPING-RELATION-COMPOSITION-LOWERING.md)
+now plans N compatible keyed defaults over one typed collection, deduplicates
+equivalent relations, rejects conflicting literals and unsupported structural
+overlaps, and checks their joint post-state in an instrument inventory. Durable
+version/count outcomes and a grounded but nonconformant lowering fault exercise
+the conjunction. The historical R5.17 locked rejection test still describes
+the old lowerer and is not a new frozen retry. Core 30; Phase 5C paused, B17
+unexposed/unclassified, R5.2.2 historical authority, format unfrozen. Next:
+a separately locked retry, not a retroactive R5.17 result.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
