@@ -1,5 +1,18 @@
 # Experimental decisions
 
+## R5.27 partial general typed-analysis integration (prospective, 2026-10-03)
+
+Keep R5.23 pinned and R5.26's read-only evidence as a historical prototype.
+Introduce one R5.27 operand analyzer for both read expressions and writing
+relation operands, with scoped presence and instant ordering in one type model.
+This is deliberately a **partial** gate: static checking without shared
+relation planning, general generation and independent post-state conformance
+cannot justify whole-program integration. Preserve separate evidence labels in
+the machine-readable matrix. Next complete this gate on a generated non-task
+durable multi-command program before claiming R5.23 type blockers resolved or
+studying malformed input. Core 30; no #31, B02 retry or format freeze. See the
+[R5.27 result](../benchmark/results/phase5c/R5_27-UNIFIED-TYPED-PIPELINE-INTEGRATION.md).
+
 ## R5.26 versioned type integration boundary (prospective, 2026-10-03)
 
 Keep R5.23-locked files unchanged and implement optional elimination and UTC

@@ -69,6 +69,17 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.27 unified typed pipeline checkpoint](../benchmark/results/phase5c/R5_27-UNIFIED-TYPED-PIPELINE-INTEGRATION.md)
+adds a prospective, shared operand analyzer for read and write contracts:
+scoped optional presence, order-independent conjunctions, instant keys and
+typed state-transition operands. It does **not** yet lower or verify refined
+writes, generate a multi-command program or ground R5.27 executions. Gate
+`R5_27_UNIFIED_TYPED_PIPELINE_PARTIAL`; R5.23's two type blockers are not yet
+resolved in the general pipeline. Finish the independent generated/grounded
+integration before the separate suppliedness/well-formedness study. Core 30,
+no #31; no B02 retry, Phase 5C paused, B03 untouched, B17 unexposed and
+unclassified, R5.2.2 historical authority and format globally unfrozen.
+
 The [R5.26 general type integration study](../benchmark/results/phase5c/R5_26-GENERAL-TYPE-REFINEMENT-INSTANT-INTEGRATION.md)
 generates, grounds and semantically checks read-only non-task operations with
 scoped `optional<T>` elimination and chronological `instant` ordering, including

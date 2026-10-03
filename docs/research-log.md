@@ -1,5 +1,29 @@
 # Lykoi research log
 
+## R5.27 typed-analysis checkpoint (prospective, 2026-10-03)
+
+**Observation:** One new R5.27 checker checks read selection/order and typed
+write operands over the same input/pre/post shapes. Independent archive-domain
+static fixtures exercise both conjunction serialization orders, invalid
+optional-witness scopes, instant ordering, external instant insertion typing,
+and selection-guarded keyed removal/replacement typing.
+
+**Observation:** A required-instant archive insertion also passes the new
+checker and the legacy general generator; independent subprocess/event/durable
+grounding and historical conformance agree on the externally supplied instant.
+
+**Limit:** This is not generated, grounded, fault-tested *refined* read/write integration.
+The pinned general emitter and verifier remain unable to consume the new
+checker directly; no R5.27 multi-command durable program exists. Gate
+`R5_27_UNIFIED_TYPED_PIPELINE_PARTIAL`; R5.23 type blockers remain partially
+resolved, with malformed outcomes, cross-shape migration and frozen transport
+separate. Core 30, no #31, no B02 retry. See the
+[R5.27 result](../benchmark/results/phase5c/R5_27-UNIFIED-TYPED-PIPELINE-INTEGRATION.md).
+
+**Verification:** full harness 263/263, application/compiler 31/31, model
+validation ok, safety zero violations/invalid transitions, focused R5.27 4/4,
+matrix parses, `git diff --check` exit 0. Git LF→CRLF notices were not failures.
+
 ## R5.26 general type integration (prospective, 2026-10-03)
 
 **Observation:** A versioned R5.26 read-only #45 path checks the same positive

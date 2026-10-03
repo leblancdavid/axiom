@@ -1,5 +1,5 @@
 {
-  "scope": "historical R5.24 locked generative_r5_13 entries below, plus separately versioned R5.26 read-only integration profile; independent of frozen benchmark",
+  "scope": "historical R5.24 locked generative_r5_13 entries below, separately versioned R5.26 read-only generated profile, and R5.27 static typed-analysis checkpoint; independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -21,6 +21,25 @@
     "sole/project": {"accepts": "sequence<T> exactly one; record and required fields", "produces": "T or projected record", "elements": "typed T", "optional": "project rejects optional fields", "refinement": "sole cardinality exactly one", "state": "pre/post references", "outcome": "typed", "generation": "yes", "verifier": "yes"},
     "operation outcomes": {"accepts": "guard boolean, branch value of exact declared type", "produces": "tagged typed payload", "elements": "branch-dependent", "optional": "no branch-dependent narrowing of optional fields", "refinement": "first matching guard", "state": "one input and one state declaration for pre/post", "outcome": "typed per branch", "generation": "yes", "verifier": "yes"},
     "durable migration": {"accepts": "compatible default_missing and post_equals relation set", "produces": "post state, typed count outcome", "elements": "optional legacy row fields in same collection", "optional": "missing fields only", "refinement": "unique identity; checked post type", "state": "one state shape for pre/post; no envelope promotion", "outcome": "cardinality/record payload", "generation": "yes within one shape", "verifier": "yes within one shape"}
+  },
+  "r5_27_general_pipeline": {
+    "profile": "benchmark.semantic.unified_types_r5_27 typed operand analysis with legacy-only generation bridge; historical R5.23 generator and R5.26 read-only generator unchanged; no refined R5.27 generated executable",
+    "dimensions": ["SEMANTICALLY_SUPPORTED", "GENERAL_CHECKER_SUPPORTED", "GENERAL_GENERATOR_SUPPORTED", "GENERAL_VERIFIER_SUPPORTED", "WHOLE_PROGRAM_DEMONSTRATED", "GROUNDED", "FAULT_TESTED"],
+    "scoped optional<T> + present + before + select": {
+      "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "operand typing only; relation-set planning incomplete", "GENERAL_GENERATOR_SUPPORTED": false, "GENERAL_VERIFIER_SUPPORTED": false, "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": false, "FAULT_TESTED": false
+    },
+    "instant order over refined selection": {
+      "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "typed ordering plan", "GENERAL_GENERATOR_SUPPORTED": false, "GENERAL_VERIFIER_SUPPORTED": false, "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": false, "FAULT_TESTED": false
+    },
+    "refined predicate + replace_field or remove": {
+      "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "typed guard and transition operands; overlap/uniqueness planner pending", "GENERAL_GENERATOR_SUPPORTED": false, "GENERAL_VERIFIER_SUPPORTED": false, "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": false, "FAULT_TESTED": false
+    },
+    "external instant + insertion": {
+      "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "typed operands for required instant row", "GENERAL_GENERATOR_SUPPORTED": "yes through legacy-only bridge to R5.23 emitter", "GENERAL_VERIFIER_SUPPORTED": "yes, historical R5.23 verifier, not unified", "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": true, "FAULT_TESTED": false
+    },
+    "legacy read/write relations": {
+      "SEMANTICALLY_SUPPORTED": true, "GENERAL_CHECKER_SUPPORTED": "historical R5.23; not completely revalidated in R5.27", "GENERAL_GENERATOR_SUPPORTED": "historical R5.23 only", "GENERAL_VERIFIER_SUPPORTED": "historical R5.23 only", "WHOLE_PROGRAM_DEMONSTRATED": false, "GROUNDED": false, "FAULT_TESTED": false
+    }
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",
