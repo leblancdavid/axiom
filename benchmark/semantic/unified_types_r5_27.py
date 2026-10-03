@@ -72,7 +72,8 @@ def ordering_plan(arg, slots):
         if shape not in ORDERABLE:
             raise ValueError('non-orderable key; optional key needs selection presence')
         keys.append((key, shape))
-    return {'element': element, 'keys': keys}
+    return {'element': element, 'keys': keys, 'comparison': 'lexicographic',
+            'ties': 'unconstrained', 'direction': None}
 
 
 def analyze(expr, slots, refinements=frozenset()):
@@ -241,6 +242,8 @@ class CheckedPlan:
     scopes: dict
     orders: dict
     operands: dict
+    relations: dict = None
+    optional_record_fields: frozenset = frozenset()
 
     def assert_current(self):
         if general.sha(general.canonical(self.contract)) != self.digest:
@@ -256,6 +259,7 @@ class CheckedPlan:
 def checked_plan(contract):
     typed(contract)
     scopes, orders, operands = {}, {}, {}
+    optional_record_fields = set()
     slots = {'input': contract['input'], 'pre': contract['state']}
 
     def visit(expr, environment):
@@ -281,6 +285,10 @@ def checked_plan(contract):
                 visit(part, environment)
         elif kind == 'record':
             for part in arg.values():
+                if isinstance(part, dict) and set(part) == {'ref'}:
+                    shape = declared(part['ref'], environment)
+                    if isinstance(shape, dict) and set(shape) == {'optional'}:
+                        optional_record_fields.add(id(part))
                 visit(part, environment)
         elif kind in ('not', 'cardinality', 'sole'):
             visit(arg, environment)
@@ -300,7 +308,19 @@ def checked_plan(contract):
                 if name in rule:
                     operands[id(rule[name])] = analyze(rule[name], slots)
                     visit(rule[name], slots)
-    return CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders, operands)
+    # Relation overlap/framing is checked once, after operand typing. The
+    # emitter consumes the resulting conjunction rather than planning again.
+    from benchmark.semantic.refined_generator_r5_28 import _relational
+    relations = {}
+    for branch in contract['branches']:
+        transition = branch['transition']
+        if 'relations' in transition:
+            provisional = CheckedPlan(contract, general.sha(general.canonical(contract)),
+                                      scopes, orders, operands)
+            relations[id(branch)] = tuple(_relational(transition['relations'], contract['state'],
+                slots, provisional))
+    return CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders,
+                       operands, relations, frozenset(optional_record_fields))
 
 
 def interpret(expr, facts, slots, plan):
@@ -335,7 +355,14 @@ def interpret(expr, facts, slots, plan):
     if kind == 'sole':
         return _sole(ev(arg))
     if kind == 'record':
-        return {key: ev(value) for key, value in arg.items()}
+        result = {}
+        for key, value in arg.items():
+            if id(value) in plan.optional_record_fields:
+                path = value['ref']
+                if path[-1] not in ev({'ref': path[:-1]}):
+                    continue
+            result[key] = ev(value)
+        return result
     if kind == 'project':
         row = ev(arg['row'])
         return {key: row[key] for key in arg['fields']}

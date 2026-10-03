@@ -128,10 +128,13 @@ def _evaluate(expr, facts, slots, plan):
     return _compile(expr, slots)[1](facts)
 
 
-def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, external=None):
+def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, external=None, plan=None):
     """Interpret the originating typed contract, independently of emitted Python."""
-    plan = None
-    if contract.get('version') == 'R5.27':
+    if plan is not None:
+        if plan.contract is not contract:
+            raise ValueError('verifier plan belongs to another contract')
+        plan.assert_current()
+    elif contract.get('version') == 'R5.27':
         from benchmark.semantic.unified_types_r5_27 import checked_plan
         plan = checked_plan(contract)
     else:

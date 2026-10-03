@@ -69,6 +69,24 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.30 current-pipeline hardening checkpoint](../benchmark/results/phase5c/R5_30-CURRENT-PIPELINE-HARDENING-STRUCTURED-ASSEMBLY.md)
+now assembles checked operation units before a single final target render through
+`benchmark.semantic.current_pipeline`. The five-operation archive still runs
+eight grounded conformant durable calls. Independently observed omitted and
+explicit optional values persist as absent and present fields respectively;
+presence-refined reads distinguish them. A new read-only operation fault writes
+an unrelated row **during** the call, grounds, and fails semantic conformance.
+An inventory-domain current-entry regression demonstrates normalization,
+string/integer ordering and overlapping defaults with same-shape migration.
+The result is **partial** (`R5_30_CURRENT_PIPELINE_HARDENING_PARTIAL`):
+legacy expression typing and downstream checks remain duplicated, complete
+checked expression/payload facts are not yet carried end to end, and current
+capability fault/mutation coverage is incomplete. Optional refinement and
+instant ordering are resolved for the demonstrated current same-shape subset,
+not frozen B02. Core 30, no #31; no B02 retry, Phase 5C paused, B03 untouched,
+B17 unexposed/unclassified, R5.2.2 historical authority, format unfrozen and
+universal correctness unclaimed.
+
 The [R5.29 authoritative-pipeline consolidation checkpoint](../benchmark/results/phase5c/R5_29-AUTHORITATIVE-PIPELINE-CONSOLIDATION.md)
 designates `benchmark.semantic.current_pipeline` as the prospective entry for
 new non-task same-shape semantic applications. One generated archive program

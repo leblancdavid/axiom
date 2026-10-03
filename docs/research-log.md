@@ -1,5 +1,23 @@
 # Lykoi research log
 
+## R5.30 prospective structured assembly (2026-10-03)
+
+The R5.29 five-operation archive now compiles from source-bound checked plans
+through generated units rather than extracted rendered Python. Repeated
+generation produces identical artifact and provenance bytes. An omitted
+optional archive timestamp remains absent after insertion while a supplied
+timestamp survives; a current-pipeline presence/before read excludes the
+former and refines the latter. A disposable read operation rewrites a different
+row during execution: public result and logged pre/post match independent
+observations (grounded), but the read-only contract fails conformance. A–D
+remain grounded nonconformances. A separate inventory application grounds
+normalization, integer/string ordering, overlapping defaults and a same-shape
+version/count transition through the current entry. The 278-test historical
+harness and 31-test application suite pass, but repeated type analysis and
+legacy inference prevent the full architecture gate. Core 30; no new semantic
+capability or B02 retry. Evidence and limits:
+`benchmark/results/phase5c/R5_30-CURRENT-PIPELINE-HARDENING-STRUCTURED-ASSEMBLY.md`.
+
 ## R5.29 prospective application integration (2026-10-03)
 
 A five-operation publication archive runs from one generated artifact with one

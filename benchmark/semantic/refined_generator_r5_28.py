@@ -9,6 +9,7 @@ compositions reject explicitly.
 
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 
 from benchmark.semantic.capability_boundary_r5_22 import capability_type
@@ -273,7 +274,16 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
     if kind == 'cardinality':
         return 'len(' + emit(arg) + ')'
     if kind == 'record':
-        return '{' + ', '.join(repr(k) + ': ' + emit(v) for k, v in arg.items()) + '}'
+        parts = []
+        for key, value in arg.items():
+            if plan is not None and id(value) in plan.optional_record_fields:
+                path = value['ref']
+                parent = emit({'ref': path[:-1]})
+                parts.append('**({' + repr(key) + ': ' + emit(value) + '} if ' +
+                             repr(path[-1]) + ' in ' + parent + ' else {})')
+            else:
+                parts.append(repr(key) + ': ' + emit(value))
+        return '{' + ', '.join(parts) + '}'
     if kind == 'trim':
         return '(' + expression(arg, bindings, slots, fault) + ').strip()'
     if kind == 'map':
@@ -313,11 +323,11 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
         if fault:
             # Disposable injected lowering fault: ignore an explicitly present input and
             # always emit the fallback value. Faithfully grounded, contract-violating.
-            return expression(arg['default'], bindings, slots, fault)
+            return expression(arg['default'], bindings, slots, fault, plan)
         path = arg['value']['ref']
-        parent = expression({'ref': path[:-1]}, bindings, slots, fault)
-        return '(' + expression(arg['default'], bindings, slots, fault) + ' if ' + repr(path[-1]) + \
-               ' not in ' + parent + ' else ' + expression(arg['value'], bindings, slots, fault) + ')'
+        parent = expression({'ref': path[:-1]}, bindings, slots, fault, plan)
+        return '(' + expression(arg['default'], bindings, slots, fault, plan) + ' if ' + repr(path[-1]) + \
+                ' not in ' + parent + ' else ' + expression(arg['value'], bindings, slots, fault, plan) + ')'
     if kind == 'before':
         return 'instant_lt(' + emit(arg[0]) + ', ' + emit(arg[1]) + ')'
     if kind == 'sole':
@@ -328,7 +338,83 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
     raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: ' + kind)
 
 
+@dataclass(frozen=True)
+class GeneratedUnit:
+    identity: str
+    contract_digest: str
+    declaration: tuple
+    input_shape: dict
+    outcome_shapes: dict
+    state_shape: dict
+    imports: tuple = ('instant_key', 'instant_lt', 'project', 'sole')
+
+
+def generated_unit(contract, plan, symbol='execute', fault=False):
+    """Lower one checked operation into a structured declaration, not a file."""
+    if plan.contract is not contract:
+        raise ValueError('typed plan belongs to another contract')
+    plan.assert_current()
+    slots = {'input': contract['input'], 'pre': contract['state']}
+    value_slots = {**slots, 'post': contract['state']}
+    lines = [f'def {symbol}(input, pre):']
+    for index, branch in enumerate(contract['branches']):
+        condition = 'if ' + expression(branch['when'], slots=slots, plan=plan) + ':' if index == 0 else (
+            'elif ' + expression(branch['when'], slots=slots, plan=plan) + ':' if branch['when'] is not None else 'else:')
+        lines.append('    ' + condition)
+        transition = branch['transition']
+        if transition == {'preserve': True}:
+            lines.extend(['        post = pre', '        write = False'])
+        elif 'relations' in transition:
+            lines.extend(['        post = pre', '        write = True'])
+            for relation in plan.relations[id(branch)]:
+                kind, rule = next(iter(relation.items()))
+                if kind == 'post_equals':
+                    lines.append('        post = {**post, ' + repr(rule['field']) + ': ' + expression(rule['value'], slots=slots, plan=plan) + '}')
+                    continue
+                name = rule['collection']
+                source = 'post' if name is None else 'post[' + repr(name) + ']'
+                identity = repr(rule['identity'] if 'identity' in rule else rule['key'])
+                lines.extend(['        if len({row[' + identity + '] for row in ' + source + '}) != len(' + source + '):',
+                              '            raise ValueError("duplicate identity")'])
+                if kind == 'exact_frame':
+                    lines.extend(['        _new = ' + expression(rule['record'], slots=slots, plan=plan),
+                                  '        if _new[' + identity + '] in {row[' + identity + '] for row in ' + source + '}:',
+                                  '            raise ValueError("identity not fresh")',
+                                  '        _rows = [*' + source + ', _new]'])
+                elif kind == 'remove':
+                    match = expression(rule['match'], slots=slots, plan=plan)
+                    lines.append('        _rows = ' + source + '[1:]' if fault else
+                                 '        _rows = [item for item in ' + source +
+                                 ' if item[' + identity + '] != ' + match + ']')
+                elif kind == 'replace_field':
+                    field = repr(rule['field'])
+                    match, value = expression(rule['match'], slots=slots, plan=plan), expression(rule['value'], slots=slots, plan=plan)
+                    value = 'item[' + field + ']' if fault else value
+                    lines.append('        _rows = [{**item, ' + field + ': ' + value +
+                                 '} if item[' + identity + '] == ' + match + ' else item for item in ' + source + ']')
+                else:
+                    field = repr(rule['field'])
+                    lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots, plan=plan) +
+                                 '} if ' + field + ' not in item else item for item in ' + source + ']')
+                lines.append('        post = _rows' if name is None else
+                             '        post = {**post, ' + repr(name) + ': _rows}')
+        else:
+            raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: current transition')
+        lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
+                     expression(branch['value'], {'post': 'post'}, value_slots, fault, plan) + '}, post, write')
+    return GeneratedUnit(contract['id'], plan.digest, tuple(lines), contract['input'],
+                         {b['tag']: b['value_type'] for b in contract['branches']}, contract['state'])
+
+
 def render(contract, fault=False, cli=False, plan=None):
+    if plan is not None:
+        unit = generated_unit(contract, plan, fault=fault)
+        entry = 'run_cli' if cli else 'run'
+        return '\n'.join(['# Disposable generated program; regenerate from semantic contract.',
+                          'from refined_runtime_r5_28 import instant_key, instant_lt, project, run, run_cli, sole',
+                          '', *unit.declaration, '', 'if __name__ == "__main__":',
+                          '    ' + entry + '(execute, ' + repr(unit.input_shape) + ', ' +
+                          repr(unit.state_shape) + ', ' + repr(unit.outcome_shapes) + ')', '']).encode()
     if plan is None:
         typed(contract)
     else:

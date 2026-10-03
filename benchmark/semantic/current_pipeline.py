@@ -27,11 +27,6 @@ def checked(application):
         if type(name) is not str or not name or contract['state'] != application['state']:
             raise ValueError('operation state or identity mismatch')
         plans[name] = types.checked_plan(contract)
-        for branch in contract['branches']:
-            transition = branch['transition']
-            if 'relations' in transition:
-                emitter._relational(transition['relations'], contract['state'],
-                                    {'input': contract['input'], 'pre': contract['state']}, plans[name])
     return plans
 
 
@@ -41,20 +36,22 @@ def generate(application, directory):
     runtime = emitter.RUNTIME.read_bytes()
     lines = ['# Generated from checked semantic application; do not edit.',
              'from refined_runtime_r5_28 import instant_key, instant_lt, project, run_application, sole', '']
-    for index, (name, contract) in enumerate(application['operations'].items()):
-        rendered = emitter.render(contract, plan=plans[name]).decode()
-        body = rendered[rendered.index('def execute('):rendered.index('\nif __name__')]
-        lines.append(body.replace('def execute(', f'def execute_{index}(', 1))
+    units = [emitter.generated_unit(contract, plans[name], f'execute_{index}')
+             for index, (name, contract) in enumerate(application['operations'].items())]
+    for unit in units:
+        lines.extend(unit.declaration)
+        lines.append('')
     lines.append('OPERATIONS = {')
-    for index, (name, contract) in enumerate(application['operations'].items()):
-        lines.append(f'    {name!r}: (execute_{index}, {contract["input"]!r}, '
-                     f'{ {b["tag"]: b["value_type"] for b in contract["branches"]}!r}),')
+    for index, (name, unit) in enumerate(zip(application['operations'], units)):
+        lines.append(f'    {name!r}: (execute_{index}, {unit.input_shape!r}, '
+                     f'{unit.outcome_shapes!r}),')
     lines.extend(['}', '', 'if __name__ == "__main__":',
                   f'    run_application(OPERATIONS, {application["state"]!r})', ''])
     artifact = '\n'.join(lines).encode()
     identity = emitter.sha(emitter.canonical(application))
     manifest = {'application': identity, 'id': application['id'], 'artifact': emitter.sha(artifact),
-                'runtime': emitter.sha(runtime)}
+                 'runtime': emitter.sha(runtime)}
+    manifest['units'] = {name: unit.contract_digest for name, unit in zip(application['operations'], units)}
     manifest['generation'] = emitter.sha(emitter.canonical(manifest))
     (root / 'operation.py').write_bytes(artifact)
     (root / emitter.RUNTIME.name).write_bytes(runtime)
@@ -82,8 +79,10 @@ def challenge(application, directory, event, public, before, after):
     root = Path(directory)
     manifest = json.loads((root / 'provenance.json').read_bytes())
     expected = {'application': emitter.sha(emitter.canonical(application)), 'id': application['id'],
-                'artifact': emitter.sha((root / 'operation.py').read_bytes()),
-                'runtime': emitter.sha((root / emitter.RUNTIME.name).read_bytes())}
+                 'artifact': emitter.sha((root / 'operation.py').read_bytes()),
+                 'runtime': emitter.sha((root / emitter.RUNTIME.name).read_bytes()),
+                 'units': {name: emitter.sha(emitter.canonical(contract))
+                           for name, contract in application['operations'].items()}}
     integrity = (all(manifest.get(k) == v for k, v in expected.items()) and
                  expected['runtime'] == emitter.sha(emitter.RUNTIME.read_bytes()) and
                  manifest.get('generation') == emitter.sha(emitter.canonical(expected)))
@@ -105,7 +104,8 @@ def challenge(application, directory, event, public, before, after):
     if grounded:
         result['grounded'] = True
         result['conformant'] = evidence.conforms(application['operations'][public['operation']],
-                                                public['input'], json.loads(before), outcome,
-                                                json.loads(after), before == after,
-                                                event['attempted_write'], event['externals'])
+                                                 public['input'], json.loads(before), outcome,
+                                                 json.loads(after), before == after,
+                                                 event['attempted_write'], event['externals'],
+                                                 plan=types.checked_plan(application['operations'][public['operation']]))
     return result

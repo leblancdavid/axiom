@@ -1,5 +1,18 @@
 # Experimental decisions
 
+## R5.30 — Structured assembly without claiming full authority
+
+Keep `benchmark.semantic.current_pipeline` as the one designated non-task
+same-shape entry. Assemble checked generated units and render once; retain
+source-bound relation/ordering plans and independent verifier evaluation of
+observed behavior. Optional record-field construction preserves key absence
+under existing typed record membership rather than inventing a new fallback
+rule. The tradeoff is that declarations are target-specific and legacy checker
+delegation and duplicate expression inference remain: structured assembly
+alone is insufficient for the hardened gate. Decide **partial**, keep core 30
+and the benchmark boundary unchanged. Evidence:
+`benchmark/results/phase5c/R5_30-CURRENT-PIPELINE-HARDENING-STRUCTURED-ASSEMBLY.md`.
+
 ## R5.29 — Designate a checked application entry without promoting a partial gate
 
 Use `benchmark.semantic.current_pipeline.generate(application, directory)` for
