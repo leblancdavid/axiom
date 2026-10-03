@@ -1,5 +1,34 @@
 # Lykoi research log
 
+## R5.31 prospective semantic-authority consolidation (2026-10-03)
+
+Observation: the current analyzer now records complete checked expression facts
+as it validates, with declared/effective types and presence producer/scope
+dependencies. Generation, projection/order/state/outcome binding and independent
+interpretation consume these facts; older expression evaluation no longer
+retypes through `_compile`. Runtime capability shapes also come from the plan.
+Eight new tests expose the legacy rejection of a checked refined instant order,
+poison alternative typers and downstream analysis, reject contradictory checked
+maps, retain authoritative clock typing despite a contradictory runtime fallback
+table, and propagate source-only ordering/projection/normalization/fallback
+changes to grounded conformant behavior. The five-operation archive retains its
+eight-call durable chain; the inventory retains normalization/order/defaults/
+migration; Faults A–E ground but fail conformance. Architecture gate validated
+for the supported same-shape subset, not universally or for frozen B02.
+
+Final Python 3.12.10/LF-checkout verification passes 286 harness tests, 31
+application/compiler tests, model validation, safety and matrix checks. Initial
+local verification used Python 3.9 and CRLF bytes on untouched pinned inputs,
+causing real version/hash failures; the isolated supported-runtime/LF rerun
+resolved them without changing frozen locks. Git LF→CRLF notices are recorded
+separately. The full harness includes unchanged historical B02 diagnostics and
+nested Conventional acceptance regressions, not a new B02 retry or acceptance
+gate. Core stays 30, no #31; independent suppliedness/well-formedness,
+malformed-input outcomes, cross-shape state and transport classes remain open.
+R5.32 recommendation is a bounded semantic review, not immediate implementation.
+Evidence and complete audit:
+`benchmark/results/phase5c/R5_31-SINGLE-SEMANTIC-AUTHORITY-CONSOLIDATION.md`.
+
 ## R5.30 prospective structured assembly (2026-10-03)
 
 The R5.29 five-operation archive now compiles from source-bound checked plans

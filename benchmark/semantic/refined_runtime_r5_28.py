@@ -66,7 +66,7 @@ def instant_key(value):
 class Capabilities:
     """One resolution per named capability, recording the actual value used."""
 
-    def __init__(self, descriptor):
+    def __init__(self, descriptor, shapes=None):
         try:
             config = json.loads(descriptor) if descriptor else {'mode': 'real'}
         except ValueError:
@@ -74,9 +74,10 @@ class Capabilities:
         self.mode = config.get('mode', 'real')
         self.fixed = config.get('values', {}) if self.mode == 'controlled' else {}
         self.logged = {}
+        self.shapes = CAPABILITY_TYPES if shapes is None else shapes
 
     def _supply(self, capability):
-        if capability not in CAPABILITY_TYPES:
+        if capability not in self.shapes:
             raise ValueError('unknown capability: ' + str(capability))
         if self.mode == 'controlled':
             if capability not in self.fixed:
@@ -88,7 +89,7 @@ class Capabilities:
             value = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
         else:
             raise ValueError('no real provider for capability: ' + str(capability))
-        if not _typed(value, CAPABILITY_TYPES[capability]):
+        if not _typed(value, self.shapes[capability]):
             raise ValueError('provider value violates capability type: ' + str(capability))
         return value
 
@@ -120,8 +121,8 @@ def valid(value, shape):
         valid(value[key], child) for key, child in fields.items() if key in value)
 
 
-def _invoke(execute, input_shape, state_shape, outcome_shapes, pre, inp, caps_descriptor):
-    caps = Capabilities(caps_descriptor)
+def _invoke(execute, input_shape, state_shape, outcome_shapes, pre, inp, caps_descriptor, capability_shapes=None):
+    caps = Capabilities(caps_descriptor, capability_shapes)
     execute.__globals__['EXTERNAL'] = caps
     outcome, post, write = execute(inp, pre)
     if (type(outcome) is not dict or set(outcome) != {'kind', 'value'} or
@@ -133,7 +134,7 @@ def _invoke(execute, input_shape, state_shape, outcome_shapes, pre, inp, caps_de
     return outcome, post, write, caps.logged
 
 
-def run(execute, input_shape, state_shape, outcome_shapes=None):
+def run(execute, input_shape, state_shape, outcome_shapes=None, capability_shapes=None):
     state, trace, invocation, payload, generation = sys.argv[1:6]
     state = Path(state)
     pre = json.loads(state.read_bytes())
@@ -142,7 +143,7 @@ def run(execute, input_shape, state_shape, outcome_shapes=None):
         raise ValueError('invalid typed operation values')
     outcome, post, write, externals = _invoke(execute, input_shape, state_shape,
                                                outcome_shapes, pre, inp,
-                                               os.environ.get(CAPS_ENV, ''))
+                                                os.environ.get(CAPS_ENV, ''), capability_shapes)
     if write:
         state.write_text(json.dumps(post, sort_keys=True, separators=(',', ':')), encoding='utf-8')
     event = {'invocation': invocation, 'generation': generation, 'input': inp,
@@ -157,9 +158,9 @@ def run_application(operations, state_shape):
     operation = sys.argv[1]
     if operation not in operations:
         raise ValueError('unknown operation')
-    execute, input_shape, outcome_shapes = operations[operation]
+    execute, input_shape, outcome_shapes, capability_shapes = operations[operation]
     sys.argv = [sys.argv[0], *sys.argv[2:]]
-    run(execute, input_shape, state_shape, outcome_shapes)
+    run(execute, input_shape, state_shape, outcome_shapes, capability_shapes)
     trace = Path(sys.argv[2])
     event = json.loads(trace.read_bytes())
     event['operation'] = operation
@@ -175,7 +176,7 @@ def _flag_type(shape):
     return None
 
 
-def run_cli(execute, input_shape, state_shape, outcome_shapes=None):
+def run_cli(execute, input_shape, state_shape, outcome_shapes=None, capability_shapes=None):
     """Generic public CLI adapter derived from checked input-shape binding metadata.
 
     One positional boundary is the durable file; the operation's public inputs
@@ -218,7 +219,7 @@ def run_cli(execute, input_shape, state_shape, outcome_shapes=None):
         raise ValueError('invalid typed operation values')
     outcome, post, write, externals = _invoke(execute, input_shape, state_shape,
                                                outcome_shapes, pre, inp,
-                                               os.environ.get(CAPS_ENV, ''))
+                                                os.environ.get(CAPS_ENV, ''), capability_shapes)
     if write:
         state.write_text(json.dumps(post, sort_keys=True, separators=(',', ':')), encoding='utf-8')
     event = {'invocation': invocation, 'generation': generation, 'input': inp,

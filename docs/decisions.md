@@ -1,5 +1,23 @@
 # Experimental decisions
 
+## R5.31 — One static semantic interpretation, independent behavioral verdicts
+
+Record every supported expression's declared/effective type during the designated
+analysis rather than collecting a partial plan by retyping afterward. Keep
+source-bound identities, checked fields/state operands, outcome/projection types
+and external signatures in the sealed CheckedPlan; current generators and
+interpreters assert/consume those facts. Preserve target-specific representation
+and constructive-support checks, concrete value validation and independent
+semantic evaluation. Historical typers stay available for pinned reproduction
+but are not current authorities. Runtime capability validation now receives the
+checked signatures instead of using its historical fallback table on the current
+path. Tradeoffs: plans remain in-process and target declarations remain strings;
+fact seals detect internal mutation, not malicious compiler modification or
+universal behavioral errors. The call-path audit and negative authority tests,
+with preserved archive/inventory/fault evidence, justify the bounded validated
+gate. No new semantics, core 30, no #31 or benchmark activation. Evidence:
+`benchmark/results/phase5c/R5_31-SINGLE-SEMANTIC-AUTHORITY-CONSOLIDATION.md`.
+
 ## R5.30 — Structured assembly without claiming full authority
 
 Keep `benchmark.semantic.current_pipeline` as the one designated non-task

@@ -44,9 +44,9 @@ def generate(application, directory):
     lines.append('OPERATIONS = {')
     for index, (name, unit) in enumerate(zip(application['operations'], units)):
         lines.append(f'    {name!r}: (execute_{index}, {unit.input_shape!r}, '
-                     f'{unit.outcome_shapes!r}),')
+                      f'{unit.outcome_shapes!r}, {unit.capability_shapes!r}),')
     lines.extend(['}', '', 'if __name__ == "__main__":',
-                  f'    run_application(OPERATIONS, {application["state"]!r})', ''])
+                  f'    run_application(OPERATIONS, {units[0].state_shape!r})', ''])
     artifact = '\n'.join(lines).encode()
     identity = emitter.sha(emitter.canonical(application))
     manifest = {'application': identity, 'id': application['id'], 'artifact': emitter.sha(artifact),

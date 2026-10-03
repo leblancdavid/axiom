@@ -1,5 +1,5 @@
 {
-  "scope": "historical locked entries retained; R5.30 current application profile is prospective and independent of frozen benchmark",
+  "scope": "historical entries retained; R5.31 single-authority current application profile is prospective and independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -90,6 +90,43 @@
     "exact selection cardinality replace_field remove projections": {"semantic": true, "typed_analysis": true, "checked_plan": true, "structured_generation": true, "current_pipeline": true, "verifier": true, "whole_program": true, "grounded": true, "fault_tested": "A,C,E (read-only unintended write)"},
     "normalization string/integer ordering": {"semantic": true, "typed_analysis": true, "checked_plan": true, "structured_generation": true, "current_pipeline": true, "verifier": true, "whole_program": true, "grounded": true, "fault_tested": false},
     "keyed defaults overlapping defaults same-shape durable migration": {"semantic": true, "typed_analysis": true, "checked_plan": true, "structured_generation": true, "current_pipeline": true, "verifier": true, "whole_program": true, "grounded": true, "fault_tested": false}
+  },
+  "r5_31_current_pipeline": {
+    "entry_point": "benchmark.semantic.current_pipeline.generate / observe / challenge",
+    "semantic_authority": "benchmark.semantic.unified_types_r5_27.checked_plan: authoritative analysis -> sealed complete CheckedPlan",
+    "authority_counts": {"semantic_typing": 1, "ordering": 1, "optional_refinement": 1, "outcome_typing": 1, "state_slot_typing": 1},
+    "candidate_core_constructs": 30,
+    "scope": "supported same-shape non-task current pipeline; historical keys are not current authorities; no frozen benchmark transfer claim",
+    "per_capability": {
+      "selection": {"supported": true, "semantic_authority": "unified CheckedPlan", "regression": "R5.29 eight-call archive", "fault": "A"},
+      "normalization": {"supported": true, "semantic_authority": "unified CheckedPlan", "regression": "R5.30 inventory + R5.31 source mutation"},
+      "string ordering": {"supported": true, "semantic_authority": "unified CheckedPlan.orders", "regression": "R5.30 inventory + R5.31 key mutation"},
+      "integer ordering": {"supported": true, "semantic_authority": "unified CheckedPlan.orders", "regression": "R5.30 inventory"},
+      "instant ordering": {"supported": true, "semantic_authority": "unified CheckedPlan.orders", "regression": "R5.29 archive + R5.31 poisoned legacy typer", "fault": "B"},
+      "optional refinement": {"supported": true, "semantic_authority": "unified CheckedPlan.facts/scopes", "regression": "R5.30 absent/present persistence + R5.31 scoped fact assertions", "fault": "A"},
+      "before": {"supported": true, "semantic_authority": "unified CheckedPlan.facts", "regression": "R5.29 archive cutoff mutation", "fault": "A"},
+      "fallback": {"supported": true, "semantic_authority": "unified CheckedPlan.facts", "regression": "R5.30 archive + R5.31 absent/explicit source mutations"},
+      "external": {"supported": true, "semantic_authority": "unified CheckedPlan.capabilities", "regression": "R5.29 archive + R5.31 contradictory runtime registry", "fault": "D"},
+      "default_missing": {"supported": true, "semantic_authority": "unified CheckedPlan.bindings/relations", "regression": "R5.30 inventory"},
+      "cardinality": {"supported": true, "semantic_authority": "unified CheckedPlan.facts", "regression": "R5.29 removal + R5.30 inventory migration"},
+      "insertion": {"supported": true, "semantic_authority": "unified CheckedPlan.bindings/relations", "regression": "R5.29 archive + R5.30 optional persistence", "fault": "D"},
+      "remove": {"supported": true, "semantic_authority": "unified CheckedPlan.bindings/relations", "regression": "R5.29 durable chain and target mutation"},
+      "replace_field": {"supported": true, "semantic_authority": "unified CheckedPlan.bindings/relations", "regression": "R5.29 durable chain and value mutation", "fault": "C"},
+      "projection": {"supported": true, "semantic_authority": "unified CheckedPlan.projections/facts", "regression": "R5.29 post result + R5.31 projected field mutation"},
+      "record-valued outcomes": {"supported": true, "semantic_authority": "unified CheckedPlan.outcomes", "regression": "R5.29 create/project + R5.31 outcome assertions"},
+      "overlapping defaults": {"supported": true, "semantic_authority": "unified CheckedPlan.bindings/relations", "regression": "R5.30 inventory"},
+      "same-shape migration": {"supported": true, "semantic_authority": "unified CheckedPlan.slots/bindings/relations", "regression": "R5.30 inventory version/count"},
+      "optional absent construction": {"supported": true, "semantic_authority": "unified CheckedPlan.optional_record_fields/facts", "regression": "R5.30 optional persistence"},
+      "read-only preserve": {"supported": true, "semantic_authority": "unified CheckedPlan", "regression": "R5.30 operation-caused write", "fault": "E"}
+    },
+    "r5_23_blockers": {
+      "optional_refinement": "RESOLVED_IN_SINGLE_AUTHORITY_CURRENT_PIPELINE",
+      "instant_ordering": "RESOLVED_IN_SINGLE_AUTHORITY_CURRENT_PIPELINE",
+      "suppliedness_well_formedness": "UNRESOLVED_INDEPENDENT_CLASS",
+      "malformed_input_typed_outcomes": "UNRESOLVED_INDEPENDENT_CLASS",
+      "cross_shape_state_evolution": "UNRESOLVED_INDEPENDENT_CLASS",
+      "frozen_transport_binding": "UNRESOLVED_INDEPENDENT_CLASS"
+    }
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",

@@ -69,6 +69,29 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.31 single semantic authority checkpoint](../benchmark/results/phase5c/R5_31-SINGLE-SEMANTIC-AUTHORITY-CONSOLIDATION.md)
+establishes **one current semantic/type-analysis authority** for the supported
+same-shape non-task subset. `benchmark.semantic.current_pipeline` records complete
+expression, declared/refined, ordering, projection, outcome, state and capability
+facts during authoritative analysis. The sealed checked plan feeds generation,
+runtime binding and independent semantic verification; current consumers no
+longer invoke legacy expression typing or rediscover selection element types.
+The archive's eight-call grounded durable chain, inventory application and
+grounded nonconformant Faults A–E remain valid. Eight new authority tests cover
+poisoned alternate typers, downstream reanalysis, contradictory internal facts,
+runtime signatures and source-only mutations. The final supported-environment
+checks pass 286 harness and 31 application/compiler tests, validation and safety;
+the result records the initial Python 3.9/CRLF environment failures separately.
+Gate **`R5_31_SINGLE_SEMANTIC_AUTHORITY_VALIDATED`** is bounded architecture
+validation, not universal correctness. Optional refinement and instant ordering
+are resolved in the single-authority current subset. Remaining independent
+classes are suppliedness/well-formedness, malformed-input typed outcomes,
+cross-shape state evolution and frozen transport binding. R5.32 should begin a
+bounded non-task suppliedness/well-formedness semantic review before authorizing
+implementation. Core remains 30, no #31; no new B02 retry or acceptance gate,
+Phase 5C paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historical
+authority and semantic-first format globally unfrozen.
+
 The [R5.30 current-pipeline hardening checkpoint](../benchmark/results/phase5c/R5_30-CURRENT-PIPELINE-HARDENING-STRUCTURED-ASSEMBLY.md)
 now assembles checked operation units before a single final target render through
 `benchmark.semantic.current_pipeline`. The five-operation archive still runs

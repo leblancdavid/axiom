@@ -7,9 +7,13 @@ predicate); a selection never exports its item binding to another expression.
 
 from benchmark.semantic import generative_r5_13 as general
 from benchmark.semantic.capability_boundary_r5_22 import capability_type
-from benchmark.semantic.typed_lowering_r5_12 import _compile, _field
+from benchmark.semantic.typed_lowering_r5_12 import _field, _type, _path, UnsupportedLowering
 from benchmark.semantic.capability_boundary_r5_22 import parse_instant
 from dataclasses import dataclass
+from contextvars import ContextVar
+
+
+_analysis = ContextVar('checked_semantic_analysis', default=None)
 
 
 ORDERABLE = ('string', 'integer', 'instant')
@@ -62,21 +66,56 @@ def ordering_plan(arg, slots):
         raise ValueError('ordering needs sequence')
     element = source['sequence']
     guards = selection_guards(arg['source'], slots, element)
-    keys = []
+    keys, key_facts = [], []
     for key in arg['keys']:
         if type(key) is not str:
             raise ValueError('invalid ordering key')
-        shape = _field(element, key)
+        declaration = shape = _field(element, key)
+        dependency = None
         if isinstance(shape, dict) and set(shape) == {'optional'} and ('item', key) in guards:
             shape = shape['optional']
+            where = arg['source']['select']['where']
+            producers = where['and'] if 'and' in where else [where]
+            producer = [part for part in producers if 'present' in part and part['present']['ref'] == ['item', key]][-1]
+            dependency = (id(where), id(producer))
         if shape not in ORDERABLE:
             raise ValueError('non-orderable key; optional key needs selection presence')
         keys.append((key, shape))
+        key_facts.append({'field': (id(arg['source']), key), 'declared': declaration,
+                          'effective': shape, 'refinement': dependency})
     return {'element': element, 'keys': keys, 'comparison': 'lexicographic',
-            'ties': 'unconstrained', 'direction': None}
+            'ties': 'unconstrained', 'direction': None, 'source_type': source,
+            'refinements': tuple(sorted(guards)), 'source': id(arg['source']),
+            'key_facts': key_facts}
 
 
 def analyze(expr, slots, refinements=frozenset()):
+    collector = _analysis.get()
+    cache_key = (id(expr), general.canonical(slots), tuple(sorted(refinements)))
+    if collector is not None and cache_key in collector['cache']:
+        return collector['cache'][cache_key]
+    shape = _analyze(expr, slots, refinements)
+    if collector is not None:
+        kind, arg = next(iter(expr.items()))
+        declaration = declared(arg, slots) if kind == 'ref' else shape
+        dependencies = tuple(collector['active'][path] for path in sorted(refinements)
+                             if kind == 'ref' and tuple(arg) == path)
+        fact = {'kind': kind, 'declared': declaration, 'effective': shape,
+                'field': tuple(arg) if kind == 'ref' else None,
+                'refinement': dependencies,
+                'element': shape.get('sequence') if isinstance(shape, dict) else None}
+        # Reused source objects may appear in multiple equivalent scopes. A
+        # context-dependent reuse cannot be represented by one node binding.
+        previous = collector['facts'].get(id(expr))
+        if previous is not None and previous != fact:
+            raise ValueError('ambiguous reused semantic node binding')
+        collector['facts'][id(expr)] = fact
+        collector['operands'][id(expr)] = shape
+        collector['cache'][cache_key] = shape
+    return shape
+
+
+def _analyze(expr, slots, refinements=frozenset()):
     if not isinstance(expr, dict) or len(expr) != 1:
         raise ValueError('invalid expression')
     kind, arg = next(iter(expr.items()))
@@ -85,11 +124,23 @@ def analyze(expr, slots, refinements=frozenset()):
         return shape['optional'] if isinstance(shape, dict) and set(shape) == {'optional'} and tuple(arg) in refinements else shape
     if kind == 'present':
         witness(expr, slots)
+        analyze(arg, slots)
         return 'boolean'
     if kind == 'and':
         planned, guards = conjunction(arg, slots)
-        if any(analyze(p, slots, refinements | guards) != 'boolean' for p in planned):
-            raise ValueError('conjunction needs predicates')
+        collector = _analysis.get()
+        previous = None
+        if collector is not None:
+            producers = {tuple(p['present']['ref']): (id(expr), id(p)) for p in arg if 'present' in p}
+            collector['scopes'][id(expr)] = tuple((path, producer[1]) for path, producer in sorted(producers.items()))
+            previous = collector['active']
+            collector['active'] = {**previous, **producers}
+        try:
+            if any(analyze(p, slots, refinements | guards) != 'boolean' for p in planned):
+                raise ValueError('conjunction needs predicates')
+        finally:
+            if collector is not None:
+                collector['active'] = previous
         return 'boolean'
     if kind == 'not':
         if analyze(arg, slots, refinements) != 'boolean':
@@ -114,8 +165,10 @@ def analyze(expr, slots, refinements=frozenset()):
             raise ValueError('selection needs predicate')
         return source
     if kind == 'order':
-        ordering_plan(arg, slots)
-        return analyze(arg['source'], slots)
+        order = ordering_plan(arg, slots)
+        if _analysis.get() is not None:
+            _analysis.get()['orders'][id(expr)] = order
+        return order['source_type']
     if kind == 'record':
         if not isinstance(arg, dict) or any(type(name) is not str for name in arg):
             raise ValueError('invalid record')
@@ -137,6 +190,8 @@ def analyze(expr, slots, refinements=frozenset()):
         fields = {name: _field(row, name) for name in arg['fields']}
         if any(isinstance(shape, dict) and set(shape) == {'optional'} for shape in fields.values()):
             raise ValueError('projection cannot require an optionally-present field')
+        if _analysis.get() is not None:
+            _analysis.get()['projections'][id(expr)] = tuple(fields.items())
         return {'record': fields}
     if kind == 'fallback':
         if not isinstance(arg, dict) or set(arg) != {'value', 'default'}:
@@ -151,10 +206,34 @@ def analyze(expr, slots, refinements=frozenset()):
     if kind == 'external':
         if not isinstance(arg, dict) or set(arg) != {'source'}:
             raise ValueError('invalid external')
-        return capability_type(arg['source'])
-    # Existing string/collection operations and typed literals retain their
-    # already checked behavior; none carries a refinement into a new scope.
-    return _compile(expr, slots)[0]
+        shape = capability_type(arg['source'])
+        if _analysis.get() is not None:
+            _analysis.get()['capabilities'][arg['source']] = shape
+        return shape
+    if kind == 'literal':
+        if not isinstance(arg, dict) or set(arg) != {'type', 'value'} or not _type(arg['value'], arg['type']):
+            raise ValueError('invalid typed literal')
+        return arg['type']
+    if kind in ('trim', 'nonblank'):
+        if analyze(arg, slots, refinements) != 'string':
+            raise ValueError(kind + ' needs string')
+        return 'string' if kind == 'trim' else 'boolean'
+    if kind in ('map', 'stable_unique'):
+        parameter, required = ('transform', 'trim') if kind == 'map' else ('equality', 'case_sensitive_string')
+        if not isinstance(arg, dict) or set(arg) != {'sequence', parameter} or arg[parameter] != required:
+            raise ValueError('invalid collection operation')
+        if analyze(arg['sequence'], slots, refinements) != {'sequence': 'string'}:
+            raise ValueError(kind + ' needs string sequence')
+        return {'sequence': 'string'}
+    if kind == 'for_each':
+        if not isinstance(arg, dict) or set(arg) != {'sequence', 'bind', 'property'} or type(arg['bind']) is not str or not arg['bind'].isidentifier() or arg['bind'] in slots:
+            raise ValueError('invalid quantifier scope')
+        if analyze(arg['sequence'], slots, refinements) != {'sequence': 'string'}:
+            raise ValueError('quantifier needs string sequence')
+        if analyze(arg['property'], {**slots, arg['bind']: 'string'}) != 'boolean':
+            raise ValueError('quantifier needs predicate')
+        return 'boolean'
+    raise UnsupportedLowering('unsupported relation: ' + str(kind))
 
 
 def typed(contract):
@@ -207,6 +286,10 @@ def typed(contract):
             if kind == 'post_equals':
                 if set(state) != {'record'} or analyze(rule['value'], slots) != _field(state, rule['field']):
                     raise ValueError('post equality type mismatch')
+                if _analysis.get() is not None:
+                    _analysis.get()['bindings'][id(relation)] = {'source': ('pre', rule['field']), 'target': ('post', rule['field']),
+                        'type': _field(state, rule['field']), 'fields': None, 'identity': None,
+                        'operands': {'value': id(rule['value'])}, 'field': (rule['field'], _field(state, rule['field']))}
                 continue
             collection = state if rule['collection'] is None else _field(state, rule['collection'])
             if not isinstance(collection, dict) or set(collection) != {'sequence'} or not isinstance(collection['sequence'], dict) or set(collection['sequence']) != {'record'}:
@@ -225,6 +308,14 @@ def typed(contract):
                     raise ValueError('invalid replacement field or type')
             elif not isinstance(fields.get(rule['field']), dict) or set(fields[rule['field']]) != {'optional'} or analyze(rule['value'], slots) != fields[rule['field']]['optional']:
                 raise ValueError('invalid default field or type')
+            if kind == 'default_missing' and rule['field'] == identity:
+                raise ValueError('invalid default identity or optional field')
+            if _analysis.get() is not None:
+                path = () if rule['collection'] is None else (rule['collection'],)
+                _analysis.get()['bindings'][id(relation)] = {'source': ('pre', *path), 'target': ('post', *path),
+                    'type': collection, 'fields': fields, 'identity': (identity, fields[identity]),
+                    'operands': {name: id(rule[name]) for name in ('match', 'record', 'value') if name in rule},
+                    'field': (rule['field'], fields[rule['field']]) if 'field' in rule else None}
     if len({b['tag'] for b in branches}) != len(branches):
         raise ValueError('duplicate outcome tag')
     return contract
@@ -244,10 +335,51 @@ class CheckedPlan:
     operands: dict
     relations: dict = None
     optional_record_fields: frozenset = frozenset()
+    facts: dict = None
+    bindings: dict = None
+    projections: dict = None
+    capabilities: dict = None
+    slots: dict = None
+    outcomes: dict = None
+    seal: str = ''
+
+    def fact_digest(self):
+        return general.sha(general.canonical([self.scopes, self.orders, self.operands,
+            self.relations, sorted(self.optional_record_fields), self.facts, self.bindings,
+            self.projections, self.capabilities, self.slots, self.outcomes]))
 
     def assert_current(self):
         if general.sha(general.canonical(self.contract)) != self.digest:
             raise ValueError('typed plan source changed')
+        if self.seal and self.fact_digest() != self.seal:
+            raise ValueError('compiler internal consistency failure: checked facts changed')
+
+    def assert_invariants(self):
+        """Check recorded closure; this never analyzes the semantic source."""
+        self.assert_current()
+        if set(self.facts) != set(self.operands):
+            raise ValueError('compiler internal consistency failure: expression closure')
+        for node, fact in self.facts.items():
+            if fact['effective'] != self.operands[node]:
+                raise ValueError('compiler internal consistency failure: operand binding')
+            for scope, producer in fact['refinement']:
+                if not any(p == producer for _, p in self.scopes[scope]):
+                    raise ValueError('compiler internal consistency failure: refinement scope')
+        for order in self.orders.values():
+            if any(shape not in ORDERABLE for _, shape in order['keys']) or order['ties'] != 'unconstrained' or order['comparison'] != 'lexicographic' or order['direction'] is not None:
+                raise ValueError('compiler internal consistency failure: ordering emitter contract')
+            if order['source'] not in self.operands or order['source_type'] != self.operands[order['source']]:
+                raise ValueError('compiler internal consistency failure: ordering source')
+            for (key, shape), fact in zip(order['keys'], order['key_facts']):
+                if fact['field'] != (order['source'], key) or fact['effective'] != shape:
+                    raise ValueError('compiler internal consistency failure: ordering field')
+                if fact['refinement'] is not None:
+                    scope, producer = fact['refinement']
+                    if self.facts[producer]['kind'] != 'present' or (scope != producer and not any(p == producer for _, p in self.scopes[scope])):
+                        raise ValueError('compiler internal consistency failure: ordering refinement')
+        for binding in self.bindings.values():
+            if binding['source'][0] != 'pre' or binding['target'][0] != 'post' or any(node not in self.operands for node in binding['operands'].values()):
+                raise ValueError('compiler internal consistency failure: state binding')
 
     def operand_type(self, expr):
         self.assert_current()
@@ -257,57 +389,19 @@ class CheckedPlan:
 
 
 def checked_plan(contract):
-    typed(contract)
-    scopes, orders, operands = {}, {}, {}
-    optional_record_fields = set()
-    slots = {'input': contract['input'], 'pre': contract['state']}
-
-    def visit(expr, environment):
-        if not isinstance(expr, dict) or len(expr) != 1:
-            return
-        kind, arg = next(iter(expr.items()))
-        if kind == 'and':
-            _, guards = conjunction(arg, environment)
-            # Dependencies are on semantic node identity, not the field label.
-            producers = {tuple(part['present']['ref']): id(part) for part in arg if 'present' in part}
-            scopes[id(expr)] = tuple((path, producers[path]) for path in sorted(guards))
-            for part in arg:
-                visit(part, environment)
-        elif kind == 'select':
-            visit(arg['source'], environment)
-            element = analyze(arg['source'], environment)['sequence']
-            visit(arg['where'], {**environment, 'item': element})
-        elif kind == 'order':
-            orders[id(expr)] = ordering_plan(arg, environment)
-            visit(arg['source'], environment)
-        elif kind in ('equals', 'before'):
-            for part in arg:
-                visit(part, environment)
-        elif kind == 'record':
-            for part in arg.values():
-                if isinstance(part, dict) and set(part) == {'ref'}:
-                    shape = declared(part['ref'], environment)
-                    if isinstance(shape, dict) and set(shape) == {'optional'}:
-                        optional_record_fields.add(id(part))
-                visit(part, environment)
-        elif kind in ('not', 'cardinality', 'sole'):
-            visit(arg, environment)
-        elif kind == 'project':
-            visit(arg['row'], environment)
-        elif kind == 'fallback':
-            visit(arg['value'], environment)
-            visit(arg['default'], environment)
-
-    for branch in contract['branches']:
-        if branch['when'] is not None:
-            visit(branch['when'], slots)
-        visit(branch['value'], {**slots, 'post': contract['state']})
-        for relation in branch['transition'].get('relations', []):
-            kind, rule = next(iter(relation.items()))
-            for name in ('match', 'record', 'value'):
-                if name in rule:
-                    operands[id(rule[name])] = analyze(rule[name], slots)
-                    visit(rule[name], slots)
+    collector = {name: {} for name in ('cache', 'active', 'scopes', 'orders', 'operands',
+                                      'facts', 'bindings', 'projections', 'capabilities')}
+    token = _analysis.set(collector)
+    try:
+        typed(contract)
+    finally:
+        _analysis.reset(token)
+    scopes, orders, operands = (collector[name] for name in ('scopes', 'orders', 'operands'))
+    # Optional construction is a checked reference fact, not emitter inference.
+    optional_record_fields = frozenset(node for node, fact in collector['facts'].items()
+        if fact['field'] is not None and isinstance(fact['declared'], dict)
+        and set(fact['declared']) == {'optional'})
+    slots = {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
     # Relation overlap/framing is checked once, after operand typing. The
     # emitter consumes the resulting conjunction rather than planning again.
     from benchmark.semantic.refined_generator_r5_28 import _relational
@@ -316,22 +410,27 @@ def checked_plan(contract):
         transition = branch['transition']
         if 'relations' in transition:
             provisional = CheckedPlan(contract, general.sha(general.canonical(contract)),
-                                      scopes, orders, operands)
+                                      scopes, orders, operands, bindings=collector['bindings'])
             relations[id(branch)] = tuple(_relational(transition['relations'], contract['state'],
                 slots, provisional))
-    return CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders,
-                       operands, relations, frozenset(optional_record_fields))
+    plan = CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders,
+        operands, relations, optional_record_fields, collector['facts'], collector['bindings'],
+        collector['projections'], collector['capabilities'], slots,
+        {b['tag']: operands[id(b['value'])] for b in contract['branches']})
+    object.__setattr__(plan, 'seal', plan.fact_digest())
+    plan.assert_invariants()
+    return plan
 
 
 def interpret(expr, facts, slots, plan):
     """Interpret semantic source against observations; never read emitted code."""
-    plan.assert_current()
+    plan.operand_type(expr)
     kind, arg = next(iter(expr.items()))
     def ev(node, values=facts, shapes=slots):
         return interpret(node, values, shapes, plan)
     if kind == 'present':
         path = arg['ref']
-        return path[-1] in ev({'ref': path[:-1]})
+        return path[-1] in _path(facts, path[:-1])
     if kind == 'and':
         guarded = {producer for _, producer in plan.scopes[id(expr)]}
         parts = [p for p in arg if id(p) in guarded] + [p for p in arg if id(p) not in guarded]
@@ -344,7 +443,7 @@ def interpret(expr, facts, slots, plan):
         return parse_instant(ev(arg[0])) < parse_instant(ev(arg[1]))
     if kind == 'select':
         source = ev(arg['source'])
-        element = analyze(arg['source'], slots)['sequence']
+        element = plan.operand_type(arg['source'])['sequence']
         return [row for row in source if ev(arg['where'], {**facts, 'item': row}, {**slots, 'item': element})]
     if kind == 'order':
         keys = plan.orders[id(expr)]['keys']
@@ -359,14 +458,33 @@ def interpret(expr, facts, slots, plan):
         for key, value in arg.items():
             if id(value) in plan.optional_record_fields:
                 path = value['ref']
-                if path[-1] not in ev({'ref': path[:-1]}):
+                if path[-1] not in _path(facts, path[:-1]):
                     continue
             result[key] = ev(value)
         return result
     if kind == 'project':
         row = ev(arg['row'])
-        return {key: row[key] for key in arg['fields']}
-    return _compile(expr, slots)[1](facts)
+        return {key: row[key] for key, _ in plan.projections[id(expr)]}
+    if kind == 'ref':
+        return _path(facts, arg)
+    if kind == 'literal':
+        return arg['value']
+    if kind == 'external':
+        return facts['external'][arg['source']]
+    if kind == 'fallback':
+        path = arg['value']['ref']
+        return ev(arg['default']) if path[-1] not in _path(facts, path[:-1]) else ev(arg['value'])
+    if kind == 'trim':
+        return ev(arg).strip()
+    if kind == 'nonblank':
+        return bool(ev(arg).strip())
+    if kind == 'map':
+        return [value.strip() for value in ev(arg['sequence'])]
+    if kind == 'stable_unique':
+        return list(dict.fromkeys(ev(arg['sequence'])))
+    if kind == 'for_each':
+        return all(ev(arg['property'], {**facts, arg['bind']: value}) for value in ev(arg['sequence']))
+    raise UnsupportedLowering('unsupported relation: ' + str(kind))
 
 
 def _sole(rows):

@@ -139,18 +139,19 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
         plan = checked_plan(contract)
     else:
         typed(contract)
-    if not (_type(inp, contract['input']) and _type(pre, contract['state']) and
-            _type(post, contract['state']) and isinstance(outcome, dict) and
+    slots = plan.slots if plan is not None else {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
+    if not (_type(inp, slots['input']) and _type(pre, slots['pre']) and
+            _type(post, slots['post']) and isinstance(outcome, dict) and
              set(outcome) == {'kind', 'value'}):
         return False
-    slots = {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
     facts = {'input': inp, 'pre': pre, 'post': post, 'external': external or {}}
-    base = {'input': contract['input'], 'pre': contract['state']}
+    base = {name: slots[name] for name in ('input', 'pre')}
     def evaluate(expr, shapes=slots):
         return _evaluate(expr, facts, shapes, plan)
     branch = next((b for b in contract['branches'] if b['when'] is None or
                    evaluate(b['when'], base)), None)
-    if branch is None or not _type(outcome['value'], branch.get('value_type', 'string')):
+    payload = plan.outcomes[branch['tag']] if plan is not None and branch is not None else (branch.get('value_type', 'string') if branch is not None else None)
+    if branch is None or not _type(outcome['value'], payload):
         return False
     if outcome['kind'] != branch['tag']:
         return False
@@ -168,16 +169,19 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
         expected_collections = {}
         for relation in transition['relations']:
             kind, rule = next(iter(relation.items()))
+            binding = plan.bindings[id(relation)] if plan is not None else None
             if kind == 'post_equals':
-                touched.add(rule['field'])
-                if post[rule['field']] != evaluate(rule['value']):
+                field = binding['field'][0] if binding is not None else rule['field']
+                touched.add(field)
+                if post[field] != evaluate(rule['value']):
                     return False
                 continue
-            name = rule['collection']
+            name = (binding['source'][1] if len(binding['source']) > 1 else None) if binding is not None else rule['collection']
             touched.add(name)
             rows = pre if name is None else pre[name]
             new = post if name is None else post[name]
-            identity = rule['identity'] if 'identity' in rule else rule['key']
+            identity = binding['identity'][0] if binding is not None else (rule['identity'] if 'identity' in rule else rule['key'])
+            field = binding['field'][0] if binding is not None and binding['field'] is not None else rule.get('field')
             if (len({row[identity] for row in rows}) != len(rows) or
                     len({row[identity] for row in new}) != len(new)):
                 return False
@@ -198,10 +202,10 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
                 if sorted(canonical(row) for row in new) != sorted(canonical(row) for row in expected):
                     return False
             elif kind == 'replace_field':
-                key = rule['key']
+                key = identity
                 match = evaluate(rule['match'])
                 value = evaluate(rule['value'])
-                expected = [{**row, rule['field']: value} if row[key] == match else row
+                expected = [{**row, field: value} if row[key] == match else row
                             for row in rows]
                 if sorted(canonical(row) for row in new) != sorted(canonical(row) for row in expected):
                     return False
@@ -211,7 +215,7 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
                 # compare their joint post-state, not each intermediate result.
                 expected_collections.setdefault(name, rows)
                 expected_collections[name] = [
-                    {**row, rule['field']: value} if rule['field'] not in row else row
+                    {**row, field: value} if field not in row else row
                     for row in expected_collections[name]]
         for name, expected in expected_collections.items():
             actual = post if name is None else post[name]

@@ -155,8 +155,8 @@ def _relational(relations, state, slots, plan=None):
         if kind == 'post_equals':
             if set(rule) != {'field', 'value'} or set(state) != {'record'}:
                 raise ValueError('invalid post equality')
-            field = rule['field']
-            if field in scalar_changes or field in collection_changes or operand(rule['value']) != state['record'].get(field):
+            field = plan.bindings[id(relation)]['field'][0] if plan is not None else rule['field']
+            if field in scalar_changes or field in collection_changes or (plan is None and operand(rule['value']) != state['record'].get(field)):
                 raise ValueError('invalid post equality field or type')
             scalar_changes.add(field)
             planned.append(relation)
@@ -168,17 +168,22 @@ def _relational(relations, state, slots, plan=None):
         if set(rule) != expected:
             raise ValueError('invalid collection relation')
         name = rule['collection']
-        collection, fields = resolve(name)
-        identity = rule.get('identity', rule.get('key'))
-        if fields.get(identity) != 'string' or name in scalar_changes:
+        if plan is not None:
+            binding = plan.bindings[id(relation)]
+            collection, fields = binding['type'], binding['fields']
+            identity = binding['identity'][0]
+        else:
+            collection, fields = resolve(name)
+            identity = rule.get('identity', rule.get('key'))
+        if (plan is None and fields.get(identity) != 'string') or name in scalar_changes:
             raise ValueError('invalid identity')
         if kind in single_transform:
-            if operand(rule.get('match', rule.get('record'))) != (
+            if plan is None and operand(rule.get('match', rule.get('record'))) != (
                     collection['sequence'] if kind == 'exact_frame' else fields[identity]):
                 if kind == 'exact_frame':
                     raise ValueError('framed record type mismatch')
                 raise ValueError('key type mismatch')
-            if kind == 'replace_field':
+            if kind == 'replace_field' and plan is None:
                 if rule['field'] not in fields or operand(rule['value']) != fields[rule['field']]:
                     raise ValueError('invalid replacement field or type')
             if name in collection_changes:
@@ -190,7 +195,7 @@ def _relational(relations, state, slots, plan=None):
             owner = collection_changes.get(name)
             if owner is not None and owner != ('default_missing', identity):
                 raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection relations')
-            if (field == identity or not isinstance(fields.get(field), dict) or
+            if plan is None and (field == identity or not isinstance(fields.get(field), dict) or
                     set(fields[field]) != {'optional'} or
                     operand(rule['value']) != fields[field]['optional']):
                 raise ValueError('invalid default field or type')
@@ -206,7 +211,8 @@ def _relational(relations, state, slots, plan=None):
             defaults[key] = rule
     # Collection plans are sorted by typed projection and field, not serialization
     # order. Expressions are bound only to input/pre, so disjoint defaults commute.
-    planned.extend({'default_missing': defaults[key]} for key in sorted(
+    original_relations = {id(next(iter(relation.values()))): relation for relation in relations}
+    planned.extend(original_relations[id(defaults[key])] for key in sorted(
         defaults, key=lambda key: ('' if key[0] is None else key[0], key[1])))
     return planned
 
@@ -244,17 +250,21 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
     """Emit only checked expression nodes; no code fragments from contract strings."""
     bindings = {} if bindings is None else bindings
     if plan is not None:
-        plan.assert_current()
+        plan.operand_type(expr)
     kind, arg = next(iter(expr.items()))
+    if plan is not None and plan.facts[id(expr)]['kind'] != kind:
+        raise ValueError('compiler internal consistency failure: emitter node kind')
     def emit(node, env=bindings):
         return expression(node, env, slots, fault, plan)
+    def reference(path):
+        return bindings.get(path[0], path[0]) + ''.join('[' + repr(part) + ']' for part in path[1:])
     if kind == 'present':
         if plan is None:
             raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: present')
         path = arg['ref']
-        return '(' + repr(path[-1]) + ' in ' + emit({'ref': path[:-1]}) + ')'
+        return '(' + repr(path[-1]) + ' in ' + reference(path[:-1]) + ')'
     if kind == 'ref':
-        return bindings.get(arg[0], arg[0]) + ''.join('[' + repr(part) + ']' for part in arg[1:])
+        return reference(plan.facts[id(expr)]['field'] if plan is not None else arg)
     if kind == 'literal':
         return repr(arg['value'])
     if kind == 'equals':
@@ -278,25 +288,25 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
         for key, value in arg.items():
             if plan is not None and id(value) in plan.optional_record_fields:
                 path = value['ref']
-                parent = emit({'ref': path[:-1]})
+                parent = reference(path[:-1])
                 parts.append('**({' + repr(key) + ': ' + emit(value) + '} if ' +
                              repr(path[-1]) + ' in ' + parent + ' else {})')
             else:
                 parts.append(repr(key) + ': ' + emit(value))
         return '{' + ', '.join(parts) + '}'
     if kind == 'trim':
-        return '(' + expression(arg, bindings, slots, fault) + ').strip()'
+        return '(' + emit(arg) + ').strip()'
     if kind == 'map':
         name = '_element_' + str(len(bindings))
-        return ('[' + name + '.strip() for ' + name + ' in ' + expression(arg['sequence'], bindings, slots, fault) + ']')
+        return ('[' + name + '.strip() for ' + name + ' in ' + emit(arg['sequence']) + ']')
     if kind == 'stable_unique':
-        return 'list(dict.fromkeys(' + expression(arg['sequence'], bindings, slots, fault) + '))'
+        return 'list(dict.fromkeys(' + emit(arg['sequence']) + '))'
     if kind == 'nonblank':
-        return 'bool((' + expression(arg, bindings, slots, fault) + ').strip())'
+        return 'bool((' + emit(arg) + ').strip())'
     if kind == 'for_each':
         name = '_bound_' + str(len(bindings))
-        return ('all(' + expression(arg['property'], {**bindings, arg['bind']: name}, slots, fault) +
-                ' for ' + name + ' in ' + expression(arg['sequence'], bindings, slots, fault) + ')')
+        return ('all(' + emit(arg['property'], {**bindings, arg['bind']: name}) +
+                ' for ' + name + ' in ' + emit(arg['sequence']) + ')')
     if kind == 'order':
         # The existing relation orders contract-slot collections only; ordering a
         # quantifier-local binding has no checked interpretation here and rejects.
@@ -316,7 +326,8 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
                  ', key=lambda ' + name + ': (' + projected + '))')
         return 'list(reversed(' + call + '))' if fault and len(order_plan['keys']) == 1 else call
     if kind == 'external':
-        if fault and capability_type(arg['source']) == 'string':
+        shape = plan.operand_type(expr) if plan is not None else capability_type(arg['source'])
+        if fault and shape == 'string':
             return repr(_STALE_IDENTITY)
         return 'EXTERNAL[' + repr(arg['source']) + ']'
     if kind == 'fallback':
@@ -325,16 +336,17 @@ def expression(expr, bindings=None, slots=None, fault=False, plan=None):
             # always emit the fallback value. Faithfully grounded, contract-violating.
             return expression(arg['default'], bindings, slots, fault, plan)
         path = arg['value']['ref']
-        parent = expression({'ref': path[:-1]}, bindings, slots, fault, plan)
+        parent = reference(path[:-1])
         return '(' + expression(arg['default'], bindings, slots, fault, plan) + ' if ' + repr(path[-1]) + \
                 ' not in ' + parent + ' else ' + expression(arg['value'], bindings, slots, fault, plan) + ')'
     if kind == 'before':
         return 'instant_lt(' + emit(arg[0]) + ', ' + emit(arg[1]) + ')'
     if kind == 'sole':
-        return 'sole(' + expression(arg, bindings, slots, fault) + ')'
+        return 'sole(' + emit(arg) + ')'
     if kind == 'project':
-        return 'project(' + expression(arg['row'], bindings, slots, fault) + ', [' + \
-               ', '.join(repr(name) for name in arg['fields']) + '])'
+        fields = [name for name, _ in plan.projections[id(expr)]] if plan is not None else arg['fields']
+        return 'project(' + emit(arg['row']) + ', [' + \
+               ', '.join(repr(name) for name in fields) + '])'
     raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: ' + kind)
 
 
@@ -346,6 +358,7 @@ class GeneratedUnit:
     input_shape: dict
     outcome_shapes: dict
     state_shape: dict
+    capability_shapes: dict
     imports: tuple = ('instant_key', 'instant_lt', 'project', 'sole')
 
 
@@ -353,9 +366,9 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
     """Lower one checked operation into a structured declaration, not a file."""
     if plan.contract is not contract:
         raise ValueError('typed plan belongs to another contract')
-    plan.assert_current()
-    slots = {'input': contract['input'], 'pre': contract['state']}
-    value_slots = {**slots, 'post': contract['state']}
+    plan.assert_invariants()
+    slots = {name: plan.slots[name] for name in ('input', 'pre')}
+    value_slots = plan.slots
     lines = [f'def {symbol}(input, pre):']
     for index, branch in enumerate(contract['branches']):
         condition = 'if ' + expression(branch['when'], slots=slots, plan=plan) + ':' if index == 0 else (
@@ -368,12 +381,13 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
             lines.extend(['        post = pre', '        write = True'])
             for relation in plan.relations[id(branch)]:
                 kind, rule = next(iter(relation.items()))
+                binding = plan.bindings[id(relation)]
                 if kind == 'post_equals':
-                    lines.append('        post = {**post, ' + repr(rule['field']) + ': ' + expression(rule['value'], slots=slots, plan=plan) + '}')
+                    lines.append('        post = {**post, ' + repr(binding['field'][0]) + ': ' + expression(rule['value'], slots=slots, plan=plan) + '}')
                     continue
-                name = rule['collection']
+                name = binding['target'][1] if len(binding['target']) > 1 else None
                 source = 'post' if name is None else 'post[' + repr(name) + ']'
-                identity = repr(rule['identity'] if 'identity' in rule else rule['key'])
+                identity = repr(binding['identity'][0])
                 lines.extend(['        if len({row[' + identity + '] for row in ' + source + '}) != len(' + source + '):',
                               '            raise ValueError("duplicate identity")'])
                 if kind == 'exact_frame':
@@ -387,13 +401,13 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
                                  '        _rows = [item for item in ' + source +
                                  ' if item[' + identity + '] != ' + match + ']')
                 elif kind == 'replace_field':
-                    field = repr(rule['field'])
+                    field = repr(binding['field'][0])
                     match, value = expression(rule['match'], slots=slots, plan=plan), expression(rule['value'], slots=slots, plan=plan)
                     value = 'item[' + field + ']' if fault else value
                     lines.append('        _rows = [{**item, ' + field + ': ' + value +
                                  '} if item[' + identity + '] == ' + match + ' else item for item in ' + source + ']')
                 else:
-                    field = repr(rule['field'])
+                    field = repr(binding['field'][0])
                     lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots, plan=plan) +
                                  '} if ' + field + ' not in item else item for item in ' + source + ']')
                 lines.append('        post = _rows' if name is None else
@@ -402,8 +416,8 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
             raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: current transition')
         lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
                      expression(branch['value'], {'post': 'post'}, value_slots, fault, plan) + '}, post, write')
-    return GeneratedUnit(contract['id'], plan.digest, tuple(lines), contract['input'],
-                         {b['tag']: b['value_type'] for b in contract['branches']}, contract['state'])
+    return GeneratedUnit(contract['id'], plan.digest, tuple(lines), plan.slots['input'],
+                         plan.outcomes, plan.slots['pre'], plan.capabilities)
 
 
 def render(contract, fault=False, cli=False, plan=None):
@@ -414,7 +428,8 @@ def render(contract, fault=False, cli=False, plan=None):
                           'from refined_runtime_r5_28 import instant_key, instant_lt, project, run, run_cli, sole',
                           '', *unit.declaration, '', 'if __name__ == "__main__":',
                           '    ' + entry + '(execute, ' + repr(unit.input_shape) + ', ' +
-                          repr(unit.state_shape) + ', ' + repr(unit.outcome_shapes) + ')', '']).encode()
+                           repr(unit.state_shape) + ', ' + repr(unit.outcome_shapes) +
+                           ', capability_shapes=' + repr(unit.capability_shapes) + ')', '']).encode()
     if plan is None:
         typed(contract)
     else:
