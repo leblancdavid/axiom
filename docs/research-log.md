@@ -1,5 +1,36 @@
 # Lykoi research log
 
+## R5.26 general type integration (prospective, 2026-10-03)
+
+**Observation:** A versioned R5.26 read-only #45 path checks the same positive
+conjunction for `present(optional<T>)` and consumers in either serialization
+order, then emits guarded selections and chronological instant ordering. The
+publication-domain generated operations select exact absent/before/after/equal
+populations; optional string/integer runs and optional instant + before +
+ordered-selection runs exercise genericity. Independent subprocess output,
+internal event, durable byte readback and per-operation provenance ground the
+executions. Wrong absent-row inclusion and reversed instant order ground but
+fail conformance; wrong-target refinement rejects before generation.
+
+**Limit:** The full historical general generator and verifier remain pinned;
+this is a separately versioned read-only integration profile, not complete
+whole-program closure. R5.23 type blockers resolve independently in that
+profile, not for all writing/mixed-branch operations. Input validity/malformed
+outcomes, cross-shape migration and frozen transport are distinct future work.
+Gate `R5_26_REFINEMENT_INSTANT_INTEGRATION_PARTIAL`; 30 candidates, no #31,
+no B02 retry. See the [R5.26 result](../benchmark/results/phase5c/R5_26-GENERAL-TYPE-REFINEMENT-INSTANT-INTEGRATION.md).
+
+**Verification:** `python -m unittest discover -s benchmark/harness -v`
+259/259 after the pinned-file restoration (including R5.10–R5.25, architecture,
+grounding, R5.25 prototype and six new R5.26 tests); application/compiler
+`$env:PYTHONPATH='src'; python -m unittest discover -s tests -v` 31/31;
+`python -m air_compiler.cli validate air/task_manager.json` ok and
+`python -m air_compiler.cli safety air/task_manager.json` zero violations or
+invalid transitions with `PYTHONPATH=src`; focused R5.26 6/6. The first full
+harness run found a pinned evidence-file hash mismatch from an attempted hook;
+the hook was removed and the unchanged pinned file passed the final full run.
+`git diff --check` reports only LF→CRLF Git notices, not failures.
+
 ## R5.25 optional-presence/refinement review (prospective, 2026-10-03)
 
 **Observation:** Existing typed records distinguish a missing optional key

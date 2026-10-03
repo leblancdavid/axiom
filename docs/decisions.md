@@ -1,5 +1,19 @@
 # Experimental decisions
 
+## R5.26 versioned type integration boundary (prospective, 2026-10-03)
+
+Keep R5.23-locked files unchanged and implement optional elimination and UTC
+ordering in a contract-versioned read-only general operation path. This makes
+conjunction witnesses explicit, schedules presence before uses without changing
+relational meaning, and verifies ordered results by declared keys/multiset rather
+than Python stability. The independent generated read-only witnesses validate
+the two type junctions and their composition, but cannot justify claiming
+whole-program closure: writing transitions, nested order expressions and full
+general generator transfer remain unimplemented. Gate
+`R5_26_REFINEMENT_INSTANT_INTEGRATION_PARTIAL`; R5.27 should integrate these
+rules into the full versioned pipeline on independent non-task programs.
+Core remains 30, no #31. See the [R5.26 result](../benchmark/results/phase5c/R5_26-GENERAL-TYPE-REFINEMENT-INSTANT-INTEGRATION.md).
+
 ## R5.25 scoped optional elimination (prospective, 2026-10-03)
 
 Choose `EXISTING_TYPE_SYSTEM_GENERALIZATION`, not core construct #31. The

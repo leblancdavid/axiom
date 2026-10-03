@@ -69,6 +69,19 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.26 general type integration study](../benchmark/results/phase5c/R5_26-GENERAL-TYPE-REFINEMENT-INSTANT-INTEGRATION.md)
+generates, grounds and semantically checks read-only non-task operations with
+scoped `optional<T>` elimination and chronological `instant` ordering, including
+`present + before + select + order`. Both independently demonstrated R5.23
+type blockers are resolved in this separately versioned profile, **not yet in
+the full general operation pipeline**. The gate is
+`R5_26_REFINEMENT_INSTANT_INTEGRATION_PARTIAL`: R5.27 should carry this analysis
+through writing/mixed-branch operations on new domains, without altering pinned
+history. Input validity/typed malformed outcomes, cross-shape migration and
+frozen transport binding remain separate. Core 30, no #31, no B02 retry; Phase
+5C paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historical
+authority, format globally unfrozen, universal correctness unestablished.
+
 The [R5.25 optional-presence/refinement review](../benchmark/results/phase5c/R5_25-OPTIONAL-PRESENCE-REFINEMENT-SEMANTIC-REVIEW.md)
 chooses `EXISTING_TYPE_SYSTEM_GENERALIZATION`: optional state-row presence is
 already defined by typed record membership; a scoped type-elimination witness
