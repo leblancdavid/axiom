@@ -1,5 +1,31 @@
 # Experimental decisions
 
+## R5.34 — Checked public routing around unchanged binding and semantics
+
+Keep transport as interface machinery: route, preserve raw membership, bind,
+invoke generated execution and shape-check/encode results. Validate machine
+profiles against sealed CheckedPlan slots/outcomes/pre/post facts, not a second
+type analyzer or application predicate interpreter. Derive requiredness; require
+complete required input and exact outcome mappings. Public failure classification
+is explicit interface metadata, not inference from tag names or re-evaluated guards.
+Preserve R5.32 all-or-failure binding; leave applicability to generated pre-state
+typing/semantic predicates. Runtime rejection has no fabricated typed outcome.
+Tie profiles to semantic application/unit/generation identities and artifact
+digests; stale profiles block before execution. Independent argv/decode/public/
+durable challenges retain separate transport, input, semantic and output verdicts.
+
+Tradeoffs: bounded scalar text/JSON flag pairs, tagged stdout envelopes, fixed exits,
+no repeated collection flags or arbitrary public stream projection, and explicit
+preexisting store. Checksums do not sandbox or authenticate a hostile writer.
+Endpoint observations expose forbidden adapter mutation but do not prove absence
+of transient writes. Two-domain transport/cross-shape evidence validates generic
+architecture, not exact frozen transport. Semantic failure encoded as success or
+result corruption can fail public output while semantic conformance passes.
+Choose independent R5.35 Generic Transport Boundary Completion Review for remaining
+collection/public-policy/persistence boundaries, not B02 retry. Core 30, no #31.
+Evidence: `benchmark/results/phase5c/R5_34-CHECKED-TRANSPORT-BINDING.md`;
+profile: `docs/checked-transport-r5.34.md`.
+
 ## R5.33 — Generalize #45 state slots; construct only checked target relations
 
 Record the same-shape audit before implementation. Choose

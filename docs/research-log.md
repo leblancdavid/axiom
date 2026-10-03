@@ -1,5 +1,73 @@
 # Lykoi research log
 
+## R5.34 prospective checked transport binding (2026-10-03)
+
+Observation: current internal dispatch supports checked semantic keys/codecs but
+is not a public transport. Generic run_cli performs early scalar/presence policy;
+R5.32's public JSON adapter preserves raw binding but lacks public route/outcome
+classification. New checked public profiles consume authoritative plan facts and
+drive a generic flag/value CLI around the unchanged R5.32 binder/current_pipeline.
+Transport contains no application transitions, defaults, predicates or migration.
+Requiredness/outcome shapes originate in CheckedPlan; digests bind source/unit/
+generation and copied artifacts. Stale regeneration blocks before invocation.
+
+Actual evidence: 15 mineral-catalogue public calls, 10 specimen cross-shape lifecycle
+calls, 10 before/after version-unavailable calls, 5 metadata/source mutations and
+6 disposable faults (46 observations). All 25 normal calls pass applicable layers;
+18 execute typed semantics, 5 fail binding and 2 fail routing/grammar. Both five-call
+cross-shape lifecycles share durable state (8 adjacent byte links). All mutations
+follow metadata with unchanged adapter bytes. Unavailable calls preserve bytes,
+have INVOCATION_FAILURE and no semantic event; no semantic verdict is invented.
+Faults expose wrong routing, false suppliedness, incompatible decoder, failure
+encoded as success, omitted result field and forbidden transport durable mutation.
+Public corruption faults preserve semantic conformance; independent readback
+exposes transport mutation despite matching public output. Integrity alone is
+not behavioral conformance or hostile-writer attestation.
+
+Gate R5_34_CHECKED_TRANSPORT_VALIDATED for bounded generic architecture. Subsequent
+descriptive B02/baseline text comparison (no fixture template/acceptance/candidate)
+finds repeated collection flags, configurable bare/stdout versus stderr error
+encoding and checked absent-store/persistence policy outside the prototype.
+Malformed-input operation-declared mapping remains partial. Recommend R5.35
+independent Generic Transport Boundary Completion Review, not comprehensive retry.
+No implementation edits followed the descriptive comparison. Windows Python
+3.14.3: full 319 discovered, 318 pass, 1 explicit nested frozen-B02 restriction
+skip; 31 application/compiler pass, validation/safety and matrix pass. No Python
+environment failures; Git LF-to-CRLF notices remain separate from diff checks.
+
+Core 30, no #31, historical raw inventory 46 unchanged. B02 not retried/accepted,
+Phase 5C paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historical
+authority, format globally unfrozen, universal correctness unclaimed. Direct
+durable writing remains non-transactional/crash-nonatomic. Evidence:
+`benchmark/results/phase5c/R5_34-CHECKED-TRANSPORT-BINDING.md` and
+`R5_34-transport-evidence.json`; interface: `docs/checked-transport-r5.34.md`.
+
+## Long-term research/publication note (2026-10-03)
+
+Lykoi is being developed as an experimental AI-native software-development
+system and may eventually form the basis of a research publication if the
+evidence becomes substantive. This note records a long-term possibility within
+the existing research log and [decision structure](decisions.md); it does not
+initiate a paper or alter the current R5.x experiment or benchmark governance.
+
+- Do not optimize experiments for a positive paper result. Positive, negative
+  and null findings are all valid research outcomes. If evidence does not support
+  the original hypothesis, preserve and report it rather than adapting the
+  evaluation to obtain a positive result.
+- Preserve historical experiment artifacts, failures, architectural revisions,
+  benchmark freezes and test results rather than rewriting history. Continue
+  distinguishing semantic adequacy, compiler capability, grounded case evidence
+  and universal correctness.
+- Preserve AI model/tool identities, versions where available, and their roles
+  in the research/development workflow, with enough context to support an accurate
+  future methodology section.
+- Make no publication claim such as “Lykoi is better than conventional
+  programming” without supporting controlled evidence.
+- Before any future held-out evaluation, define hypotheses, metrics, controls,
+  comparison methodology and evaluation protocol before revealing or executing
+  held-out tasks. Keep the future held-out benchmark from influencing semantic
+  or compiler development before the architecture being evaluated is frozen.
+
 ## R5.33 prospective cross-shape state evolution (2026-10-03)
 
 Observation: the historical operation-contract proposal and current state slots,

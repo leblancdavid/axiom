@@ -69,6 +69,28 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.34 checked transport study](../benchmark/results/phase5c/R5_34-CHECKED-TRANSPORT-BINDING.md)
+validates a generic checked scalar CLI around `benchmark.semantic.current_pipeline`
+and the unchanged R5.32 binder. Public routing, raw suppliedness, typed invocation
+and shape-checked JSON encoding are profile driven on a new four-operation mineral
+catalogue and both R5.33 specimen row/root evolution applications. Fifteen catalogue
+calls and ten cross-shape lifecycle calls pass applicable layered conformance;
+ten unavailable calls reject without a typed semantic event. Five semantic/profile
+mutations follow metadata with identical adapter bytes; six faults expose routing,
+suppliedness, decoder, public status/result and forbidden durable-mutation defects.
+Profile identities reject stale generation before execution. Generic architecture
+gate **`R5_34_CHECKED_TRANSPORT_VALIDATED`**, core 30, no #31. Exact frozen transport
+readiness remains partial: repeated collection arguments, configurable bare/error
+stream encoding and missing-store/persistence policy are outside this prototype.
+Malformed-input operation-outcome mapping also remains partial. Recommend R5.35
+**Generic Transport Boundary Completion Review** independently, rather than B02
+retry. Windows Python 3.14.3 passes 318/319 harness tests with one explicit nested
+frozen-B02 restriction skip, 31 application/compiler tests, validation and safety.
+Versioned interface: [R5.34 checked transport](checked-transport-r5.34.md).
+No B02 retry/acceptance, Phase 5C paused, B03 untouched, B17 unexposed/unclassified,
+R5.2.2 historical authority, format globally unfrozen and universal correctness
+unclaimed. Durable atomicity and hostile-runtime attestation remain unestablished.
+
 The [R5.33 cross-shape evolution review](../benchmark/results/phase5c/R5_33-CROSS-SHAPE-STATE-EVOLUTION.md)
 selects **EXISTING_OPERATION_CONTRACT_GENERALIZATION** and validates distinct
 typed pre/post durable states through `benchmark.semantic.current_pipeline`.

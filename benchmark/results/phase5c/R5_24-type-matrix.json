@@ -1,5 +1,5 @@
 {
-  "scope": "historical entries retained; R5.32 input binding and R5.33 cross-shape evolution around the single-authority current application profile are prospective and independent of frozen benchmark",
+  "scope": "historical entries retained; R5.32 binding, R5.33 evolution and R5.34 checked transport around the single-authority current application profile are prospective and independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -169,6 +169,25 @@
       "version_specific_operation_binding": {"supported": true, "evidence": "per-operation checked pre shape and semantic requires; five-operation applications with seven-call lifecycles"}
     },
     "r5_23_blockers": {"cross_shape_state_evolution": "RESOLVED_INDEPENDENTLY", "frozen_transport_binding": "UNRESOLVED"}
+  },
+  "r5_34_checked_transport": {
+    "entry_point": "benchmark.semantic.current_pipeline",
+    "semantic_authority": "sealed CheckedPlan input slots, outcomes, state slots and contract digest; R5.32 binding unchanged",
+    "candidate_core_constructs": 30,
+    "scope": "flag/value CLI; scalar text or JSON representations; explicit finite domains; generic checked JSON tagged public output; no frozen transfer claim",
+    "dimensions": ["transport_profile", "operation_routing", "suppliedness_preservation", "raw_binding", "output_encoding", "layered_conformance", "profile_integrity", "cross_shape_lifecycle_transport"],
+    "per_dimension": {
+      "transport_profile": {"supported": true, "evidence": "CheckedPlan validation; nine invalid-profile categories"},
+      "operation_routing": {"supported": true, "evidence": "public register alias and rename mutation; Fault A"},
+      "suppliedness_preservation": {"supported": true, "evidence": "omitted/explicit optional string/instant; JSON false; Fault B"},
+      "raw_binding": {"supported": true, "evidence": "malformed instant/scalar and finite domain through unchanged R5.32 binder; Fault C"},
+      "output_encoding": {"supported": true, "evidence": "scalar/record/record collection/structured rejection; Faults D/E"},
+      "layered_conformance": {"supported": true, "evidence": "transport/input/semantic/output verdicts; D/E preserve semantic conformance; F fails durable grounding"},
+      "profile_integrity": {"supported": true, "evidence": "application/unit/generation and artifact digests; stale profile blocks before invocation; not hostile-writer attestation"},
+      "cross_shape_lifecycle_transport": {"supported": true, "evidence": "two five-call shared-state lifecycles, row upgrade and root promotion; before/after availability rejection"}
+    },
+    "r5_23_transport_blocker": "GENERIC_ARCHITECTURE_VALIDATED",
+    "readiness": {"optional_refinement": "RESOLVED_INDEPENDENTLY", "instant_ordering": "RESOLVED_INDEPENDENTLY", "suppliedness_well_formedness": "RESOLVED_INDEPENDENTLY", "malformed_input_boundary": "PARTIALLY_RESOLVED", "cross_shape_evolution": "RESOLVED_INDEPENDENTLY", "transport_binding": "PARTIALLY_RESOLVED"}
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",
