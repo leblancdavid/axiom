@@ -11,10 +11,14 @@ import hashlib
 import json
 from pathlib import Path
 
+from benchmark.semantic.capability_boundary_r5_22 import capability_type
 from benchmark.semantic.typed_lowering_r5_12 import _compile, _field, UnsupportedLowering
 
 
 RUNTIME = Path(__file__).with_name('generative_runtime_r5_13.py')
+# A disposable injected-lowering fault marker for an external string identity;
+# it faithfully executes but never matches the value the provider persisted.
+_STALE_IDENTITY = '__injected_stale_identity__'
 
 
 def canonical(value):
@@ -26,7 +30,7 @@ def sha(value):
 
 
 def shape_valid(shape):
-    if shape in ('string', 'integer', 'boolean'):
+    if shape in ('string', 'integer', 'boolean', 'instant'):
         return
     if isinstance(shape, dict) and set(shape) in ({'sequence'}, {'optional'}, {'nullable'}):
         shape_valid(next(iter(shape.values())))
@@ -57,6 +61,7 @@ def typed(contract):
     if not isinstance(branches, list) or len(branches) < 2:
         raise ValueError('branches require guards and final otherwise')
     slots = {'input': inp, 'pre': state}
+    value_slots = {'input': inp, 'pre': state, 'post': state}
     for index, branch in enumerate(branches):
         if not isinstance(branch, dict) or set(branch) not in (
                 {'tag', 'when', 'value', 'transition'},
@@ -70,7 +75,7 @@ def typed(contract):
             raise ValueError('guard must be boolean')
         payload_type = branch.get('value_type', 'string')
         shape_valid(payload_type)
-        if _compile(branch['value'], slots)[0] != payload_type:
+        if _compile(branch['value'], value_slots)[0] != payload_type:
             raise ValueError('outcome payload type mismatch')
         transition = branch['transition']
         if transition == {'preserve': True}:
@@ -112,13 +117,26 @@ def typed(contract):
 
 
 def _relational(relations, state, slots):
-    """Check a bounded conjunction of existing exact frame/default/equality relations.
+    """Check a bounded conjunction of existing frame/default/replace/remove/equality relations.
 
     A relation has no operation name. Its collection path is storage binding
-    metadata; the equality target is a typed post-state field projection.
+    metadata; the equality target is a typed post-state field projection. Each
+    collection is touched by at most one non-defaulting transform, and multiple
+    compatible keyed defaults commute because expressions bind only to input/pre.
     """
     if not isinstance(relations, list) or not relations:
         raise ValueError('missing state relations')
+
+    def resolve(name):
+        collection = state if name is None and set(state) == {'sequence'} else (
+            state['record'].get(name) if set(state) == {'record'} and type(name) is str else None)
+        if (not isinstance(collection, dict) or set(collection) != {'sequence'} or
+                not isinstance(collection['sequence'], dict) or
+                set(collection['sequence']) != {'record'}):
+            raise ValueError('invalid collection projection')
+        return collection, collection['sequence']['record']
+
+    single_transform = {'exact_frame', 'replace_field', 'remove'}
     collection_changes = {}
     scalar_changes = set()
     defaults = {}
@@ -127,7 +145,7 @@ def _relational(relations, state, slots):
         if not isinstance(relation, dict) or len(relation) != 1:
             raise ValueError('invalid state relation')
         kind, rule = next(iter(relation.items()))
-        if kind not in ('exact_frame', 'default_missing', 'post_equals'):
+        if kind not in single_transform | {'default_missing', 'post_equals'}:
             raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state relation')
         if not isinstance(rule, dict):
             raise ValueError('invalid state relation parameters')
@@ -140,23 +158,26 @@ def _relational(relations, state, slots):
             scalar_changes.add(field)
             planned.append(relation)
             continue
-        expected = {'collection', 'identity', 'record'} if kind == 'exact_frame' else {'collection', 'identity', 'field', 'value'}
+        expected = {'exact_frame': {'collection', 'identity', 'record'},
+                    'default_missing': {'collection', 'identity', 'field', 'value'},
+                    'replace_field': {'collection', 'key', 'match', 'field', 'value'},
+                    'remove': {'collection', 'identity', 'match'}}[kind]
         if set(rule) != expected:
             raise ValueError('invalid collection relation')
         name = rule['collection']
-        collection = state if name is None and set(state) == {'sequence'} else (
-            state['record'].get(name) if set(state) == {'record'} and type(name) is str else None)
-        if not isinstance(collection, dict) or set(collection) != {'sequence'} or not isinstance(collection['sequence'], dict) or set(collection['sequence']) != {'record'}:
-            raise ValueError('invalid collection projection')
-        fields = collection['sequence']['record']
-        identity = rule['identity']
+        collection, fields = resolve(name)
+        identity = rule.get('identity', rule.get('key'))
         if fields.get(identity) != 'string' or name in scalar_changes:
             raise ValueError('invalid identity')
-        # A frame or a default maps each collection once; no implicit order of
-        # multiple noncommuting transforms is inferred from a relation list.
-        if kind == 'exact_frame':
-            if _compile(rule['record'], slots)[0] != collection['sequence']:
-                raise ValueError('framed record type mismatch')
+        if kind in single_transform:
+            if _compile(rule.get('match', rule.get('record')), slots)[0] != (
+                    collection['sequence'] if kind == 'exact_frame' else fields[identity]):
+                if kind == 'exact_frame':
+                    raise ValueError('framed record type mismatch')
+                raise ValueError('key type mismatch')
+            if kind == 'replace_field':
+                if rule['field'] not in fields or _compile(rule['value'], slots)[0] != fields[rule['field']]:
+                    raise ValueError('invalid replacement field or type')
             if name in collection_changes:
                 raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: overlapping collection relations')
             collection_changes[name] = (kind, identity)
@@ -268,14 +289,36 @@ def expression(expr, bindings=None, slots=None, fault=False):
         call = ('sorted(' + expression(arg['source'], bindings, slots, fault) +
                 ', key=lambda ' + name + ': (' + projected + '))')
         return 'list(reversed(' + call + '))' if fault and len(plan['keys']) == 1 else call
+    if kind == 'external':
+        if fault and capability_type(arg['source']) == 'string':
+            return repr(_STALE_IDENTITY)
+        return 'EXTERNAL[' + repr(arg['source']) + ']'
+    if kind == 'fallback':
+        if fault:
+            # Disposable injected lowering fault: ignore an explicitly present input and
+            # always emit the fallback value. Faithfully grounded, contract-violating.
+            return expression(arg['default'], bindings, slots, fault)
+        path = arg['value']['ref']
+        parent = expression({'ref': path[:-1]}, bindings, slots, fault)
+        return '(' + expression(arg['default'], bindings, slots, fault) + ' if ' + repr(path[-1]) + \
+               ' not in ' + parent + ' else ' + expression(arg['value'], bindings, slots, fault) + ')'
+    if kind == 'before':
+        return 'instant_lt(' + expression(arg[0], bindings, slots, fault) + ', ' + \
+               expression(arg[1], bindings, slots, fault) + ')'
+    if kind == 'sole':
+        return 'sole(' + expression(arg, bindings, slots, fault) + ')'
+    if kind == 'project':
+        return 'project(' + expression(arg['row'], bindings, slots, fault) + ', [' + \
+               ', '.join(repr(name) for name in arg['fields']) + '])'
     raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: ' + kind)
 
 
-def render(contract, fault=False):
+def render(contract, fault=False, cli=False):
     typed(contract)
     slots = {'input': contract['input'], 'pre': contract['state']}
+    value_slots = {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
     lines = ['# Disposable generated program; regenerate from semantic contract.',
-             'from generative_runtime_r5_13 import run', '',
+             'from generative_runtime_r5_13 import instant_lt, project, run, run_cli, sole', '',
              'def execute(input, pre):']
     for index, branch in enumerate(contract['branches']):
         condition = 'if ' + expression(branch['when'], slots=slots) + ':' if index == 0 else (
@@ -294,18 +337,35 @@ def render(contract, fault=False):
                     continue
                 name = rule['collection']
                 source = 'post' if name is None else 'post[' + repr(name) + ']'
-                key = repr(rule['identity'])
-                lines.extend(['        if len({row[' + key + '] for row in ' + source + '}) != len(' + source + '):',
+                identity = repr(rule['identity'] if 'identity' in rule else rule['key'])
+                lines.extend(['        if len({row[' + identity + '] for row in ' + source + '}) != len(' + source + '):',
                               '            raise ValueError("duplicate identity")'])
                 if kind == 'exact_frame':
                     lines.extend(['        _new = ' + expression(rule['record'], slots=slots),
-                                  '        if _new[' + key + '] in {row[' + key + '] for row in ' + source + '}:',
+                                  '        if _new[' + identity + '] in {row[' + identity + '] for row in ' + source + '}:',
                                   '            raise ValueError("identity not fresh")',
                                   '        _rows = [*' + source + ', _new]'])
+                elif kind == 'remove':
+                    match = expression(rule['match'], slots=slots)
+                    # Disposable injected lowering fault: drop the first element by
+                    # position instead of honoring the keyed target. Faithfully grounded.
+                    if fault:
+                        lines.append('        _rows = ' + source + '[1:]')
+                    else:
+                        lines.append('        _rows = [item for item in ' + source +
+                                     ' if item[' + identity + '] != ' + match + ']')
+                elif kind == 'replace_field':
+                    field = repr(rule['field'])
+                    match, value = expression(rule['match'], slots=slots), expression(rule['value'], slots=slots)
+                    # Disposable injected lowering fault: retain the old field value,
+                    # faithfully grounded but never matching the assigned value.
+                    value = 'item[' + field + ']' if fault else value
+                    lines.append('        _rows = [{**item, ' + field + ': ' + value +
+                                 '} if item[' + identity + '] == ' + match + ' else item for item in ' + source + ']')
                 else:
                     field = repr(rule['field'])
                     lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots) +
-                                 '} if ' + field + ' not in item else item for item in ' + source + ']')
+                                  '} if ' + field + ' not in item else item for item in ' + source + ']')
                 lines.append('        post = _rows' if name is None else
                              '        post = {**post, ' + repr(name) + ': _rows}')
         elif 'default_missing' in transition:
@@ -327,18 +387,19 @@ def render(contract, fault=False):
                           '] == ' + match + ' else item for item in pre]',
                           '        write = True'])
         lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
-                     expression(branch['value'], slots=slots, fault=fault) + '}, post, write')
+                     expression(branch['value'], {'post': 'post'}, value_slots, fault) + '}, post, write')
+    entry = 'run_cli' if cli else 'run'
     lines.extend(['', 'if __name__ == "__main__":',
-                   '    run(execute, ' + repr(contract['input']) + ', ' +
+                   '    ' + entry + '(execute, ' + repr(contract['input']) + ', ' +
                    repr(contract['state']) + ', ' +
                    repr({b['tag']: b.get('value_type', 'string') for b in contract['branches']}) + ')', ''])
     return '\n'.join(lines).encode()
 
 
-def generate(contract, directory, fault=False):
+def generate(contract, directory, fault=False, cli=False):
     """Fault variant is a disposable lowering experiment, excluded from normal generation."""
     directory = Path(directory)
-    artifact = render(contract, fault)
+    artifact = render(contract, fault, cli)
     runtime = RUNTIME.read_bytes()
     identity = sha(canonical(contract))
     (directory / 'operation.py').write_bytes(artifact)

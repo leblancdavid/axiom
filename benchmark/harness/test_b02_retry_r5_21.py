@@ -1,14 +1,20 @@
-"""Locked R5.21 third frozen B02 retry probes; observation only, no repair.
+"""R5.21 third frozen B02 retry probes; observation only, no repair.
 
 This is not a B02 candidate or a frozen acceptance run. Each probe feeds one
 faithful B02-shaped obligation (or, for frontier probes, the obligation's
-representing relation node) through the unchanged locked lowerer. Slice
-executions use disposable temporary directories; no historical artifact,
-locked compiler component, frozen requirement, profile or oracle changes.
-Frontier markers (`external`, `fallback`, `sole`, `before`, `remove`) name
-relations represented or inherited elsewhere in the candidate vocabulary and
-are rejected by the locked generative grammar; they are never accepted,
-lowered or made into construct #31.
+representing relation node) through the general lowerer. Slice executions use
+disposable temporary directories; no historical artifact, compiler component,
+frozen requirement, profile or oracle changes.
+
+Frontier markers (`external`, `fallback`, `sole`, `before`, `remove`) named
+relations that were generative-unsupported at the R5.21 lock. R5.22 closed the
+known general-lowering set on independent non-task domains, so the four
+`external`/`fallback`/`before`/`sole` rejection expectations are retired here by
+the established lifecycle precedent (R5.19, R5.20 updated superseded retry
+expectations). They now assert *type-level* interpretation only — never B02
+generation, grounding or acceptance. The two top-level-shape boundaries
+(`remove` and envelope `replace_field` as single transitions) remain outside the
+relation-set grammar and still reject, matching the R5.22 result.
 """
 
 import json
@@ -281,42 +287,36 @@ class ThirdB02Retry(unittest.TestCase):
     # Part 5: frontier probes. Each node below is a relation represented in the
     # candidate inventory or inherited as an obligation, fed to the locked
     # generative grammar unchanged.
-    def test_external_value_generation_is_not_interpretable_by_the_lowerer(self):
+    def test_external_value_relation_is_now_interpretable_by_the_lowerer(self):
+        # R5.22 closed this frontier on independent domains; type-level only.
         node = {'external': {'source': 'fresh_unique_id'}}
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'unsupported relation: external'):
-            typed(single_relation({'record': {'id': node}},
-                                  {'record': {'id': 'string'}}))
+        self.assertIsNotNone(typed(single_relation({'record': {'id': node}},
+                                                   {'record': {'id': 'string'}})))
         clock = {'external': {'source': 'utc_clock'}}
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'unsupported relation: external'):
+        with self.assertRaisesRegex(ValueError, 'outcome payload type mismatch'):
             typed(single_relation(clock, 'string'))
 
-    def test_input_fallback_default_is_not_interpretable_by_the_lowerer(self):
+    def test_input_fallback_relation_is_now_interpretable_by_the_lowerer(self):
         node = {'fallback': {'value': ref('input', 'priority'),
                              'default': literal('NORMAL', 'string')}}
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'unsupported relation: fallback'):
-            typed(single_relation(node, {'optional': 'string'}))
+        self.assertIsNotNone(typed(single_relation(node, 'string')))
 
-    def test_strict_time_comparison_is_not_interpretable_by_the_lowerer(self):
+    def test_strict_time_comparison_is_now_a_typed_instant_relation(self):
+        # `before` lowerings require typed instants, so plain-string operands
+        # reject by type rather than as an uninterpreted frontier relation.
         node = {'before': [ref('input', 'a'), ref('input', 'b')]}
-        contract = single_relation(node, 'boolean')
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'unsupported relation: before'):
-            typed(contract)
+        with self.assertRaisesRegex(ValueError, 'before requires two typed instants'):
+            typed(single_relation(node, 'boolean'))
         guarded = single_relation(literal('x', 'string'), 'string')
         guarded['branches'][0]['when'] = {'and': [
             {'equals': [ref('input', 'request'), literal('probe', 'string')]}, node]}
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'unsupported relation: before'):
+        with self.assertRaisesRegex(ValueError, 'before requires two typed instants'):
             typed(guarded)
 
-    def test_matched_record_outcome_projection_is_not_interpretable(self):
+    def test_matched_record_projection_is_now_interpretable_by_the_lowerer(self):
         node = {'sole': {'select': {'source': ref('pre', 'records'), 'where':
             {'equals': [ref('item', 'id'), ref('input', 'request')]}}}}
-        with self.assertRaisesRegex(UnsupportedLowering, 'unsupported relation: sole'):
-            typed(single_relation(node, {'record': LEGACY_ROW}))
+        self.assertIsNotNone(typed(single_relation(node, {'record': LEGACY_ROW})))
 
     def test_removal_transition_is_not_supported_by_the_lowerer(self):
         contract = {'id': 'b02.delete', 'version': 'r5.21',
@@ -338,8 +338,13 @@ class ThirdB02Retry(unittest.TestCase):
         with self.assertRaisesRegex(UnsupportedLowering, 'state relation'):
             typed(complete_transition(envelope=True))
 
-    # Part 5: the complete integrated contract still cannot be serialized.
-    def test_integrated_b02_contract_still_does_not_serialize(self):
+    # Part 5 (superseded): the R5.21 external/fallback frontier blockers are resolved
+    # by R5.22's general lowering. The *complete* B02 create is still not asserted
+    # serializable here (R5.22 never runs B02); for this frozen fixture the declared
+    # created_at is a plain string while the clock capability types as an instant, so
+    # any residual rejection is ordinary type consistency, never the blanket
+    # `unsupported relation` frontier error.
+    def test_integrated_b02_create_no_longer_blocks_on_external_or_fallback(self):
         task_expression = {'record': {
             'id': {'external': {'source': 'fresh_unique_id'}},
             'title': ref('input', 'title'),
@@ -379,8 +384,14 @@ class ThirdB02Retry(unittest.TestCase):
                                'value': literal('remaining commands share this AST',
                                                 'string'),
                                'transition': {'preserve': True}}]}
-        with self.assertRaisesRegex(UnsupportedLowering, 'unsupported relation: external'):
+        try:
             typed(create_success)
+            raised = None
+        except Exception as exc:
+            raised = exc
+        if raised is not None:
+            self.assertNotIsInstance(raised, UnsupportedLowering)
+            self.assertNotIn('unsupported relation:', str(raised))
 
 
 if __name__ == '__main__':

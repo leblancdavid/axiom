@@ -4,6 +4,9 @@ This interpreter checks supplied tuples. It neither constructs target algorithms
 nor asserts that a tuple was captured faithfully from a real invocation.
 """
 
+from benchmark.semantic.capability_boundary_r5_22 import (
+    CAPABILITY_TYPES, capability_type, is_instant, parse_instant)
+
 
 class UnsupportedLowering(ValueError):
     """A valid candidate relation is outside this deliberately small lowering."""
@@ -16,6 +19,8 @@ def _type(value, shape):
         return type(value) is int
     if shape == 'boolean':
         return type(value) is bool
+    if shape == 'instant':
+        return is_instant(value)
     if isinstance(shape, dict) and set(shape) == {'nullable'}:
         return value is None or _type(value, shape['nullable'])
     if isinstance(shape, dict) and set(shape) == {'optional'}:
@@ -126,6 +131,57 @@ def _compile(expr, slots):
         if not isinstance(shape, dict) or set(shape) != {'sequence'}:
             raise ValueError('cardinality needs a sequence')
         return 'integer', lambda facts: len(source(facts))
+    if kind == 'external':
+        if not isinstance(arg, dict) or set(arg) != {'source'}:
+            raise ValueError('invalid external reference')
+        return capability_type(arg['source']), (
+            lambda facts: facts['external'][arg['source']])
+    if kind == 'fallback':
+        if not isinstance(arg, dict) or set(arg) != {'value', 'default'}:
+            raise ValueError('invalid fallback')
+        shape, fn = _compile(arg['value'], slots)
+        if not isinstance(shape, dict) or set(shape) != {'optional'}:
+            raise ValueError('fallback source must be an optionally-present reference')
+        if not isinstance(arg['value'], dict) or set(arg['value']) != {'ref'} or len(arg['value']['ref']) < 2:
+            raise ValueError('fallback source must be a field reference')
+        path = arg['value']['ref']
+        base = shape['optional']
+        default_shape, default_fn = _compile(arg['default'], slots)
+        if default_shape != base:
+            raise ValueError('incompatible fallback default')
+        parent_shape, parent_fn = _compile({'ref': path[:-1]}, slots)
+        terminal = path[-1]
+        return base, lambda facts: (default_fn(facts) if terminal not in parent_fn(facts)
+                                    else fn(facts))
+    if kind == 'before':
+        if not isinstance(arg, list) or len(arg) != 2:
+            raise ValueError('before needs two operands')
+        left, right = (_compile(part, slots) for part in arg)
+        if left[0] != 'instant' or right[0] != 'instant':
+            raise ValueError('before requires two typed instants')
+        return 'boolean', lambda facts: parse_instant(left[1](facts)) < parse_instant(right[1](facts))
+    if kind == 'sole':
+        shape, fn = _compile(arg, slots)
+        if not isinstance(shape, dict) or set(shape) != {'sequence'}:
+            raise ValueError('sole needs a sequence')
+        return shape['sequence'], lambda facts: _sole(fn(facts))
+    if kind == 'project':
+        if not isinstance(arg, dict) or set(arg) != {'row', 'fields'} or (
+                not isinstance(arg['fields'], list) or not arg['fields'] or
+                len(set(arg['fields'])) != len(arg['fields'])):
+            raise ValueError('invalid projection')
+        shape, fn = _compile(arg['row'], slots)
+        if not isinstance(shape, dict) or set(shape) != {'record'}:
+            raise ValueError('projection needs a record source')
+        record = shape['record']
+        projected = {}
+        for name in arg['fields']:
+            if name not in record:
+                raise ValueError('projected field is not in the source record')
+            if isinstance(record[name], dict) and set(record[name]) == {'optional'}:
+                raise ValueError('projection cannot require an optionally-present field')
+            projected[name] = record[name]
+        return {'record': projected}, lambda facts: {name: fn(facts)[name] for name in arg['fields']}
     if kind in ('equals', 'and'):
         if not isinstance(arg, list) or len(arg) < 2 or (kind == 'equals' and len(arg) != 2):
             raise ValueError('invalid operands')
@@ -151,13 +207,19 @@ def _path(facts, parts):
     return value
 
 
+def _sole(items):
+    if not isinstance(items, list) or len(items) != 1:
+        raise ValueError('sole needs exactly one selected element')
+    return items[0]
+
+
 def lower(contract):
     """Compile a checked contract into a reusable case-scoped tuple validator."""
     if not isinstance(contract, dict) or set(contract) != {'input', 'state', 'outcomes'}:
         raise ValueError('invalid operation contract')
     # Validate type declarations even for empty collections and unused fields.
     def valid_shape(shape):
-        if shape in ('string', 'integer', 'boolean'):
+        if shape in ('string', 'integer', 'boolean', 'instant'):
             return
         if isinstance(shape, dict) and set(shape) in ({'sequence'}, {'nullable'}):
             valid_shape(next(iter(shape.values())))

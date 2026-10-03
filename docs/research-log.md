@@ -1,5 +1,42 @@
 # Lykoi research log
 
+## R5.22 known general lowering-coverage completion (prospective, 2026-10-03)
+
+**Observation:** The known lowering-coverage backlog left by R5.21 was closed on
+independent non-task domains (sensor readings and a publication archive), with no
+B02 retry, generation, grounding or acceptance. Seven previously not-generative
+relations/compositions are now constructively lowered through the existing general
+channel and grounded: `external` values via a typed capability boundary (fresh
+identity, UTC instant) that records the actual supplied value and enforces its
+declared type, rejecting unknown/mismatched/missing-provider uses; omitted-input
+`fallback`, kept distinct from the keyed state `default_missing`; the existing
+#27 `before` promoted from validating-only to generative over the typed `instant`
+form (before/equal/after); matched-row and post-transition **projection**
+(`sole`/`project` plus a `post` value slot) realizing the #45 post/outcome channel;
+keyed **remove** and envelope-collection-qualified **replace_field** through the
+relation-set conjunction (state-shape independent, framing preserved); and an
+integrated AST + generic metadata-derived **CLI binding** (`run_cli`). Two composed
+end-to-end operations ran, grounded and conformed under real and controlled providers,
+changed behavior under semantic-only mutation with zero lowerer edits, and failed
+faithfully grounded lowering faults for external, fallback, replacement and removal.
+`git diff --check` exit 0 (LF→CRLF notices only); harness 224/224; application/compiler
+31/31. Four R5.21 frontier rejection expectations (`external`, `fallback`, `before`,
+`sole`) were retired at their checkpoint by the R5.19/R5.20 lifecycle precedent to
+type-level observations; the historical R5.21 result document is unchanged. See the
+[R5.22 result](../benchmark/results/phase5c/R5_22-KNOWN-GENERAL-LOWERING-COVERAGE-COMPLETION.md).
+Result: `R5_22_KNOWN_LOWERING_COVERAGE_COMPLETE`.
+
+**Limit:** This closes the *lowering-coverage* set only. It is not a B02 candidate,
+acceptance, grounding or conformance result, and does not establish that a complete
+B02 operation serializes. Interface/transport obligations (error envelope/exit codes,
+missing-file→`[]`, one shared store, the full multi-operation command AST,
+`invalid_state` corruption mapping) and the `BENCHMARK_UNDERSPECIFIED` precedence/
+malformed-tag items remain distinct from the backlog and unadvanced. No new core
+construct (#31); the typed `instant`, `sole`/`project` and capability boundary are
+lowering/typing/binding machinery over existing constructs, and no capability revealed
+a semantic deficiency. Candidate core remains 30; Phase 5C paused, B17 unexposed,
+R5.2.2 historical authority, format unfrozen, universal correctness unestablished.
+
 ## R5.21 third frozen B02 generalization retry (prospective, 2026-10-03)
 
 **Observation:** With the R5.20 suite already current (no newly obsolete

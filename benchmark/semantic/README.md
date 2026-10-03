@@ -23,6 +23,20 @@ plus nondecreasing key tuples — so fully tied records are unconstrained and
 neither stability nor direction is invented; `direction` and quantifier-local
 ordering sources reject explicitly. No new construct: core remains 30.
 
+The [R5.22 known lowering-coverage completion](../results/phase5c/R5_22-KNOWN-GENERAL-LOWERING-COVERAGE-COMPLETION.md)
+closes the known B02 lowering backlog on independent non-task domains with no B02
+retry. It lowers `external` values through a typed capability boundary
+(`capability_boundary_r5_22.py`: fresh identity and UTC instant, each resolved once,
+typed, and independently recorded — unknown/incompatible/missing-provider uses reject),
+omitted-input `fallback` as a relation distinct from keyed `default_missing`, the
+existing `before` (#27) generatively over the typed `instant` value form, matched-row
+and post-transition projection (`sole`/`project` plus a `post` value slot realizing #45),
+and keyed `remove` plus envelope-collection `replace_field` through the relation-set
+conjunction, with a generic CLI adapter derived from checked input binding metadata. All
+generate, execute, ground and conform and are fault-tested. No new core construct: the
+`instant`, `sole`/`project` and boundary are lowering/typing/binding machinery over
+existing #2/#10–12/#24/#25/#27/#30/#44/#45 semantics; core remains 30.
+
 The [R5.5 architecture result](../results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
 separates the #45 abstract relation (`contracts.py`), checked but ungrounded
 interface slot map (`binding.py`), concrete record shape (`observation.py`) and

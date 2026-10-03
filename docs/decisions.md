@@ -1,5 +1,30 @@
 # Experimental decisions
 
+## R5.22 known general lowering-coverage completion (prospective, 2026-10-03)
+
+Replace the serial one-capability B02 discovery loop with a single coverage-completion
+phase over the **known** R5.21 backlog, exercised only on independent non-task domains.
+Decision: close every already-known semantic relation/composition generatively rather
+than discover one per retry. Lower `external` through a typed capability boundary
+(fresh identity, UTC instant) that supplies, types and independently records the actual
+value and rejects unknown/incompatible/missing-provider use; lower omitted-input
+`fallback` as a distinct relation from keyed `default_missing`; promote `before` (#27)
+from validating-only to generative over the typed `instant` form; realize matched-row and
+post-transition **projection** via `sole`/`project` plus a `post` value slot (#45); lower
+keyed **remove** and envelope-collection **replace_field** through the relation-set
+conjunction, state-shape independent; and bind a generic CLI adapter from checked input
+metadata. Keep the semantic model frozen: no #31, no definition weakened; `instant`,
+`sole`/`project` and the boundary are lowering/typing/binding machinery over existing
+constructs, not new core semantics. Retire the four superseded R5.21 frontier rejection
+expectations by the established lifecycle precedent (type-level only; no B02 execution).
+Result **R5_22_KNOWN_LOWERING_COVERAGE_COMPLETE** for the lowering-coverage backlog: no
+known required relation remains validating-only/unsupported/unknown. This does **not**
+claim a complete B02 serializes or advance acceptance/interface layers; a single locked
+comprehensive B02 retry against the closed lowerer is the next step. Phase 5C paused,
+B17 unexposed/unclassified, R5.2.2 historical authority, format unfrozen, universal
+correctness unestablished. See the
+[R5.22 result](../benchmark/results/phase5c/R5_22-KNOWN-GENERAL-LOWERING-COVERAGE-COMPLETION.md).
+
 ## R5.21 third frozen B02 retry halt (prospective, 2026-10-03)
 
 Run the last planned serial one-capability B02 retry against the locked R5.20

@@ -1,6 +1,7 @@
 """Independent public/file observer, R5.7-style challenge, and case verifier."""
 
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -8,17 +9,48 @@ import uuid
 
 from benchmark.semantic.generative_r5_13 import canonical, ordering_plan, sha, typed, RUNTIME
 from benchmark.semantic.typed_lowering_r5_12 import _compile, _type
+from benchmark.semantic.capability_boundary_r5_22 import CAPS_ENV, validate_logged
 
 
-def observe(directory, inp):
+def observe(directory, inp, caps=None):
     root = Path(directory)
     state, trace = root / 'state.json', root / 'trace.json'
     before = state.read_bytes()
     invocation = uuid.uuid4().hex
     manifest = json.loads((root / 'provenance.json').read_bytes())
+    env = os.environ
+    if caps is not None:
+        env = {**os.environ, CAPS_ENV: caps}
     completed = subprocess.run([sys.executable, str(root / 'operation.py'), str(state),
                                 str(trace), invocation, canonical(inp).decode(),
-                                manifest['generation']], capture_output=True, text=True)
+                                manifest['generation']], capture_output=True, text=True, env=env)
+    after = state.read_bytes()
+    public = {'input': inp, 'invocation': invocation, 'stdout': completed.stdout,
+              'stderr': completed.stderr, 'exit': completed.returncode}
+    internal = json.loads(trace.read_bytes()) if trace.exists() else None
+    return internal, public, before, after
+
+
+def observe_cli(directory, inp, caps=None):
+    """Independent observer for the metadata-derived public CLI binding.
+
+    Arguments are named flags reconstructed from the input record; the generated
+    program parses them through the generic ``run_cli`` adapter (no per-application
+    parser), then the same challenge/grounding path applies.
+    """
+    root = Path(directory)
+    state, trace = root / 'state.json', root / 'trace.json'
+    before = state.read_bytes()
+    invocation = uuid.uuid4().hex
+    manifest = json.loads((root / 'provenance.json').read_bytes())
+    argv = [sys.executable, str(root / 'operation.py'), '--state', str(state),
+            '--trace', str(trace), '--invocation', invocation,
+            '--generation', manifest['generation']]
+    for key, value in inp.items():
+        argv.append('--' + key.replace('_', '-'))
+        argv.extend(str(item) for item in value) if isinstance(value, list) else argv.append(str(value))
+    env = {**os.environ, CAPS_ENV: caps} if caps is not None else os.environ
+    completed = subprocess.run(argv, capture_output=True, text=True, env=env)
     after = state.read_bytes()
     public = {'input': inp, 'invocation': invocation, 'stdout': completed.stdout,
               'stderr': completed.stderr, 'exit': completed.returncode}
@@ -42,6 +74,7 @@ def challenge(contract, directory, internal, public, before, after):
         return verdict
     try:
         visible = json.loads(public['stdout'])
+        external = internal.get('externals', {})
         grounded = (public['exit'] == 0 and public['stderr'] == '' and
                     internal['generation'] == manifest['generation'] and
                     internal['invocation'] == public['invocation'] and
@@ -50,7 +83,8 @@ def challenge(contract, directory, internal, public, before, after):
                     internal['post'] == json.loads(after) and
                     internal['outcome'] == visible and
                     type(internal['attempted_write']) is bool and
-                    (internal['attempted_write'] or before == after))
+                    (internal['attempted_write'] or before == after) and
+                    validate_logged(external))
     except (KeyError, TypeError, ValueError, json.JSONDecodeError):
         grounded = False
     if not grounded:
@@ -58,7 +92,7 @@ def challenge(contract, directory, internal, public, before, after):
     verdict['grounded'] = True
     verdict['conformant'] = conforms(contract, public['input'], json.loads(before),
                                      visible, json.loads(after), before == after,
-                                     internal['attempted_write'])
+                                     internal['attempted_write'], external)
     return verdict
 
 
@@ -83,17 +117,18 @@ def _ordered_relation_holds(order, facts, slots, value):
     return rank == sorted(rank)
 
 
-def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
+def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, external=None):
     """Interpret the originating typed contract, independently of emitted Python."""
     typed(contract)
     if not (_type(inp, contract['input']) and _type(pre, contract['state']) and
             _type(post, contract['state']) and isinstance(outcome, dict) and
              set(outcome) == {'kind', 'value'}):
         return False
-    slots = {'input': contract['input'], 'pre': contract['state']}
-    facts = {'input': inp, 'pre': pre}
+    slots = {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
+    facts = {'input': inp, 'pre': pre, 'post': post, 'external': external or {}}
+    base = {'input': contract['input'], 'pre': contract['state']}
     branch = next((b for b in contract['branches'] if b['when'] is None or
-                   _compile(b['when'], slots)[1](facts)), None)
+                   _compile(b['when'], base)[1](facts)), None)
     if branch is None or not _type(outcome['value'], branch.get('value_type', 'string')):
         return False
     if outcome['kind'] != branch['tag']:
@@ -119,7 +154,7 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
             touched.add(name)
             rows = pre if name is None else pre[name]
             new = post if name is None else post[name]
-            identity = rule['identity']
+            identity = rule['identity'] if 'identity' in rule else rule['key']
             if (len({row[identity] for row in rows}) != len(rows) or
                     len({row[identity] for row in new}) != len(new)):
                 return False
@@ -133,6 +168,19 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
                         len(new) != len(rows) + 1 or
                         sorted(canonical(row) for row in new if row[identity] != record[identity]) !=
                         sorted(canonical(row) for row in rows)):
+                    return False
+            elif kind == 'remove':
+                match = _compile(rule['match'], slots)[1](facts)
+                expected = [row for row in rows if row[identity] != match]
+                if sorted(canonical(row) for row in new) != sorted(canonical(row) for row in expected):
+                    return False
+            elif kind == 'replace_field':
+                key = rule['key']
+                match = _compile(rule['match'], slots)[1](facts)
+                value = _compile(rule['value'], slots)[1](facts)
+                expected = [{**row, rule['field']: value} if row[key] == match else row
+                            for row in rows]
+                if sorted(canonical(row) for row in new) != sorted(canonical(row) for row in expected):
                     return False
             else:
                 value = _compile(rule['value'], slots)[1](facts)
@@ -155,12 +203,12 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
         identity, field = rule['identity'], rule['field']
         if len({row[identity] for row in pre}) != len(pre):
             return False
-        value = _compile(rule['value'], slots)[1](facts)
+        value = _compile(rule['value'], base)[1](facts)
         expected = [{**row, field: value} if field not in row else row for row in pre]
         return post == expected and attempted_write
     update = transition['replace_field']
-    key = _compile(update['match'], slots)[1](facts)
-    value = _compile(update['value'], slots)[1](facts)
+    key = _compile(update['match'], base)[1](facts)
+    value = _compile(update['value'], base)[1](facts)
     expected = [{**row, update['field']: value} if row[update['key']] == key else row
                 for row in pre]
     return post == expected and attempted_write

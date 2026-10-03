@@ -332,7 +332,25 @@ completion phase closing the known set independently before any further B02
 retry. Core 30, no #31, no candidate/acceptance/grounding result for a complete
 B02, Phase 5C does not advance to B03, B17 unexposed/unclassified, R5.2.2
 historical authority, format unfrozen, universal correctness unestablished.
-Longer term, complete the ordered benchmark with
+The [R5.22 known lowering-coverage completion](../benchmark/results/phase5c/R5_22-KNOWN-GENERAL-LOWERING-COVERAGE-COMPLETION.md)
+replaces the serial B02 discovery loop and closes the **known** R5.21 backlog on
+independent non-task domains (sensor readings, publication archive) with **no B02
+retry**: `external` values through a typed capability boundary, omitted-input
+`fallback` distinct from keyed `default_missing`, `before` (#27) promoted from
+validating-only to generative over the typed `instant` form, matched-row/post-state
+**projection**, keyed **remove** and envelope **replace_field** through the
+relation-set conjunction, and a generic metadata-derived **CLI binding** — each
+generated, executed, grounded, semantically conformant, and fault-tested; two
+composed operations re-derived from semantics-only mutation with zero lowerer edits.
+Four R5.21 frontier rejection expectations were retired by the lifecycle precedent.
+Result `R5_22_KNOWN_LOWERING_COVERAGE_COMPLETE` for the lowering-coverage backlog:
+no known required relation remains validating-only/unsupported/unknown. This does not
+assert a complete B02 serializes or advance acceptance/interface/transport layers.
+Core remains 30 with no #31 (the typed instant, `sole`/`project` and boundary are
+lowering/typing/binding machinery, not new semantics), Phase 5C paused, B17
+unexposed/unclassified, R5.2.2 historical authority, format unfrozen, universal
+correctness unestablished. Next: one separately locked comprehensive B02 retry against
+the closed lowerer. Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
 equivalence against frozen requirements, not similarity to Conventional's
