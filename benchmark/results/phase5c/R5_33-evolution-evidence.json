@@ -1,0 +1,3674 @@
+{
+  "candidate_core_constructs": 30,
+  "entry_point": "benchmark.semantic.current_pipeline",
+  "faults": {
+    "A": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "2fb73b8c1cd243c0e9d23adcd2688f3be14fe4dae762b2d394f7785acdd6caed",
+        "input": {},
+        "invocation": "1751f5f97aa84d1c89da5e3cfe99e5f7",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "mineral-register"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "wrong",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "wrong"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "wrong"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"wrong\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"wrong\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"wrong\"}]}",
+      "post_digest": "554654d971e8473cd97222c084910ebf751e603ebd5ffd28132fd247a44ff810",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "1751f5f97aa84d1c89da5e3cfe99e5f7",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": false,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    },
+    "B": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "d5015298e271263d034d9f78f7ee3369f22ba907206ff47505691ca4e51de36a",
+        "input": {},
+        "invocation": "91dd51d125a8423089375c27d85b1045",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "mineral-register"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "wrong",
+              "designation": "Quartz",
+              "medium": "mineral",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "mineral"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"wrong\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"}]}",
+      "post_digest": "1c028886ddee99363deb6a42edb57ed03254eb23cc373a5d418f12cd33a94511",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "91dd51d125a8423089375c27d85b1045",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": false,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    },
+    "C": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "65514042409df1157e520bdc0b00806f3238dee0639841c374b399c4f904c1f6",
+        "input": {},
+        "invocation": "de90f7207fbf4c48b56989767c016847",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "mineral-register"
+          },
+          "revision": 1,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "mineral",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "mineral"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"}]}",
+      "post_digest": "8003f4e6fad75c1bcc28ca51da14dd34c2b9459646f53de67875fa415e2bb947",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "de90f7207fbf4c48b56989767c016847",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": false,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    },
+    "D": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "7843c0004a24e0b2028dc545d63f942fd4aee2b55d94874f7ea7fe4dcfe4a0db",
+        "input": {},
+        "invocation": "c9a6dad98d98465887719509945b811c",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "wrong-envelope"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "mineral",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "mineral"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"wrong-envelope\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"}]}",
+      "post_digest": "aa2c04514c153896a09a70b8bb0307f8ae01f24e6fea01254d9a75087c87994a",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "c9a6dad98d98465887719509945b811c",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": false,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    },
+    "E": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "f34ca3adbd222072048da6cb2d92ba82f828f1d41679283eb853eddb67e01a17",
+        "input": {},
+        "invocation": "bc3e1f9f5a974880bed8938b0185eeb7",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "mineral-register"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "mineral",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]}",
+      "post_digest": "71f8e30562ed60655e754f272bb0bc46616ad09daeccd686148fbf10cd6fb6df",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "bc3e1f9f5a974880bed8938b0185eeb7",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": false,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    }
+  },
+  "lifecycles": {
+    "envelope": {
+      "calls": [
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "380b0061af614316be03eba86342d266",
+            "operation": "legacy",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                }
+              ]
+            },
+            "post": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              }
+            ],
+            "pre": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              }
+            ]
+          },
+          "post_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+          "post_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+          "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+          "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "380b0061af614316be03eba86342d266",
+            "operation": "legacy",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "78ec8a91d5c9454683d7b767fbd670b7",
+            "operation": "legacy_insert",
+            "outcome": {
+              "kind": "ok",
+              "value": "inserted"
+            },
+            "post": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              },
+              {
+                "accession": "M-4",
+                "designation": "Olivine"
+              }
+            ],
+            "pre": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              }
+            ]
+          },
+          "post_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]",
+          "post_digest": "09ef3217256440aa2914309a0908492b6ecc2841c45efe1d94964e08ef332aeb",
+          "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+          "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "78ec8a91d5c9454683d7b767fbd670b7",
+            "operation": "legacy_insert",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": \"inserted\"}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "4f562c146b8140b2a35bdf7eaf3d0167",
+            "operation": "legacy",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            },
+            "post": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              },
+              {
+                "accession": "M-4",
+                "designation": "Olivine"
+              }
+            ],
+            "pre": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              },
+              {
+                "accession": "M-4",
+                "designation": "Olivine"
+              }
+            ]
+          },
+          "post_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]",
+          "post_digest": "09ef3217256440aa2914309a0908492b6ecc2841c45efe1d94964e08ef332aeb",
+          "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]",
+          "pre_digest": "09ef3217256440aa2914309a0908492b6ecc2841c45efe1d94964e08ef332aeb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "4f562c146b8140b2a35bdf7eaf3d0167",
+            "operation": "legacy",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "505751f0d73d4ce48345edb18599865b",
+            "operation": "migrate",
+            "outcome": {
+              "kind": "ok",
+              "value": 4
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": [
+              {
+                "accession": "M-1",
+                "designation": "Quartz",
+                "provenance": "ridge"
+              },
+              {
+                "accession": "M-2",
+                "designation": "Basalt",
+                "medium": "rock"
+              },
+              {
+                "accession": "M-3",
+                "designation": "Calcite"
+              },
+              {
+                "accession": "M-4",
+                "designation": "Olivine"
+              }
+            ]
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "post_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]",
+          "pre_digest": "09ef3217256440aa2914309a0908492b6ecc2841c45efe1d94964e08ef332aeb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "505751f0d73d4ce48345edb18599865b",
+            "operation": "migrate",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": 4}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "93378308f2514b63a4782df2ce4fe57d",
+            "operation": "current",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "post_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "93378308f2514b63a4782df2ce4fe57d",
+            "operation": "current",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"medium\": \"mineral\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\", \"medium\": \"mineral\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\", \"medium\": \"mineral\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "71420469218247de892b03d82b33e64f",
+            "operation": "current_insert",
+            "outcome": {
+              "kind": "ok",
+              "value": "inserted"
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "71420469218247de892b03d82b33e64f",
+            "operation": "current_insert",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": \"inserted\"}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+            "input": {},
+            "invocation": "261877431cf0460d9cc5f953c0c7e759",
+            "operation": "current",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "261877431cf0460d9cc5f953c0c7e759",
+            "operation": "current",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"medium\": \"mineral\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\", \"medium\": \"mineral\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\", \"medium\": \"mineral\"}, {\"accession\": \"M-5\", \"designation\": \"Feldspar\", \"medium\": \"mineral\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        }
+      ],
+      "manifest": {
+        "application": "817e767d69f9217e031ba71b71c6268cb86cd2e4998c51c9fa5f31e62d811b93",
+        "artifact": "36a0907adadc4353d0e8de636fdc09c08d2c9d68b4b131f728bc8ab176c19e9c",
+        "generation": "936be717b09e186560344c5eb61d7b631af84f6f7710cce275ff91d23deb5c58",
+        "id": "specimen-register",
+        "runtime": "897960b8cfe0e1c045edffda23c108a8c758c41ef74377d6a3e24ca80b816c47",
+        "units": {
+          "current": "73b9e6322f58b6777cbd9bfc6deb2c3c1da2dc42c7e1e2924a985f984fa60ecd",
+          "current_insert": "7692f362144948c6df641c169db853d2ea11fb150b21e1574d9a3327ac787f89",
+          "legacy": "cab37f93db071bd18ac3d429505ff50dfb790f771c23923910aaf7e1fa91726a",
+          "legacy_insert": "9f7c8f30bf14bf074adbd70163ede7d442f2f1630a8737a7bfb3e53e9b9a356b",
+          "migrate": "ca1c376b1583c6db90e3282c442479a2ceda6709da3a8b63d7c5405e53b9e121"
+        }
+      },
+      "source": {
+        "id": "specimen-register",
+        "operations": {
+          "current": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": null
+              }
+            ],
+            "id": "specimen.current",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 2
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "current_insert": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": "string",
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-5",
+                              "designation": "Feldspar",
+                              "medium": "mineral"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": "string",
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-5",
+                              "designation": "Feldspar",
+                              "medium": "mineral"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": null
+              }
+            ],
+            "id": "specimen.current_insert",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 2
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "legacy": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": {
+                        "optional": "string"
+                      },
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": {
+                        "optional": "string"
+                      },
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": null
+              }
+            ],
+            "id": "specimen.legacy",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "sequence": {
+                  "record": {
+                    "accession": "string",
+                    "designation": "string",
+                    "medium": {
+                      "optional": "string"
+                    },
+                    "provenance": {
+                      "optional": "string"
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "sequence": {
+                  "record": {
+                    "accession": "string",
+                    "designation": "string",
+                    "medium": {
+                      "optional": "string"
+                    },
+                    "provenance": {
+                      "optional": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "legacy_insert": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": null,
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": {
+                                  "optional": "string"
+                                },
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-4",
+                              "designation": "Olivine"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": null,
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": {
+                                  "optional": "string"
+                                },
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-4",
+                              "designation": "Olivine"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": null
+              }
+            ],
+            "id": "specimen.legacy_insert",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "sequence": {
+                  "record": {
+                    "accession": "string",
+                    "designation": "string",
+                    "medium": {
+                      "optional": "string"
+                    },
+                    "provenance": {
+                      "optional": "string"
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "sequence": {
+                  "record": {
+                    "accession": "string",
+                    "designation": "string",
+                    "medium": {
+                      "optional": "string"
+                    },
+                    "provenance": {
+                      "optional": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "migrate": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "default_missing": {
+                        "field": "medium",
+                        "identity": "accession",
+                        "source": [],
+                        "target": [
+                          "specimens"
+                        ],
+                        "value": {
+                          "literal": {
+                            "type": "string",
+                            "value": "mineral"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "revision",
+                        "value": {
+                          "literal": {
+                            "type": "integer",
+                            "value": 2
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "metadata",
+                        "value": {
+                          "record": {
+                            "collection": {
+                              "literal": {
+                                "type": "string",
+                                "value": "mineral-register"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "cardinality": {
+                    "ref": [
+                      "pre"
+                    ]
+                  }
+                },
+                "value_type": "integer",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "default_missing": {
+                        "field": "medium",
+                        "identity": "accession",
+                        "source": [],
+                        "target": [
+                          "specimens"
+                        ],
+                        "value": {
+                          "literal": {
+                            "type": "string",
+                            "value": "mineral"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "revision",
+                        "value": {
+                          "literal": {
+                            "type": "integer",
+                            "value": 2
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "metadata",
+                        "value": {
+                          "record": {
+                            "collection": {
+                              "literal": {
+                                "type": "string",
+                                "value": "mineral-register"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "cardinality": {
+                    "ref": [
+                      "pre"
+                    ]
+                  }
+                },
+                "value_type": "integer",
+                "when": null
+              }
+            ],
+            "id": "specimen.promote",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "sequence": {
+                  "record": {
+                    "accession": "string",
+                    "designation": "string",
+                    "medium": {
+                      "optional": "string"
+                    },
+                    "provenance": {
+                      "optional": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          }
+        },
+        "state": {
+          "versions": {
+            "V1": {
+              "sequence": {
+                "record": {
+                  "accession": "string",
+                  "designation": "string",
+                  "medium": {
+                    "optional": "string"
+                  },
+                  "provenance": {
+                    "optional": "string"
+                  }
+                }
+              }
+            },
+            "V2": {
+              "record": {
+                "metadata": {
+                  "record": {
+                    "collection": "string"
+                  }
+                },
+                "revision": "integer",
+                "specimens": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "unavailable_after": [
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "1489b2045fd4419e8c47f330da0d163e",
+            "operation": "legacy",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 143, in run\n    raise ValueError('invalid typed operation values')\nValueError: invalid typed operation values\n",
+            "stdout": ""
+          },
+          "verdict": null
+        },
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "7c06904e654742bbb01f311b8c7a8149",
+            "operation": "migrate",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 143, in run\n    raise ValueError('invalid typed operation values')\nValueError: invalid typed operation values\n",
+            "stdout": ""
+          },
+          "verdict": null
+        },
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "6cd0aac0e5db461ab618b1345bde45fe",
+            "operation": "legacy_insert",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmpp98m61e6\\refined_runtime_r5_28.py\", line 143, in run\n    raise ValueError('invalid typed operation values')\nValueError: invalid typed operation values\n",
+            "stdout": ""
+          },
+          "verdict": null
+        }
+      ]
+    },
+    "rows": {
+      "calls": [
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "2157ff596d4d413b951c491f5ea548d2",
+            "operation": "legacy",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]}",
+          "post_digest": "3253e1d48152a19937c837e8ed3bef73e6c24f3de9559dbd42352a00dda40051",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]}",
+          "pre_digest": "3253e1d48152a19937c837e8ed3bef73e6c24f3de9559dbd42352a00dda40051",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "2157ff596d4d413b951c491f5ea548d2",
+            "operation": "legacy",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "cdf3e88f11e04690b3a694f11a8ac3b4",
+            "operation": "legacy_insert",
+            "outcome": {
+              "kind": "ok",
+              "value": "inserted"
+            },
+            "post": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]}",
+          "post_digest": "b587991a170064ae963d16e484e87af864181b51b83355e37e2588d3429c1516",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]}",
+          "pre_digest": "3253e1d48152a19937c837e8ed3bef73e6c24f3de9559dbd42352a00dda40051",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "cdf3e88f11e04690b3a694f11a8ac3b4",
+            "operation": "legacy_insert",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": \"inserted\"}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "d3d5fadf7269412695e8bc55779563a7",
+            "operation": "legacy",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]}",
+          "post_digest": "b587991a170064ae963d16e484e87af864181b51b83355e37e2588d3429c1516",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]}",
+          "pre_digest": "b587991a170064ae963d16e484e87af864181b51b83355e37e2588d3429c1516",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "d3d5fadf7269412695e8bc55779563a7",
+            "operation": "legacy",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "ef1f83e52ba14d6c9dad038e2a08fde0",
+            "operation": "migrate",
+            "outcome": {
+              "kind": "ok",
+              "value": 4
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "legacy-register"
+              },
+              "revision": 1,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "post_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"legacy-register\"},\"revision\":1,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\"}]}",
+          "pre_digest": "b587991a170064ae963d16e484e87af864181b51b83355e37e2588d3429c1516",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "ef1f83e52ba14d6c9dad038e2a08fde0",
+            "operation": "migrate",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": 4}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "94ec2f60b7164b8bbaf238e542978abc",
+            "operation": "current",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "post_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "94ec2f60b7164b8bbaf238e542978abc",
+            "operation": "current",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"medium\": \"mineral\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\", \"medium\": \"mineral\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\", \"medium\": \"mineral\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": true,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "2cd61bcd6ba74d079b534eca59d1a2fa",
+            "operation": "current_insert",
+            "outcome": {
+              "kind": "ok",
+              "value": "inserted"
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "923b2b6950111317f6d2ff890564b9d7e8e29f74e7a3f89722119fde33337abb",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "2cd61bcd6ba74d079b534eca59d1a2fa",
+            "operation": "current_insert",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": \"inserted\"}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        },
+        {
+          "event": {
+            "attempted_write": false,
+            "externals": {},
+            "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+            "input": {},
+            "invocation": "2ed4d514756548f5a06a81e68259b3cc",
+            "operation": "current",
+            "outcome": {
+              "kind": "ok",
+              "value": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "post": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            },
+            "pre": {
+              "metadata": {
+                "collection": "mineral-register"
+              },
+              "revision": 2,
+              "specimens": [
+                {
+                  "accession": "M-1",
+                  "designation": "Quartz",
+                  "medium": "mineral",
+                  "provenance": "ridge"
+                },
+                {
+                  "accession": "M-2",
+                  "designation": "Basalt",
+                  "medium": "rock"
+                },
+                {
+                  "accession": "M-3",
+                  "designation": "Calcite",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-4",
+                  "designation": "Olivine",
+                  "medium": "mineral"
+                },
+                {
+                  "accession": "M-5",
+                  "designation": "Feldspar",
+                  "medium": "mineral"
+                }
+              ]
+            }
+          },
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 0,
+            "input": {},
+            "invocation": "2ed4d514756548f5a06a81e68259b3cc",
+            "operation": "current",
+            "stderr": "",
+            "stdout": "{\"kind\": \"ok\", \"value\": [{\"accession\": \"M-1\", \"designation\": \"Quartz\", \"medium\": \"mineral\", \"provenance\": \"ridge\"}, {\"accession\": \"M-2\", \"designation\": \"Basalt\", \"medium\": \"rock\"}, {\"accession\": \"M-3\", \"designation\": \"Calcite\", \"medium\": \"mineral\"}, {\"accession\": \"M-4\", \"designation\": \"Olivine\", \"medium\": \"mineral\"}, {\"accession\": \"M-5\", \"designation\": \"Feldspar\", \"medium\": \"mineral\"}]}\n"
+          },
+          "verdict": {
+            "conformant": true,
+            "grounded": true,
+            "provenance_valid": true
+          }
+        }
+      ],
+      "manifest": {
+        "application": "2452d913e49e38b0ec3d9c58655e6903a3a900d0724f282d490e41ded5f901c3",
+        "artifact": "cd4aaa7f35717a2a01e7dff61315f9db148e0256f2ea7cf65fd2cd02e3122454",
+        "generation": "3e4f6332f2685e3a31a3eda87ea98573fe1d412ed3abf2f0bab61a328810aa70",
+        "id": "specimen-register",
+        "runtime": "897960b8cfe0e1c045edffda23c108a8c758c41ef74377d6a3e24ca80b816c47",
+        "units": {
+          "current": "73b9e6322f58b6777cbd9bfc6deb2c3c1da2dc42c7e1e2924a985f984fa60ecd",
+          "current_insert": "7692f362144948c6df641c169db853d2ea11fb150b21e1574d9a3327ac787f89",
+          "legacy": "57049c726418901f29aa4af72849e1d5b1c0f57c16922ce6d28c7a289948a7fb",
+          "legacy_insert": "66f1e3796e68ba23673e0d46824475a33e43b80b02926d052a9a415d100d5f10",
+          "migrate": "3b7a1cb789f17cce615dfece86c14c05d6b25bb483f2104de60faac4749bea53"
+        }
+      },
+      "source": {
+        "id": "specimen-register",
+        "operations": {
+          "current": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": null
+              }
+            ],
+            "id": "specimen.current",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 2
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "current_insert": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": "string",
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-5",
+                              "designation": "Feldspar",
+                              "medium": "mineral"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": "string",
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-5",
+                              "designation": "Feldspar",
+                              "medium": "mineral"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": null
+              }
+            ],
+            "id": "specimen.current_insert",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 2
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "legacy": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": {
+                        "optional": "string"
+                      },
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "preserve": true
+                },
+                "value": {
+                  "ref": [
+                    "pre",
+                    "specimens"
+                  ]
+                },
+                "value_type": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": {
+                        "optional": "string"
+                      },
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                },
+                "when": null
+              }
+            ],
+            "id": "specimen.legacy",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": {
+                          "optional": "string"
+                        },
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": {
+                          "optional": "string"
+                        },
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "legacy_insert": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": {
+                                  "optional": "string"
+                                },
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-4",
+                              "designation": "Olivine"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "exact_frame": {
+                        "collection": "specimens",
+                        "identity": "accession",
+                        "record": {
+                          "literal": {
+                            "type": {
+                              "record": {
+                                "accession": "string",
+                                "designation": "string",
+                                "medium": {
+                                  "optional": "string"
+                                },
+                                "provenance": {
+                                  "optional": "string"
+                                }
+                              }
+                            },
+                            "value": {
+                              "accession": "M-4",
+                              "designation": "Olivine"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "literal": {
+                    "type": "string",
+                    "value": "inserted"
+                  }
+                },
+                "value_type": "string",
+                "when": null
+              }
+            ],
+            "id": "specimen.legacy_insert",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": {
+                          "optional": "string"
+                        },
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": {
+                          "optional": "string"
+                        },
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          },
+          "migrate": {
+            "branches": [
+              {
+                "tag": "ok",
+                "transition": {
+                  "relations": [
+                    {
+                      "default_missing": {
+                        "field": "medium",
+                        "identity": "accession",
+                        "source": [
+                          "specimens"
+                        ],
+                        "target": [
+                          "specimens"
+                        ],
+                        "value": {
+                          "literal": {
+                            "type": "string",
+                            "value": "mineral"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "revision",
+                        "value": {
+                          "literal": {
+                            "type": "integer",
+                            "value": 2
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "metadata",
+                        "value": {
+                          "record": {
+                            "collection": {
+                              "literal": {
+                                "type": "string",
+                                "value": "mineral-register"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "cardinality": {
+                    "ref": [
+                      "pre",
+                      "specimens"
+                    ]
+                  }
+                },
+                "value_type": "integer",
+                "when": {
+                  "equals": [
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    },
+                    {
+                      "literal": {
+                        "type": "integer",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "tag": "ok_otherwise",
+                "transition": {
+                  "relations": [
+                    {
+                      "default_missing": {
+                        "field": "medium",
+                        "identity": "accession",
+                        "source": [
+                          "specimens"
+                        ],
+                        "target": [
+                          "specimens"
+                        ],
+                        "value": {
+                          "literal": {
+                            "type": "string",
+                            "value": "mineral"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "revision",
+                        "value": {
+                          "literal": {
+                            "type": "integer",
+                            "value": 2
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "post_equals": {
+                        "field": "metadata",
+                        "value": {
+                          "record": {
+                            "collection": {
+                              "literal": {
+                                "type": "string",
+                                "value": "mineral-register"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "value": {
+                  "cardinality": {
+                    "ref": [
+                      "pre",
+                      "specimens"
+                    ]
+                  }
+                },
+                "value_type": "integer",
+                "when": null
+              }
+            ],
+            "id": "specimen.upgrade",
+            "input": {
+              "record": {}
+            },
+            "requires": {
+              "equals": [
+                {
+                  "ref": [
+                    "pre",
+                    "revision"
+                  ]
+                },
+                {
+                  "literal": {
+                    "type": "integer",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "state": {
+              "post": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": "string",
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "pre": {
+                "record": {
+                  "metadata": {
+                    "record": {
+                      "collection": "string"
+                    }
+                  },
+                  "revision": "integer",
+                  "specimens": {
+                    "sequence": {
+                      "record": {
+                        "accession": "string",
+                        "designation": "string",
+                        "medium": {
+                          "optional": "string"
+                        },
+                        "provenance": {
+                          "optional": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "version": "R5.33"
+          }
+        },
+        "state": {
+          "versions": {
+            "V1": {
+              "record": {
+                "metadata": {
+                  "record": {
+                    "collection": "string"
+                  }
+                },
+                "revision": "integer",
+                "specimens": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": {
+                        "optional": "string"
+                      },
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "V2": {
+              "record": {
+                "metadata": {
+                  "record": {
+                    "collection": "string"
+                  }
+                },
+                "revision": "integer",
+                "specimens": {
+                  "sequence": {
+                    "record": {
+                      "accession": "string",
+                      "designation": "string",
+                      "medium": "string",
+                      "provenance": {
+                        "optional": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "unavailable_after": [
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "817c85b70ff143bfa5ac9c7fe7df9c7d",
+            "operation": "legacy",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'record': {'revision': 'integer', 'specimens': {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}}, 'metadata': {'record': {'collection': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 145, in run\n    raise ValueError('operation unavailable for declared pre-state/version')\nValueError: operation unavailable for declared pre-state/version\n",
+            "stdout": ""
+          },
+          "verdict": null
+        },
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "d5604a867ddf4f2e977a654eca2c7293",
+            "operation": "migrate",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'record': {'revision': 'integer', 'specimens': {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}}, 'metadata': {'record': {'collection': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 145, in run\n    raise ValueError('operation unavailable for declared pre-state/version')\nValueError: operation unavailable for declared pre-state/version\n",
+            "stdout": ""
+          },
+          "verdict": null
+        },
+        {
+          "event": null,
+          "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "post_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "pre_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"},{\"accession\":\"M-4\",\"designation\":\"Olivine\",\"medium\":\"mineral\"},{\"accession\":\"M-5\",\"designation\":\"Feldspar\",\"medium\":\"mineral\"}]}",
+          "pre_digest": "e58bf74fd6d8effae03de7201860fcdf33bcdff7cd2160b31355af85a1df782d",
+          "public": {
+            "exit": 1,
+            "input": {},
+            "invocation": "f608fc257b5046e7a6fdfd995e0d89f3",
+            "operation": "legacy_insert",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\operation.py\", line 113, in <module>\n    run_application(OPERATIONS, {'record': {'revision': 'integer', 'specimens': {'sequence': {'record': {'accession': 'string', 'designation': 'string', 'provenance': {'optional': 'string'}, 'medium': {'optional': 'string'}}}}, 'metadata': {'record': {'collection': 'string'}}}})\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 167, in run_application\n    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\lblan\\AppData\\Local\\Temp\\tmp66js2q64\\refined_runtime_r5_28.py\", line 145, in run\n    raise ValueError('operation unavailable for declared pre-state/version')\nValueError: operation unavailable for declared pre-state/version\n",
+            "stdout": ""
+          },
+          "verdict": null
+        }
+      ]
+    }
+  },
+  "mutations": {
+    "default": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "56eb5b9997aa77d16992b2202e8618d47bbdb71a41a402e48a7b327907fb7f16",
+        "input": {},
+        "invocation": "766bb8048bc0422da58683f74a945706",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "mineral-register"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "crystal",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "crystal"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"mineral-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"crystal\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"crystal\"}]}",
+      "post_digest": "62a1073fbd308d51e9d2494a78b5d057bceabf0f9487074239bfefcd37217b23",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "766bb8048bc0422da58683f74a945706",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": true,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    },
+    "metadata": {
+      "event": {
+        "attempted_write": true,
+        "externals": {},
+        "generation": "d13ffbb456647ad53b6e87076fe06406ad077c56b8dc7d2ac4d915a79185a0a4",
+        "input": {},
+        "invocation": "5390b971092e48ebaebd7f8671071802",
+        "operation": "migrate",
+        "outcome": {
+          "kind": "ok",
+          "value": 3
+        },
+        "post": {
+          "metadata": {
+            "collection": "curated-register"
+          },
+          "revision": 2,
+          "specimens": [
+            {
+              "accession": "M-1",
+              "designation": "Quartz",
+              "medium": "mineral",
+              "provenance": "ridge"
+            },
+            {
+              "accession": "M-2",
+              "designation": "Basalt",
+              "medium": "rock"
+            },
+            {
+              "accession": "M-3",
+              "designation": "Calcite",
+              "medium": "mineral"
+            }
+          ]
+        },
+        "pre": [
+          {
+            "accession": "M-1",
+            "designation": "Quartz",
+            "provenance": "ridge"
+          },
+          {
+            "accession": "M-2",
+            "designation": "Basalt",
+            "medium": "rock"
+          },
+          {
+            "accession": "M-3",
+            "designation": "Calcite"
+          }
+        ]
+      },
+      "post_bytes": "{\"metadata\":{\"collection\":\"curated-register\"},\"revision\":2,\"specimens\":[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"medium\":\"mineral\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\",\"medium\":\"mineral\"}]}",
+      "post_digest": "737cad30e9cfb90b4cf5a7c9314ff84c3bb6bbdbd2b36ea14de219a2ccef3b4b",
+      "pre_bytes": "[{\"accession\":\"M-1\",\"designation\":\"Quartz\",\"provenance\":\"ridge\"},{\"accession\":\"M-2\",\"designation\":\"Basalt\",\"medium\":\"rock\"},{\"accession\":\"M-3\",\"designation\":\"Calcite\"}]",
+      "pre_digest": "db05dd52f2f853e5a428faf5e3aa24b013c7bc2a0655f3d5cde6e9abea1dd1dc",
+      "public": {
+        "exit": 0,
+        "input": {},
+        "invocation": "5390b971092e48ebaebd7f8671071802",
+        "operation": "migrate",
+        "stderr": "",
+        "stdout": "{\"kind\": \"ok\", \"value\": 3}\n"
+      },
+      "verdict": {
+        "conformant": true,
+        "grounded": true,
+        "provenance_valid": true
+      }
+    }
+  }
+}

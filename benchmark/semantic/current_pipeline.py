@@ -23,10 +23,26 @@ def checked(application):
             not isinstance(application['operations'], dict) or not application['operations']):
         raise ValueError('application requires identity, state and operations')
     plans = {}
+    versioned = isinstance(application['state'], dict) and set(application['state']) == {'versions'}
+    if versioned and (not isinstance(application['state']['versions'], dict) or not application['state']['versions']):
+        raise ValueError('missing application state versions')
+    if versioned:
+        for name, shape in application['state']['versions'].items():
+            if type(name) is not str or not name:
+                raise ValueError('invalid application state version identity')
+            types.general.shape_valid(shape)
     for name, contract in application['operations'].items():
-        if type(name) is not str or not name or contract['state'] != application['state']:
+        declared = list(application['state']['versions'].values()) if versioned else [application['state']]
+        signature = types.state_slots(contract)
+        # Registration is a binding check, not expression/type inference. Keep
+        # its rejection before analyzing operands against an unregistered state.
+        if (type(name) is not str or not name or not isinstance(signature, dict)
+                or set(signature) != {'pre', 'post'} or any(shape not in declared for shape in signature.values())):
             raise ValueError('operation state or identity mismatch')
-        plans[name] = types.checked_plan(contract)
+        plan = types.checked_plan(contract)
+        if type(name) is not str or not name or any(plan.slots[side] not in declared for side in ('pre', 'post')):
+            raise ValueError('operation state or identity mismatch')
+        plans[name] = plan
     return plans
 
 
@@ -40,11 +56,13 @@ def generate(application, directory):
              for index, (name, contract) in enumerate(application['operations'].items())]
     for unit in units:
         lines.extend(unit.declaration)
+        lines.extend(unit.applicability)
         lines.append('')
     lines.append('OPERATIONS = {')
     for index, (name, unit) in enumerate(zip(application['operations'], units)):
         lines.append(f'    {name!r}: (execute_{index}, {unit.input_shape!r}, '
-                      f'{unit.outcome_shapes!r}, {unit.capability_shapes!r}),')
+                       f'{unit.outcome_shapes!r}, {unit.capability_shapes!r}, {unit.state_shape!r}, '
+                       f'{unit.post_shape!r}, ' + (f'execute_{index}_applicable' if unit.applicability else 'None') + '),')
     lines.extend(['}', '', 'if __name__ == "__main__":',
                   f'    run_application(OPERATIONS, {units[0].state_shape!r})', ''])
     artifact = '\n'.join(lines).encode()

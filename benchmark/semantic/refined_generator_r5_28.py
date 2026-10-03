@@ -360,6 +360,34 @@ class GeneratedUnit:
     state_shape: dict
     capability_shapes: dict
     imports: tuple = ('instant_key', 'instant_lt', 'project', 'sole')
+    post_shape: dict = None
+    applicability: tuple = ()
+
+
+def evolution_lines(relations, slots, plan):
+    """Construct only completely checked target projections from semantic #44."""
+    root = plan.slots['post']
+    lines = ['        post = {}' if set(root) == {'record'} else '        post = []',
+             '        write = True']
+    initialized = set()
+    for relation in relations:
+        kind, rule = next(iter(relation.items()))
+        binding = plan.bindings[id(relation)]
+        if kind == 'post_equals':
+            lines.append('        post[' + repr(binding['target'][1]) + '] = ' + expression(rule['value'], slots=slots, plan=plan))
+            continue
+        path = binding['target'][1:]
+        source = 'pre' + ''.join('[' + repr(p) + ']' for p in binding['source'][1:])
+        target = 'post' + ''.join('[' + repr(p) + ']' for p in path)
+        identity, field = repr(binding['identity'][0]), repr(binding['field'][0])
+        if path not in initialized:
+            lines.extend(['        if len({row[' + identity + '] for row in ' + source + '}) != len(' + source + '):',
+                          '            raise ValueError("duplicate identity")',
+                          '        ' + target + ' = ' + source])
+            initialized.add(path)
+        lines.append('        ' + target + ' = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots, plan=plan) +
+                     '} if ' + field + ' not in item else item for item in ' + target + ']')
+    return lines
 
 
 def generated_unit(contract, plan, symbol='execute', fault=False):
@@ -378,6 +406,11 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
         if transition == {'preserve': True}:
             lines.extend(['        post = pre', '        write = False'])
         elif 'relations' in transition:
+            if id(branch) in plan.evolutions:
+                lines.extend(evolution_lines(plan.relations[id(branch)], slots, plan))
+                lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
+                             expression(branch['value'], {'post': 'post'}, value_slots, fault, plan) + '}, post, write')
+                continue
             lines.extend(['        post = pre', '        write = True'])
             for relation in plan.relations[id(branch)]:
                 kind, rule = next(iter(relation.items()))
@@ -416,11 +449,18 @@ def generated_unit(contract, plan, symbol='execute', fault=False):
             raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: current transition')
         lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
                      expression(branch['value'], {'post': 'post'}, value_slots, fault, plan) + '}, post, write')
+    applicability = ()
+    if plan.applicability is not None:
+        applicability = (f'def {symbol}_applicable(input, pre):',
+                         '    return ' + expression(contract['requires'], slots=slots, plan=plan))
     return GeneratedUnit(contract['id'], plan.digest, tuple(lines), plan.slots['input'],
-                         plan.outcomes, plan.slots['pre'], plan.capabilities)
+                         plan.outcomes, plan.slots['pre'], plan.capabilities,
+                         post_shape=plan.slots['post'], applicability=applicability)
 
 
 def render(contract, fault=False, cli=False, plan=None):
+    if contract.get('version') == 'R5.33':
+        raise ValueError('R5.33 requires current_pipeline application assembly')
     if plan is not None:
         unit = generated_unit(contract, plan, fault=fault)
         entry = 'run_cli' if cli else 'run'

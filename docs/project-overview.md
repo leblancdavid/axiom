@@ -69,6 +69,29 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.33 cross-shape evolution review](../benchmark/results/phase5c/R5_33-CROSS-SHAPE-STATE-EVOLUTION.md)
+selects **EXISTING_OPERATION_CONTRACT_GENERALIZATION** and validates distinct
+typed pre/post durable states through `benchmark.semantic.current_pipeline`.
+Existing keyed defaults, target equalities, applicability and cardinality generate
+specimen row evolution and collection-to-versioned-envelope promotion. Sealed
+CheckedPlan side-qualified bindings feed generation, per-operation persistence
+codecs and independent verification. Two five-operation applications each run a
+seven-call shared-file lifecycle with V1 insertion/read, migration and V2
+insertion/read: 14 grounded conformant calls, two conformant source-only mutations
+and five grounded nonconformant faults. Version-incompatible operations reject
+before execution. Core remains 30, no #31. The cross-shape blocker is resolved
+independently for this bounded composition, not arbitrary row reconstruction.
+Direct file writes still lack transactional/crash atomicity. On Python 3.14.3,
+full harness discovery passes 307 of 308 with one explicit frozen-B02 restriction
+skip; 31 application/compiler tests, model validation and safety pass.
+Gate **`R5_33_CROSS_SHAPE_EVOLUTION_VALIDATED`**. Versioned profile:
+[R5.33 state evolution](state-evolution-r5.33.md). R5.34 should review checked
+transport binding independently on a non-task application. Frozen transport
+remains unresolved and malformed-input semantic-outcome mapping remains partially
+resolved/separate. No B02 retry/acceptance, Phase 5C paused, B03 untouched, B17
+unexposed/unclassified, R5.2.2 historical authority, format globally unfrozen and
+universal correctness unclaimed.
+
 The [R5.32 input-binding checkpoint](../benchmark/results/phase5c/R5_32-INPUT-BINDING-TYPED-FAILURE-BOUNDARY.md)
 validates a bounded generic public boundary around the single-authority current
 pipeline: raw omitted/supplied scalar data becomes checked typed input or a

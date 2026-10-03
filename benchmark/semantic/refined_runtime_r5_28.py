@@ -134,14 +134,16 @@ def _invoke(execute, input_shape, state_shape, outcome_shapes, pre, inp, caps_de
     return outcome, post, write, caps.logged
 
 
-def run(execute, input_shape, state_shape, outcome_shapes=None, capability_shapes=None):
+def run(execute, input_shape, state_shape, outcome_shapes=None, capability_shapes=None, post_shape=None, applicable=None):
     state, trace, invocation, payload, generation = sys.argv[1:6]
     state = Path(state)
     pre = json.loads(state.read_bytes())
     inp = json.loads(payload)
     if not valid(inp, input_shape) or not valid(pre, state_shape):
         raise ValueError('invalid typed operation values')
-    outcome, post, write, externals = _invoke(execute, input_shape, state_shape,
+    if applicable is not None and not applicable(inp, pre):
+        raise ValueError('operation unavailable for declared pre-state/version')
+    outcome, post, write, externals = _invoke(execute, input_shape, post_shape or state_shape,
                                                outcome_shapes, pre, inp,
                                                 os.environ.get(CAPS_ENV, ''), capability_shapes)
     if write:
@@ -158,9 +160,11 @@ def run_application(operations, state_shape):
     operation = sys.argv[1]
     if operation not in operations:
         raise ValueError('unknown operation')
-    execute, input_shape, outcome_shapes, capability_shapes = operations[operation]
+    descriptor = operations[operation]
+    execute, input_shape, outcome_shapes, capability_shapes = descriptor[:4]
+    pre_shape, post_shape, applicable = descriptor[4:] if len(descriptor) == 7 else (state_shape, state_shape, None)
     sys.argv = [sys.argv[0], *sys.argv[2:]]
-    run(execute, input_shape, state_shape, outcome_shapes, capability_shapes)
+    run(execute, input_shape, pre_shape, outcome_shapes, capability_shapes, post_shape, applicable)
     trace = Path(sys.argv[2])
     event = json.loads(trace.read_bytes())
     event['operation'] = operation

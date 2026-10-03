@@ -134,7 +134,7 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
         if plan.contract is not contract:
             raise ValueError('verifier plan belongs to another contract')
         plan.assert_current()
-    elif contract.get('version') == 'R5.27':
+    elif contract.get('version') in ('R5.27', 'R5.33'):
         from benchmark.semantic.unified_types_r5_27 import checked_plan
         plan = checked_plan(contract)
     else:
@@ -148,6 +148,8 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
     base = {name: slots[name] for name in ('input', 'pre')}
     def evaluate(expr, shapes=slots):
         return _evaluate(expr, facts, shapes, plan)
+    if contract.get('version') == 'R5.33' and not evaluate(contract['requires'], base):
+        return False
     branch = next((b for b in contract['branches'] if b['when'] is None or
                    evaluate(b['when'], base)), None)
     payload = plan.outcomes[branch['tag']] if plan is not None and branch is not None else (branch.get('value_type', 'string') if branch is not None else None)
@@ -165,6 +167,8 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
     if transition == {'preserve': True}:
         return post == pre and bytes_equal and not attempted_write
     if 'relations' in transition:
+        if plan is not None and id(branch) in plan.evolutions:
+            return evolution_conforms(transition['relations'], pre, post, evaluate, plan) and attempted_write
         touched = set()
         expected_collections = {}
         for relation in transition['relations']:
@@ -239,3 +243,34 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write, ex
     expected = [{**row, update['field']: value} if row[update['key']] == key else row
                 for row in pre]
     return post == expected and attempted_write
+
+
+def evolution_conforms(relations, pre, post, evaluate, plan):
+    """Independent relational evaluation, not generated target execution."""
+    groups = {}
+    for relation in relations:
+        kind, rule = next(iter(relation.items()))
+        binding = plan.bindings[id(relation)]
+        if kind == 'post_equals':
+            if post[binding['target'][1]] != evaluate(rule['value']):
+                return False
+            continue
+        source = pre
+        target = post
+        for part in binding['source'][1:]:
+            source = source[part]
+        for part in binding['target'][1:]:
+            target = target[part]
+        identity, field = binding['identity'][0], binding['field'][0]
+        old_ids, new_ids = [row[identity] for row in source], [row[identity] for row in target]
+        if len(set(old_ids)) != len(old_ids) or len(set(new_ids)) != len(new_ids) or set(old_ids) != set(new_ids):
+            return False
+        key = binding['target']
+        groups.setdefault(key, (source, target, identity, {}))[3][field] = evaluate(rule['value'])
+    for source, target, identity, defaults in groups.values():
+        keyed = {row[identity]: row for row in target}
+        for row in source:
+            expected = {**row, **{field: value for field, value in defaults.items() if field not in row}}
+            if keyed[row[identity]] != expected:
+                return False
+    return True

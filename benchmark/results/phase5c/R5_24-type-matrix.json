@@ -1,5 +1,5 @@
 {
-  "scope": "historical entries retained; R5.32 input binding around the single-authority current application profile is prospective and independent of frozen benchmark",
+  "scope": "historical entries retained; R5.32 input binding and R5.33 cross-shape evolution around the single-authority current application profile are prospective and independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -152,6 +152,23 @@
       "cross_shape_state_evolution": "UNRESOLVED",
       "frozen_transport_binding": "UNRESOLVED"
     }
+  },
+  "r5_33_state_evolution": {
+    "entry_point": "benchmark.semantic.current_pipeline",
+    "semantic_authority": "unified_types_r5_27.checked_plan; sealed independent slots and side-qualified bindings",
+    "candidate_core_constructs": 30,
+    "scope": "bounded keyed add/default fields and complete target-root construction; not arbitrary record mapping",
+    "dimensions": ["pre_state_type", "post_state_type", "cross_shape_generation", "cross_shape_persistence", "cross_shape_grounding", "cross_shape_verification", "version_specific_operation_binding"],
+    "per_dimension": {
+      "pre_state_type": {"supported": true, "evidence": "R5.33 independent V1 shapes and type-confusion negatives"},
+      "post_state_type": {"supported": true, "evidence": "R5.33 required V2 fields and distinct sealed post slot"},
+      "cross_shape_generation": {"supported": true, "evidence": "row typing change and root envelope construction from #44/equalities"},
+      "cross_shape_persistence": {"supported": true, "evidence": "per-operation pre/post concrete checks; wrong codec rejection"},
+      "cross_shape_grounding": {"supported": true, "evidence": "public subprocess, durable bytes, actual events and provenance"},
+      "cross_shape_verification": {"supported": true, "evidence": "same-source independent relational evaluation; faults A-E"},
+      "version_specific_operation_binding": {"supported": true, "evidence": "per-operation checked pre shape and semantic requires; five-operation applications with seven-call lifecycles"}
+    },
+    "r5_23_blockers": {"cross_shape_state_evolution": "RESOLVED_INDEPENDENTLY", "frozen_transport_binding": "UNRESOLVED"}
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",

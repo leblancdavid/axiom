@@ -1,5 +1,51 @@
 # Lykoi research log
 
+## R5.33 prospective cross-shape state evolution (2026-10-03)
+
+Observation: the historical operation-contract proposal and current state slots,
+relation bindings, first-unit runtime codec and implicit root frame assumed one
+shape. Existing #44's exact keyed row equation and typed target equalities can
+compose add/default fields with complete envelope construction; arbitrary
+per-record rename/removal is not supplied by string-only map/for_each or evolution
+lineage metadata. The pre-implementation decision is
+EXISTING_OPERATION_CONTRACT_GENERALIZATION, not a new semantic construct.
+Authoritative checking now carries independent pre/post shapes, side-qualified
+field/collection facts, applicability and evolution mode in the sealed plan.
+The same current pipeline generates separate codecs and applicability predicates;
+the verifier checks each concrete type and independently evaluates relations.
+
+Two non-task mineral-register applications each execute a seven-call durable
+lifecycle: V1 read/insert/read, migration, V2 read/insert/read. Fourteen actual
+calls ground and conform with 12 adjacent byte links. One changes row typing;
+one changes a root array to a revision-2 envelope. Optional scientific provenance
+and present medium survive; missing medium is constructed. Count reports the
+whole four-specimen migration population. Two source-only default/metadata
+mutations propagate into durable V2 values. Faults A–E ground and fail semantics;
+partial migration requires a disclosed faulty disposable post-codec descriptor
+to reach persistence. Version-unavailable calls preserve bytes and have no
+semantic event. Empty/two-default/source-field-absent fixtures also conform.
+
+Limitations: one-level root projections, structural types, no arbitrary record
+map, no nominal version sum, no transactional/locked/crash-safe durable write or
+hostile-runtime proof. Computing/checking before write does not prove atomicity.
+After adding lifecycle insertion, two fixture literal types required correction;
+a later refactor changed R5.29's binding-rejection order and was corrected by
+restoring early registration checks. Final affected/full suites pass; these were
+real fixture/regression errors, not environment failures. Windows Python
+3.14.3 passes 307/308 full harness tests with one explicit skip preventing nested
+frozen B02 acceptance, plus all 31 application/compiler tests, validation and
+safety. Ten new focused tests and matrix validation pass. LF→CRLF notices are
+separate; historical hash checks pass directly in this workspace.
+
+Gate R5_33_CROSS_SHAPE_EVOLUTION_VALIDATED, bounded cross-shape class resolved
+independently; core 30, no #31, frozen transport unresolved. Recommend R5.34
+independent checked transport review. Malformed-input operation-outcome mapping
+remains separate/partially resolved. No B02 retry/acceptance or transport work,
+Phase 5C paused, B03 untouched, B17 unexposed/unclassified, format unfrozen,
+R5.2.2 historical authority; universal correctness unclaimed. Evidence:
+`benchmark/results/phase5c/R5_33-CROSS-SHAPE-STATE-EVOLUTION.md` and
+`R5_33-evolution-evidence.json`; profile: `docs/state-evolution-r5.33.md`.
+
 ## R5.32 prospective input binding boundary (2026-10-03)
 
 Observation: CheckedPlan already carries sufficient authoritative input shapes;

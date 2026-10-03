@@ -236,20 +236,143 @@ def _analyze(expr, slots, refinements=frozenset()):
     raise UnsupportedLowering('unsupported relation: ' + str(kind))
 
 
+def state_slots(contract):
+    state = contract['state']
+    return state if contract.get('version') == 'R5.33' else {'pre': state, 'post': state}
+
+
+def uses_evolution(contract, transition):
+    if contract.get('version') != 'R5.33' or 'relations' not in transition:
+        return False
+    states = state_slots(contract)
+    return states['pre'] != states['post'] or any(
+        isinstance(relation, dict) and isinstance(relation.get('default_missing'), dict)
+        and 'source' in relation['default_missing']
+        for relation in transition['relations'])
+
+
+def evolution_relations(relations, slots):
+    """Check #44 and target equalities with independent, side-qualified shapes.
+
+    Complete target coverage replaces the old implicit unchanged-root frame.
+    No renaming, removal, widening or implicit field construction is permitted.
+    """
+    if not isinstance(relations, list) or not relations:
+        raise ValueError('missing evolution relations')
+    pre, post = slots['pre'], slots['post']
+    targets, groups = {}, {}
+    collector = _analysis.get()
+    for relation in relations:
+        if not isinstance(relation, dict) or len(relation) != 1:
+            raise ValueError('invalid evolution relation')
+        kind, rule = next(iter(relation.items()))
+        if kind == 'post_equals':
+            if not isinstance(rule, dict) or set(rule) != {'field', 'value'}:
+                raise ValueError('invalid target equality')
+            field = rule['field']
+            if type(field) is not str:
+                raise ValueError('invalid target field identity')
+            shape = _field(post, field)
+            if field in targets or analyze(rule['value'], {'input': slots['input'], 'pre': pre}) != shape:
+                raise ValueError('target equality type or overlap mismatch')
+            targets[field] = 'equals'
+            binding = {'source': ('pre',), 'target': ('post', field), 'type': shape,
+                       'fields': None, 'identity': None, 'field': (field, shape),
+                       'operands': {'value': id(rule['value'])}}
+        elif kind == 'default_missing':
+            if not isinstance(rule, dict) or set(rule) != {'source', 'target', 'identity', 'field', 'value'}:
+                raise ValueError('evolution default needs both sides')
+            source_path, target_path = rule['source'], rule['target']
+            if not isinstance(source_path, list) or len(source_path) > 1:
+                raise ValueError('invalid source projection')
+            if not isinstance(target_path, list) or len(target_path) > 1:
+                raise ValueError('invalid target projection')
+            source = declared(['pre', *source_path], slots)
+            target = declared(['post', *target_path], slots)
+            if not isinstance(source, dict) or set(source) != {'sequence'} or not isinstance(target, dict) or set(target) != {'sequence'}:
+                raise ValueError('evolution needs typed collections')
+            old, new = source['sequence'], target['sequence']
+            if not isinstance(old, dict) or set(old) != {'record'} or not isinstance(new, dict) or set(new) != {'record'}:
+                raise ValueError('evolution needs typed rows')
+            old_fields, new_fields = old['record'], new['record']
+            identity, field = rule['identity'], rule['field']
+            if type(identity) is not str or type(field) is not str:
+                raise ValueError('invalid cross-state field identity')
+            if old_fields.get(identity) != 'string' or new_fields.get(identity) != 'string' or identity == field:
+                raise ValueError('cross-state identity mismatch')
+            if field not in new_fields:
+                raise ValueError('default target field absent')
+            target_field = new_fields[field]
+            base = target_field['optional'] if isinstance(target_field, dict) and set(target_field) == {'optional'} else target_field
+            if analyze(rule['value'], {'input': slots['input'], 'pre': pre}) != base:
+                raise ValueError('default target type mismatch')
+            if field in old_fields and old_fields[field] not in (target_field, {'optional': base}):
+                raise ValueError('default source type mismatch')
+            key = tuple(target_path)
+            root_field = target_path[0] if target_path else None
+            if root_field in targets and targets[root_field] != key:
+                raise ValueError('overlapping target construction')
+            targets[root_field] = key
+            if key not in groups:
+                groups[key] = (tuple(source_path), old_fields, new_fields, identity, {})
+            previous_source, previous_old, previous_new, previous_identity, defaults = groups[key]
+            if (previous_source, previous_old, previous_new, previous_identity) != (tuple(source_path), old_fields, new_fields, identity):
+                raise ValueError('conflicting cross-state source')
+            if field in defaults:
+                raise ValueError('duplicate cross-state default')
+            defaults[field] = rule
+            binding = {'source': ('pre', *source_path), 'target': ('post', *target_path),
+                       'type': target, 'source_type': source, 'target_type': target,
+                       'fields': new_fields, 'source_fields': old_fields,
+                       'identity': (identity, 'string'), 'field': (field, target_field),
+                       'source_field': ('pre', *source_path, field) if field in old_fields else None,
+                       'target_field': ('post', *target_path, field),
+                       'operands': {'value': id(rule['value'])}}
+        else:
+            raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: cross-state relation ' + kind)
+        if collector is not None:
+            collector['bindings'][id(relation)] = binding
+    expected = set(post['record']) if set(post) == {'record'} else {None}
+    if set(targets) != expected:
+        raise ValueError('incomplete post-state construction')
+    for _, old, new, _, defaults in groups.values():
+        if not set(old) <= set(new):
+            raise ValueError('keyed default cannot remove source fields')
+        for field, shape in new.items():
+            if field in defaults:
+                continue
+            if field not in old or old[field] != shape:
+                raise ValueError('unmapped cross-state field')
+    return tuple(relations)
+
+
 def typed(contract):
-    if not isinstance(contract, dict) or set(contract) != {'id', 'version', 'input', 'state', 'branches'} or contract['version'] != 'R5.27':
+    evolving = isinstance(contract, dict) and contract.get('version') == 'R5.33'
+    expected = {'id', 'version', 'input', 'state', 'branches'} | ({'requires'} if evolving else set())
+    if not isinstance(contract, dict) or set(contract) != expected or contract['version'] not in ('R5.27', 'R5.33'):
         raise ValueError('R5.27 requires versioned operation contract')
     if type(contract['id']) is not str or not contract['id']:
         raise ValueError('invalid identity')
-    inp, state = contract['input'], contract['state']
+    inp = contract['input']
+    if evolving and (not isinstance(contract['state'], dict) or set(contract['state']) != {'pre', 'post'}):
+        raise ValueError('evolution requires independent pre/post types')
+    states = state_slots(contract)
+    state = states['pre']
     if not isinstance(inp, dict) or set(inp) != {'record'} or not isinstance(state, dict) or set(state) not in ({'sequence'}, {'record'}):
         raise general.UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state/input shape')
     general.shape_valid(inp)
     general.shape_valid(state)
+    general.shape_valid(states['post'])
+    if evolving and (not isinstance(states['post'], dict) or set(states['post']) not in ({'record'}, {'sequence'})):
+        raise ValueError('unsupported post-state root type')
     branches = contract['branches']
     if not isinstance(branches, list) or len(branches) < 2:
         raise ValueError('branches require guards and final otherwise')
     slots = {'input': inp, 'pre': state}
+    if evolving and analyze(contract['requires'], slots) != 'boolean':
+        raise ValueError('applicability must be boolean')
+    if evolving and _analysis.get() is not None and _analysis.get()['capabilities']:
+        raise ValueError('applicability cannot acquire external capabilities')
     for index, branch in enumerate(branches):
         if not isinstance(branch, dict) or set(branch) != {'tag', 'when', 'value', 'value_type', 'transition'}:
             raise ValueError('invalid branch')
@@ -258,13 +381,18 @@ def typed(contract):
         if branch['when'] is not None and analyze(branch['when'], slots) != 'boolean':
             raise ValueError('guard must be boolean')
         general.shape_valid(branch['value_type'])
-        if analyze(branch['value'], {**slots, 'post': state}) != branch['value_type']:
+        if analyze(branch['value'], {**slots, 'post': states['post']}) != branch['value_type']:
             raise ValueError('outcome payload type mismatch')
         transition = branch['transition']
         if transition == {'preserve': True}:
+            if states['pre'] != states['post']:
+                raise ValueError('preserve cannot change state type')
             continue
         if not isinstance(transition, dict) or set(transition) != {'relations'} or not isinstance(transition['relations'], list) or not transition['relations']:
             raise general.UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: state relation')
+        if uses_evolution(contract, transition):
+            evolution_relations(transition['relations'], {**slots, 'post': states['post']})
+            continue
         # Relation operands bind to input/pre, never to post or to a leaked item.
         # This is operand typing, not a replacement for the relation-set planner:
         # overlap, framing and uniqueness still require planning before lowering.
@@ -342,11 +470,14 @@ class CheckedPlan:
     slots: dict = None
     outcomes: dict = None
     seal: str = ''
+    evolutions: frozenset = frozenset()
+    applicability: int = None
 
     def fact_digest(self):
         return general.sha(general.canonical([self.scopes, self.orders, self.operands,
             self.relations, sorted(self.optional_record_fields), self.facts, self.bindings,
-            self.projections, self.capabilities, self.slots, self.outcomes]))
+            self.projections, self.capabilities, self.slots, self.outcomes,
+            sorted(self.evolutions), self.applicability]))
 
     def assert_current(self):
         if general.sha(general.canonical(self.contract)) != self.digest:
@@ -380,6 +511,10 @@ class CheckedPlan:
         for binding in self.bindings.values():
             if binding['source'][0] != 'pre' or binding['target'][0] != 'post' or any(node not in self.operands for node in binding['operands'].values()):
                 raise ValueError('compiler internal consistency failure: state binding')
+        if self.applicability is not None and self.operands.get(self.applicability) != 'boolean':
+            raise ValueError('compiler internal consistency failure: applicability')
+        if not self.evolutions <= set(self.relations):
+            raise ValueError('compiler internal consistency failure: evolution closure')
 
     def operand_type(self, expr):
         self.assert_current()
@@ -401,22 +536,29 @@ def checked_plan(contract):
     optional_record_fields = frozenset(node for node, fact in collector['facts'].items()
         if fact['field'] is not None and isinstance(fact['declared'], dict)
         and set(fact['declared']) == {'optional'})
-    slots = {'input': contract['input'], 'pre': contract['state'], 'post': contract['state']}
+    slots = {'input': contract['input'], **state_slots(contract)}
     # Relation overlap/framing is checked once, after operand typing. The
     # emitter consumes the resulting conjunction rather than planning again.
     from benchmark.semantic.refined_generator_r5_28 import _relational
     relations = {}
+    evolutions = set()
     for branch in contract['branches']:
         transition = branch['transition']
         if 'relations' in transition:
+            if uses_evolution(contract, transition):
+                evolutions.add(id(branch))
+                relations[id(branch)] = tuple(transition['relations'])
+                continue
             provisional = CheckedPlan(contract, general.sha(general.canonical(contract)),
                                       scopes, orders, operands, bindings=collector['bindings'])
-            relations[id(branch)] = tuple(_relational(transition['relations'], contract['state'],
+            relations[id(branch)] = tuple(_relational(transition['relations'], slots['pre'],
                 slots, provisional))
     plan = CheckedPlan(contract, general.sha(general.canonical(contract)), scopes, orders,
         operands, relations, optional_record_fields, collector['facts'], collector['bindings'],
         collector['projections'], collector['capabilities'], slots,
         {b['tag']: operands[id(b['value'])] for b in contract['branches']})
+    object.__setattr__(plan, 'evolutions', frozenset(evolutions))
+    object.__setattr__(plan, 'applicability', id(contract['requires']) if contract['version'] == 'R5.33' else None)
     object.__setattr__(plan, 'seal', plan.fact_digest())
     plan.assert_invariants()
     return plan

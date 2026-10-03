@@ -1,5 +1,29 @@
 # Experimental decisions
 
+## R5.33 — Generalize #45 state slots; construct only checked target relations
+
+Record the same-shape audit before implementation. Choose
+EXISTING_OPERATION_CONTRACT_GENERALIZATION: #44's keyed row equation plus
+typed target equalities/#22 applicability/#30 count already describes add/default
+fields and root-envelope construction. The historical #45 proposal restricted
+one compatible state type, but that restriction is not required by its abstract
+four-slot relation. Give pre/post independent declarations and sealed facts;
+resolve fields/collections on their own side, check complete target coverage,
+and forbid implicit renaming/removal/widening. Reuse the ordinary planner when
+types match. Per-operation checked descriptors and generated applicability
+predicates govern version-specific execution without domain branches. Unavailable
+invocations have no fabricated semantic event/outcome. Preserve one current
+compiler and independent behavioral verification of concretely typed states.
+Tradeoffs: bounded root projections/keyed defaults, structural version domains,
+no arbitrary record map and no transactional persistence. Normal code computes
+and validates before direct write_text; interrupted I/O may still damage state.
+Fourteen lifecycle calls and two source mutations conform; five grounded faults
+fail, including a partial migration admitted only by a disposable faulty target
+codec. Core 30, no #31; recommend independent R5.34 transport review rather than
+benchmark activation. Evidence:
+`benchmark/results/phase5c/R5_33-CROSS-SHAPE-STATE-EVOLUTION.md`;
+versioned profile: `docs/state-evolution-r5.33.md`.
+
 ## R5.32 — Decode before semantic invocation; preserve absence until fallback
 
 The review finds no missing application-semantic concept in the independent
