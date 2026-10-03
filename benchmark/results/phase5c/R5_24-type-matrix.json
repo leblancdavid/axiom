@@ -1,5 +1,5 @@
 {
-  "scope": "historical R5.24 locked generative_r5_13 entries below, separately versioned R5.26 read-only generated profile, R5.27 typed analysis and prospective R5.28 checked-plan fork; independent of frozen benchmark",
+  "scope": "historical R5.24 locked entries, R5.26 read-only and R5.27/R5.28 checkpoints; R5.29 current application profile is prospective and independent of frozen benchmark",
   "classification": ["SEMANTICALLY_VALID_AND_SUPPORTED", "SEMANTICALLY_VALID_BUT_UNSUPPORTED", "SEMANTICALLY_INVALID", "UNKNOWN"],
   "types": ["string", "integer", "boolean", "instant", "nullable<T>", "optional<T> (record field presence)", "sequence<T>", "record<F>"],
   "relations": {
@@ -47,6 +47,16 @@
     "optional refinement": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": false, "GENERAL_VERIFIER": false, "READ_SUPPORT": "prospective fork", "WRITE_SUPPORT": "prospective fork: guarded keyed replace/remove", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "absent match and wrong replacement field"},
     "instant ordering": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": false, "GENERAL_VERIFIER": false, "READ_SUPPORT": "prospective fork: chronological primary and secondary key", "WRITE_SUPPORT": "guarded before predicate in prospective fork", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "secondary key fault"},
     "external instant insertion": {"SEMANTIC_SUPPORT": true, "UNIFIED_CHECKER": true, "GENERAL_GENERATOR": "historical required-instant path only", "GENERAL_VERIFIER": "historical required-instant path only", "READ_SUPPORT": false, "WRITE_SUPPORT": "prospective fork", "WHOLE_PROGRAM_SUPPORT": false, "GROUNDED": true, "FAULT_TESTED": "external/persistence mismatch"}
+  },
+  "r5_29_current_application": {
+    "entry_point": "benchmark.semantic.current_pipeline.generate / observe / challenge",
+    "status": "CURRENT_GENERAL for demonstrated same-shape non-task five-operation subset; consolidation gate PARTIAL pending complete capability transfer and optional absence construction",
+    "dimensions": ["semantic_support", "typed_analysis", "checked_plan", "general_generation", "general_verification", "whole_program_demonstrated", "grounded", "fault_tested"],
+    "optional refinement": {"semantic_support": true, "typed_analysis": true, "checked_plan": true, "general_generation": true, "general_verification": true, "whole_program_demonstrated": true, "grounded": true, "fault_tested": "A; persisted present value, absent fixture only"},
+    "instant ordering and before": {"semantic_support": true, "typed_analysis": true, "checked_plan": true, "general_generation": true, "general_verification": true, "whole_program_demonstrated": true, "grounded": true, "fault_tested": "B"},
+    "external insertion and fallback": {"semantic_support": true, "typed_analysis": true, "checked_plan": true, "general_generation": true, "general_verification": true, "whole_program_demonstrated": true, "grounded": true, "fault_tested": "D; omitted optional constructor value unsupported"},
+    "guarded replace and remove": {"semantic_support": true, "typed_analysis": true, "checked_plan": true, "general_generation": true, "general_verification": true, "whole_program_demonstrated": true, "grounded": true, "fault_tested": "C and independent continuity discrepancy E"},
+    "selection normalization string/integer ordering keyed defaults cardinality projections record outcomes overlapping defaults same-shape migration": {"semantic_support": true, "typed_analysis": "historical and partially delegated R5.27", "checked_plan": "R5.27 wrapper", "general_generation": "not demonstrated through current application entry", "general_verification": "historical regressions only", "whole_program_demonstrated": false, "grounded": "historical only", "fault_tested": "historical only"}
   },
   "r5_26_integration": {
     "profile": "benchmark.semantic.type_integration_r5_26, contract version R5.26; previous relation entries describe the unchanged historical generator",

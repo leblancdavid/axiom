@@ -69,6 +69,22 @@ external resources such as storage, time and IDs should remain distinguishable.
 
 ## Current boundary and next steps
 
+The [R5.29 authoritative-pipeline consolidation checkpoint](../benchmark/results/phase5c/R5_29-AUTHORITATIVE-PIPELINE-CONSOLIDATION.md)
+designates `benchmark.semantic.current_pipeline` as the prospective entry for
+new non-task same-shape semantic applications. One generated archive program
+runs create, refined query, ordered query, guarded replacement and removal on
+shared durable state, with independent byte-to-byte continuity and grounded
+conformance. Four disposable faults ground and fail semantics. The gate is
+**partial** (`R5_29_PIPELINE_CONSOLIDATION_PARTIAL`): old type/ordering inference
+remains duplicated inside downstream code, application assembly extracts Python
+text, historical general capabilities have not all transferred through the new
+entry, omitted optional constructor input does not produce an absent persisted
+field, and the continuity fault is between calls rather than caused by a write.
+R5.23's optional-refinement and instant-ordering blockers remain partially
+resolved at whole-general-pipeline level. Core 30, no #31; no B02 retry, Phase
+5C paused, B03 untouched, B17 unexposed/unclassified, R5.2.2 historical
+authority, format unfrozen and universal correctness unclaimed.
+
 The [R5.28 refined-plan consumption checkpoint](../benchmark/results/phase5c/R5_28-REFINED-PLAN-CONSUMPTION-INTEGRATION.md)
 adds a source-bound checked plan consumed by a prospective non-task generator
 and independent verifier fork. Refined chronological reads and guarded replace/

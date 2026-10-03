@@ -1,5 +1,21 @@
 # Lykoi research log
 
+## R5.29 prospective application integration (2026-10-03)
+
+A five-operation publication archive runs from one generated artifact with one
+durable file: two creates, a refined and ordered read, replacement, later read,
+removal and final read. Independent before/after bytes connect every adjacent
+call; external UTC instant and a persisted present optional instant survive
+serialization into chronological ordering and scoped `before`. Grounded faults
+A–D fail semantic conformance. An out-of-band durable mutation makes the next
+independent pre-state differ from the prior post-state, but is not a write-caused
+fault E. Omitted optional input referenced in a record constructor does not
+produce a persisted absent key. R5.27's legacy checker delegation, downstream
+self-checking and render-text assembly remain architectural duplication, and
+historical general-capability tests do not establish transfer through the new
+entry. Hence the R5.29 gate is partial; core 30, no new capability or B02 retry.
+Evidence: `benchmark/results/phase5c/R5_29-AUTHORITATIVE-PIPELINE-CONSOLIDATION.md`.
+
 ## R5.28 prospective refined-plan observation (2026-10-03)
 
 The unified checker now produces source-identity-bound witness dependencies,

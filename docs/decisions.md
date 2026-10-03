@@ -1,5 +1,18 @@
 # Experimental decisions
 
+## R5.29 — Designate a checked application entry without promoting a partial gate
+
+Use `benchmark.semantic.current_pipeline.generate(application, directory)` for
+new same-shape non-task application experiments. Preserve the R5.23 hash-locked
+implementation as historical evidence; reuse R5.27's checked analysis and the
+R5.28 emitter/verifier as current implementation components. The generic runtime
+dispatches multiple checked functions in one generated artifact. The tradeoff is
+that legacy inference still exists downstream and whole-capability transfer is
+unproved; a single *entry point* alone cannot justify a consolidated whole-
+general-pipeline gate. Record the result as partial and remove the text-assembly
+and duplicate inference seam before promoting it. No construct #31 or benchmark
+retry. See `benchmark/results/phase5c/R5_29-AUTHORITATIVE-PIPELINE-CONSOLIDATION.md`.
+
 ## R5.28 — Preserve the historical hash lock while integrating refinement
 
 Decision: keep R5.23's pinned general emitter, runtime and evidence files

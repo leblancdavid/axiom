@@ -152,6 +152,20 @@ def run(execute, input_shape, state_shape, outcome_shapes=None):
     print(json.dumps(outcome, sort_keys=True))
 
 
+def run_application(operations, state_shape):
+    """Dispatch checked operations through the same durable boundary as run."""
+    operation = sys.argv[1]
+    if operation not in operations:
+        raise ValueError('unknown operation')
+    execute, input_shape, outcome_shapes = operations[operation]
+    sys.argv = [sys.argv[0], *sys.argv[2:]]
+    run(execute, input_shape, state_shape, outcome_shapes)
+    trace = Path(sys.argv[2])
+    event = json.loads(trace.read_bytes())
+    event['operation'] = operation
+    trace.write_text(json.dumps(event, sort_keys=True), encoding='utf-8')
+
+
 def _flag_type(shape):
     inner = shape['optional'] if isinstance(shape, dict) and set(shape) == {'optional'} else shape
     if inner == 'integer':
