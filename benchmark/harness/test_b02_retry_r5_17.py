@@ -1,8 +1,12 @@
-"""Contract-only frozen B02 retry: no target implementation or adapter."""
+"""Historical R5.17 contract probe; current assertions track the current lowerer.
+
+The locked R5.17 rejection and conclusion remain recorded in its result artifact.
+R5.18 superseded that compiler limitation; this is not a B02 candidate.
+"""
 
 import unittest
 
-from benchmark.semantic.generative_r5_13 import typed, UnsupportedLowering
+from benchmark.semantic.generative_r5_13 import typed
 
 
 def ref(*path):
@@ -45,10 +49,9 @@ def b02_migration_contract():
 
 
 class B02RetryGate(unittest.TestCase):
-    def test_frozen_migration_defaults_reject_unchanged_lowerer(self):
-        with self.assertRaisesRegex(UnsupportedLowering,
-                                    'overlapping collection relations'):
-            typed(b02_migration_contract())
+    def test_historical_migration_slice_types_with_current_lowerer(self):
+        contract = b02_migration_contract()
+        self.assertIs(typed(contract), contract)
 
 
 if __name__ == '__main__':

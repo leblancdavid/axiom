@@ -1,15 +1,17 @@
 """Prospective bounded #45 generator; contract data drives disposable target code.
 
 Record input and sequence-of-record state; checked expressions, guarded typed
-outcomes and bounded preserve/replace/default transitions. The final branch is
-unconditional. Unsupported relational compositions reject explicitly.
+outcomes and bounded preserve/replace/default transitions. Typed ordering emits
+only from a canonical ordering plan of required string/integer keys; the key
+sequence is semantic. The final branch is unconditional. Unsupported relational
+compositions reject explicitly.
 """
 
 import hashlib
 import json
 from pathlib import Path
 
-from benchmark.semantic.typed_lowering_r5_12 import _compile, UnsupportedLowering
+from benchmark.semantic.typed_lowering_r5_12 import _compile, _field, UnsupportedLowering
 
 
 RUNTIME = Path(__file__).with_name('generative_runtime_r5_13.py')
@@ -185,7 +187,36 @@ def _relational(relations, state, slots):
     return planned
 
 
-def expression(expr, bindings=None):
+ORDER_KEY_TYPES = ('string', 'integer')
+
+
+def ordering_plan(node, slots):
+    """Canonical target-independent plan for the existing typed ordering relation.
+
+    The key sequence is semantic and is never sorted or deduplicated. Direction
+    is not represented by the existing relation, so the plan carries only
+    ascending lexicographic comparison over required string/integer fields.
+    Validation mirrors the locked interpreting lowerer exactly; results contain
+    no target-language constructs.
+    """
+    if not isinstance(node, dict) or set(node) != {'source', 'keys'} or (
+            not isinstance(node['keys'], list) or not node['keys']):
+        raise ValueError('invalid ordering')
+    source = _compile(node['source'], slots)[0]
+    if not isinstance(source, dict) or set(source) != {'sequence'}:
+        raise ValueError('ordering needs a sequence')
+    keys = []
+    for key in node['keys']:
+        if type(key) is not str:
+            raise ValueError('invalid ordering key')
+        field = _field(source['sequence'], key)
+        if field not in ORDER_KEY_TYPES:
+            raise ValueError('non-orderable key')
+        keys.append((key, field))
+    return {'element': source['sequence'], 'keys': keys}
+
+
+def expression(expr, bindings=None, slots=None, fault=False):
     """Emit only checked expression nodes; no code fragments from contract strings."""
     bindings = {} if bindings is None else bindings
     kind, arg = next(iter(expr.items()))
@@ -194,43 +225,61 @@ def expression(expr, bindings=None):
     if kind == 'literal':
         return repr(arg['value'])
     if kind == 'equals':
-        return '(' + expression(arg[0], bindings) + ' == ' + expression(arg[1], bindings) + ')'
+        return '(' + expression(arg[0], bindings, slots, fault) + ' == ' + expression(arg[1], bindings, slots, fault) + ')'
     if kind == 'and':
-        return '(' + ' and '.join(expression(e, bindings) for e in arg) + ')'
+        return '(' + ' and '.join(expression(e, bindings, slots, fault) for e in arg) + ')'
     if kind == 'not':
-        return '(not ' + expression(arg, bindings) + ')'
+        return '(not ' + expression(arg, bindings, slots, fault) + ')'
     if kind == 'select':
         name = '_element_' + str(len(bindings))
-        return ('[' + name + ' for ' + name + ' in ' + expression(arg['source'], bindings) +
-                ' if ' + expression(arg['where'], {**bindings, 'item': name}) + ']')
+        return ('[' + name + ' for ' + name + ' in ' + expression(arg['source'], bindings, slots, fault) +
+                ' if ' + expression(arg['where'], {**bindings, 'item': name}, slots, fault) + ']')
     if kind == 'cardinality':
-        return 'len(' + expression(arg, bindings) + ')'
+        return 'len(' + expression(arg, bindings, slots, fault) + ')'
     if kind == 'record':
-        return '{' + ', '.join(repr(k) + ': ' + expression(v, bindings) for k, v in arg.items()) + '}'
+        return '{' + ', '.join(repr(k) + ': ' + expression(v, bindings, slots, fault) for k, v in arg.items()) + '}'
     if kind == 'trim':
-        return '(' + expression(arg, bindings) + ').strip()'
+        return '(' + expression(arg, bindings, slots, fault) + ').strip()'
     if kind == 'map':
         name = '_element_' + str(len(bindings))
-        return '[' + name + '.strip() for ' + name + ' in ' + expression(arg['sequence'], bindings) + ']'
+        return ('[' + name + '.strip() for ' + name + ' in ' + expression(arg['sequence'], bindings, slots, fault) + ']')
     if kind == 'stable_unique':
-        return 'list(dict.fromkeys(' + expression(arg['sequence'], bindings) + '))'
+        return 'list(dict.fromkeys(' + expression(arg['sequence'], bindings, slots, fault) + '))'
     if kind == 'nonblank':
-        return 'bool((' + expression(arg, bindings) + ').strip())'
+        return 'bool((' + expression(arg, bindings, slots, fault) + ').strip())'
     if kind == 'for_each':
         name = '_bound_' + str(len(bindings))
-        return ('all(' + expression(arg['property'], {**bindings, arg['bind']: name}) +
-                ' for ' + name + ' in ' + expression(arg['sequence'], bindings) + ')')
+        return ('all(' + expression(arg['property'], {**bindings, arg['bind']: name}, slots, fault) +
+                ' for ' + name + ' in ' + expression(arg['sequence'], bindings, slots, fault) + ')')
+    if kind == 'order':
+        # The existing relation orders contract-slot collections only; ordering a
+        # quantifier-local binding has no checked interpretation here and rejects.
+        if slots is None or (isinstance(arg.get('source'), dict) and 'ref' in arg['source'] and
+                             arg['source']['ref'][0] not in slots):
+            raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: order (scoped source)')
+        plan = ordering_plan(arg, slots)
+        keys = plan['keys']
+        # Disposable injected lowering faults: drop secondary keys, or reverse a
+        # single-key plan. They faithfully execute a wrong typed permutation.
+        if fault and len(keys) > 1:
+            keys = keys[:1]
+        name = '_order_key_' + str(len(bindings))
+        projected = ', '.join(name + '[' + repr(key) + ']' for key, _ in keys) + ','
+        call = ('sorted(' + expression(arg['source'], bindings, slots, fault) +
+                ', key=lambda ' + name + ': (' + projected + '))')
+        return 'list(reversed(' + call + '))' if fault and len(plan['keys']) == 1 else call
     raise UnsupportedLowering('UNSUPPORTED_LOWERING_CAPABILITY: ' + kind)
 
 
 def render(contract, fault=False):
     typed(contract)
+    slots = {'input': contract['input'], 'pre': contract['state']}
     lines = ['# Disposable generated program; regenerate from semantic contract.',
              'from generative_runtime_r5_13 import run', '',
              'def execute(input, pre):']
     for index, branch in enumerate(contract['branches']):
-        condition = 'if ' + expression(branch['when']) + ':' if index == 0 else (
-            'elif ' + expression(branch['when']) + ':' if branch['when'] is not None else 'else:')
+        condition = 'if ' + expression(branch['when'], slots=slots) + ':' if index == 0 else (
+            'elif ' + expression(branch['when'], slots=slots) + ':' if branch['when'] is not None else 'else:')
         lines.append('    ' + condition)
         transition = branch['transition']
         if transition == {'preserve': True}:
@@ -241,7 +290,7 @@ def render(contract, fault=False):
                                         {'input': contract['input'], 'pre': contract['state']}):
                 kind, rule = next(iter(relation.items()))
                 if kind == 'post_equals':
-                    lines.append('        post = {**post, ' + repr(rule['field']) + ': ' + expression(rule['value']) + '}')
+                    lines.append('        post = {**post, ' + repr(rule['field']) + ': ' + expression(rule['value'], slots=slots) + '}')
                     continue
                 name = rule['collection']
                 source = 'post' if name is None else 'post[' + repr(name) + ']'
@@ -249,13 +298,13 @@ def render(contract, fault=False):
                 lines.extend(['        if len({row[' + key + '] for row in ' + source + '}) != len(' + source + '):',
                               '            raise ValueError("duplicate identity")'])
                 if kind == 'exact_frame':
-                    lines.extend(['        _new = ' + expression(rule['record']),
+                    lines.extend(['        _new = ' + expression(rule['record'], slots=slots),
                                   '        if _new[' + key + '] in {row[' + key + '] for row in ' + source + '}:',
                                   '            raise ValueError("identity not fresh")',
                                   '        _rows = [*' + source + ', _new]'])
                 else:
                     field = repr(rule['field'])
-                    lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value']) +
+                    lines.append('        _rows = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots) +
                                  '} if ' + field + ' not in item else item for item in ' + source + ']')
                 lines.append('        post = _rows' if name is None else
                              '        post = {**post, ' + repr(name) + ': _rows}')
@@ -264,13 +313,13 @@ def render(contract, fault=False):
             identity, field = repr(rule['identity']), repr(rule['field'])
             lines.extend(['        if len({row[' + identity + '] for row in pre}) != len(pre):',
                           '            raise ValueError("duplicate identity")',
-                          '        post = [{**item, ' + field + ': ' + expression(rule['value']) +
+                          '        post = [{**item, ' + field + ': ' + expression(rule['value'], slots=slots) +
                           '} if ' + field + ' not in item else item for item in pre]',
                           '        write = True'])
         else:
             update = transition['replace_field']
             key, field = repr(update['key']), repr(update['field'])
-            match, value = expression(update['match']), expression(update['value'])
+            match, value = expression(update['match'], slots=slots), expression(update['value'], slots=slots)
             # Disposable injected compiler fault: wrong replacement value, never alter semantics.
             if fault:
                 value = 'item[' + field + ']'
@@ -278,7 +327,7 @@ def render(contract, fault=False):
                           '] == ' + match + ' else item for item in pre]',
                           '        write = True'])
         lines.append('        return {"kind": ' + repr(branch['tag']) + ', "value": ' +
-                     expression(branch['value']) + '}, post, write')
+                     expression(branch['value'], slots=slots, fault=fault) + '}, post, write')
     lines.extend(['', 'if __name__ == "__main__":',
                    '    run(execute, ' + repr(contract['input']) + ', ' +
                    repr(contract['state']) + ', ' +

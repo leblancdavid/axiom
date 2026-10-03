@@ -13,6 +13,16 @@ integrated #45 integer-outcome checker, versioned B01 lowering or B01 grounding.
 The historical 45-entry ledger remains historical; the prospective count is
 30 core (46 raw categorized entries), not a format freeze.
 
+The [R5.20 ordering lowering study](../results/phase5c/R5_20-GENERAL-TYPED-ORDERING-LOWERING.md)
+makes the existing #43 `order` relation generative: `ordering_plan` validates
+a sequence-of-record source and an ordered list of required string/integer
+key fields into a target-independent plan, and the Python backend emits it
+under the same guarded contract operations. Grounded conformance for an
+ordering-valued outcome checks the relation itself — exact multiset permutation
+plus nondecreasing key tuples — so fully tied records are unconstrained and
+neither stability nor direction is invented; `direction` and quantifier-local
+ordering sources reject explicitly. No new construct: core remains 30.
+
 The [R5.5 architecture result](../results/phase5c/R5_5-SEMANTIC-ARCHITECTURE-SEPARATION.md)
 separates the #45 abstract relation (`contracts.py`), checked but ungrounded
 interface slot map (`binding.py`), concrete record shape (`observation.py`) and

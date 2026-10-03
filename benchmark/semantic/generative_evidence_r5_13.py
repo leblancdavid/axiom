@@ -6,7 +6,7 @@ import subprocess
 import sys
 import uuid
 
-from benchmark.semantic.generative_r5_13 import canonical, sha, typed, RUNTIME
+from benchmark.semantic.generative_r5_13 import canonical, ordering_plan, sha, typed, RUNTIME
 from benchmark.semantic.typed_lowering_r5_12 import _compile, _type
 
 
@@ -62,6 +62,27 @@ def challenge(contract, directory, internal, public, before, after):
     return verdict
 
 
+def _ordered_relation_holds(order, facts, slots, value):
+    """Interpret the ordering relation itself: exact multiset, nondecreasing keys.
+
+    A fully tied pair of records may appear in any permutation. The stable
+    source-order choice belongs to the validating interpreter's determinism,
+    not to the semantic contract, so it is not required here.
+    """
+    try:
+        plan = ordering_plan(order, slots)
+    except ValueError:
+        return False
+    source = _compile(order['source'], slots)[1](facts)
+    if not _type(value, {'sequence': plan['element']}):
+        return False
+    if sorted(map(canonical, value)) != sorted(map(canonical, source)):
+        return False
+    keys = [key for key, _ in plan['keys']]
+    rank = [tuple(row[key] for key in keys) for row in value]
+    return rank == sorted(rank)
+
+
 def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
     """Interpret the originating typed contract, independently of emitted Python."""
     typed(contract)
@@ -73,8 +94,13 @@ def conforms(contract, inp, pre, outcome, post, bytes_equal, attempted_write):
     facts = {'input': inp, 'pre': pre}
     branch = next((b for b in contract['branches'] if b['when'] is None or
                    _compile(b['when'], slots)[1](facts)), None)
-    if branch is None or not _type(outcome['value'], branch.get('value_type', 'string')) or outcome != {'kind': branch['tag'],
-                                     'value': _compile(branch['value'], slots)[1](facts)}:
+    if branch is None or not _type(outcome['value'], branch.get('value_type', 'string')):
+        return False
+    if outcome['kind'] != branch['tag']:
+        return False
+    if isinstance(branch['value'], dict) and set(branch['value']) == {'order'}:
+        return _ordered_relation_holds(branch['value']['order'], facts, slots, outcome['value'])
+    if outcome != {'kind': branch['tag'], 'value': _compile(branch['value'], slots)[1](facts)}:
         return False
     transition = branch['transition']
     if transition == {'preserve': True}:

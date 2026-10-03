@@ -1,5 +1,102 @@
 # Lykoi research log
 
+## R5.21 third frozen B02 generalization retry (prospective, 2026-10-03)
+
+**Observation:** With the R5.20 suite already current (no newly obsolete
+expectations; pre-lock harness 183/183, application/compiler 31/31), the locked
+R5.20 architecture resolved its own benchmark debut: the exact R5.19 B02
+ordered-`list` serialization now types, renders, **executes, grounds and
+conforms** end-to-end — tie-decided `(created_at,id)` order judged by the
+relation (exact multiset plus nondecreasing keys) over durable bytes that stay
+byte-identical — while the legacy alternative returns `migration_required`
+without a write. Executed B02-shaped slices also transferred R5.13 exact-HIGH
+selection ∘ ordering and read-only preservation, R5.15 blank-tag guard and
+`stable_unique(map(trim))` projection, R5.16 durable version transition with
+#30 cardinality count, and R5.18 three-default joint composition (upgraded
+from render-only). Thirteen grounded slice cases were GROUNDED + CONFORMANT;
+no B02-specific lowering branch exists in the locked path.
+See the [R5.21 result](../benchmark/results/phase5c/R5_21-B02-THIRD-GENERALIZATION-RETRY.md).
+Result: `R5_21_B02_KNOWN_LOWERING_COVERAGE_INCOMPLETE`.
+
+**Limit:** Complete B02 remains at the generative lowering gate. The decisive
+create-success composition rejects explicitly: fresh-ID/UTC-clock value
+generation (`unsupported relation: external`) and omitted-input fallback
+defaults (`unsupported relation: fallback`); the integrated multi-operation
+AST rejects at the same point. Frontier probes additionally recorded strict
+time comparison (`before`, #27 — represented/validated only in the R5.4 typed
+instant channel), matched-row/post-state outcome projection (#45 post slots
+exist in the R5.12 validating checker but the generative channel binds only to
+input/pre), the removal transition, and a newly observed state-shape boundary:
+keyed `replace_field` lowers over plain sequences but rejects `state relation`
+over the versioned envelope. None was repaired; probes were observation only.
+Core 30 / historical raw 46, no #31; 0 complete B02 operations, 0 candidate,
+0 frozen acceptance methods; grounding/conformance claims stay slice-level and
+universal implementation correctness is not established. The serial
+one-capability retry pattern is concluded: the recorded next step is a
+lowering-coverage completion phase over the known set (comparisons, removal,
+outcome projection, input fallback, envelope/mixed transitions, external-value
+binder, integrated AST/CLI binding) before any further B02 retry. Phase 5C does
+not advance to B03, B17 remains unexposed/unclassified, R5.2.2 historical
+authority, semantic-first format unfrozen. Post-lock verification: R5.21
+focused 14 OK, full harness 197 OK, application/compiler 31 OK, locked
+components re-hashed unchanged; Git LF→CRLF notices are line-ending warnings
+reported separately from failures.
+
+## R5.20 general typed ordering lowering (prospective, 2026-10-02)
+
+**Observation:** The existing #43 typed ordering relation is no longer
+validating-only. `benchmark/semantic/generative_r5_13.py` now builds a
+target-independent ordering plan (required string/integer keys, key sequence
+semantic, no direction) and emits executable ordering for media-asset and
+device-inventory contracts: 1/2/3/4-key ascending orders, selection∘ordering,
+typed record outcomes crossing the public boundary, and read-only listings
+whose durable bytes stay untouched while storage order is not rewritten.
+Semantic-only key mutations changed generated order without compiler edits;
+serialization-order changes left digests/artifacts identical while key-list
+permutation changed them; single-key reversal and dropped-secondary lowering
+faults grounded faithfully yet failed the relation-based conformance check
+(exact multiset + nondecreasing keys), which accepts either tied permutation.
+See the [R5.20 result](../benchmark/results/phase5c/R5_20-GENERAL-TYPED-ORDERING-LOWERING.md).
+Result: `R5_20_ORDERING_LOWERING_VALIDATED`.
+
+**Limit:** Direction and tie stability are not represented by the current
+model and were not invented: `direction` contracts and quantifier-local
+ordering reject explicitly. Pre-existing interpreters diverge on ties (stable
+sorted vs strict-adjacent witness), recorded as an existing ambiguity rather
+than repaired. Verifier/emitter share type logic, so common-mode faults remain
+possible. Core 30, no #31; historical raw 46. B02 was **not** retried — the
+R5.19 historical test's current-lowerer assertion was updated by lifecycle
+precedent only, and ordering benchmark transfer stays NO / NOT YET TESTED.
+Phase 5C paused, B17 unexposed/unclassified, R5.2.2 historical authority,
+semantic-first format unfrozen, universal implementation correctness not
+established. Verification: R5.20 focused 18 OK, full harness 183 OK,
+application/compiler 31 OK, validate/safety OK, R5.10–R5.19 focused 32 OK,
+`git diff --check` exit 0 with separate Git LF→CRLF line-ending warnings.
+
+## R5.19 second frozen B02 generalization retry (prospective, 2026-10-02)
+
+**Observation:** The R5.17 historical test's obsolete current-compiler
+rejection expectation was replaced with a current typed-slice assertion; its
+historical result remains untouched. Pre-lock benchmark harness 164/164,
+application/compiler 31/31, focused R5.10–R5.18 pattern 31/31 and tracked
+diff check passed. Locked source hashes and frozen-authority pins are in the
+[R5.19 result](../benchmark/results/phase5c/R5_19-B02-SECOND-GENERALIZATION-RETRY.md).
+The exact R5.17 B02-shaped migration slice now types and renders all three
+defaults through the independent R5.18 plan. This is observed compiler
+transfer, not an executable complete B02 operation. A typed read-only B02
+normal-list contract then rejects `render` with
+`UNSUPPORTED_LOWERING_CAPABILITY: order`: the earlier overlap blocker has
+cleared, but full B02 remains at the general lowering gate.
+
+**Limit:** The R5.17 migration slice omits other legacy versions and all task
+commands. No complete R5.19 B02 candidate, frozen acceptance, B02 grounding or
+case conformance exists; counts are N/A. No post-lock repair. Core 30 / raw 46,
+no #31; Phase 5C does not advance to B03, B17 remains unexposed/unclassified,
+R5.2.2 historical authority, semantic-first format unfrozen and universal
+implementation correctness not established. Study ordered-result generation on
+independent non-task domains in a separate experiment. Git LF→CRLF notices
+are reported separately from check failures.
+
 ## R5.18 overlapping relation lowering (prospective, 2026-10-02)
 
 **Observation:** The previous one-owner-per-collection check blocked N

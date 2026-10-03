@@ -1,5 +1,55 @@
 # Experimental decisions
 
+## R5.21 third frozen B02 retry halt (prospective, 2026-10-03)
+
+Run the last planned serial one-capability B02 retry against the locked R5.20
+architecture. Verify suite consistency first (no newly obsolete expectations;
+the R5.17/R5.19 lifecycle updates already covered the superseded ones). Record
+that the R5.19 `order` blocker is resolved and that normalization, defaults,
+version/count, selection, read-only preservation and lexicographic ordering now
+execute, ground and conform as disposable B02-shaped slices with zero
+task-specific compiler changes. Classify the complete attempt as
+`VALID_SEMANTICS_UNSUPPORTED_LOWERING`: create-success needs fresh-ID/UTC-clock
+generation and omitted-input fallback, with strict time comparison,
+post/matched-row outcome projection, removal transitions and envelope-shaped
+keyed replacement as further known boundaries; stop without repair and keep the
+integrated AST, CLI and binding layers unadvanced. Because this completes the
+third discovery cycle, replace the serial retry pattern with a lowering-coverage
+completion phase over the known set before any next B02 retry. Core 30, no #31,
+no candidate/acceptance result, R5.2.2 historical authority, B17 unexposed,
+format unfrozen. See the
+[R5.21 result](../benchmark/results/phase5c/R5_21-B02-THIRD-GENERALIZATION-RETRY.md).
+
+## R5.20 generative ordering lowering (prospective, 2026-10-02)
+
+Lower the existing #43 typed ordering relation generatively rather than
+redefine it: validate against the locked interpreting checker, plan
+target-independently (ordered required string/integer keys; no direction;
+key list never canonicalized), and emit through the existing Python backend.
+Judge ordering conformance by the checkable relation — exact multiset
+permutation plus nondecreasing declared keys — so implementation stability
+is not smuggled in as semantics, while ties stay unconstrained and direction,
+optional/nullable/boolean keys, non-sequences and quantifier-local sources
+reject explicitly. Keep the frozen validating checker, runtime, B02 retry
+prohibition and 30-core inventory unchanged; update only the historical
+R5.19 executable expectation by the established test-lifecycle precedent.
+See the
+[R5.20 result](../benchmark/results/phase5c/R5_20-GENERAL-TYPED-ORDERING-LOWERING.md).
+
+## R5.19 second frozen B02 retry halt (prospective, 2026-10-02)
+
+Retire the obsolete *executable* R5.17 rejection expectation in favor of a
+current-compiler typed-slice assertion; retain its historical result and locked
+conclusion. Require a green current harness before hashing and locking the
+R5.19 architecture. The unchanged R5.18 plan now renders the same B02-shaped
+three-default migration slice, but a typed B02 normal-list outcome rejects at
+generic `order` emission. Classify the complete B02 attempt as
+`VALID_SEMANTICS_UNSUPPORTED_LOWERING`, stop without repair, and count only
+slice-level compiler transfer; no candidate, frozen acceptance or grounding
+follows. Develop ordered collection outcome generation on independent non-task
+domains separately before another frozen retry. See the
+[R5.19 result](../benchmark/results/phase5c/R5_19-B02-SECOND-GENERALIZATION-RETRY.md).
+
 ## R5.18 typed relation-set planning (prospective, 2026-10-02)
 
 Plan same-collection keyed missing-field defaults as an N-way conjunction:
@@ -11,8 +61,9 @@ one expected post-population. Keep frame/default and unresolved same-field
 expression overlaps explicitly unsupported rather than inferring list order.
 This is compiler machinery under the existing 30-core vocabulary, not a new
 semantic construct or authorization for benchmark execution. Preserve the
-historical R5.17 locked test even though its old-lowerer rejection assertion
-does not hold on the prospective implementation. See the
+historical R5.17 locked result even though its old-lowerer rejection assertion
+does not hold on the prospective implementation; R5.19 subsequently updates
+the executable test lifecycle without changing that result. See the
 [R5.18 result](../benchmark/results/phase5c/R5_18-OVERLAPPING-RELATION-COMPOSITION-LOWERING.md).
 
 ## R5.17 clean frozen B02 retry halt (prospective, 2026-10-02)

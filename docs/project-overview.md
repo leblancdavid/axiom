@@ -285,10 +285,53 @@ now plans N compatible keyed defaults over one typed collection, deduplicates
 equivalent relations, rejects conflicting literals and unsupported structural
 overlaps, and checks their joint post-state in an instrument inventory. Durable
 version/count outcomes and a grounded but nonconformant lowering fault exercise
-the conjunction. The historical R5.17 locked rejection test still describes
-the old lowerer and is not a new frozen retry. Core 30; Phase 5C paused, B17
-unexposed/unclassified, R5.2.2 historical authority, format unfrozen. Next:
+the conjunction. At the R5.18 checkpoint, the R5.17 executable assertion still
+expected the old lowerer to reject; R5.18 is not a new frozen retry. Core 30;
+Phase 5C paused, B17 unexposed/unclassified, R5.2.2 historical authority,
+format unfrozen. Next:
 a separately locked retry, not a retroactive R5.17 result.
+The [R5.19 second locked B02 retry](../benchmark/results/phase5c/R5_19-B02-SECOND-GENERALIZATION-RETRY.md)
+first restored current-suite consistency by updating the executable R5.17
+assertion to reflect current compiler behavior, preserving its historical
+result. The full harness then passed 164/164 before lock. The unchanged
+R5.17 three-default migration slice now types and renders through R5.18's
+planner, demonstrating **bounded B02-shaped transfer without task-specific
+compiler changes**. But a typed B02 ordered `list` hits the next unchanged
+generator limit, `UNSUPPORTED_LOWERING_CAPABILITY: order`. This is another
+lowering halt, not a B02 candidate or acceptance/grounding result. Core 30,
+no #31, no B03 advance, B17 unexposed/unclassified, R5.2.2 historical
+authority, format unfrozen and universal correctness unestablished. Next:
+independent non-task generative ordered-outcome study before any further retry.
+The [R5.20 general ordering lowering](../benchmark/results/phase5c/R5_20-GENERAL-TYPED-ORDERING-LOWERING.md)
+now generatively lowers the existing #43 typed ordering relation on media and
+device domains: one-, two-, three- and four-key ascending plans over typed
+record collections, composed with exact selection and typed record-valued
+outcomes, read-only over durable bytes, grounded and fault-tested; ties remain
+semantically unconstrained and direction remains unrepresented (both reject
+explicitly). No B02 retry occurred, no #31 follows and benchmark transfer
+remains untested; result `R5_20_ORDERING_LOWERING_VALIDATED`. Next: a
+separately locked third B02 retry, with direction semantics and scoped
+ordering reserved for independent semantic/lowering study.
+The [R5.21 third locked B02 retry](../benchmark/results/phase5c/R5_21-B02-THIRD-GENERALIZATION-RETRY.md)
+restored suite consistency (no newly obsolete expectations; pre-lock harness
+183/183), locked the R5.20 architecture and confirmed the unchanged 30-construct
+model again represents frozen B02. R5.20 ordering **transferred**: the exact
+R5.19 `order` blocker is resolved and the B02-shaped ordered `list`, together
+with executed-slice transfers of R5.13 selection/read-only, R5.15
+normalization/defaults/record outcomes, R5.16 durable version transition and
+#30 count, and R5.18 N-way defaults, now generate, execute, ground and conform
+as disposable slices without task-specific compiler changes. Complete B02 still
+stops at the generative lowering gate: create-success needs fresh-ID/UTC-clock
+value generation and omitted-input fallback defaults (both rejected explicitly),
+and known boundaries remain for strict time comparison, matched-row/post-state
+outcome projection, removal transitions and envelope-shaped lifecycle
+replacement; the integrated multi-operation AST and CLI/clock/ID binding remain
+unreached. This is the last planned one-capability retry cycle: result
+`R5_21_B02_KNOWN_LOWERING_COVERAGE_INCOMPLETE` recommends a lowering-coverage
+completion phase closing the known set independently before any further B02
+retry. Core 30, no #31, no candidate/acceptance/grounding result for a complete
+B02, Phase 5C does not advance to B03, B17 unexposed/unclassified, R5.2.2
+historical authority, format unfrozen, universal correctness unestablished.
 Longer term, complete the ordered benchmark with
 honest accounting for capability gaps, dependency
 blocks, regressions and measurement limits. The benchmark tests functional
